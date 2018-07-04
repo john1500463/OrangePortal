@@ -1,16 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Data;
-using System.Collections;
-using System.Diagnostics;
 
-
-public partial class CSM_entity : System.Web.UI.Page
+public partial class Sita : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -19,18 +18,18 @@ public partial class CSM_entity : System.Web.UI.Page
         try
         {
 
-            ArrayList AllCSMIncidents = new ArrayList();
-            ArrayList AllIncidents = new ArrayList();
-            ArrayList CSMExpoditeIncidents = new ArrayList();
-            DataTable DtOfCSMIncidents = new DataTable();
+            ArrayList AllSitaIncidents = new ArrayList();
+            ArrayList AllExpoxiedIncidents = new ArrayList();
+            ArrayList SitaExpoditeIncidents = new ArrayList();
+            DataTable DtOfSitaIncidents = new DataTable();
             DataTable dtOfAllIncidents = new DataTable();
-            DataTable DtCSMExpoditeIncidents = new DataTable();
+            DataTable DtSitaExpoditeIncidents = new DataTable();
             conn.Open();
             SqlCommand command = new SqlCommand();
             SqlCommand command2 = new SqlCommand();
             command.Connection = conn;
-            //Get All Indients with CSM 
-            command.CommandText = "Select [INC Incident Number] From [dbo].['All_Incidents'] where [INC CI Entity] LIKE '%CSM%';";
+            //Get All Incidents in Sita
+            command.CommandText = "Select [Inc Incident Number] From [dbo].['All_Incidents'] Where [INC CI Corporate ID] IN ('KXZP1876','TVDB2230');";
             command2.Connection = conn;
             command2.CommandText = "Select [Incident_ID] From [dbo].[Expedite_time];";
 
@@ -40,19 +39,20 @@ public partial class CSM_entity : System.Web.UI.Page
             {
                 sda.SelectCommand = command;
 
-                using (DtOfCSMIncidents = new DataTable())
+                using (DtOfSitaIncidents = new DataTable())
                 {
 
-                    sda.Fill(DtOfCSMIncidents);
+                    sda.Fill(DtOfSitaIncidents);
 
 
                 }
             }
-            foreach (DataRow row in DtOfCSMIncidents.Rows)
+            foreach (DataRow row in DtOfSitaIncidents.Rows)
             {
-                foreach (DataColumn column in DtOfCSMIncidents.Columns)
+                foreach (DataColumn column in DtOfSitaIncidents.Columns)
                 {
-                    AllCSMIncidents.Add(row[column]);
+                    AllSitaIncidents.Add(row[column]);
+                    
 
                 }
             }
@@ -66,7 +66,7 @@ public partial class CSM_entity : System.Web.UI.Page
                 {
 
                     sda1.Fill(dtOfAllIncidents);
-
+                    
 
                 }
             }
@@ -76,18 +76,19 @@ public partial class CSM_entity : System.Web.UI.Page
             {
                 foreach (DataColumn column in dtOfAllIncidents.Columns)
                 {
-                    AllIncidents.Add(row[column]);
+                    AllExpoxiedIncidents.Add(row[column]);
+                                 
                 }
             }
 
-            for (int i = 0; i < AllIncidents.Count; i++)
+            for (int i = 0; i < AllExpoxiedIncidents.Count; i++)
             {
-                for (int j = 0; j < AllCSMIncidents.Count; j++)
+                for (int j = 0; j < AllSitaIncidents.Count; j++)
                 {
-                    if (AllIncidents[i].Equals(AllCSMIncidents[j]))
+                    if (AllExpoxiedIncidents[i].Equals(AllSitaIncidents[j]))
                     {
-                        CSMExpoditeIncidents.Add(AllIncidents[i]);
-
+                        SitaExpoditeIncidents.Add(AllExpoxiedIncidents[i]);
+                        Debug.Write(AllExpoxiedIncidents[i]);
 
                     }
 
@@ -96,17 +97,17 @@ public partial class CSM_entity : System.Web.UI.Page
             }
 
             SqlCommand command3 = new SqlCommand();
-            for (int counter = 0; counter < CSMExpoditeIncidents.Count; counter++)
+            for (int counter = 0; counter < SitaExpoditeIncidents.Count; counter++)
             {
                 command3.Connection = conn;
-                command3.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] Where [Incident_ID] ='" + CSMExpoditeIncidents[counter] + "' ;";
+                command3.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] Where [Incident_ID] ='" + SitaExpoditeIncidents[counter] + "' ; ";
 
                 SqlDataAdapter sda = new SqlDataAdapter();
                 sda.SelectCommand = command3;
-                sda.Fill(DtCSMExpoditeIncidents);
+                sda.Fill(DtSitaExpoditeIncidents);
             }
-Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] Where [Incident_ID] ='" + CSMExpoditeIncidents[counter] + "' ;
-            if (DtCSMExpoditeIncidents.Rows.Count == 0)
+
+            if (DtSitaExpoditeIncidents.Rows.Count <= 0)
             {
                 Label1.Text = "No Incidents exist";
 
@@ -114,7 +115,7 @@ Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason
             else
             {
                 Label1.Visible = false;
-                GridView1.DataSource = DtCSMExpoditeIncidents;
+                GridView1.DataSource = DtSitaExpoditeIncidents;
                 GridView1.DataBind();
                 GridView1.Visible = true;
 
