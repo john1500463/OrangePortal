@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Expedited_Incidents.aspx.cs" Inherits="Expedited_Incidents" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,7 +16,7 @@
 
 #bottomnav 
 {
-  position:relative;
+    position:relative;
   height: 100px;
   width: 99%;
   background-color: black;
@@ -49,7 +48,9 @@
   text-align: center;
   padding: 20px 22px;
   text-decoration: none;
-}
+        width: 156px;
+        height: 23px;
+    }
 
 .dropdown 
 {
@@ -59,15 +60,18 @@
 
 .dropdown .dropbtn 
 {
-  font-size: 16px;    
-  border: none;
-  outline: none;
-  color: white;
-  padding: 22px 22px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
+    border-style: none;
+        border-color: inherit;
+        border-width: medium;
+        font-size: 16px;    
+        outline: none;
+        color: white;
+        padding: 22px 22px;
+        background-color: black;
+        font-family: inherit;
+        margin: 0;
+        width: 209px;
+    }
 
 .navbar a:hover, .dropdown:hover .dropbtn 
 {
@@ -79,7 +83,8 @@
   display: none;
   position: absolute;
   background-color: black;
-  min-width: 160px;
+  width:210px;
+   min-width: 140px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -87,16 +92,19 @@
 .dropdown-content a 
 {
   float: none;
+ 
   color: white;
   padding: 20px 15px;
   text-decoration: none;
   display: block;
   text-align: left;
+  
 }
 
 .dropdown-content a:hover 
 {
   background-color: darkorange;
+  width:85.5%;
 }
 
 .dropdown:hover .dropdown-content 
@@ -109,8 +117,7 @@
 
 <body>
 
-<div id="up" aria-expanded="true">  <font color= darkorange  size="6"  width="10"><b>Expedite Portal</b></font>&nbsp;<a href="Default.aspx"><i class="fa fa-caret-down"></i></a> 
-  
+<div id="up" aria-expanded="true">  <font color= darkorange  size="6"  width="10"><b>Expedite Portal</b></font>&nbsp;
 <div class="navbar">
     <a href="Home_Page.aspx">Home</a>
  <a href="My_Expedited_Incidents.aspx">My Expedited Incidents</a>
@@ -119,7 +126,7 @@
  <button class="dropbtn">Expedited Incidents 
     </button>
  
-<div class="dropdown-content">
+<div aria-expanded="true" class="dropdown-content">
  <a href="Support_Ack.aspx">Expedited Incidents</a>
  <a href="#">SITA Expedited Incidents</a>
  <a href="#">Incidents to Expedite</a>
@@ -130,7 +137,7 @@
 </div> 
     
  <a href="#features">Feature Requests</a>
- <a href="#help">Help</a><img src="file:///C:\Users\lsrg1971\AppData\Local\Temp\q5cxmuvm.bmp" />
+ <a href="#help">Help</a>
  <a href="Default.aspx">Log Out</a> 
  </div> 
 </div>
