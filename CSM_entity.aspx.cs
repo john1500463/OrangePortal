@@ -105,7 +105,7 @@ public partial class CSM_entity : System.Web.UI.Page
                 sda.SelectCommand = command3;
                 sda.Fill(DtCSMExpoditeIncidents);
             }
-Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] Where [Incident_ID] ='" + CSMExpoditeIncidents[counter] + "' ;
+
             if (DtCSMExpoditeIncidents.Rows.Count == 0)
             {
                 Label1.Text = "No Incidents exist";
