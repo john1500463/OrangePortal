@@ -49,7 +49,7 @@
   text-align: center;
   padding: 20px 22px;
   text-decoration: none;
-        width: 175px;
+        width: 156px;
         height: 23px;
     }
 
