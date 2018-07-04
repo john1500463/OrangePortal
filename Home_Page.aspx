@@ -11,7 +11,7 @@
 #up 
 {    
   height: 100px;
-  width: 1271.5px;
+  width: 100%;
   background-color: black;                   
 }
 
@@ -33,7 +33,9 @@
 
 .navbar 
 {
-  overflow: hidden;
+  overflow:auto;
+  width:100%;
+  max-width:105%;
   background-color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -105,17 +107,16 @@
 </head>
 
 <body>
+
+<div id="up" aria-expanded="true">  <font color= darkorange  size="6"  width="10"><b>Expedite Portal</b></font>&nbsp;<a href="Default.aspx"><i class="fa fa-caret-down"></i></a> 
   
-<div id="up">  <font color= darkorange  size="6"  width="10"><b>Expedite Portal</b></font>
- <img src="download.png" alt="Orange.com" width=110" height="93" align="right" style="margin-right:5px;">
- 
 <div class="navbar">
- <a href="Home_Page.aspx">Home</a>
+    <a href="Home_Page.aspx">Home</a>
  <a href="My_Expedited_Incidents.aspx">My Expedited Incidents</a>
 
 <div class="dropdown">
  <button class="dropbtn">Expedited Incidents 
- <i class="fa fa-caret-down"></i> </button>
+    </button>
  
 <div class="dropdown-content">
  <a href="Support_Ack.aspx">Expedited Incidents</a>
@@ -129,14 +130,16 @@
     
  <a href="#features">Feature Requests</a>
  <a href="#help">Help</a>
- <a href="Default.aspx">Log Out</a>
-
-</div> 
+ <a href="Default.aspx">Log Out</a> 
+ </div> 
 </div>
+     <div aria-expanded="true"> <img src="download.png" alt="Orange.com"    style=" position: absolute; top:1.38%; left:91%; height: 101px; width: 107px; "> </div> 
 </form> 
 </div>
-    <form id="form1" runat="server">
-    <div style="margin-top: 50px;">
+    <form id="form1" runat="server" aria-expanded="true">
+        <p>
+            &nbsp;</p>
+    <div style="margin-top: 50px;" aria-expanded="true">
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> &nbsp&nbsp&nbsp&nbsp&nbsp <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
        
         
@@ -146,12 +149,10 @@
         
         
         </div>
-        <p>
+        <p aria-expanded="true">
             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </p>
-        <p>
-            &nbsp;</p>
-        <p>
+        <p aria-expanded="true">
             <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" AutoGenerateSelectButton="False" Visible="False">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
@@ -173,7 +174,7 @@
        
        </form>
 
-<div id="bottomnav"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on
+<div id="bottomnav" aria-expanded="true"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on
  <a href="mailto:it.support4business@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 
 </body>
