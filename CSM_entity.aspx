@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CSM_entity.aspx.cs" Inherits="CSM_entity" %>
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,7 +18,7 @@
 
 #bottomnav 
 {
-    position:absolute;
+  position:absolute;
   height: 100px;
   width: 99%;
   background-color: black;
@@ -130,7 +131,7 @@
 </div> 
     
  <a href="#features">Feature Requests</a>
- <a href="#help">Help</a>
+ <a href="#help">Help</a><img src="file:///C:\Users\lsrg1971\AppData\Local\Temp\q5cxmuvm.bmp" />
  <a href="Default.aspx">Log Out</a> 
  </div> 
 </div>
