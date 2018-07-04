@@ -34,7 +34,7 @@
 .navbar 
 {
   overflow: hidden;
-  background-color: black;
+  background-color: red;
   font-family: Arial, Helvetica, sans-serif;
 }
 
