@@ -58,7 +58,7 @@ public partial class CSM_entity : System.Web.UI.Page
             }
 
 
-            using (SqlDataAdapter sda6 = new SqlDataAdapter())
+            using (SqlDataAdapter sda1 = new SqlDataAdapter())
             {
                 sda1.SelectCommand = command2;
 
