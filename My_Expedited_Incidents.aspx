@@ -1,8 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="My_Expedited_Incidents.aspx.cs" Inherits="My_Expedited_Incidents" %>
 
-
-
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,16 +11,17 @@
 #up 
 {    
   height: 100px;
-  width: 1271.5px;
+  width: 100%;
   background-color: black;                   
 }
 
 #bottomnav 
 {
+    position:absolute;
   height: 100px;
-  width: 1271.5px;
+  width: 99%;
   background-color: black;
-  margin-top: 675px;
+  bottom:0%;
 }
 
 #buttom 
@@ -36,7 +34,9 @@
 
 .navbar 
 {
-  overflow: hidden;
+  overflow:auto;
+  width:100%;
+  max-width:105%;
   background-color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -49,7 +49,9 @@
   text-align: center;
   padding: 20px 22px;
   text-decoration: none;
-}
+        width: 156px;
+        height: 23px;
+    }
 
 .dropdown 
 {
@@ -59,15 +61,18 @@
 
 .dropdown .dropbtn 
 {
-  font-size: 16px;    
-  border: none;
-  outline: none;
-  color: white;
-  padding: 22px 22px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
+    border-style: none;
+        border-color: inherit;
+        border-width: medium;
+        font-size: 16px;    
+        outline: none;
+        color: white;
+        padding: 22px 22px;
+        background-color: black;
+        font-family: inherit;
+        margin: 0;
+        width: 209px;
+    }
 
 .navbar a:hover, .dropdown:hover .dropbtn 
 {
@@ -79,7 +84,8 @@
   display: none;
   position: absolute;
   background-color: black;
-  min-width: 160px;
+  width:210px;
+   min-width: 140px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -87,16 +93,19 @@
 .dropdown-content a 
 {
   float: none;
+ 
   color: white;
   padding: 20px 15px;
   text-decoration: none;
   display: block;
   text-align: left;
+  
 }
 
 .dropdown-content a:hover 
 {
   background-color: darkorange;
+  width:85.5%;
 }
 
 .dropdown:hover .dropdown-content 
@@ -108,19 +117,17 @@
 </head>
 
 <body>
-  
-<div id="up">  <font color= darkorange  size="6"  width="10"><b>Expedite Portal</b></font>
- <img src="download.png" alt="Orange.com" width=110" height="93" align="right" style="margin-right:5px;">
- 
+
+<div id="up" aria-expanded="true">  <font color= darkorange  size="6"  width="10"><b>Expedite Portal</b></font>&nbsp;
 <div class="navbar">
- <a href="Home_Page.aspx">Home</a>
+    <a href="Home_Page.aspx">Home</a>
  <a href="My_Expedited_Incidents.aspx">My Expedited Incidents</a>
 
 <div class="dropdown">
  <button class="dropbtn">Expedited Incidents 
- <i class="fa fa-caret-down"></i> </button>
+    </button>
  
-<div class="dropdown-content">
+<div aria-expanded="true" class="dropdown-content">
  <a href="Support_Ack.aspx">Expedited Incidents</a>
  <a href="#">SITA Expedited Incidents</a>
  <a href="#">Incidents to Expedite</a>
@@ -132,10 +139,10 @@
     
  <a href="#features">Feature Requests</a>
  <a href="#help">Help</a>
- <a href="Default.aspx">Log Out</a>
-
-</div> 
+ <a href="Default.aspx">Log Out</a> 
+ </div> 
 </div>
+     <div aria-expanded="true"> <img src="download.png" alt="Orange.com"    style=" position: absolute; top:1.38%; left:91%; height: 101px; width: 107px; "> </div> 
 </form> 
 </div>
     <form id="form2" runat="server">
