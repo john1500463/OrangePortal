@@ -105,7 +105,6 @@ public partial class CSM_entity : System.Web.UI.Page
                 sda.SelectCommand = command3;
                 sda.Fill(DtCSMExpoditeIncidents);
             }
-
             if (DtCSMExpoditeIncidents.Rows.Count == 0)
             {
                 Label1.Text = "No Incidents exist";
