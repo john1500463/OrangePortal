@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CSM_entity.aspx.cs" Inherits="CSM_entity" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Expedite_Extraction.aspx.cs" Inherits="Expedite_Extraction" %>
+
 
 <!DOCTYPE html>
 
@@ -145,15 +146,28 @@
  </div> 
 </div>
      <div aria-expanded="true"> <img src="download.png" alt="Orange.com"    style=" position: absolute; top:1.38%; left:91%; height: 101px; width: 107px; "> </div> 
-</form> 
-</div>
-    <form id="form1" runat="server">
 
 </div>
     
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-    <div style="margin-top: 50px;">
-            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" AutoGenerateSelectButton="False" Visible="False">
+        <p>
+            &nbsp;</p>
+   
+       
+    <form id="form1" runat="server">
+   
+        <p aria-expanded="true">
+            <asp:Label ID="Label1" runat="server" Text="From"></asp:Label>
+            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:</p>
+        
+       
+        <p aria-expanded="true">
+          <asp:Calendar ID="Calendar1" runat="server" Height="153px" Width="220px"></asp:Calendar>
+          <asp:Calendar ID="Calendar2" runat="server" style="position: relative; top: -183px; left: 259px; width: 214px; height: 176px;"></asp:Calendar>
+         <asp:Button ID="Button1" runat="server"  style="position: relative; top: -150px; left: 0px; height: 25px; width: 39px;" OnClick="Button1_Click" Text="Get" />
+  
+        
+        
+            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" AutoGenerateSelectButton="False" Visible="False" >
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
@@ -165,23 +179,18 @@
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
+            
+        </p>
+        
+       
+    <div>
+     <div style="margin-top: 50px;" aria-expanded="true">
         &nbsp&nbsp&nbsp&nbsp&nbsp 
        
         
         
         &nbsp;</div>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        
-       
-       </form>
-
-<div id="bottomnav"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on
- <a href="mailto:it.support4business@orange.com">it.support4business@orange.com</a></b></center></font> </div>
-
+    </div>
+    </form>
 </body>
 </html>
