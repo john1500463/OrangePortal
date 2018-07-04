@@ -17,10 +17,11 @@
 
 #bottomnav 
 {
+    position:absolute;
   height: 100px;
-  width: 1271.5px;
+  width: 99%;
   background-color: black;
-  margin-top: 675px;
+  bottom:0%;
 }
 
 #buttom 
