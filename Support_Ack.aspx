@@ -17,7 +17,7 @@
 
 #bottomnav 
 {
-    position:relative;
+    position:absolute;
   height: 100px;
   width: 99%;
   background-color: black;
