@@ -160,8 +160,6 @@
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Search" />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Clear" />
 
-        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-
         <asp:DropDownList ID="DropDownList1" runat="server" style=" margin-left:20px">
         </asp:DropDownList>
 
@@ -178,6 +176,11 @@
                 <SortedDescendingHeaderStyle BackColor="#820000" />
 
         </asp:GridView>
+
+        <asp:TextBox ID="TextBox2" runat="server" value="Comment"></asp:TextBox>
+
+        <asp:Button ID="Button3" OnClick="Button3_Click" runat="server" Text="Save" />
+
         </div>
         
            
