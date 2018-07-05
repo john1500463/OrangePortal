@@ -65,35 +65,6 @@ public partial class Support_Ack : System.Web.UI.Page
                 GridView1.DataBind();
                 GridView1.Visible = true;
 
-
-            //DataColumn dc = new DataColumn("Acknowledge", typeof(bool));
-           //dc.AllowDBNull = false;
-            //dc.Unique = true;  
-           //dt.Columns.Add(dc);
-           /* DataColumn dc1 = new DataColumn("PageName");
-            dt.Columns.Add(dc1);
-
-            foreach (var item in RoleName)
-            {
-                DataColumn dc = new DataColumn(item.RoleName, typeof(bool));
-                dt.Columns.Add(dc);
-            }
-
-            foreach (var page in pageName)
-            {
-                DataRow dr = dt.NewRow();
-                dr["PageName"] = page.PAGE_NAME;
-
-                foreach (var role in RoleName)
-                {
-                    dr[role.RoleName] = true;
-                }
-                dt.Rows.Add(dr);
-            }    
-            */
-            //GridView1.DataSource = dt;
-           // GridView1.DataBind();
-            //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
         }
         catch (Exception ex)
         {
