@@ -53,7 +53,7 @@ public partial class Support_Ack : System.Web.UI.Page
             for (int counter = 0; counter < arr.Count; counter++)
             {
                 command3.Connection = conn;
-                command3.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] Where [Incident_ID] ='" + arr[counter] + "' ;";
+                command3.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] Where [Incident_ID] ='" + arr[counter] + "' AND [Expedite_By]='" + x +"';";
 
                 SqlDataAdapter sda = new SqlDataAdapter();
                 sda.SelectCommand = command3;
