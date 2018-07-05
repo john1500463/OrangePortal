@@ -12,6 +12,10 @@ public partial class Expedite_Extraction : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        { 
+            Response.Redirect("Default.aspx"); 
+        }
         Label2.Visible = false;
     }
 

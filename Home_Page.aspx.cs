@@ -11,7 +11,10 @@ public partial class Home_Page : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         // GridView1.Visible = false;
         //TextBox1.Text = "";
     }
@@ -108,6 +111,8 @@ public partial class Home_Page : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         //String x = TextBox1.Text.ToString();
+        Label1.Text = "";
+        Label2.Text = "";
         refresh_grid1();
 
 
@@ -144,6 +149,8 @@ public partial class Home_Page : System.Web.UI.Page
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
+        Label1.Text = "";
+        Label2.Text = "";
         String Y = TextBox1.Text.ToString();
 
         //If already Exp

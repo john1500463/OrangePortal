@@ -13,6 +13,10 @@ public partial class Urgency_Reason_Stats : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         ArrayList UrgencyReasons = new ArrayList();
         ArrayList Counters = new ArrayList();
        

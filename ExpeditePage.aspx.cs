@@ -17,6 +17,10 @@ public partial class ExpeditePage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         String Incident = Request.QueryString["param1"];
         Label1.Text = Incident;
 
