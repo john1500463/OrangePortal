@@ -21,8 +21,9 @@
   height: 100px;
   width: 99%;
   background-color: black;
-  bottom:0%;
-}
+  bottom:-121%;
+        left: 0px;
+    }
 
 #buttom 
 {  
@@ -132,7 +133,7 @@
  <a href="#">SITA Expedited Incidents</a>
  <a href="#">Incidents to Expedite</a>
  <a href="Expedite_Extraction.aspx">Expedite Extraction</a>
- <a href="#">Urgency Reason Statistics</a>
+ <a href="Urgency_Reason_Stats.aspx">Urgency Reason Statistics</a>
  <a href="CSM_entity.aspx">CSM expedite Incidents </a>
 
 
@@ -150,6 +151,18 @@
     <form id="form2" runat="server">
     <div style="margin-top: 50px;">
 
+        <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+
+        <asp:Calendar ID="Calendar2" runat="server" Style="Position:relative; top: -194px; left: 301px;"></asp:Calendar>
+
+<div id="bottomnav"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on
+ <a href="mailto:it.support4business@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+
+        </div>
+        
+           
+        
+       
         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
                 <Columns>
@@ -173,15 +186,11 @@
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
-        </div>
         
            
         
        
        </form>
-
-<div id="bottomnav"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on
- <a href="mailto:it.support4business@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 
 </body>
 </html>
