@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Expedite_Extraction.aspx.cs" Inherits="Expedite_Extraction" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Urgency_Reason_Stats.aspx.cs" Inherits="Urgency_Reason_Stats" %>
 
 <!DOCTYPE html>
 
@@ -18,7 +17,7 @@
 
 #bottomnav 
 {
-    position:absolute;
+    position:relative;
   height: 100px;
   width: 99%;
   background-color: black;
@@ -119,6 +118,9 @@
 
 <body>
 
+    
+
+
 <div id="up" aria-expanded="true">  <font color= darkorange  size="6"  width="10"><b>Expedite Portal</b></font>&nbsp;
 <div class="navbar">
     <a href="Home_Page.aspx">Home</a>
@@ -147,28 +149,13 @@
 </div>
      <div aria-expanded="true"> <img src="download.png" alt="Orange.com"    style=" position: absolute; top:1.38%; left:91%; height: 101px; width: 107px; "> </div> 
 
-</div>
-    
-        <p>
-            &nbsp;</p>
-   
-       
-    <form id="form1" runat="server">
-   
-        <p aria-expanded="true">
-            <asp:Label ID="Label1" runat="server" Text="From"></asp:Label>
-            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:</p>
-        
-       
-        <p aria-expanded="true">
-          <asp:Calendar ID="Calendar1" runat="server" Height="153px" Width="220px"></asp:Calendar>
-            <asp:Calendar ID="Calendar2" runat="server" style="position: relative; top: -196px; left: 259px; width: 214px; height: 176px;" Height="153px" Width="220px"></asp:Calendar>
-         <asp:Button ID="Button1" runat="server"  style="position: relative; top: -150px; left: 0px; height: 25px; width: 39px;" OnClick="Button1_Click" Text="Get" />
-  
-        
-        
-            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" AutoGenerateSelectButton="False" Visible="False" >
-                <AlternatingRowStyle BackColor="White" />
+      </div>
+     <form id="form2" runat="server">
+    <div style="margin-top: 50px;">
+
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" >
+            <AlternatingRowStyle BackColor="White" />
+            <RowStyle HorizontalAlign="Left"></RowStyle>
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
                 <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
@@ -178,20 +165,11 @@
                 <SortedAscendingHeaderStyle BackColor="#4D0000" />
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
-            </asp:GridView>
-            
-        </p>
-         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-         
-       
-    <div>
-     <div style="margin-top: 50px;" aria-expanded="true">
-        &nbsp&nbsp&nbsp&nbsp&nbsp 
-       
-        
-        
-        &nbsp;</div>
-    </div>
-    </form>
+        </asp:GridView>
+        </div> 
+         </form>
+    <div id="bottomnav"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on
+ <a href="mailto:it.support4business@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+   
 </body>
 </html>

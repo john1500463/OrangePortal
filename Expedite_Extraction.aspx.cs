@@ -12,13 +12,18 @@ public partial class Expedite_Extraction : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["FTID"] == null)
+        { 
+            Response.Redirect("Default.aspx"); 
+        }
+        Label2.Visible = false;
     }
 
 
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        GridView1.Visible = false;
         DateTime DateFrom = Calendar1.SelectedDate;
         DateTime DateTo = Calendar2.SelectedDate;
         if (DateTo > DateFrom)
@@ -30,9 +35,9 @@ public partial class Expedite_Extraction : System.Web.UI.Page
             DataTable dt = new DataTable();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select * From [dbo].[Expedite_time] where [Submit_Date] Between '" + DateFromString + "'AND'"+ DateToString+"';";
+            command.CommandText = "Select * From [dbo].[Expedite_time] where [Submit_Date] Between '" + DateFromString + "'AND'" + DateToString + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
-            Debug.Write(command.CommandText);
+           
 
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -45,10 +50,21 @@ public partial class Expedite_Extraction : System.Web.UI.Page
 
 
                 }
+                if (dt.Rows.Count == 0)
+                {
+                    Label2.Visible = true;
+                    Label2.Text = "No Incidents Available In This Range";
+                }
+                else { 
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 GridView1.Visible = true;
+                }
             }
+        }
+        else {
+            Label2.Visible = true;
+            Label2.Text="Wrong Selected Range";
         }
 
     }

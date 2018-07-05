@@ -132,7 +132,7 @@
  <a href="Sita.aspx">SITA Expedited Incidents</a>
  <a href="#">Incidents to Expedite</a>
  <a href="Expedite_Extraction.aspx">Expedite Extraction</a>
- <a href="#">Urgency Reason Statistics</a>
+ <a href="Urgency_Reason_Stats.aspx">Urgency Reason Statistics</a>
  <a href="CSM_entity.aspx">CSM expedite Incidents </a>
 
 
@@ -151,7 +151,7 @@
     <form id="form2" runat="server">
     <div style="margin-top: 50px;">
 
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" >
             <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />

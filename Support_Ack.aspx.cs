@@ -18,6 +18,10 @@ public partial class Support_Ack : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
         try
@@ -65,7 +69,12 @@ public partial class Support_Ack : System.Web.UI.Page
                 GridView1.DataBind();
                 GridView1.Visible = true;
 
+<<<<<<< HEAD
         }
+=======
+
+   }
+>>>>>>> fa35b74476ba1817535d8255469714c06f654bb6
         catch (Exception ex)
         {
             conn.Close();
