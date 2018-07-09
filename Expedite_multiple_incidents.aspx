@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Support_Ack.aspx.cs" Inherits="Support_Ack" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Expedite_multiple_incidents.aspx.cs" Inherits="Expedite_multiple_incidents" %>
 
 <!DOCTYPE html>
 
@@ -17,13 +17,12 @@
 
 #bottomnav 
 {
-    position:relative;
+    position:absolute;
   height: 100px;
   width: 99%;
   background-color: black;
-  bottom:-121%;
-        left: 0px;
-    }
+  bottom:0%;
+}
 
 #buttom 
 {  
@@ -102,6 +101,14 @@
   text-align: left;
   
 }
+#Clear_Button 
+{
+     border-radius: 25px;
+}
+#Expedite_Button 
+{
+     border-radius: 25px;
+}
 
 .dropdown-content a:hover 
 {
@@ -112,6 +119,11 @@
 .dropdown:hover .dropdown-content 
 {
   display: block;
+}
+
+#Search_Button
+{
+     border-radius: 25px;
 }
 
 </style>
@@ -132,10 +144,9 @@
  <a href="Support_Ack.aspx">Expedited Incidents</a>
  <a href="Sita.aspx">SITA Expedited Incidents</a>
  <a href="Incidents_to_expedite.aspx">Incidents to Expedite</a>
- <a href="Expedite_Extraction.aspx">Expedite Extraction</a>
  <a href="Urgency_Reason_Stats.aspx">Urgency Reason Statistics</a>
  <a href="CSM_entity.aspx">CSM expedite Incidents </a>
-
+<a href="Expedite_multiple_incidents.aspx">Expedite multiple incidents</a>
 
 </div>
 </div> 
@@ -147,35 +158,22 @@
 </div>
      <div aria-expanded="true"> <img src="download.png" alt="Orange.com"    style=" position: absolute; top:1.38%; left:91%; height: 101px; width: 107px; "> </div> 
 </form> 
-</div>
-    <form id="form2" runat="server">
+</div>    <form id="form2" runat="server">
     <div style="margin-top: 50px;">
 
-        <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+        <asp:TextBox ID="TextBox_id" runat="server"></asp:TextBox>
+        <asp:Button ID="Search_Button" runat="server" OnClick="Search_Button_Click" Text="Search" />
 
-        <asp:Calendar ID="Calendar2" runat="server" Style="Position:relative; top: -194px; left: 301px;"></asp:Calendar>
+        <asp:Button ID="Clear_Button" runat="server" OnClick="Clear_Button_Click" Text="Clear" />
 
-<div id="bottomnav"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on
- <a href="mailto:it.support4business@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+        <asp:Label ID="Label1" runat="server" Text="Urgency Reason:" style=" margin-left:20px"></asp:Label>
 
-        </div>
-        
-           
-        
-       
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None">
+        <asp:DropDownList ID="DropDownList1" runat="server" style=" margin-left:5px">
+        </asp:DropDownList>
+        <asp:Button ID="Expedite_Button" runat="server" OnClick="Expedite_Button_Click" Text="Expedite" />
+
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" >
             <AlternatingRowStyle BackColor="White" />
-                <Columns>
-                    <asp:TemplateField HeaderText="Ack">
-                        <EditItemTemplate>
-                            <asp:CheckBox ID="CheckBox1" runat="server" />
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:CheckBox ID="CheckBox1" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:CheckBoxField />
-            </Columns>
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
                 <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
@@ -185,13 +183,15 @@
                 <SortedAscendingHeaderStyle BackColor="#4D0000" />
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
+
         </asp:GridView>
+
+        </div>
         
-           
+        <p>
+            &nbsp;</p>
         
-       
        </form>
 
 </body>
 </html>
-

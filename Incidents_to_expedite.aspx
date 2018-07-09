@@ -109,6 +109,9 @@
 #Button2 {
      border-radius: 25px;
     }
+#Button3 {
+     border-radius: 25px;
+    }
 
 .dropdown-content a:hover 
 {
@@ -137,9 +140,9 @@
  
 <div aria-expanded="true" class="dropdown-content">
  <a href="Support_Ack.aspx">Expedited Incidents</a>
- <a href="#">SITA Expedited Incidents</a>
- <a href="#">Incidents to Expedite</a>
- <a href="#">Urgency Reason Statistics</a>
+ <a href="Sita.aspx">SITA Expedited Incidents</a>
+ <a href="Incidents_to_expedite.aspx">Incidents to Expedite</a>
+ <a href="Urgency_Reason_Stats.aspx">Urgency Reason Statistics</a>
  <a href="CSM_entity.aspx">CSM expedite Incidents </a>
 
 </div>
@@ -163,7 +166,7 @@
         <asp:DropDownList ID="DropDownList1" runat="server" style=" margin-left:20px">
         </asp:DropDownList>
 
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" >
             <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
@@ -177,9 +180,9 @@
 
         </asp:GridView>
 
-        <asp:TextBox ID="TextBox2" runat="server" value="Comment"></asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
 
-        <asp:Button ID="Button3" OnClick="Button3_Click" runat="server" Text="Save" />
+        <asp:Button ID="Button3" OnClick="Button3_Click" runat="server" Text="Expedite" />
 
         </div>
         
