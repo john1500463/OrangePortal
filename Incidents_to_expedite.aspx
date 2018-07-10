@@ -144,6 +144,7 @@
  <a href="Incidents_to_expedite.aspx">Incidents to Expedite</a>
  <a href="Urgency_Reason_Stats.aspx">Urgency Reason Statistics</a>
  <a href="CSM_entity.aspx">CSM expedite Incidents </a>
+<a href="Expedite_multiple_incidents.aspx">Expedite multiple incidents</a>
 
 </div>
 </div> 
