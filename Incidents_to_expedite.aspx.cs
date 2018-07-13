@@ -15,6 +15,26 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     public Boolean isdt;
     public Boolean isdt2;
     String searchingid;
+    public static DataTable thetable = new DataTable();
+    string StringA { get; set; }
+    public static int tempnum = 1;
+    public static void changenum()
+    {
+        tempnum = 2;
+    }
+
+    public static DataTable readdt()
+    {
+        return thetable;
+    }
+    public static void changedt(DataTable dt)
+    {
+        thetable = dt;
+    }
+    public static int readnum()
+    {
+        return tempnum;
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         DropDownList1.Visible = false;
@@ -26,6 +46,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
         if (TextBox1.Text != null)
         {
             isdt = true;
+            changenum();
             String searchid = TextBox1.Text;
             searchingid = searchid;
             int indexofreason = 0;
@@ -50,6 +71,8 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 dt.Columns.Add("comment", typeof(string));
                GridView1.DataSource = dt;
                 GridView1.DataBind();
+                changedt(dt);
+                this.StringA = "a";
                 DropDownList1.Visible = false;
                 updatedropdown(2);
                 indexofreason = 5;
@@ -60,6 +83,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             }
             catch(Exception ex)
             {
+                Debug.Write("Here2");
             conn.Close();
             Console.Write(ex.ToString());
             }
@@ -87,6 +111,8 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                     dt2.Columns.Add("Urgency Reason", typeof(string));
                     dt2.Columns.Add("comment", typeof(string));
                     GridView1.DataSource = dt2;
+                    changedt(dt2);
+                    this.StringA = "b";
                     GridView1.DataBind();
                     updatedropdown(1);
                     indexofreason = 0;
@@ -125,6 +151,8 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                     dt3.Columns.Add("comment", typeof(string));
                     GridView1.DataSource = dt3;
                     GridView1.DataBind();
+                    changedt(dt3);
+                    this.StringA = "c";
                     updatedropdown(2);
                     indexofreason = 2;
                     GridView1.Visible = true;
@@ -156,26 +184,32 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     }
     protected void post_reason()
     {
+        //updatedropdown(2);
         String thereason = DropDownList1.SelectedItem.Value;
+
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
+        //BindingSource bs = (BindingSource)GridView1.DataSource;
+        //DataTable tCxC = (DataTable)bs.DataSource;
+       // Debug.Write("value is" + readdt().Rows.Count);
+        //Debug.Write("Value is " + ((DataColumn)readdt().Columns[0]).ColumnName);
         try
         {
             DataTable dt = new DataTable();
             conn.Open();
             SqlCommand command = new SqlCommand();
+            //Debug.Write("Header iss " + GridView1.HeaderRow.Cells[0].Text.ToString());
             command.Connection = conn;
             //Debug.Write("Header is "+GridView1.Columns[0].HeaderText.ToString());
-            
-            //Debug.Write("Header is " + GridView1.HeaderRow.Cells[0].Text.ToString());
-            //Debug.Write(DateTime.Now.ToString());
-            if (GridView1.HeaderRow.Cells[2].Text.ToString()=="AG Assigned Group Name") //exists only in all inc
+            //Debug.Write("Header is " + GridView1.HeaderRow.Cells[2].Text.ToString());
+            //Debug.Write("Value is " + ((DataColumn)readdt().Columns[0]).ColumnName);
+            if (((DataColumn)readdt().Columns[2]).ColumnName== "AG Assigned Group Name") //exists only in all inc
             {
-                command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment) VALUES ('" + TextBox1.Text + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "');";
-                Debug.Write("first");
+                command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment,Expedite_By) VALUES ('" + TextBox1.Text + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "','"+ x +"');";
+                    Debug.Write("first");
             }
             else{
-                command.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason + "', Comment='" + TextBox2.Text + "' Where [Incident_ID] = '" + TextBox1.Text + "';";
+                command.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason +"',Expedite_By='" + x + "', Comment='" + TextBox2.Text + "' Where [Incident_ID] = '" + TextBox1.Text + "';";
                 //Debug.Write(" reason " + thereason + " comment " + TextBox2.Text + " id " + searchingid);
            }
             using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -318,6 +352,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             }
             catch (Exception ex)
             {
+                Debug.Write("Here");
                 conn2.Close();
                 Console.Write(ex.ToString());
             }

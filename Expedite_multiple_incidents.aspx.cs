@@ -107,12 +107,12 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             command2.Connection = conn;
             if (!isexpedited) //exists only in all inc
             {
-                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason) VALUES ('" + id + "','" + DateTime.Now.ToString() + "','" + thereason + "');";
+                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Expedite_By) VALUES ('" + id + "','" + DateTime.Now.ToString() + "','" + thereason + "','"+ x +"');";
                 //Debug.Write("first");
             }
             else
             {
-                command2.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason + "' Where [Incident_ID] = '" + id + "';";
+                command2.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason + "',Expedite_By='"+ x +"' Where [Incident_ID] = '" + id + "';";
                 Debug.Write(" reason " + thereason + " id " + id);
             }
         using (SqlDataAdapter sda = new SqlDataAdapter())
