@@ -12,6 +12,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Net.Mail;
+using System.Net;
+using System.Diagnostics;
 
 public partial class ExpeditePage : System.Web.UI.Page
 {
@@ -133,7 +136,31 @@ public partial class ExpeditePage : System.Web.UI.Page
   myReader.Read();
         //  Label1.Text = myReader.GetValue(0).ToString(); */
         // refresh_grid1();
+ 
 
+      MailMessage mail = new MailMessage();
+
+      SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+
+
+      mail.From = new MailAddress("john.monir1@gmail.com");
+
+      mail.To.Add("john1500463@miuegypt.edu.eg");
+
+      mail.Subject = "Test Mail";
+
+      mail.Body = "This is for testing SMTP mail from GMAIL";
+      SmtpServer.Port = 25;
+      SmtpServer.Credentials = new System.Net.NetworkCredential("john1500463@miuegypt.edu.eg", "johnjohn1997");
+      SmtpServer.EnableSsl = true;
+      SmtpServer.Send(mail);
+
+      
+
+  
+
+  
     String SubmitDate = myReader.GetValue(0).ToString();
     String UrgenyReason = DropDownList1.SelectedItem.Text;
     String FTID = (string)(Session["FTID"]);
@@ -142,6 +169,7 @@ public partial class ExpeditePage : System.Web.UI.Page
     SqlCommand cmd1 = new SqlCommand(strSelect2, cnn);
     myReader.Close();
     cmd1.ExecuteNonQuery();
+
 
           
            cnn.Close();
