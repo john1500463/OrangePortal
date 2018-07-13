@@ -11,6 +11,9 @@
 font-weight: bold;
 color:red
         }
+        body {
+        overflow:hidden;
+        }
     </Style>
 <body>
     <form id="form1" runat="server">
@@ -22,16 +25,16 @@ color:red
     </div>
         <div style="margin-top: 83px;margin-left: 550px;margin-right: 100px; margin-bottom: 25px;" aria-expanded="true">
  
-            UserName*<br><br>
+            UserName<br>
         <asp:TextBox ID="UserName" runat="server" value=""></asp:TextBox>
                 
               
                  <br>
   FTID Username (ex: ABCD1234)
-                         </br></br> <asp:Label ID="message" runat="server" Text="" ></asp:Label></br></br>
-            Password*<br><br>
+                         </br></br>
+            Password<br>
         <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>    <br>
-  FTID Password</br></br></br>
+  FTID Password</br> <asp:Label ID="message" runat="server" Text="" ></asp:Label></br></br>
         <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click1"  />
            
             </div>
