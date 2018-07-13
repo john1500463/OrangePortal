@@ -16,12 +16,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     public Boolean isdt2;
     String searchingid;
     public static DataTable thetable = new DataTable();
-    string StringA { get; set; }
-    public static int tempnum = 1;
-    public static void changenum()
-    {
-        tempnum = 2;
-    }
+    public static DropDownList newDropDownList1;
 
     public static DataTable readdt()
     {
@@ -31,22 +26,32 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     {
         thetable = dt;
     }
-    public static int readnum()
-    {
-        return tempnum;
+    public static DropDownList getdropdown(){
+        return newDropDownList1;
     }
+    public static void setdropdown(DropDownList dl)
+    {
+        newDropDownList1 = dl;
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        DropDownList1.Visible = false;
-        TextBox2.Visible = false;
-        Button3.Visible = false;
+        if (DropDownList1.AutoPostBack == false)
+        {
+            //Debug.Write("auto false");
+            //DropDownList1.Style["display"] = "none";
+            DropDownList1.Visible = false;
+            TextBox2.Visible = false;
+            Button3.Visible = false;
+        }
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
+        DropDownList1.AutoPostBack = true;
         if (TextBox1.Text != null)
         {
             isdt = true;
-            changenum();
+            //changenum();
             String searchid = TextBox1.Text;
             searchingid = searchid;
             int indexofreason = 0;
@@ -72,7 +77,6 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                GridView1.DataSource = dt;
                 GridView1.DataBind();
                 changedt(dt);
-                this.StringA = "a";
                 DropDownList1.Visible = false;
                 updatedropdown(2);
                 indexofreason = 5;
@@ -112,7 +116,6 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                     dt2.Columns.Add("comment", typeof(string));
                     GridView1.DataSource = dt2;
                     changedt(dt2);
-                    this.StringA = "b";
                     GridView1.DataBind();
                     updatedropdown(1);
                     indexofreason = 0;
@@ -152,7 +155,6 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                     GridView1.DataSource = dt3;
                     GridView1.DataBind();
                     changedt(dt3);
-                    this.StringA = "c";
                     updatedropdown(2);
                     indexofreason = 2;
                     GridView1.Visible = true;
@@ -166,9 +168,11 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 conn.Close();
                 Console.Write(ex.ToString());
             }
+            setdropdown(DropDownList1);
+            DropDownList1.Visible = false;
             if (indexofreason != 0)
             {
-                GridView1.Rows[0].Cells[indexofreason].Controls.Add(DropDownList1);
+                GridView1.Rows[0].Cells[indexofreason].Controls.Add(getdropdown());
                 int temp =  GridView1.Rows[0].Cells.Count;
                 GridView1.Rows[0].Cells[temp-1].Controls.Add(TextBox2);
             }
@@ -176,22 +180,33 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             {
 
                 int temp = GridView1.Rows[0].Cells.Count;
-                GridView1.Rows[0].Cells[temp-2].Controls.Add(DropDownList1);
+                GridView1.Rows[0].Cells[temp-2].Controls.Add(getdropdown());
                 GridView1.Rows[0].Cells[temp - 1].Controls.Add(TextBox2);
 
             }
+            DropDownList1.Visible = false;
+            getdropdown().Visible = true;
+            DropDownList1.AutoPostBack = false;
+            //DropDownList1.Style["display"] = "block";
+            //setdropdown(DropDownList1);
         }
     }
-    protected void post_reason()
+    protected void myListDropDown_Change(object sender, EventArgs e)
     {
-        //updatedropdown(2);
+        Debug.Write("changed");
+    }
+     void post_reason()
+    {
+        //updatedropdown(1);
+        //Debug.Write(TextBox1.Text);
         String thereason = DropDownList1.SelectedItem.Value;
-
+        //String thereason = getdropdown().SelectedItem.Value;
+        //DropDownList1.Visible = true;
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
         //BindingSource bs = (BindingSource)GridView1.DataSource;
         //DataTable tCxC = (DataTable)bs.DataSource;
-       // Debug.Write("value is" + readdt().Rows.Count);
+        Debug.Write("value is" + getdropdown().SelectedItem.Value);
         //Debug.Write("Value is " + ((DataColumn)readdt().Columns[0]).ColumnName);
         try
         {
@@ -275,10 +290,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     }
 
     protected void updatedropdown(int num){
-      //  if (num == 1)
-      //  {
             ArrayList ar = new ArrayList();
-
             SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
             String x = (string)(Session["FTID"]);
             try
@@ -317,7 +329,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 DropDownList1.Items.Add(new ListItem(ar[i].ToString()));
             }
        // }
-
+            //setdropdown(DropDownList1);
         if (num == 2)
         {
             string theid = TextBox1.Text;
@@ -344,6 +356,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 thereason = dt2.Rows[0][0].ToString();
                 //Debug.Write("The reason for" +theid+" is "+dt3.Rows[0][0].ToString());
                 ListItem selectedListItem = DropDownList1.Items.FindByValue(thereason);
+                //Debug.Write("value is " +selectedListItem.Value);
                 if (selectedListItem != null)
                 {
                     //Debug.Write("madeit");
@@ -352,20 +365,26 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             }
             catch (Exception ex)
             {
-                Debug.Write("Here");
+                //Debug.Write("Here");
                 conn2.Close();
                 Console.Write(ex.ToString());
             }
 
 
         }
+        setdropdown(DropDownList1);
+        getdropdown().Visible = true;
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
+        //DropDownList1 = getdropdown();
+        //ListItem item = DropDownList1.SelectedItem;
+        //Debug.Write(item.ToString());
+        //String thereason = DropDownList1.SelectedItem.Value;
+        //Debug.Write("Chosen is " + thereason);
         //post_comment();
         post_reason();
     }
-
     protected void Button2_Click(object sender, EventArgs e)
     {
         TextBox1.Text = "";

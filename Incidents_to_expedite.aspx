@@ -164,7 +164,7 @@
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Search" />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Clear" />
 
-        <asp:DropDownList ID="DropDownList1" runat="server" style=" margin-left:20px">
+        <asp:DropDownList ID="DropDownList1" runat="server" style=" margin-left:20px"  AppendDataBoundItems="true" OnSelectedIndexChanged="myListDropDown_Change">
         </asp:DropDownList>
 
         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" >
