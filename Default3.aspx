@@ -49,8 +49,6 @@
 
   border-color: #080808;
 
-  margin: 0;
-
   padding: 0;
 
 }
@@ -337,7 +335,12 @@
 
 }
 
-
+body {
+overflow:hidden;
+margin-left:0px;
+margin-right:0px;
+margin-top:0px;
+}
 
 img {
 
