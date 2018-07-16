@@ -396,7 +396,7 @@ img {
 
     <form runat=server>
 
-        <div style="margin-top: 83px;margin-left: 550px;margin-right: 100px; margin-bottom: 25px; font-family: Arial;" aria-expanded="true">
+        <div style="position:relative; margin-top: 10%;margin-left:40%;margin-right: 50%; margin-bottom: 10%; font-family: Arial;" aria-expanded="true">
  
             UserName<br>
             <asp:TextBox ID="UserName" runat="server" value=""></asp:TextBox>
