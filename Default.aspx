@@ -1,46 +1,395 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+<head id="Head1" runat="server">
+
+
+
+   <meta charset='utf-8'>
+
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <link rel="stylesheet" href="styles.css">
+
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+   <script src="script.js"></script>
+
+   <title>Login Page</title>
+
+    <style>
+
+        #cssmenu,
+
+#cssmenu ul,
+
+#cssmenu li,
+
+#cssmenu a {
+
+  border: none;
+
+  line-height: 1;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+#cssmenu {
+
+  height: 140px;
+
+  display: block;
+
+  width: 100%;
+
+  border-color: #080808;
+
+  padding: 0;
+
+}
+
+#cssmenu > ul {
+
+  list-style: inside none;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+#cssmenu > ul > li {
+
+  list-style: inside none;
+
+  display: inline-block;
+
+  position: relative;
+
+  margin: 0;
+
+  padding: 30px;
+
+}
+
+#cssmenu.align-center > ul {
+
+  text-align: center;
+
+}
+
+#cssmenu.align-center > ul > li {
+
+  float: none;
+
+  margin-left: -3px;
+
+}
+
+#cssmenu.align-center ul ul {
+
+  text-align: left;
+
+}
+
+#cssmenu.align-center > ul > li:first-child > a {
+
+  border-radius: 0;
+
+}
+
+#cssmenu > ul > li > a {
+
+  outline: none;
+
+  display: block;
+
+  position: relative;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+
+  font-weight: 700;
+
+  font-size:  16px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #ffffff;
+
+  padding: 12px 20px;
+
+}
+
+#cssmenu > ul > li:first-child > a {
+
+        }
+
+#cssmenu > ul > li > a:after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -1px;
+
+  bottom: -1px;
+
+  right: -2px;
+
+  z-index: 99;
+
+  border-color: #3c3c3c;
+
+}
+
+#cssmenu ul li.has-sub:hover > a:after {
+
+  top: 0;
+
+  bottom: 0;
+
+}
+
+#cssmenu > ul > li.has-sub > a:before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 18px;
+
+  right: 6px;
+
+}
+
+#cssmenu > ul > li.has-sub:hover > a:before {
+
+  top: 19px;
+
+}
+
+#cssmenu > ul > li.has-sub:hover > a {
+
+  padding-bottom: 10px;
+
+  z-index: 999;
+
+  border-color: #3f3f3f;
+
+}
+
+#cssmenu ul li.has-sub:hover > ul,
+
+#cssmenu ul li.has-sub:hover > div {
+
+  display: block;
+
+}
+
+#cssmenu > ul > li.has-sub > a:hover,
+
+#cssmenu > ul > li.has-sub:hover > a {
+
+  background: darkorange;
+
+  border-color: darkorange;
+
+}
+
+#cssmenu ul li > ul,
+
+#cssmenu ul li > div {
+
+  display: none;
+
+  width: auto;
+
+  position: absolute;
+
+  top: 65.5px;
+
+  background: #3f3f3f;
+
+  border-radius: 0 0 5px 5px;
+
+  z-index: 999;
+
+  padding: 10px 0;
+
+}
+
+#cssmenu ul li > ul {
+
+  width: 200px;
+
+}
+
+#cssmenu ul ul ul {
+
+  position: absolute;
+
+}
+
+#cssmenu ul ul li:hover > ul {
+
+  left: 100%;
+
+  top: -10px;
+
+}
+
+#cssmenu ul li > ul li {
+
+  display: block;
+
+  list-style: inside none;
+
+  position: relative;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+#cssmenu ul li > ul li a {
+
+  outline: none;
+
+  display: block;
+
+  position: relative;
+
+  font: 10pt Arial, Helvetica, sans-serif;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+
+  margin: 0;
+
+  padding: 8px 20px;
+
+}
+
+#OrangeText
+
+{
+
+  position: relative;
+
+  color: darkorange;
+
+  top:30%;
+
+  left: 2%;
+
+  font-size: 38pt;
+
+}
+
+#cssmenu,
+
+#cssmenu ul ul > li:hover > a,
+
+#cssmenu ul ul li a:hover {
+
+  background: #3c3c3c;
+
+  background: -moz-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3c3c3c), color-stop(100%, #222222));
+
+  background: -webkit-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+  background: -o-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+  background: -ms-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+  background: linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+}
+
+#cssmenu > ul > li > a:hover {
+
+  background: darkorange;
+
+  color: #ffffff;
+
+}
+
+#cssmenu ul ul a:hover {
+
+  color: darkorange;
+
+}
+
+body {
+overflow:hidden;
+margin-left:0px;
+margin-right:0px;
+margin-top:0px;
+}
+
+img {
+
+    position: relative;
+
+    left: 92%;
+
+    width: 7%;
+    height:auto;
+    top:-23%;
+
+
+
+}
+
+#cssmenu > ul > li.has-sub > a:hover:before {
+
+}
+
+
+
+    </style>
+
 </head>
-    <Style>
-        #message {
-font-weight: bold;
-color:red
-        }
-        body {
-        overflow:hidden;
-        }
-        .NavBar {
-            display:block;
-            top:-10px;
-            left:-10px;
-            width:100%;
-            height:99px;
-            background-color:black;
-        }
-        #Label2 {
-            position: absolute;
-            color: orange;
-            top: 33px;
-            left: 75px;
-            height: 58px;
-            width: 317px;
-        }
-    </Style>
+
 <body>
-    <form id="form1" runat="server">
-        <div class="NavBar">
-        <asp:Image ID="Image1" runat="server" Height="85px" Width="78px" ImageAlign="Right" ImageUrl="~/download.png" BorderColor="Black" />
-            </div>
-        <div id ="Label2">
-        <asp:Label ID="Label3" runat="server" Text="Expedite Portal" Font-Bold="True" Font-Italic="True" Font-Size="35pt" ForeColor="#FF6501"></asp:Label>
-        
-        </div>
-       
+
+
+
+<div id='cssmenu'>
+
+  <div id='OrangeText'>
+
+    
+
+    Expedite Portal
+
+
+
+  </div>
+
+
+    <img src="download.png" alt="Flowers in Chania" >
+
+
+</div>
+
+    <form runat=server>
+
         <div style="margin-top: 83px;margin-left: 550px;margin-right: 100px; margin-bottom: 25px; font-family: Arial;" aria-expanded="true">
  
             UserName<br>
