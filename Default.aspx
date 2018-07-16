@@ -409,7 +409,7 @@ img {
             <asp:Label ID="message" runat="server" Text="" ></asp:Label>
            
             </div>
-        <div style="height: 100px;width: 100%;background-color: Black;margin-top: 150px;"> <br /> <font color="orange"  center  width="10"><center><b>For portal issues, contact us oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+        <div style="height: 100px; width: 100%;background-color: Black;margin-bottom: 0%;"> <br /> <font color="orange"  center  width="10"><center><b>For portal issues, contact us oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
     </form>
 </body>
 </html>
