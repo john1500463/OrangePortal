@@ -351,6 +351,8 @@ img {
 
     left: 91.5%;
 
+    top: 1%;
+
     width: 7%;
 
 
@@ -372,15 +374,13 @@ img {
 
 
 <div id='cssmenu'>
-
+    
   <div id='OrangeText'>
 
     Expedite Portal
+      </div>
 
-
-
-  </div>
-
+    
 
 
 <ul>
@@ -434,8 +434,8 @@ img {
 
 </ul>
 
-    <img src="download.png"  >
    
+    <img src="download.png">
 
 
 </div>
