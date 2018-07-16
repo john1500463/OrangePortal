@@ -104,7 +104,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            message.Text = "Please enter correct user name or password";
+            message.Text = "Please enter correct username or password";
         }
             //Response.Write("<script LANGUAGE='JavaScript' >alert('Thanks to enter correct usernema or password')</script>"); }
         

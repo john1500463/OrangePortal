@@ -384,8 +384,6 @@ img {
 
     Expedite Portal
 
-
-
   </div>
 
 
