@@ -406,7 +406,7 @@ img {
            
             </br>
             </br>
-            <asp:Label ID="message" runat="server" Text="" ></asp:Label>
+            <asp:Label ID="message" runat="server" Font-Size="Small" ForeColor="Red" ></asp:Label>
            
             </div>
         
