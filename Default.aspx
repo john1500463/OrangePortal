@@ -341,6 +341,12 @@ margin-left:0px;
 margin-right:0px;
 margin-top:0px;
 }
+a{
+    text-decoration:none;
+    background-color: black;
+    color:lightblue;
+
+}
 
 img {
 
@@ -370,7 +376,7 @@ img {
 
 
 
-<div id='cssmenu'>
+<div id='cssmenu' style="background-color: #000000">
 
   <div id='OrangeText'>
 
@@ -411,7 +417,7 @@ img {
             </div>
         
     </form>
-    <div style="width: 100%; height:20%;background-color: Black; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b>For portal issues, contact us oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 </body>
 
 </html>
