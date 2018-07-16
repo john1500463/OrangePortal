@@ -351,7 +351,7 @@ img {
 
     left: 91.5%;
 
-    top: 1%;
+    top: -80%;
 
     width: 7%;
 
