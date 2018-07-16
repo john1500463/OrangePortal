@@ -1,5 +1,6 @@
-﻿
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default3.aspx.cs" Inherits="Default3" %>
+
+
 <head id="Head1" runat="server">
 
 
@@ -292,9 +293,9 @@
 
   color: darkorange;
 
-  top:10%;
+  top:30%;
 
-  left: 10px;
+  left: 2%;
 
   font-size: 38pt;
 
@@ -345,7 +346,8 @@ img {
     left: 92%;
 
     width: 7%;
-    top: -93%;
+    height:auto;
+    top:-23%;
 
 
 
@@ -378,56 +380,6 @@ img {
   </div>
 
 
-
-<ul>
-
-   <li><a href='#'><span>Home</span></a></li>
-
-   <li><a href='#'><span>My Expedited Incidents</span></a></li>
-
-   <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
-
-      <ul>
-
-         <li class='has-sub'><a href='#'><span>Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='#'><span>SITA Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='#'><span>Incidents to Expedite</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='#'><span>Expedite Extraction</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='#'><span>Urgency Reason Statistics</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='#'><span>CSM expedite Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='#'><span>Expedite multiple incidents</span></a>
-
-         </li>
-
-      </ul>
-
-   </li>
-
-   <li><a href='#'><span>Feature Requests</span></a></li>
-
-   <li><a href='#'><span>Help</span></a></li>
-
-   <li class='last'><a href='#'><span>Log Out</span></a></li>
-
-</ul>
     <img src="download.png" alt="Flowers in Chania" >
 
 
