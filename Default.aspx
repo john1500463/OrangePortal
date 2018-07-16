@@ -335,6 +335,10 @@
 
 }
 
+.description {
+    color:gray;
+}
+
 body {
 overflow:hidden;
 margin-left:0px;
@@ -394,23 +398,25 @@ img {
 
     <form runat=server>
 
-        <div style="position:relative; margin-top: 10%;margin-left:40%;margin-right: 50%; margin-bottom: 10%; font-family: Arial;" aria-expanded="true">
+        <div style="position:relative; margin-top: 5%;margin-left:40%; margin-bottom: 10%; font-family: Arial;" aria-expanded="true">
  
             UserName<br>
             <asp:TextBox ID="UserName" runat="server" value=""></asp:TextBox>
             <br>
-            <asp:Label ID="Label1" runat="server" Text="FTID Username (ex: ABCD1234) "></asp:Label>
+            <asp:Label class="description" ID="Label1" runat="server" Text="FTID Username (ex: ABCD1234) "></asp:Label>
             </br>
             <br />
             Password<br>
             <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
-            <br>FTID Password<br />
+            <br>
+            <asp:Label class="description" ID="Label2" runat="server" Text="FTID Password"></asp:Label>
+            <br/>
             </br>
-            <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click1"  />
+            <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click1" Font-Names="Sitka Text"  />
            
             </br>
             </br>
-            <asp:Label ID="message" runat="server" Font-Size="Small" ForeColor="Red" ></asp:Label>
+            <asp:Label ID="message" runat="server" Font-Size="12pt" ForeColor="Red" Font-Bold="True" ></asp:Label>
            
             </div>
         

@@ -160,7 +160,7 @@ public partial class Home_Page : System.Web.UI.Page
         conn.Open();
         SqlCommand command = new SqlCommand();
         command.Connection = conn;
-        command.CommandText = "Select * From [dbo].[Expedite_time] where [Incident_ID]='" + Y + "';";
+        command.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] where [Incident_ID]='" + Y + "';";
         using (SqlDataAdapter sda = new SqlDataAdapter())
         {
             sda.SelectCommand = command;

@@ -122,61 +122,67 @@ public partial class ExpeditePage : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, System.EventArgs e)
     {
-        String Incident = Request.QueryString["param1"];
-        string connetionString;
-  SqlConnection cnn;
-  connetionString = @"Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$";
-   cnn = new SqlConnection(connetionString);
-  cnn.Open();
+        if (DropDownList1.SelectedItem.Text == "Select Reason-----")
+        {
+            System.Windows.Forms.MessageBox.Show("Please Select A Reason!");
+        }
+        else
+        {
+            String Incident = Request.QueryString["param1"];
+            string connetionString;
+            SqlConnection cnn;
+            connetionString = @"Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$";
+            cnn = new SqlConnection(connetionString);
+            cnn.Open();
 
-  string strSelect = "Select [INC DS Submit Date] from [dbo].['All_Incidents'] where [INC Incident Number]='" + Incident + "';";
-  // string strSelect = "Select * From [dbo].['All_Incidents'] ;";
-  SqlCommand cmd = new SqlCommand(strSelect, cnn);
-  SqlDataReader myReader = cmd.ExecuteReader();
-  myReader.Read();
-        //  Label1.Text = myReader.GetValue(0).ToString(); */
-        // refresh_grid1();
- 
-
-      MailMessage mail = new MailMessage();
-
-      SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-
-
-      mail.From = new MailAddress("john.monir1@gmail.com");
-
-      mail.To.Add("john1500463@miuegypt.edu.eg");
-
-      mail.Subject = "Test Mail";
-
-      mail.Body = "This is for testing SMTP mail from GMAIL";
-      SmtpServer.Port = 25;
-      SmtpServer.Credentials = new System.Net.NetworkCredential("john1500463@miuegypt.edu.eg", "johnjohn1997");
-      SmtpServer.EnableSsl = true;
-      SmtpServer.Send(mail);
-
-      
-
-  
-
-  
-    String SubmitDate = myReader.GetValue(0).ToString();
-    String UrgenyReason = DropDownList1.SelectedItem.Text;
-    String FTID = (string)(Session["FTID"]);
-    string strSelect2 = "insert into [Expedite].[dbo].[Expedite_time](Incident_ID,Submit_Date,Expedite_By,Expedite_Date,Urgency_Reason) values ('"
-        + Incident + "','" + SubmitDate + "','" + FTID + "', GETDATE() ,'" + UrgenyReason + "');";
-    SqlCommand cmd1 = new SqlCommand(strSelect2, cnn);
-    myReader.Close();
-    cmd1.ExecuteNonQuery();
+            string strSelect = "Select [INC DS Submit Date] from [dbo].['All_Incidents'] where [INC Incident Number]='" + Incident + "';";
+            // string strSelect = "Select * From [dbo].['All_Incidents'] ;";
+            SqlCommand cmd = new SqlCommand(strSelect, cnn);
+            SqlDataReader myReader = cmd.ExecuteReader();
+            myReader.Read();
+            //  Label1.Text = myReader.GetValue(0).ToString(); */
+            // refresh_grid1();
 
 
-          
-           cnn.Close();
+            MailMessage mail = new MailMessage();
 
-         // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
-          Response.Redirect("Home_Page.aspx");
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
+
+
+            mail.From = new MailAddress("john.monir1@gmail.com");
+
+            mail.To.Add("john1500463@miuegypt.edu.eg");
+
+            mail.Subject = "Test Mail";
+
+            mail.Body = "This is for testing SMTP mail from GMAIL";
+            SmtpServer.Port = 25;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("john1500463@miuegypt.edu.eg", "johnjohn1997");
+            SmtpServer.EnableSsl = true;
+            SmtpServer.Send(mail);
+
+
+
+
+
+
+            String SubmitDate = myReader.GetValue(0).ToString();
+            String UrgenyReason = DropDownList1.SelectedItem.Text;
+            String FTID = (string)(Session["FTID"]);
+            string strSelect2 = "insert into [Expedite].[dbo].[Expedite_time](Incident_ID,Submit_Date,Expedite_By,Expedite_Date,Urgency_Reason) values ('"
+                + Incident + "','" + SubmitDate + "','" + FTID + "', GETDATE() ,'" + UrgenyReason + "');";
+            SqlCommand cmd1 = new SqlCommand(strSelect2, cnn);
+            myReader.Close();
+            cmd1.ExecuteNonQuery();
+
+
+
+            cnn.Close();
+
+            // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
+            Response.Redirect("Home_Page.aspx");
+        }
 
     }
 }
