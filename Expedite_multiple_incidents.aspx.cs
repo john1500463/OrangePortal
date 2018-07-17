@@ -14,6 +14,10 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         //DropDownList1.Visible = false;
         //Expedite_Button.Visible = false;
         updatedropdown();
@@ -175,7 +179,6 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             cmdstring += ";";
             command.CommandText = cmdstring;
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
-
 
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {

@@ -63,7 +63,7 @@ public partial class Home_Page : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [INC Status],[INC DS Submit Date],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date] From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
+            command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
 
 
@@ -160,7 +160,7 @@ public partial class Home_Page : System.Web.UI.Page
         conn.Open();
         SqlCommand command = new SqlCommand();
         command.Connection = conn;
-        command.CommandText = "Select * From [dbo].[Expedite_time] where [Incident_ID]='" + Y + "';";
+        command.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] where [Incident_ID]='" + Y + "';";
         using (SqlDataAdapter sda = new SqlDataAdapter())
         {
             sda.SelectCommand = command;

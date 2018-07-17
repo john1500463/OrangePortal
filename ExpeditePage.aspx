@@ -152,7 +152,7 @@
         
     
         
-       <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+       <asp:Label ID="Label1" runat="server" Text="Label" Font-Bold="True"></asp:Label>
         </br></br></br>
         Choose Urgency Reason:
 <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems = "true"><asp:ListItem Selected = "True" Text = "Select Reason-----" Value = ""></asp:ListItem></asp:DropDownList>
@@ -160,6 +160,8 @@
         
     <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
         </div>
+        
+        <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
         
        </form>
 

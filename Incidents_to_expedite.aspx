@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Incidents_to_expedite.aspx.cs" Inherits="Incidents_to_expedite" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Incidents_to_expedite.aspx.cs" Inherits="Incidents_to_expedite" EnableViewState="true"%>
 
 
 <!DOCTYPE html>
@@ -164,11 +164,11 @@
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Search" />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Clear" />
 
-        <asp:DropDownList ID="DropDownList1" runat="server" style=" margin-left:20px"  AppendDataBoundItems="true" OnSelectedIndexChanged="myListDropDown_Change">
+        <asp:DropDownList ID="DropDownList1" runat="server" style=" margin-left:20px" >
         </asp:DropDownList>
 
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" >
-            <AlternatingRowStyle BackColor="White" />
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px">
+                <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
                 <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
@@ -178,8 +178,7 @@
                 <SortedAscendingHeaderStyle BackColor="#4D0000" />
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
-
-        </asp:GridView>
+            </asp:GridView>
 
         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
 
