@@ -103,7 +103,7 @@ public partial class CSM_entity : System.Web.UI.Page
             for (int counter = 0; counter < CSMExpoditeIncidents.Count; counter++)
             {
                 command3.Connection = conn;
-                command3.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] Where [Incident_ID] ='" + CSMExpoditeIncidents[counter] + "' ;";
+                command3.CommandText = "Select [Incident_ID] as 'Incident ID',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] Where [Incident_ID] ='" + CSMExpoditeIncidents[counter] + "' ;";
 
                 SqlDataAdapter sda = new SqlDataAdapter();
                 sda.SelectCommand = command3;
