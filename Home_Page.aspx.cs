@@ -63,7 +63,7 @@ public partial class Home_Page : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [INC Status],[INC DS Submit Date],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date] From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
+            command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
 
 

@@ -161,6 +161,8 @@
     <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
         </div>
         
+        <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+        
        </form>
 
 <div id="bottomnav"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on

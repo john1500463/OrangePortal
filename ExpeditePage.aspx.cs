@@ -117,17 +117,21 @@ public partial class ExpeditePage : System.Web.UI.Page
             }
 
             */
-
+        Label2.Visible = false;
 
     }
     protected void Button1_Click(object sender, System.EventArgs e)
     {
         if (DropDownList1.SelectedItem.Text == "Select Reason-----")
         {
-            System.Windows.Forms.MessageBox.Show("Please Select A Reason!");
+           // System.Windows.Forms.MessageBox.Show("Please Select A Reason!");
+            Label2.Visible = true;
+            Label2.Text = "Please Select a Reason!";
         }
         else
         {
+            Label2.Text = "";
+            Label2.Visible = false;
             String Incident = Request.QueryString["param1"];
             string connetionString;
             SqlConnection cnn;
