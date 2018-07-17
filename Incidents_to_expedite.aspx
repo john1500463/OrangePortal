@@ -3,159 +3,451 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+
 <head id="Head1" runat="server">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
 
-#up 
-{    
-  height: 100px;
+
+
+   <meta charset='utf-8'>
+
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <link rel="stylesheet" href="styles.css">
+
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+   <script src="script.js"></script>
+
+   <title>Home</title>
+
+    <style>
+
+        #cssmenu,
+
+#cssmenu ul,
+
+#cssmenu li,
+
+#cssmenu a {
+
+  border: none;
+
+  line-height: 1;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+#cssmenu {
+
+  height: 140px;
+
+  display: block;
+
   width: 100%;
-  background-color: black;                   
+
+  border-color: #080808;
+
+  margin: 0;
+
+  padding: 0;
+
 }
 
-#bottomnav 
-{
-    position:absolute;
-  height: 100px;
-  width: 99%;
-  background-color: black;
-  bottom:0%;
+#cssmenu > ul {
+
+  list-style: inside none;
+
+  margin: 0;
+
+  padding: 0;
+
 }
 
-#buttom 
-{  
-  margin-top: 100px;
-  margin-left: 550px;
-  margin-right: 100px;
-  margin-bottom: 25px;
+#cssmenu > ul > li {
+
+  list-style: inside none;
+
+  display: inline-block;
+
+  position: relative;
+
+  margin: 0;
+
+  padding: 20px;
+
 }
 
-.navbar 
-{
-  overflow:auto;
-  width:100%;
-  max-width:105%;
-  background-color: black;
-  font-family: Arial, Helvetica, sans-serif;
-}
+#cssmenu.align-center > ul {
 
-.navbar a 
-{
-  float: left;
-  font-size: 16px;
-  color: white;
   text-align: center;
-  padding: 20px 22px;
-  text-decoration: none;
-        width: 156px;
-        height: 23px;
-    }
 
-.dropdown 
-{
-  float: left;
-  overflow: hidden;
 }
 
-.dropdown .dropbtn 
-{
-    border-style: none;
-        border-color: inherit;
-        border-width: medium;
-        font-size: 16px;    
-        outline: none;
-        color: white;
-        padding: 22px 22px;
-        background-color: black;
-        font-family: inherit;
-        margin: 0;
-        width: 209px;
-    }
+#cssmenu.align-center > ul > li {
 
-.navbar a:hover, .dropdown:hover .dropbtn 
-{
-  background-color: darkorange;
-}
-
-.dropdown-content 
-{
-  display: none;
-  position: absolute;
-  background-color: black;
-  width:210px;
-   min-width: 140px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a 
-{
   float: none;
- 
-  color: white;
-  padding: 20px 15px;
-  text-decoration: none;
-  display: block;
+
+  margin-left: -3px;
+
+}
+
+#cssmenu.align-center ul ul {
+
   text-align: left;
-  
-}
-#Button1 {
-     border-radius: 25px;
-    }
 
-#Button2 {
-     border-radius: 25px;
-    }
-#Button3 {
-     border-radius: 25px;
-    }
-
-.dropdown-content a:hover 
-{
-  background-color: darkorange;
-  width:85.5%;
 }
 
-.dropdown:hover .dropdown-content 
-{
+#cssmenu.align-center > ul > li:first-child > a {
+
+  border-radius: 0;
+
+}
+
+#cssmenu > ul > li > a {
+
+  outline: none;
+
   display: block;
+
+  position: relative;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+
+  font-weight: 700;
+
+  font-size:  16px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #ffffff;
+
+  padding: 12px 20px;
+
 }
 
-</style>
+#cssmenu > ul > li:first-child > a {
+
+        }
+
+#cssmenu > ul > li > a:after {
+
+  content: "";
+
+  position: absolute;
+
+  top: -1px;
+
+  bottom: -1px;
+
+  right: -2px;
+
+  z-index: 99;
+
+  border-color: #3c3c3c;
+
+}
+
+#cssmenu ul li.has-sub:hover > a:after {
+
+  top: 0;
+
+  bottom: 0;
+
+}
+
+#cssmenu > ul > li.has-sub > a:before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 18px;
+
+  right: 6px;
+
+}
+
+#cssmenu > ul > li.has-sub:hover > a:before {
+
+  top: 19px;
+
+}
+
+#cssmenu > ul > li.has-sub:hover > a {
+
+  padding-bottom: 10px;
+
+  z-index: 999;
+
+  border-color: #3f3f3f;
+
+}
+
+#cssmenu ul li.has-sub:hover > ul,
+
+#cssmenu ul li.has-sub:hover > div {
+
+  display: block;
+
+}
+
+#cssmenu > ul > li.has-sub > a:hover,
+
+#cssmenu > ul > li.has-sub:hover > a {
+
+  background: darkorange;
+
+  border-color: darkorange;
+
+}
+
+#cssmenu ul li > ul,
+
+#cssmenu ul li > div {
+
+  display: none;
+
+  width: auto;
+
+  position: absolute;
+
+  top: 65.5px;
+
+  background: #3f3f3f;
+
+  border-radius: 0 0 5px 5px;
+
+  z-index: 999;
+
+  padding: 10px 0;
+
+}
+
+#cssmenu ul li > ul {
+
+  width: 200px;
+
+}
+
+#cssmenu ul ul ul {
+
+  position: absolute;
+
+}
+
+#cssmenu ul ul li:hover > ul {
+
+  left: 100%;
+
+  top: -10px;
+
+}
+
+#cssmenu ul li > ul li {
+
+  display: block;
+
+  list-style: inside none;
+
+  position: relative;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+#cssmenu ul li > ul li a {
+
+  outline: none;
+
+  display: block;
+
+  position: relative;
+
+  font: 10pt Arial, Helvetica, sans-serif;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+
+  margin: 0;
+
+  padding: 8px 20px;
+
+}
+
+#OrangeText
+
+{
+
+  position: relative;
+
+  color: darkorange;
+
+  top:10%;
+
+  left: 10px;
+
+  font-size: 38pt;
+
+}
+
+#cssmenu,
+
+#cssmenu ul ul > li:hover > a,
+
+#cssmenu ul ul li a:hover {
+
+  background: #3c3c3c;
+
+  background: -moz-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3c3c3c), color-stop(100%, #222222));
+
+  background: -webkit-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+  background: -o-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+  background: -ms-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+  background: linear-gradient(top, #3c3c3c 0%, #222222 100%);
+
+}
+
+#cssmenu > ul > li > a:hover {
+
+  background: darkorange;
+
+  color: #ffffff;
+
+}
+
+#cssmenu ul ul a:hover {
+
+  color: darkorange;
+
+}
+
+
+
+img {
+
+    position: relative;
+
+    z-index:0;
+
+    left: 91.5%;
+
+    top: -80%;
+
+    width: 7%;
+
+    min-width:0.05%;
+
+    max-width:50%;
+
+}
+
+body {
+overflow:hidden;
+margin-left:0px;
+margin-right:0px;
+margin-top:0px;
+}
+
+#cssmenu > ul > li.has-sub > a:hover:before {
+
+}
+
+
+
+    </style>
+
 </head>
 
 <body>
 
-<div id="up" aria-expanded="true">  <font color= darkorange  size="6"  width="10"><b>Expedite Portal</b></font>&nbsp;
-<div class="navbar">
-    <a href="Home_Page.aspx">Home</a>
- <a href="My_Expedited_Incidents.aspx">My Expedited Incidents</a>
 
-<div class="dropdown">
- <button class="dropbtn">Expedited Incidents 
-    </button>
- 
-<div aria-expanded="true" class="dropdown-content">
- <a href="Expedited_Incidents.aspx">Expedited Incidents</a>
- <a href="Sita.aspx">SITA Expedited Incidents</a>
- <a href="Incidents_to_expedite.aspx">Incidents to Expedite</a>
- <a href="Urgency_Reason_Stats.aspx">Urgency Reason Statistics</a>
- <a href="CSM_entity.aspx">CSM expedite Incidents </a>
-<a href="Expedite_multiple_incidents.aspx">Expedite multiple incidents</a>
 
-</div>
-</div> 
+<div id='cssmenu'>
     
- <a href="#features">Feature Requests</a>
- <a href="#help">Help</a>
- <a href="Default.aspx">Log Out</a> 
- </div> 
-</div>
-     <div aria-expanded="true"> <img src="download.png" alt="Orange.com"    style=" position: absolute; top:1.38%; left:91%; height: 101px; width: 107px; "> </div> 
-</form> 
+  <div id='OrangeText'>
+
+    Expedite Portal
+      </div>
+
+    
+
+
+<ul>
+
+   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
+
+   <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
+
+   <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
+
+      <ul>
+
+         <li class='has-sub'><a href='Expedited_Incidents.aspx'><span>Expedited Incidents</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Sita.aspx'><span>SITA Expedited Incidents</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
+
+         </li>
+
+      </ul>
+
+   </li>
+
+   <li><a href='#'><span>Feature Requests</span></a></li>
+
+   <li><a href='#'><span>Help</span></a></li>
+
+   <li class='last' style="z-index:2;"><a href='#'><span>Log Out</span></a></li>
+    
+
+</ul>
+
+    <img src="download.png">
+
+
 </div>
     <form id="form2" runat="server">
     <div style="margin-top: 50px;">
@@ -191,8 +483,7 @@
        
        </form>
 
-<div id="bottomnav"> <br /> <font color=darkorange  center  width="10"><center><b >For portal issues, contact us on
- <a href="mailto:it.support4business@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 
 </body>
 </html>

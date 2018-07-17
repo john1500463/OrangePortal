@@ -104,7 +104,7 @@ public partial class Sita : System.Web.UI.Page
             for (int counter = 0; counter < SitaExpoditeIncidents.Count; counter++)
             {
                 command3.Connection = conn;
-                command3.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] Where [Incident_ID] ='" + SitaExpoditeIncidents[counter] + "' ; ";
+                command3.CommandText = "Select [Incident_ID] as 'Incident ID',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedited Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] Where [Incident_ID] ='" + SitaExpoditeIncidents[counter] + "' ; ";
 
                 SqlDataAdapter sda = new SqlDataAdapter();
                 sda.SelectCommand = command3;

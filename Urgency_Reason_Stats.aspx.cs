@@ -26,7 +26,7 @@ public partial class Urgency_Reason_Stats : System.Web.UI.Page
         SqlCommand command = new SqlCommand();
         DataTable dt2 = new DataTable();
         command.Connection = conn;
-        command.CommandText = "SELECT [UrgencyReason] FROM [Expedite].[dbo].[UrgencyReasons]";
+        command.CommandText = "SELECT [UrgencyReason] as 'Urgency Reason' FROM [Expedite].[dbo].[UrgencyReasons]";
         SqlCommand command2;
         command2 = new SqlCommand();
         command2.Connection = conn;
