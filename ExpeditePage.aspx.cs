@@ -147,7 +147,6 @@ public partial class ExpeditePage : System.Web.UI.Page
             //  Label1.Text = myReader.GetValue(0).ToString(); */
             // refresh_grid1();
 
-<<<<<<< HEAD
                 MailMessage mail = new MailMessage();
                 //
                 SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
@@ -156,31 +155,6 @@ public partial class ExpeditePage : System.Web.UI.Page
                 mail.Body = "The ticket with Incident number " + Incident+ " Expoditued";
                 mail.Subject = "Bngrb keda :D ";
                 SmtpServer.Send(mail);
-=======
-
-            MailMessage mail = new MailMessage();
-
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-
-
-            mail.From = new MailAddress("john.monir1@gmail.com");
-
-            mail.To.Add("john1500463@miuegypt.edu.eg");
-
-            mail.Subject = "Test Mail";
-
-            mail.Body = "This is for testing SMTP mail from GMAIL";
-            SmtpServer.Port = 25;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("john1500463@miuegypt.edu.eg", "johnjohn1997");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
-
->>>>>>> 0a60c7ba8b9741b317a4f71c7708bbeed8407145
-
-
-
-
 
             String SubmitDate = myReader.GetValue(0).ToString();
             String UrgenyReason = DropDownList1.SelectedItem.Text;
