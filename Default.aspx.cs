@@ -118,36 +118,23 @@ public partial class _Default : System.Web.UI.Page
 
                 }
             }
-
-            if (dt.Rows[0][0] == "A")
+            if (dt.Rows.Count == 0)
             {
-                Response.Redirect("Home_Page.aspx");
-                Session["Right"] = "a";
-            }
-            else {
+                Debug.Write(command.CommandText);
                 Response.Redirect("Home_Page_User.aspx");
                 Session["Right"] = "else";
             }
-          /*  string connetionString;
-            SqlConnection cnn;
-            connetionString = @"Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$";
-            cnn = new SqlConnection(connetionString);
-            // cnn.Open();
 
-            string strSelect = "Select [Rights] From [Expedite].[dbo].[Users] Where [FTID]= '" + cn_S + "';";
-            // string strSelect = "Select * From [dbo].['All_Incidents'] ;";
-            //   SqlCommand cmd = new SqlCommand(strSelect, cnn);
-            SqlDataAdapter adpt = new SqlDataAdapter(strSelect, cnn);
+            String ahmed = dt.Rows[0][0].ToString();
+            if(ahmed=="A")
+            {
+                Debug.Write(command.CommandText);
+                Session["Right"] = "a";
+                Response.Redirect("Home_Page.aspx");
+                
+            }
+          
 
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            Debug.Write(strSelect);
-            */
-            Response.Redirect("Home_Page.aspx");
-            
-          /*  Response.Write(cn_S);
-            Response.Write(description_S);
-            Response.Write(cn_S); */
             
 
         }
