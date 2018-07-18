@@ -454,6 +454,8 @@ margin-top:0px;
     <form id="form2" runat="server">
     <div style="margin-top: 50px;">
 
+        <asp:Label ID="Label1" runat="server" Text="Incident ID " style="margin-left:1px;"></asp:Label>
+
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Search" />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Clear" />

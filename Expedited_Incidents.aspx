@@ -470,10 +470,10 @@ margin-top:0px;
     <div style="margin-top: 50px;">
        
        
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" style="margin-bottom:20%; margin-left:1%;">
             <AlternatingRowStyle BackColor="White" />
                             <Columns>
-                    <asp:TemplateField HeaderText="Ack">
+                    <asp:TemplateField HeaderText="Acknowledge">
                         <EditItemTemplate>
                             <asp:CheckBox ID="CheckBox1" runat="server" />
                         </EditItemTemplate>
