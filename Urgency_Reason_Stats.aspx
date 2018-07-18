@@ -359,6 +359,7 @@ img {
     min-width:0.05%;
 
     max-width:50%;
+    max-height:110px;
 
 }
 
