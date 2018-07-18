@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Diagnostics;
 
 public partial class My_Expedited_Incidents : System.Web.UI.Page
 {
@@ -45,6 +46,7 @@ public partial class My_Expedited_Incidents : System.Web.UI.Page
 
              GridView1.DataSource = dt;
              GridView1.DataBind();
+             GridView1.Visible = true;
            //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
          }
          catch (Exception ex)

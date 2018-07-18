@@ -45,7 +45,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             //TextBox2.Visible = false;
             //Button3.Visible = false;
                 //[INC Incident Number],[INC Status],[Submit_Date], [AG Assigned Group Name], [AG Assignee],[Urgency_Reason],[Expedite_Date]
-        
+            Textbox_message.Visible = false;
             newDropDownList1 = new DropDownList();
             //newDropDownList1.EnableViewState = true;
             fill_dropdown();
@@ -119,6 +119,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             }
             thereason = dt2.Rows[0][0].ToString();
             //Debug.Write("thereasonis"+thereason);
+            newDropDownList1.ClearSelection();
             ListItem selectedListItem = newDropDownList1.Items.FindByValue(thereason);
             if (selectedListItem != null)
             {
@@ -401,22 +402,33 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
-        //DropDownList1 = getdropdown();
-        //ListItem item = DropDownList1.SelectedItem;
-        //Debug.Write(item.ToString());
-        //String thereason = DropDownList1.SelectedItem.Value;
-        //Debug.Write("Chosen is " + thereason);
-        //post_comment();
-
-
-       // post_reason(); //this is it
-
-        if (isexpedited(TextBox1.Text))
+        if (newDropDownList1.SelectedItem.Value != "-None-")
         {
-            post_reason(1);
+            if (isexpedited(TextBox1.Text))
+            {
+                post_reason(1);
+                GridView1.Visible = false;
+                Textbox_message.Visible = true;
+                Textbox_message.ForeColor = System.Drawing.Color.Green;
+                Textbox_message.Text = "Updated Sucessfully";
+            }
+            else
+            {
+                post_reason(2);
+                GridView1.Visible = false;
+                Textbox_message.Visible = true;
+                Textbox_message.ForeColor = System.Drawing.Color.Green;
+                Textbox_message.Text = "Expedited Sucessfully";
+            }
         }
-        else{
-            post_reason(2);
+        else
+        {
+            Textbox_message.Visible = true;
+            Textbox_message.ForeColor = System.Drawing.Color.Red;
+            Textbox_message.Text = "Please Choose an Urgency Reason!";
+            updategrid(TextBox1.Text, "");
+            GridView1.Visible = true;
+            Button3.Visible = true;
         }
     }
     protected bool isexpedited(String id)

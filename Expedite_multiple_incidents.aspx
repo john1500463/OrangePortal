@@ -451,9 +451,13 @@ margin-top:0px;
 
 
 </div>    <form id="form2" runat="server">
+        <p>
+            &nbsp;</p>
     <div style="margin-top: 50px;">
 
         <asp:Label ID="Label2" runat="server" Text="Incidents IDs: " style=" margin-left:1%"></asp:Label>
+
+        <asp:Label ID="Label3" runat="server" style="color:gray;" Text="(Ex. id1,id2)"></asp:Label>
 
         <asp:TextBox ID="TextBox_id" runat="server"></asp:TextBox>
         <asp:Button ID="Search_Button" runat="server" OnClick="Search_Button_Click" Text="Search" />
@@ -465,7 +469,9 @@ margin-top:0px;
         <asp:DropDownList ID="DropDownList1" runat="server" style=" margin-left:5px">
         </asp:DropDownList>
         <asp:Button ID="Expedite_Button" runat="server" OnClick="Expedite_Button_Click" Text="Expedite" />
-
+        <p aria-expanded="true" style=" margin-left:1%">
+        <asp:Label ID="Textbox_message" runat="server" Text="message" TextMode="MultiLine" Rows="0"></asp:Label>
+            </p>
             <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
             <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />

@@ -398,7 +398,7 @@ margin-top:0px;
 
 <ul>
 
-   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
+   <li><a href='Home_Page.aspx' style="background: darkorange;border-color: darkorange;"><span>Home</span></a></li>
 
    <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
 

@@ -20,6 +20,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         }
         //DropDownList1.Visible = false;
         //Expedite_Button.Visible = false;
+        Textbox_message.Visible = false;
         updatedropdown();
     }
     protected void updatedropdown()
@@ -102,51 +103,72 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             Console.Write(ex.ToString());
         }
         Debug.Write("first0");
-
-        try
+        if (!isexpedited) //exists only in all inc
         {
-            String thereason = DropDownList1.SelectedItem.Value;
-            DataTable dt2 = new DataTable();
-            SqlCommand command2 = new SqlCommand();
-            command2.Connection = conn;
-            if (!isexpedited) //exists only in all inc
+
+            try
             {
-                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Expedite_By) VALUES ('" + id + "','" + DateTime.Now.ToString() + "','" + thereason + "','"+ x +"');";
+                String thereason = DropDownList1.SelectedItem.Value;
+                DataTable dt2 = new DataTable();
+                SqlCommand command2 = new SqlCommand();
+                command2.Connection = conn;
+
+                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Expedite_By) VALUES ('" + id + "','" + DateTime.Now.ToString() + "','" + thereason + "','" + x + "');";
                 //Debug.Write("first");
-            }
-            else
-            {
-                command2.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason + "',Expedite_By='"+ x +"' Where [Incident_ID] = '" + id + "';";
-                Debug.Write(" reason " + thereason + " id " + id);
-            }
-        using (SqlDataAdapter sda = new SqlDataAdapter())
-            {
-                sda.SelectCommand = command2;
-                using (dt2 = new DataTable())
+                //  else
+                //  {
+                //  command2.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason + "',Expedite_By='"+ x +"' Where [Incident_ID] = '" + id + "';";
+                //     Debug.Write(" reason " + thereason + " id " + id);
+                // }
+                using (SqlDataAdapter sda = new SqlDataAdapter())
                 {
-                    sda.Fill(dt2);
+                    sda.SelectCommand = command2;
+                    using (dt2 = new DataTable())
+                    {
+                        sda.Fill(dt2);
+                    }
                 }
+                Textbox_message.Text += " ID: " + id + " is expedited sucessfully!" + "<br />";
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                Console.Write(ex.ToString());
             }
         }
-        catch (Exception ex)
+        else
         {
-            conn.Close();
-            Console.Write(ex.ToString());
+            Textbox_message.Text += " ID: " + id + " is already expedited" + "<br />";
         }
 
     }
     protected void Expedite_Button_Click(object sender, EventArgs e)
     {
-        String idstring = TextBox_id.Text;
-        //Debug.Write(idsstring);
-        String idstring2 = idstring.Replace(" ", "");
-        String[] ids = idstring2.Split(',');
-        foreach (String id in ids)
+        Textbox_message.Text = " ";
+        if (DropDownList1.SelectedItem.Value != "-None-")
         {
-            //Debug.Write(id + " ");
-            expedite(id);
+            String idstring = TextBox_id.Text;
+            //Debug.Write(idsstring);
+            String idstring2 = idstring.Replace(" ", "");
+            String[] ids = idstring2.Split(',');
+            foreach (String id in ids)
+            {
+                //Debug.Write(id + " ");
+                expedite(id);
+            }
+            GridView1.Visible = false;
+            //TextBox_id.Text = " ";
+            Textbox_message.Visible = true;
+            //Textbox_message.ForeColor = System.Drawing.Color.Green;
+            //Textbox_message.Text = "Expedited Sucessfully";
         }
+        else
+        {
 
+            Textbox_message.Visible = true;
+            Textbox_message.ForeColor = System.Drawing.Color.Red;
+            Textbox_message.Text = "Please Choose an Urgency Reason!";
+        }
  
     }
     protected void Search_Button_Click(object sender, EventArgs e)
