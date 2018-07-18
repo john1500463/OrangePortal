@@ -1,5 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExpeditePage.aspx.cs" Inherits="ExpeditePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home_Page_User.aspx.cs" Inherits="Home_Page_User" %>
+
 <!DOCTYPE html>
+
 
 
 
@@ -395,51 +397,11 @@ margin-top:0px;
 
 <ul>
 
-   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
+   <li><a href='Home_Page_User.aspx' style="background: darkorange;border-color: darkorange;"><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
+   <li><a href='My_Expedited_Incidents_User.aspx'><span>My Expedited Incidents</span></a></li>
 
-   <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
-
-      <ul>
-
-         <li class='has-sub'><a href='Expedited_Incidents.aspx'><span>Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Sita.aspx'><span>SITA Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
-
-         </li>
-
-      </ul>
-
-   </li>
-
-   <li><a href='#'><span>Feature Requests</span></a></li>
-
-   <li><a href='#'><span>Help</span></a></li>
-
-   <li class='last' style="z-index:2;"><a href='#'><span>Log Out</span></a></li>
+   <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
 
 </ul>
@@ -448,29 +410,47 @@ margin-top:0px;
 
 
 </div>
-    <form id="form2" runat="server">
-    <div style="margin-top: 50px;">
-        
-    
-        
-       <asp:Label ID="Label1" runat="server" Text="Label" Font-Bold="True"></asp:Label>
-        </br></br></br>
-        Choose Urgency Reason:
-      <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems = "true">
-     <asp:ListItem Selected = "True" Text = "Select Reason-----" Value = ""></asp:ListItem>
-          
-      </asp:DropDownList>
+
+    <form id="form1" runat="server" aria-expanded="true">
+        <p>
+            &nbsp;</p>
+    <div style="margin-top: 50px;" aria-expanded="true">
+        <asp:Label ID="Label3" runat="server" Text="Incident ID" Style="margin-bottom:3px; margin-left:3px"></asp:Label>
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> &nbsp&nbsp&nbsp&nbsp&nbsp <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
+       
         
         
-    <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
+        &nbsp;<asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Clear" />
+       
+        
+        
         </div>
+        <p aria-expanded="true">
+            <asp:Label ID="Label1" runat="server" Font-Size="12pt" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
+        </p>
+        <p aria-expanded="true">
+            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px">
+                <AlternatingRowStyle BackColor="White" />
+                <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
+                <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                <SortedDescendingHeaderStyle BackColor="#820000" />
+            </asp:GridView>
+            <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Expedite" Visible="False" style="margin-top:8px"/>
+        </p>
         
-        <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+       
+            <asp:Label ID="Label2" runat="server" Text="" ForeColor="Red"></asp:Label>
         
+       
        </form>
 
 <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 
 </body>
 </html>
-

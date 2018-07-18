@@ -15,14 +15,13 @@ using System.Data;
 using System.Net.Mail;
 using System.Net;
 using System.Diagnostics;
-
-public partial class ExpeditePage : System.Web.UI.Page
+public partial class ExpeditePageUser : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["FTID"] == null)
         {
-        //    Response.Redirect("Default.aspx");
+            //    Response.Redirect("Default.aspx");
         }
         String Incident = Request.QueryString["param1"];
         Label1.Text = Incident;
@@ -123,7 +122,7 @@ public partial class ExpeditePage : System.Web.UI.Page
     {
         if (DropDownList1.SelectedItem.Text == "Select Reason-----")
         {
-           // System.Windows.Forms.MessageBox.Show("Please Select A Reason!");
+            // System.Windows.Forms.MessageBox.Show("Please Select A Reason!");
             Label2.Visible = true;
             Label2.Text = "Please Select a Reason!";
         }
@@ -146,14 +145,14 @@ public partial class ExpeditePage : System.Web.UI.Page
             //  Label1.Text = myReader.GetValue(0).ToString(); */
             // refresh_grid1();
 
-                MailMessage mail = new MailMessage();
-                //
-                SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
-                mail.From = new MailAddress("george-itsupport@orange.com");
-                mail.To.Add("george.delacroix@orange.com");
-                mail.Body = "The ticket with Incident number " + Incident+ " Expoditued";
-                mail.Subject = "Bngrb keda :D ";
-                SmtpServer.Send(mail);
+            MailMessage mail = new MailMessage();
+            //
+            SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
+            mail.From = new MailAddress("george-itsupport@orange.com");
+            mail.To.Add("george.delacroix@orange.com");
+            mail.Body = "The ticket with Incident number " + Incident + " Expoditued";
+            mail.Subject = "Bngrb keda :D ";
+            SmtpServer.Send(mail);
 
             String SubmitDate = myReader.GetValue(0).ToString();
             String UrgenyReason = DropDownList1.SelectedItem.Text;
@@ -169,7 +168,7 @@ public partial class ExpeditePage : System.Web.UI.Page
             cnn.Close();
 
             // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
-            Response.Redirect("Home_Page.aspx");
+            Response.Redirect("Home_Page_User.aspx");
         }
 
     }

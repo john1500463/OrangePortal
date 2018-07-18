@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
+using System.Data.SqlClient;
+using System.Data;
+using System.Diagnostics;
 
 
 public partial class _Default : System.Web.UI.Page
@@ -94,6 +97,52 @@ public partial class _Default : System.Web.UI.Page
            // Response.Redirect("Main.aspx");
             Session["FTID"] = cn_S;
             Session["Email"] = description_S;
+                    SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+       
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "Select [Rights] From [Expedite].[dbo].[Users] Where [FTID]= '" + cn_S + "';";
+            //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
+
+
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+
+            if (dt.Rows[0][0] == "A")
+            {
+                Response.Redirect("Home_Page.aspx");
+                Session["Right"] = "a";
+            }
+            else {
+                Response.Redirect("Home_Page_User.aspx");
+                Session["Right"] = "else";
+            }
+          /*  string connetionString;
+            SqlConnection cnn;
+            connetionString = @"Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$";
+            cnn = new SqlConnection(connetionString);
+            // cnn.Open();
+
+            string strSelect = "Select [Rights] From [Expedite].[dbo].[Users] Where [FTID]= '" + cn_S + "';";
+            // string strSelect = "Select * From [dbo].['All_Incidents'] ;";
+            //   SqlCommand cmd = new SqlCommand(strSelect, cnn);
+            SqlDataAdapter adpt = new SqlDataAdapter(strSelect, cnn);
+
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            Debug.Write(strSelect);
+            */
             Response.Redirect("Home_Page.aspx");
             
           /*  Response.Write(cn_S);

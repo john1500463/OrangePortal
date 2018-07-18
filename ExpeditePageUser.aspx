@@ -1,5 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExpeditePage.aspx.cs" Inherits="ExpeditePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExpeditePageUser.aspx.cs" Inherits="ExpeditePageUser" %>
 <!DOCTYPE html>
+
 
 
 
@@ -395,51 +396,11 @@ margin-top:0px;
 
 <ul>
 
-   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
+   <li><a href='Home_Page_User.aspx' style="background: darkorange;border-color: darkorange;"><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
+   <li><a href='My_Expedited_Incidents_User.aspx'><span>My Expedited Incidents</span></a></li>
 
-   <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
-
-      <ul>
-
-         <li class='has-sub'><a href='Expedited_Incidents.aspx'><span>Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Sita.aspx'><span>SITA Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
-
-         </li>
-
-      </ul>
-
-   </li>
-
-   <li><a href='#'><span>Feature Requests</span></a></li>
-
-   <li><a href='#'><span>Help</span></a></li>
-
-   <li class='last' style="z-index:2;"><a href='#'><span>Log Out</span></a></li>
+   <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
 
 </ul>
@@ -473,4 +434,3 @@ margin-top:0px;
 
 </body>
 </html>
-

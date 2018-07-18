@@ -1,5 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExpeditePage.aspx.cs" Inherits="ExpeditePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="My_Expedited_Incidents_User.aspx.cs" Inherits="My_Expedited_Incidents_User" %>
+
 <!DOCTYPE html>
+
 
 
 
@@ -395,51 +397,11 @@ margin-top:0px;
 
 <ul>
 
-   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
+   <li><a href='Home_Page_User.aspx'><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
+   <li><a href='My_Expedited_Incidents_User' style="background: darkorange;border-color: darkorange;"><span>My Expedited Incidents</span></a></li>  
 
-   <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
-
-      <ul>
-
-         <li class='has-sub'><a href='Expedited_Incidents.aspx'><span>Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Sita.aspx'><span>SITA Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
-
-         </li>
-
-      </ul>
-
-   </li>
-
-   <li><a href='#'><span>Feature Requests</span></a></li>
-
-   <li><a href='#'><span>Help</span></a></li>
-
-   <li class='last' style="z-index:2;"><a href='#'><span>Log Out</span></a></li>
+   <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
 
 </ul>
@@ -450,23 +412,24 @@ margin-top:0px;
 </div>
     <form id="form2" runat="server">
     <div style="margin-top: 50px;">
-        
-    
-        
-       <asp:Label ID="Label1" runat="server" Text="Label" Font-Bold="True"></asp:Label>
-        </br></br></br>
-        Choose Urgency Reason:
-      <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems = "true">
-     <asp:ListItem Selected = "True" Text = "Select Reason-----" Value = ""></asp:ListItem>
-          
-      </asp:DropDownList>
-        
-        
-    <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
+
+                <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
+                <AlternatingRowStyle BackColor="White" />
+                <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
+                <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                <SortedDescendingHeaderStyle BackColor="#820000" />
+            </asp:GridView>
         </div>
         
-        <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+           
         
+       
        </form>
 
 <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
