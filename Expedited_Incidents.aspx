@@ -452,21 +452,19 @@ margin-top:0px;
 
 </div>
     <form id="form2" runat="server">
-        <br> <br> <br>
-        Assignee Manager 
-        <br> 
-        <div>  <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox> &nbsp;
+            <div style="margin-top:2%">  
+                <asp:Label ID="Label1" runat="server" Text="Assignee Manager" Style="margin-top:2%;margin-left:1%;"></asp:Label>
+                <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox> &nbsp;
             <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" /> &nbsp;&nbsp;
             <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Reset" />
-    
         </div>
-        <br> <br> <br>
-        Expedite Date less than or equal to
-
-        <div> <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="margin-left: 0px; margin-top: 32px"></asp:Calendar></div>
-         <br> <br> <br>
-        Last Modified Date less than or equal to.
-     <div> <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="margin-top: 46px"></asp:Calendar></div>   
+        <div Style="margin-top:5%;">
+        <asp:Label ID="Label2" runat="server" Text="Expedite Date less than or equal to" Style="margin-left:1%;"></asp:Label>
+        <asp:Label ID="Label3" runat="server" Text="Last Modified Date less than or equal to" Style="margin-left:6%;"></asp:Label>
+        </div>
+        <div> 
+        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-left: 1%; margin-top: 3%; display:inline-block;"></asp:Calendar>
+        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-top: 3%; margin-left:6%; display:inline-block;"></asp:Calendar></div>   
     <div style="margin-top: 50px;">
        
        

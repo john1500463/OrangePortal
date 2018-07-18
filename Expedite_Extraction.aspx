@@ -459,18 +459,20 @@ margin-top:0px;
     <form id="form1" runat="server">
    
         <p aria-expanded="true">
-            <asp:Label ID="Label1" runat="server" Text="From"></asp:Label>
-            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:</p>
-        
+            <asp:Label ID="Label1" runat="server" Text="From" style="position:relative; margin-left: 1%;"></asp:Label>
+            <asp:Label ID="Label3" runat="server" Text="To" style="position:relative; margin-left: 22%;"></asp:Label>
+        </p>
        
         <p aria-expanded="true">
-          <asp:Calendar ID="Calendar1" runat="server" Height="153px" Width="220px"></asp:Calendar>
-            <asp:Calendar ID="Calendar2" runat="server" style="position: relative; top: -196px; left: 259px; width: 214px; height: 176px;" Height="153px" Width="220px"></asp:Calendar>
-         <asp:Button ID="Button1" runat="server"  style="position: relative; top: -150px; left: 0px; height: 25px; width: 39px;" OnClick="Button1_Click" Text="Get" />
-  
+          <asp:Calendar ID="Calendar1" runat="server" style="position:relative; margin-left:1%; display:inline-block"></asp:Calendar>
+            <asp:Calendar ID="Calendar2" runat="server"  style="position:relative; margin-left:5%; display:inline-block"></asp:Calendar>
+            <p aria-expanded="true">
+         <asp:Button ID="Button1" runat="server"  style="position: relative; margin-top: 0.25%; margin-left:1%" OnClick="Button1_Click" Text="Get" />
+        </p>
         
-        
-            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" GridLines="None" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
+        </p>
+        <p aria-expanded="true">
+            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="position:relative; margin-top:3%; margin-left: 1%;">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
@@ -481,21 +483,16 @@ margin-top:0px;
                 <SortedAscendingHeaderStyle BackColor="#4D0000" />
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
-            </asp:GridView>
-            
+            </asp:GridView>   
+                  
         </p>
          <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
          
        
     <div>
-     <div style="margin-top: 50px;" aria-expanded="true">
-        &nbsp&nbsp&nbsp&nbsp&nbsp 
-       
-        
-        
-        &nbsp;</div>
+
     </div>
     </form>
-    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+    
 </body>
 </html>
