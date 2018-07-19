@@ -301,7 +301,7 @@
 
   top:10%;
 
-  left: 10px;
+  margin-left: 0.5%;
 
   font-size: 38pt;
 
@@ -366,7 +366,7 @@ img {
 }
 
 body {
-overflow:hidden;
+overflow:auto;
 margin-left:0px;
 margin-right:0px;
 margin-top:0px;
@@ -468,7 +468,7 @@ margin-top:0px;
     <div style="margin-top: 50px;">
        
        
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" Visible="False" BorderStyle="None" style="margin-bottom:20%; margin-left:1%;">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" Visible="False" BorderStyle="None" style="margin-bottom:1%; margin-left:1%;">
             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                     <asp:TemplateField HeaderText="Acknowledge">
@@ -490,9 +490,9 @@ margin-top:0px;
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
-        <asp:Button ID="Button3" runat="server" Text="Export to xls" OnClick="Button3_Click"  />
         </div>
-        
+        <div>
+        <asp:Button ID="Button3" runat="server" Text="Export to xls" OnClick="Button3_Click" style="margin-bottom:10%;margin-left:1%;" />
            </div>
         
        
