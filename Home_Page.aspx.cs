@@ -13,7 +13,7 @@ public partial class Home_Page : System.Web.UI.Page
     {
         if (Session["FTID"] == null)
         {
-            Response.Redirect("Default.aspx");
+            //Response.Redirect("Default.aspx");
         }
         // GridView1.Visible = false;
         //TextBox1.Text = "";
@@ -60,11 +60,12 @@ public partial class Home_Page : System.Web.UI.Page
         try
         {
             DataTable dt = new DataTable();
+
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
-            //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
+
+            command.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] where [Incident_ID]='" + x + "';";
 
 
             using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -78,28 +79,104 @@ public partial class Home_Page : System.Web.UI.Page
 
                 }
             }
+
             if (dt.Rows.Count == 0)
             {
-                Label1.Text = "Incident doesn't exist";
+                command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
+                //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
 
-                Button3.Visible = false;
-                GridView1.Visible = false;
-                // Label1.Text = "";
+
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    sda.SelectCommand = command;
+
+                    using (dt = new DataTable())
+                    {
+
+                        sda.Fill(dt);
+
+                    }
+                }
+
+
+                if (dt.Rows.Count == 0)
+                {
+                    Label1.Text = "Incident doesn't exist";
+
+                    Button3.Visible = false;
+                    GridView1.Visible = false;
+                    // Label1.Text = "";
+
+                }
+                else
+                {
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                    GridView1.Visible = true;
+                    Button3.Visible = true;
+                    Label1.Text = "";
+                    Label2.Text = "";
+
+                }
+                //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
 
             }
             else
             {
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                GridView1.Visible = true;
-                Button3.Visible = true;
-                Label1.Text = "";
-                Label2.Text = "";
+                command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified'  ,[Expedite].[dbo].[Expedite_time].[Expedite_Date] as 'Expedite Date',[Expedite].[dbo].[Expedite_time].[Urgency_Reason] 'Urgency Reason'From [dbo].['All_Incidents'] ,[Expedite].[dbo].[Expedite_time] where [INC Incident Number] = '" + x + "' and [Expedite].[dbo].[Expedite_time].[Incident_ID] = '" + x + "';";
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    sda.SelectCommand = command;
+
+                    using (dt = new DataTable())
+                    {
+
+                        sda.Fill(dt);
+
+                    }
+                }
+
+
+
+
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    sda.SelectCommand = command;
+
+                    using (dt = new DataTable())
+                    {
+
+                        sda.Fill(dt);
+
+                    }
+                }
+
+
+                if (dt.Rows.Count == 0)
+                {
+                    Label1.Text = "Incident doesn't exist";
+
+                    Button3.Visible = false;
+                    GridView1.Visible = false;
+                    // Label1.Text = "";
+
+                }
+                else
+                {
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                    GridView1.Visible = true;
+                    //Button3.Visible = true;
+                    Label1.Text = "";
+                    Label2.Text = "";
+
+                }
+                //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
 
             }
-            //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
-
         }
+
+
         // Response.Write("ya3");
         catch (Exception ex)
         {
@@ -161,6 +238,7 @@ public partial class Home_Page : System.Web.UI.Page
         SqlCommand command = new SqlCommand();
         command.Connection = conn;
         command.CommandText = "Select [Incident_ID],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason] From [dbo].[Expedite_time] where [Incident_ID]='" + Y + "';";
+
         using (SqlDataAdapter sda = new SqlDataAdapter())
         {
             sda.SelectCommand = command;
@@ -172,6 +250,8 @@ public partial class Home_Page : System.Web.UI.Page
 
             }
         }
+
+
         if (dt.Rows.Count != 0)
         {
             Label2.Text = "Already Expedited";
@@ -180,9 +260,8 @@ public partial class Home_Page : System.Web.UI.Page
 
         else
         {
-            Response.Redirect("ExpeditePage.aspx?param1=" + Y);
+            Response.Redirect("ExpeditePageUser.aspx?param1=" + Y);
         }
     }
+
 }
-
-
