@@ -199,7 +199,7 @@ public partial class Urgency_Reasons : System.Web.UI.Page
             conn.Open();
             SqlCommand command3 = new SqlCommand();
             command3.Connection = conn;
-            command3.CommandText = "INSERT INTO [Expedite].[dbo].[UrgencyReasons] (ID,UrgencyReason) VALUES ('','"+reasonname+"');";
+            command3.CommandText = "INSERT INTO [Expedite].[dbo].[UrgencyReasons] (UrgencyReason) VALUES ('"+reasonname+"');";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command3;
