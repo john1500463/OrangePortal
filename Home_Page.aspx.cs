@@ -260,7 +260,7 @@ public partial class Home_Page : System.Web.UI.Page
 
         else
         {
-            Response.Redirect("ExpeditePageUser.aspx?param1=" + Y);
+            Response.Redirect("ExpeditePage.aspx?param1=" + Y);
         }
     }
 

@@ -456,27 +456,25 @@ margin-top:0px;
         </p>
     <div>
     
-        <asp:Label ID="Label2" runat="server" Text="First Name: "></asp:Label>
-        <input id="Text1" type="text" /></div>
-        <p>
-            <asp:Label ID="Label3" runat="server" Text="Last Name: "></asp:Label>
-            <input id="Text2" type="text" /></p>
-        <p>
-            <asp:Label ID="Label4" runat="server" Text="FTID: "></asp:Label>
-            <input id="Text3" type="text" /></p>
+        <asp:Label ID="Label2" runat="server" Text="User Name: "></asp:Label>
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+        </div>
         <p>
             <asp:Label ID="Label5" runat="server" Text="Email: "></asp:Label>
-            <input id="Text4" type="text" /></p>
+            <asp:TextBox ID="TextBox3" runat="server" Width="171px"></asp:TextBox>
+            <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
+        </p>
         <p>
             <asp:Label ID="Label6" runat="server" Text="Role: "></asp:Label>
             <asp:DropDownList ID="DropDownList1" runat="server" Height="35px" Width="169px">
-                <asp:ListItem Selected = "True" Text = "Choose A Role" Value = "None"></asp:ListItem>
                 <asp:ListItem  Text = "Admin" Value = "A"></asp:ListItem>
                 <asp:ListItem  Text = "Support" Value = "S"></asp:ListItem>
             </asp:DropDownList>
+            <asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
         </p>
         <p>
-            <asp:Button ID="Button1" runat="server"  Text="Edit" />
+            <asp:Button ID="Button1" runat="server"  Text="Edit" OnClick="Button1_Click" />
             
             </p>
     

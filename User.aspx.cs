@@ -11,11 +11,13 @@ using System.Web.UI.WebControls;
 public partial class User : System.Web.UI.Page
 {
     DataTable dt;
+    SqlConnection conn;
+    SqlCommand command;
     protected void Page_Load(object sender, EventArgs e)
     {
         Button Edit;
         Button Delete;
-        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         try
         {
             dt = new DataTable();
@@ -50,8 +52,10 @@ public partial class User : System.Web.UI.Page
                 {
                     Edit = new Button();
                     Delete = new Button();
-                    Edit.ID = "ID" + i;
-                    Edit.Click += new EventHandler(this.GreetingBtn_Click);
+                    Edit.ID = i.ToString();
+                    Edit.Click += new EventHandler(this.EditingBtn_Click);
+                    Delete.ID = (i+num).ToString();
+                    Delete.Click += new EventHandler(this.DeleteBtn_Click);
                     
                     Edit.Text = "Edit";
                     Delete.Text = "Delete";
@@ -74,24 +78,89 @@ public partial class User : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        String Username = TextBox1.Text;
+        String FTID = TextBox3.Text;
+        String Email = TextBox4.Text;
+        String RoleName = DropDownList1.SelectedItem.Value;
+        /*
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
 
+        DataTable dt1 = new DataTable();
+        conn.Open();
+        SqlCommand command = new SqlCommand();
+        command.Connection = conn;
+        command.CommandText = "INSERT INTO [Expedite].[dbo].[Users] ([Username],[Rights],[Email],[FTID]) Values ('"+Username+"','"+RoleName+"','"+Email+"','"+FTID+"')";
+
+        using (SqlDataAdapter sda = new SqlDataAdapter())
+        {
+            sda.SelectCommand = command;
+
+            using (dt1 = new DataTable())
+            {
+
+                sda.Fill(dt1);
+
+            }
+        }
+         */
     }
-    void GreetingBtn_Click(Object sender,
+    void EditingBtn_Click(Object sender,
                           EventArgs e)
     {
         // When the button is clicked,
         // change the button text, and disable it.
 
         Button clickedButton = (Button)sender;
-        Debug.WriteLine(clickedButton.ID);
+        int ID = Int32.Parse(clickedButton.ID);
+        String FTID= dt.Rows[ID][3].ToString();
+        Debug.WriteLine(FTID);
        // int id= (int)clickedButton.ID;
       //  String Y = dt.Rows[id][3].ToString();
       //  Debug.WriteLine(Y);
-        //Response.Redirect("ExpeditePage.aspx?param1=" + Y);
+        Response.Redirect("EditUser.aspx?param1=" + FTID);
 
         // Display the greeting label text.
         
     }
 
+    void DeleteBtn_Click(Object sender,
+                         EventArgs e)
+    {
+        // When the button is clicked,
+        // change the button text, and disable it.
 
+        Button clickedButton = (Button)sender;
+        int ID = Int32.Parse(clickedButton.ID);
+        Debug.WriteLine(ID);
+        ID = ID - dt.Rows.Count;
+        String FTID = dt.Rows[ID][3].ToString();
+        Debug.WriteLine(FTID);
+        
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+
+        DataTable dt1 = new DataTable();
+        conn.Open();
+        SqlCommand command = new SqlCommand();
+        command.Connection = conn;
+        command.CommandText = "Delete From [Expedite].[dbo].[Users] Where [FTID]= '" + FTID + "';";
+
+        using (SqlDataAdapter sda = new SqlDataAdapter())
+        {
+            sda.SelectCommand = command;
+
+            using (dt1 = new DataTable())
+            {
+
+                sda.Fill(dt1);
+
+            }
+        }
+        Response.Redirect("User.aspx");
+       
+
+    }
+
+
+
+  
 }
