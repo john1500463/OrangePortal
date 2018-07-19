@@ -112,8 +112,8 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
                 DataTable dt2 = new DataTable();
                 SqlCommand command2 = new SqlCommand();
                 command2.Connection = conn;
-
-                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Expedite_By) VALUES ('" + id + "','" + DateTime.Now.ToString() + "','" + thereason + "','" + x + "');";
+                String thesubmitdate = get_submit_date(id);
+                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Submit_Date,Expedite_Date,Urgency_Reason,Expedite_By) VALUES ('" + id + "','" + thesubmitdate + "','" + DateTime.Now.ToString() + "','" + thereason + "','" + x + "');";
                 //Debug.Write("first");
                 //  else
                 //  {
@@ -233,6 +233,37 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             conn.Close();
             Console.Write(ex.ToString());
         }
+    }
+    protected String get_submit_date(String subid)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "Select [INC DS Submit Date] From [Expedite].[dbo].['All_Incidents'] where [INC Incident Number]='" + subid + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            String value = dt.Rows[0][0].ToString();
+            return value;
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+        return " ";
     }
     protected void Clear_Button_Click(object sender, EventArgs e)
     {

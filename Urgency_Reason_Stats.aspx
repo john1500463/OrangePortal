@@ -436,11 +436,11 @@ margin-top:0px;
 
    </li>
 
-   <li><a href='#'><span>Feature Requests</span></a></li>
+   <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
 
-   <li class='last' style="z-index:2;"><a href='#'><span>Log Out</span></a></li>
+   <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
 
 </ul>
