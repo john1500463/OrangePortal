@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Expedite_Extraction.aspx.cs" Inherits="Expedite_Extraction" %>
-
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Urgency_Reasons.aspx.cs" Inherits="Urgency_Reasons" %>
 <!DOCTYPE html>
 
 
@@ -438,7 +436,7 @@ margin-top:0px;
 
    </li>
 
-   <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
+    <li><a href='Urgency_Reasons.aspx' style="background: darkorange;border-color: darkorange;"><span>Urgency Reason</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
 
@@ -451,48 +449,25 @@ margin-top:0px;
 
 
 </div>
-    
-        <p>
-            &nbsp;</p>
-   
-       
-    <form id="form1" runat="server">
-   
-        <p aria-expanded="true">
-            <asp:Label ID="Label1" runat="server" Text="From" style="position:relative; margin-left: 1%;"></asp:Label>
-            <asp:Label ID="Label3" runat="server" Text="To" style="position:relative; margin-left: 22%;"></asp:Label>
-        </p>
-       
-        <p aria-expanded="true">
-          <asp:Calendar ID="Calendar1" runat="server" style="position:relative; margin-left:1%; display:inline-block"></asp:Calendar>
-            <asp:Calendar ID="Calendar2" runat="server"  style="position:relative; margin-left:5%; display:inline-block"></asp:Calendar>
-            <p aria-expanded="true">
-         <asp:Button ID="Button1" runat="server"  style="position: relative; margin-top: 0.25%; margin-left:1%" OnClick="Button1_Click" Text="Get" />
-        </p>
-        
-        </p>
-        <p aria-expanded="true">
-            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="position:relative; margin-top:3%; margin-left: 1%;">
-                <AlternatingRowStyle BackColor="White" />
-                <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
-                <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                <SortedDescendingHeaderStyle BackColor="#820000" />
-            </asp:GridView>   
-                  
-        </p>
-         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-         
-       
-    <div>
 
+    <form id="form1" runat="server">
+    <div style="margin-left:1%; margin-top:5%">
+        <asp:Label ID="Label1" runat="server" Text="Urgency Reason"></asp:Label>
+        <asp:Label ID="Label_Urgency_chosen" runat="server" Font-Bold="True" Text=" chosen"></asp:Label>
+        <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+        <asp:Button ID="Button_Update" runat="server" Text="Update" OnClick="Button_Update_Click" />
+        <asp:Button ID="Button_Delete" runat="server" Text="Delete" OnClick="Button_Delete_Click" />
+        <asp:Button ID="Button_newreason" runat="server" OnClick="Button_newreason_Click" Text="Select Another Reason" />
     </div>
+        <div style="margin-left:1%; margin-top:1%">
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Button ID="Button_Save" runat="server" Text="Save" OnClick="Button_Save_Click" />
+        <asp:Label ID="Label_info" runat="server" Text="info"></asp:Label>
+        </div>
+<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+
+        
     </form>
-    
+
 </body>
 </html>

@@ -91,6 +91,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             updategrid(TextBox1.Text, " ");
             GridView1.Visible = true;
             Button3.Visible = true;
+           // Debug.Write(get_submit_date(TextBox1.Text));
         }
     }
     protected void preselectdropdown()
@@ -143,7 +144,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 conn.Open();
                 SqlCommand command = new SqlCommand();
                 command.Connection = conn;
-                command.CommandText = "Select [INC Incident Number],[INC Status],[Submit_Date], [AG Assigned Group Name], [AG Assignee],[Urgency_Reason],[Expedite_Date],[Comment] From [Expedite].[dbo].['All_Incidents'] as AL FULL OUTER JOIN [Expedite].[dbo].[Expedite_time] as ET ON AL.[INC Incident Number] =  ET.[Incident_ID] Where  AL.[INC Incident Number]='" + id + "' or ET.[Incident_ID]='"+id+"';";
+                command.CommandText = "Select [INC Incident Number],[INC Status],[INC DS Submit Date], [AG Assigned Group Name], [AG Assignee],[Urgency_Reason],[Expedite_Date],[Comment] From [Expedite].[dbo].['All_Incidents'] as AL FULL OUTER JOIN [Expedite].[dbo].[Expedite_time] as ET ON AL.[INC Incident Number] =  ET.[Incident_ID] Where  AL.[INC Incident Number]='" + id + "' or ET.[Incident_ID]='" + id + "';";
                 using (SqlDataAdapter sda = new SqlDataAdapter())
                 {
                     sda.SelectCommand = command;
@@ -243,9 +244,10 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             //Debug.Write("Header is "+GridView1.Columns[0].HeaderText.ToString());
             //Debug.Write("Header is " + GridView1.HeaderRow.Cells[2].Text.ToString());
             //Debug.Write("Value is " + ((DataColumn)readdt().Columns[0]).ColumnName);
+            String thesubmitdate = get_submit_date(TextBox1.Text);
             if (num==2) //exists only in all inc
             {
-                command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment,Expedite_By) VALUES ('" + TextBox1.Text + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "','"+ x +"');";
+                command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment,Expedite_By,Submit_Date) VALUES ('" + TextBox1.Text + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "','" + x + "',convert (datetime,'"+thesubmitdate+"'));";
                    // Debug.Write("first");
             }
             else{
@@ -270,6 +272,38 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             Console.Write(ex.ToString());
         }
     }
+
+     protected String get_submit_date(String subid)
+     {
+         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+         String x = (string)(Session["FTID"]);
+         try
+         {
+             DataTable dt = new DataTable();
+             conn.Open();
+             SqlCommand command = new SqlCommand();
+             command.Connection = conn;
+             command.CommandText = "Select [INC DS Submit Date] From [Expedite].[dbo].['All_Incidents'] where [INC Incident Number]='" + subid + "';";
+             using (SqlDataAdapter sda = new SqlDataAdapter())
+             {
+                 sda.SelectCommand = command;
+                 using (dt = new DataTable())
+                 {
+
+                     sda.Fill(dt);
+
+                 }
+             }
+             String value = dt.Rows[0][0].ToString();
+             return value;
+         }
+         catch (Exception ex)
+         {
+             conn.Close();
+             Console.Write(ex.ToString());
+         }
+         return " ";
+     }
     protected void post_comment()
     {
         String thecomment = TextBox2.Text;
