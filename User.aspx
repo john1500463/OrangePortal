@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CSM_entity.aspx.cs" Inherits="CSM_entity" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="User.aspx.cs" Inherits="User" %>
+
 
 <!DOCTYPE html>
 
@@ -397,7 +398,7 @@ margin-top:0px;
 
 <ul>
 
-   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
+   <li><a href='Home_Page.aspx' style="background: darkorange;border-color: darkorange;"><span>Home</span></a></li>
 
    <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
 
@@ -441,7 +442,7 @@ margin-top:0px;
 
    <li><a href='#'><span>Help</span></a></li>
 
-   <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
+   <li class='last' style="z-index:2;"><a href='#'><span>Log Out</span></a></li>
     
 
 </ul>
@@ -451,12 +452,38 @@ margin-top:0px;
 
 </div>
     <form id="form1" runat="server">
-
-</div>
+        <p>
+            <asp:Label ID="Label1" runat="server" Text="Add User"></asp:Label>
+        </p>
+    <div>
     
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-    <div style="margin-top: 50px;">
-           <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
+        <asp:Label ID="Label2" runat="server" Text="First Name: "></asp:Label>
+        <input id="Text1" type="text" /></div>
+        <p>
+            <asp:Label ID="Label3" runat="server" Text="Last Name: "></asp:Label>
+            <input id="Text2" type="text" /></p>
+        <p>
+            <asp:Label ID="Label4" runat="server" Text="FTID: "></asp:Label>
+            <input id="Text3" type="text" /></p>
+        <p>
+            <asp:Label ID="Label5" runat="server" Text="Email: "></asp:Label>
+            <input id="Text4" type="text" /></p>
+        <p>
+            <asp:Label ID="Label6" runat="server" Text="Role: "></asp:Label>
+            <asp:DropDownList ID="DropDownList1" runat="server" Height="35px" Width="169px">
+                <asp:ListItem Selected = "True" Text = "Choose A Role" Value = "None"></asp:ListItem>
+                <asp:ListItem  Text = "Admin" Value = "A"></asp:ListItem>
+                <asp:ListItem  Text = "Support" Value = "S"></asp:ListItem>
+            </asp:DropDownList>
+        </p>
+        <p>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add" />
+            
+            </p>
+        <p><asp:Label ID="Label7" runat="server" Text="Users: "></asp:Label>
+
+        </p>
+         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
@@ -468,22 +495,6 @@ margin-top:0px;
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
-        &nbsp&nbsp&nbsp&nbsp&nbsp 
-       
-        
-        
-        &nbsp;</div>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        
-       
-       </form>
-
-<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
-
+    </form>
 </body>
 </html>

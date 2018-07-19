@@ -125,11 +125,11 @@ public partial class _Default : System.Web.UI.Page
                 Session["Right"] = "else";
             }
 
-            String ahmed = dt.Rows[0][0].ToString();
-            if(ahmed=="A")
+            String Role = dt.Rows[0][0].ToString();
+            if (Role == "A")
             {
                 Debug.Write(command.CommandText);
-                Session["Right"] = "a";
+                Session["Right"] = Role;
                 Response.Redirect("Home_Page.aspx");
                 
             }
