@@ -299,7 +299,7 @@
 
   top:10%;
 
-  left: 10px;
+  margin-left: 0.5%;
 
   font-size: 38pt;
 
@@ -364,7 +364,7 @@ img {
 }
 
 body {
-overflow:hidden;
+overflow:auto;
 margin-left:0px;
 margin-right:0px;
 margin-top:0px;
@@ -436,7 +436,7 @@ margin-top:0px;
 
    </li>
 
-    <li><a href='Urgency_Reasons.aspx' style="background: darkorange;border-color: darkorange;"><span>Urgency Reason</span></a></li>
+    <li><a href='Urgency_Reasons.aspx' style="background: darkorange;border-color: darkorange;"><span>Urgency Reasons</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
 
@@ -453,10 +453,13 @@ margin-top:0px;
     <form id="form1" runat="server">
     <div style="margin-left:1%; margin-top:5%">
         <asp:Label ID="Label1" runat="server" Text="Urgency Reason"></asp:Label>
-        <asp:Label ID="Label_Urgency_chosen" runat="server" Font-Bold="True" Text=" chosen"></asp:Label>
+        <asp:Label ID="Label_Urgency_chosen" runat="server" Font-Bold="True" Text=" chosen" Visible="False"></asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
         <asp:Button ID="Button_Update" runat="server" Text="Update" OnClick="Button_Update_Click" />
         <asp:Button ID="Button_Delete" runat="server" Text="Delete" OnClick="Button_Delete_Click" />
+        <asp:TextBox ID="TextBox_newreason" runat="server" Visible="False"></asp:TextBox>
+        <asp:Button ID="Button_showadd" runat="server" OnClick="Button_showadd_Click" Text="Add" />
+        <asp:Button ID="Button_addreason" runat="server" OnClick="Button_addreason_Click" Text="Add Reason" Visible="False" />
         <asp:Button ID="Button_newreason" runat="server" OnClick="Button_newreason_Click" Text="Select Another Reason" />
     </div>
         <div style="margin-left:1%; margin-top:1%">
