@@ -64,8 +64,6 @@ public partial class ModifyUser : System.Web.UI.Page
                 GridView1.Rows[i].Cells[4].Controls.Add(Edit);
                 GridView1.Rows[i].Cells[5].Controls.Add(Delete);
                 
-                Role= GridView1.Rows[i].Cells[1].ToString();
-                Debug.WriteLine(Role);
                 
             }
           
