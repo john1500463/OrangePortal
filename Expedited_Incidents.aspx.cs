@@ -14,10 +14,13 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
 using System.Collections;
+using System.Windows.Forms;
+using System.Diagnostics;
 public partial class Expedited_Incidents : System.Web.UI.Page
-{
-
-    DataTable thetable = new DataTable();
+{   
+    // THE SELECT YOU'LL NEED
+    //Select [INC Incident Number],[INC Tier 2],[INC Status], [AG Assigned Group Name], [AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason] From [Expedite].[dbo].['All_Incidents'] as AL INNER JOIN [Expedite].[dbo].[Expedite_time] as ET ON AL.[INC Incident Number] =  ET.[Incident_ID];
+    public static DataTable thetable;
     protected void exporttoxls(DataTable dt)
     {
         //Create a dummy GridView and Bind the data source we have.
@@ -61,7 +64,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [INC Incident Number] From [Expedite].[dbo].['All_Incidents'] EXCEPT Select [INC Incident Number] From [Expedite].[dbo].['All_Incidents']  Where [INC Status]='Resolved' OR [INC Status]='Closed';";
+            command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -73,32 +76,13 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-            ArrayList arr = new ArrayList();
-
-            foreach (DataRow row in dt.Rows)
-            {
-                foreach (DataColumn column in dt.Columns)
-                {
-                    arr.Add(row[column]);
-                }
-            }
-            DataTable dt2 = new DataTable();
-
-            SqlCommand command3 = new SqlCommand();
-            for (int counter = 0; counter < arr.Count; counter++)
-            {
-                command3.Connection = conn;
-                command3.CommandText = "Select [Incident_ID] as 'Incident ID',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedite By',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] Where [Incident_ID] ='" + arr[counter] + "';";
-
-                SqlDataAdapter sda = new SqlDataAdapter();
-                sda.SelectCommand = command3;
-                sda.Fill(dt2);
-            }
-
-
-            GridView1.DataSource = dt2;
+            GridView1.DataSource = dt;
             GridView1.DataBind();
-            thetable = dt2;
+            if (!Page.IsPostBack)
+            {
+                thetable = new DataTable();
+                thetable = dt;
+            }
             GridView1.Visible = true;
         }
         catch (Exception ex)
@@ -119,7 +103,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Submit Date]) <='" + startdated + "';";
+            //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Submit Date]) <='" + startdated + "';";
+            command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and convert(date, [Expedite_Date]) <='" + startdated + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -158,7 +143,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
+            //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
+            command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -173,6 +159,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
             GridView1.DataSource = dt;
             GridView1.DataBind();
+            thetable = dt;
             //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
         }
         catch (Exception ex)
@@ -197,6 +184,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
     protected void Button3_Click(object sender, System.EventArgs e)
     {
+        //Debug.Write("When posting: " + GridView1.Rows[0].Cells[0].Text);
+        //Debug.Write("When posting: " + thetable.Rows[0][0].ToString());
         exporttoxls(thetable);
     }
     protected void Button1_Click(object sender, System.EventArgs e)
@@ -209,7 +198,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and [AG Assignee Manager Name]='" + ManagerName + "';";
+            command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and [AG Assignee Manager Name]='" + ManagerName + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -224,6 +213,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
             GridView1.DataSource = dt;
             GridView1.DataBind();
+            thetable = dt;
+            Debug.Write("When searching: " + thetable.Rows[0][0]);
             //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
         }
         catch (Exception ex)
