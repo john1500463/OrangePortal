@@ -438,11 +438,11 @@ margin-top:0px;
    </li>
 
 
-       <li class='active has-sub' style="background: darkorange;border-color: darkorange;"><a href='#'><span>User</span></a>
+       <li class='active has-sub'><a href='#'><span>User</span></a>
 
       <ul>
 
-         <li class='has-sub'><a href=User.aspx'><span>Add New User</span></a>
+         <li class='has-sub'><a href='User.aspx'><span>Add New User</span></a>
 
          </li>
 
@@ -473,7 +473,7 @@ margin-top:0px;
 
 
     <form id="form1" runat="server">
-    <div>
+    <div style="margin-left:1%; margin-top:5%;">
       <p><asp:Label ID="Label7" runat="server" Text="Users: "></asp:Label>
 
         </p>
