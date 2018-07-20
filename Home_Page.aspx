@@ -23,7 +23,7 @@
 
    <script src="script.js"></script>
 
-   <title>Home</title>
+   <title>Expedite Portal - Home</title>
 
     <style>
 

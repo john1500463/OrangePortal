@@ -22,7 +22,7 @@
 
    <script src="script.js"></script>
 
-   <title>Home</title>
+   <title>Expedite Portal - My Expedited Incidents</title>
 
     <style>
 

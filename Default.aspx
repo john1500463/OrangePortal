@@ -17,7 +17,7 @@
 
    <script src="script.js"></script>
 
-   <title>Login Page</title>
+   <title>Login</title>
 
     <style>
 

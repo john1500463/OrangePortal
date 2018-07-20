@@ -480,7 +480,7 @@ margin-top:0px;
         <p aria-expanded="true">
         <asp:Label ID="Textbox_message" runat="server" Text="message" style=" margin-left:1%"></asp:Label>
             </p>
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-left:1%;">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="10" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="Solid" BorderWidth="2px" style="margin-left:1%;">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
