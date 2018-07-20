@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="User.aspx.cs" Inherits="User" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ModifyUser.aspx.cs" Inherits="ModifyUser" %>
 
 <!DOCTYPE html>
 
@@ -474,37 +473,24 @@ margin-top:0px;
 
 
     <form id="form1" runat="server">
-         <div style ="margin-left: 1%;">
-        <p>
-            <asp:Label ID="Label1" runat="server" Text="Add User"></asp:Label>
+    <div>
+      <p><asp:Label ID="Label7" runat="server" Text="Users: "></asp:Label>
+
         </p>
-    
-        
-      
-    
-        <asp:Label ID="Label2" runat="server" Text="User Name: "></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        
-        <p>
-            <asp:Label ID="Label4" runat="server" Text="FTID: "></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-        </p>
-        <p>
-            <asp:Label ID="Label5" runat="server" Text="Email: "></asp:Label>
-            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-        </p>
-        <p>
-            <asp:Label ID="Label6" runat="server" Text="Role: "></asp:Label>
-            <asp:DropDownList ID="DropDownList1" runat="server" Height="35px" Width="169px">
-                <asp:ListItem  Text = "Admin" Value = "A"></asp:ListItem>
-                <asp:ListItem  Text = "Support" Value = "S"></asp:ListItem>
-            </asp:DropDownList>
-        </p>
-        <p>
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add" />
-            
-            </p>
-        </div>
-          </form>
+         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px">
+                <AlternatingRowStyle BackColor="White" />
+                <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
+                <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                <SortedDescendingHeaderStyle BackColor="#820000" />
+            </asp:GridView>
+
+    </div>
+    </form>
 </body>
 </html>
