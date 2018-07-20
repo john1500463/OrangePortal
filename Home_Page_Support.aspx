@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home_Page.aspx.cs" Inherits="Home_Page" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home_Page_Support.aspx.cs" Inherits="Home_Page_Support" %>
 
 
 <!DOCTYPE html>
@@ -398,48 +398,15 @@ margin-top:0px;
 
 <ul>
 
-   <li><a href='Home_Page.aspx' style="background: darkorange;border-color: darkorange;"><span>Home</span></a></li>
+   <li><a href='Home_Page_Support.aspx' style="background: darkorange;border-color: darkorange;"><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
+   <li><a href='My_Expedited_Incidents_Support.aspx'><span>My Expedited Incidents</span></a></li>
 
-   <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
+   
 
-      <ul>
+         <li ><a href='Expedited_Incidents_Support.aspx'><span>Expedited Incidents</span></a>
 
-         <li class='has-sub'><a href='Expedited_Incidents.aspx'><span>Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Sita.aspx'><span>SITA Expedited Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
-
-         </li>
-
-      </ul>
-
-   </li>
-
-    <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
-
+        
    <li><a href='#'><span>Help</span></a></li>
 
    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>

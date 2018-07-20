@@ -37,15 +37,10 @@ public partial class EditUser : System.Web.UI.Page
 
             }
         }
-
-        Label7.Text = dt.Rows[0][1].ToString();
-        Label8.Text = dt.Rows[0][3].ToString();
-        if(dt.Rows[0][2].ToString() == "S"){
-        Label9.Text = "Support";
-         }
-        if (dt.Rows[0][2].ToString() == "A")
+        if (!Page.IsPostBack)
         {
-            Label9.Text = "Admin";
+            TextBox1.Text = dt.Rows[0][1].ToString();
+            TextBox3.Text = dt.Rows[0][3].ToString();
         }
     }
     protected void Button1_Click(object sender, EventArgs e)
@@ -53,7 +48,7 @@ public partial class EditUser : System.Web.UI.Page
         String UserName = TextBox1.Text;
         String Email = TextBox3.Text;
         String Role = DropDownList1.SelectedItem.Value;
-        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+       SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
 
         DataTable dt = new DataTable();
         conn.Open();
@@ -72,7 +67,7 @@ public partial class EditUser : System.Web.UI.Page
 
             }
         }
-        Response.Redirect("User.aspx");
-    
+        Response.Redirect("ModifyUser.aspx");
+   
     }
 }

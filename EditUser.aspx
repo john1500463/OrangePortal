@@ -458,12 +458,10 @@ margin-top:0px;
     
         <asp:Label ID="Label2" runat="server" Text="User Name: "></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
         </div>
         <p>
             <asp:Label ID="Label5" runat="server" Text="Email: "></asp:Label>
             <asp:TextBox ID="TextBox3" runat="server" Width="171px"></asp:TextBox>
-            <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
         </p>
         <p>
             <asp:Label ID="Label6" runat="server" Text="Role: "></asp:Label>
@@ -471,7 +469,6 @@ margin-top:0px;
                 <asp:ListItem  Text = "Admin" Value = "A"></asp:ListItem>
                 <asp:ListItem  Text = "Support" Value = "S"></asp:ListItem>
             </asp:DropDownList>
-            <asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
         </p>
         <p>
             <asp:Button ID="Button1" runat="server"  Text="Edit" OnClick="Button1_Click" />

@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Text;
-using System.Security.Cryptography;
-   
 
 
-public partial class Home_Page : System.Web.UI.Page
+
+public partial class Home_Page_Support : System.Web.UI.Page
 {
+
     public class CryptoEngine
     {
         public static string Encrypt(string input, string key)
@@ -198,7 +199,7 @@ public partial class Home_Page : System.Web.UI.Page
                     GridView1.DataBind();
                     GridView1.Visible = true;
                     Button3.Visible = false;
-                    Label1.Text = "Incident "+x+" Already Expedited";
+                    Label1.Text = "Incident " + x + " Already Expedited";
                     Label2.Text = "";
 
                 }
@@ -292,8 +293,7 @@ public partial class Home_Page : System.Web.UI.Page
         else
         {
             Y = CryptoEngine.Encrypt(Y, "sblw-3hn8-sqoy19");
-            Response.Redirect("ExpeditePage.aspx?param1=" + Y);
+            Response.Redirect("ExpeditePageSupport.aspx?param1=" + Y);
         }
     }
-
 }

@@ -1,27 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Net.Mail;
-using System.Net;
-using System.Diagnostics;
-using System.Security.Cryptography;
-using System.Text;
-    
 
-public partial class ExpeditePage : System.Web.UI.Page
+public partial class ExpeditePageSupport : System.Web.UI.Page
 {
-
     public class CryptoEngine1
     {
         public static string Encrypt(string input, string key)
@@ -48,14 +38,14 @@ public partial class ExpeditePage : System.Web.UI.Page
             tripleDES.Clear();
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
-    }    
+    }
 
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["FTID"] == null)
         {
-        //    Response.Redirect("Default.aspx");
+            //    Response.Redirect("Default.aspx");
         }
         String Incident = Request.QueryString["param1"];
         try
@@ -63,8 +53,8 @@ public partial class ExpeditePage : System.Web.UI.Page
             Incident = CryptoEngine1.Decrypt(Incident, "sblw-3hn8-sqoy19");
         }
         catch (Exception ex)
-        { 
-        Response.Redirect("Default.aspx");
+        {
+            Response.Redirect("Default.aspx");
         }
         Label1.Text = Incident;
 
@@ -164,7 +154,7 @@ public partial class ExpeditePage : System.Web.UI.Page
     {
         if (DropDownList1.SelectedItem.Text == "Select Reason-----")
         {
-           // System.Windows.Forms.MessageBox.Show("Please Select A Reason!");
+            // System.Windows.Forms.MessageBox.Show("Please Select A Reason!");
             Label2.Visible = true;
             Label2.Text = "Please Select a Reason!";
         }
@@ -187,14 +177,14 @@ public partial class ExpeditePage : System.Web.UI.Page
             //  Label1.Text = myReader.GetValue(0).ToString(); */
             // refresh_grid1();
 
-                MailMessage mail = new MailMessage();
-                //
-                SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
-                mail.From = new MailAddress("george-itsupport@orange.com");
-                mail.To.Add("george.delacroix@orange.com");
-                mail.Body = "The ticket with Incident number " + Incident+ " Expoditued";
-                mail.Subject = "Bngrb keda :D ";
-                SmtpServer.Send(mail);
+            MailMessage mail = new MailMessage();
+            //
+            SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
+            mail.From = new MailAddress("george-itsupport@orange.com");
+            mail.To.Add("john1500463@miuegypt.edu.eg");
+            mail.Body = "The ticket with Incident number " + Incident + " Expoditued";
+            mail.Subject = "Bngrb keda :D ";
+            SmtpServer.Send(mail);
 
             String SubmitDate = myReader.GetValue(0).ToString();
             String UrgenyReason = DropDownList1.SelectedItem.Text;
@@ -210,7 +200,7 @@ public partial class ExpeditePage : System.Web.UI.Page
             cnn.Close();
 
             // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
-            Response.Redirect("Home_Page.aspx");
+            Response.Redirect("Home_Page_Support.aspx");
         }
 
     }

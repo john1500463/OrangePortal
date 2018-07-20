@@ -133,7 +133,14 @@ public partial class _Default : System.Web.UI.Page
                 Response.Redirect("Home_Page.aspx");
                 
             }
-          
+
+            if (Role == "S")
+            {
+                Debug.Write(command.CommandText);
+                Session["Right"] = Role;
+                Response.Redirect("Home_Page_Support.aspx");
+
+            }
 
             
 
