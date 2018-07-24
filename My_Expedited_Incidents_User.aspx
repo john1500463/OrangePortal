@@ -300,7 +300,7 @@
 
   top:10%;
 
-  left: 10px;
+  margin-left:0.5%;
 
   font-size: 38pt;
 
@@ -365,7 +365,7 @@ img {
 }
 
 body {
-overflow:hidden;
+overflow:auto;
 margin-left:0px;
 margin-right:0px;
 margin-top:0px;
@@ -375,7 +375,14 @@ margin-top:0px;
 
 }
 
+td {
+    border: 2.5px solid black;
+}
 
+a {
+    text-decoration:none;
+    color:black;
+}
 
     </style>
 
