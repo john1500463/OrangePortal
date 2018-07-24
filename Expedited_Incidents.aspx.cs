@@ -94,7 +94,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             if (!Page.IsPostBack)
             {
                 thetable = new DataTable();
-                thetable = dt;
+                thetable = dt.Copy();
             }
             GridView1.Visible = true;
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
@@ -262,6 +262,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
+            thetable = dt.Copy();
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -427,7 +428,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-
+            thetable = dt.Copy();
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -607,7 +608,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-
+            thetable = dt.Copy();
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
