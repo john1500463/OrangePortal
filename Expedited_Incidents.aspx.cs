@@ -16,16 +16,15 @@ using System.IO;
 using System.Collections;
 using System.Windows.Forms;
 using System.Diagnostics;
-<<<<<<< HEAD
+
 using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-=======
+
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
->>>>>>> 12da84a36095d0f443d20bae281807521504f151
 public partial class Expedited_Incidents : System.Web.UI.Page
 {   
     // THE SELECT YOU'LL NEED
