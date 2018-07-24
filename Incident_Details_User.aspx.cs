@@ -46,6 +46,13 @@ public partial class Incident_Details_User : System.Web.UI.Page
                 tCell.Text = columnNames[i];
                 tRow.Cells.Add(tCell);
                 tCell = new TableCell();
+                if (i == 0)
+                {
+                    tCell.Text = Incident;
+                    tRow.Cells.Add(tCell);
+                    continue;
+
+                }
                 if (dt.Rows[0][i].ToString() == "" || dt.Rows[0][i].ToString() == "nan")
                 {
                     tCell.Text = "None";
