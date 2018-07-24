@@ -374,7 +374,14 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 2.5px solid black;
+}
 
+a {
+    text-decoration:none;
+    color:black;
+}
 
 
     </style>
@@ -468,7 +475,7 @@ margin-top:0px;
     <form id="form2" runat="server">
     <div style="margin-top: 50px;">
 
-                <asp:GridView ID="GridView1" runat="server" CellPadding="6" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="Solid" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
+                <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="Solid" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
                 <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BorderColor="Black" BorderStyle="Solid" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />

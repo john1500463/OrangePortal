@@ -374,8 +374,17 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+th {
+    border: 2.5px solid orange;
+}
+td {
+    border: 2.5px solid black;
+}
 
-
+a {
+    text-decoration:none;
+    color:black;
+}
 
     </style>
 

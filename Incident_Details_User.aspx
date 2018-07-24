@@ -299,7 +299,7 @@
 
   top:10%;
 
-  left: 10px;
+  margin-left:0.5%;
 
   font-size: 38pt;
 
@@ -364,7 +364,7 @@ img {
 }
 
 body {
-overflow:hidden;
+overflow:auto;
 margin-left:0px;
 margin-right:0px;
 margin-top:0px;
@@ -416,10 +416,11 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 </div>
     
     <form id="form1" runat="server">
-    <div>
+    <div style="margin-bottom:10%;">
      <asp:Table ID="Table1" runat="server" BorderStyle="Solid" CellPadding="10" GridLines="Both" style="margin-left:1%; margin-top:4%;" BackColor="White">
             </asp:Table>
     </div>
     </form>
+    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 </body>
 </html>
