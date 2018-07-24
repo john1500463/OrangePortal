@@ -375,6 +375,11 @@ margin-top:0px;
 }
 
 
+td {
+    border: 3px solid black;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
 
     </style>
 
