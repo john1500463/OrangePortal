@@ -397,7 +397,7 @@ margin-top:0px;
 
 <ul>
 
-   <li><a href='Home_Page.aspx' style="background: darkorange;border-color: darkorange;"><span>Home</span></a></li>
+   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
 
    <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
 
@@ -436,12 +436,31 @@ margin-top:0px;
       </ul>
 
    </li>
+    
+       <li class='active has-sub'><a href='#'><span>User</span></a>
 
-   <li><a href='#'><span>Feature Requests</span></a></li>
+      <ul>
+
+         <li class='has-sub'><a href='User.aspx'><span>Add New User</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+
+         </li>
+
+      </ul>
+
+   </li>
+
+
+
+
+    <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
 
-   <li class='last' style="z-index:2;"><a href='#'><span>Log Out</span></a></li>
+    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
 
 </ul>
@@ -451,29 +470,26 @@ margin-top:0px;
 
 </div>
     <form id="form1" runat="server">
-        <p>
-            <asp:Label ID="Label1" runat="server" Text="Edit User:"></asp:Label>
-        </p>
-    <div>
-    
+        <div style="margin-left: 40%; margin-top:5%;">
+            <asp:Label ID="Label1" runat="server" Text="Edit User:" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501"></asp:Label>
+            <p>
         <asp:Label ID="Label2" runat="server" Text="User Name: "></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        </div>
-        <p>
+                </p>
+            <p>
             <asp:Label ID="Label5" runat="server" Text="Email: "></asp:Label>
             <asp:TextBox ID="TextBox3" runat="server" Width="171px"></asp:TextBox>
-        </p>
-        <p>
+                </p>
+            <p>
             <asp:Label ID="Label6" runat="server" Text="Role: "></asp:Label>
             <asp:DropDownList ID="DropDownList1" runat="server" Height="35px" Width="169px">
                 <asp:ListItem  Text = "Admin" Value = "A"></asp:ListItem>
                 <asp:ListItem  Text = "Support" Value = "S"></asp:ListItem>
             </asp:DropDownList>
-        </p>
-        <p>
+                </p>
+            <p>
             <asp:Button ID="Button1" runat="server"  Text="Edit" OnClick="Button1_Click" />
-            
-            </p>
+                </p>
     
     </div>
     </form>

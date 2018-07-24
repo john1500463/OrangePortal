@@ -439,11 +439,11 @@ margin-top:0px;
    </li>
 
 
-       <li class='active has-sub' style="background: darkorange;border-color: darkorange;"><a href='#'><span>User</span></a>
+       <li class='active has-sub'><a href='#'><span>User</span></a>
 
       <ul>
 
-         <li class='has-sub'><a href=User.aspx'><span>Add New User</span></a>
+         <li class='has-sub'><a href='User.aspx'><span>Add New User</span></a>
 
          </li>
 
@@ -474,32 +474,25 @@ margin-top:0px;
 
 
     <form id="form1" runat="server">
-         <div style ="margin-left: 1%;">
-        <p>
-            <asp:Label ID="Label1" runat="server" Text="Add User"></asp:Label>
-        </p>
-    
-        
-      
-    
+         <div style ="margin-left: 40%; margin-top:5%;">
+        <asp:Label ID="Label1" runat="server" Text="Add User" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501"></asp:Label>
+             <p>
         <asp:Label ID="Label2" runat="server" Text="User Name: "></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        
-        <p>
-            <asp:Label ID="Label4" runat="server" Text="FTID: "></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-        </p>
-        <p>
+                 </p>
+             <p>
+        <asp:Label ID="Label4" runat="server" Text="FTID:"></asp:Label>
+        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                 </p>
             <asp:Label ID="Label5" runat="server" Text="Email: "></asp:Label>
             <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-        </p>
-        <p>
+             <p>
             <asp:Label ID="Label6" runat="server" Text="Role: "></asp:Label>
             <asp:DropDownList ID="DropDownList1" runat="server" Height="35px" Width="169px">
                 <asp:ListItem  Text = "Admin" Value = "A"></asp:ListItem>
                 <asp:ListItem  Text = "Support" Value = "S"></asp:ListItem>
             </asp:DropDownList>
-        </p>
+                 </p>
         <p>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add" />
             

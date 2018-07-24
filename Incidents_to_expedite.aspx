@@ -438,7 +438,22 @@ margin-top:0px;
 
    </li>
 
-   <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
+          <li class='active has-sub'><a href='#'><span>User</span></a>
+
+      <ul>
+
+         <li class='has-sub'><a href='User.aspx'><span>Add New User</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+
+         </li>
+
+      </ul>
+
+   </li>
+    <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
 
@@ -465,7 +480,7 @@ margin-top:0px;
         <p aria-expanded="true">
         <asp:Label ID="Textbox_message" runat="server" Text="message" style=" margin-left:1%"></asp:Label>
             </p>
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-left:1%;">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="10" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="Solid" BorderWidth="2px" style="margin-left:1%;">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />

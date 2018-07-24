@@ -435,9 +435,38 @@ margin-top:0px;
       </ul>
 
    </li>
+    
+       <li class='active has-sub'><a href='#'><span>User</span></a>
 
-   <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
+      <ul>
 
+         <li class='has-sub'><a href='User.aspx'><span>Add New User</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+
+         </li>
+
+      </ul>
+
+   </li>
+           <li class='active has-sub'><a href='#'><span>User</span></a>
+
+      <ul>
+
+         <li class='has-sub'><a href='User.aspx'><span>Add New User</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+
+         </li>
+
+      </ul>
+
+   </li>
+    <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
    <li><a href='#'><span>Help</span></a></li>
 
    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>

@@ -23,7 +23,7 @@
 
    <script src="script.js"></script>
 
-   <title>Home</title>
+   <title>Expedite Portal - Home</title>
 
     <style>
 
@@ -438,6 +438,21 @@ margin-top:0px;
 
    </li>
 
+           <li class='active has-sub'><a href='#'><span>User</span></a>
+
+      <ul>
+
+         <li class='has-sub'><a href='User.aspx'><span>Add New User</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+
+         </li>
+
+      </ul>
+
+   </li>
     <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
