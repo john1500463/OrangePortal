@@ -24,7 +24,7 @@ public partial class Incident_Details : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "SELECT[INC Incident Number],[INC Priority],[INC Status],[INC Tier 2],[INC Tier 3],[AG Assignee],[INC CI Corporate ID] ,[INC CI Entity] ,[INC CI Site] ,[INC CI Site Group]  ,[INC CI Region],[AG Assignee Manager Name],[AG Assigned Group Name],[AG M Email Address] ,[INC DS Submit Date] ,[INC DS Last Modified By Full Name],[INC DS Last Modified Date],[INC DS Last Resolved Date],[INC DS Submitter Full Name],[INC RES Resolution],[AG Assignee Email Address],[INC CI Email Address],[RG Resolved By],[RG Resolved Group Name] ,[INC DS Closed Date],[INC Summary],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason],[Comment] FROM [Expedite].[dbo].['All_Incidents'],[dbo].[Expedite_time] WHERE [INC Incident Number] = '" + Incident + "' and [Incident_ID]= '" + Incident + "' ;";
+            command.CommandText = "SELECT[INC Incident Number],[INC Priority],[INC Status],[INC Tier 2],[INC Tier 3],[AG Assignee],[INC CI Corporate ID] ,[INC CI Entity] ,[INC CI Site] ,[INC CI Site Group]  ,[INC CI Region],[AG Assignee Manager Name],[AG Assigned Group Name],[AG M Email Address] ,[INC DS Submit Date] ,[INC DS Last Modified By Full Name],[INC DS Last Modified Date],[INC DS Last Resolved Date],[INC DS Submitter Full Name],[INC RES Resolution],[AG Assignee Email Address],[INC CI Email Address],[RG Resolved By],[RG Resolved Group Name] ,[INC DS Closed Date],[INC Summary],[Submit_Date],[Expedite_By],[Expedite_Date],[Urgency_Reason],[Comment] FROM [dbo].['All_Incidents'] FULL OUTER JOIN [dbo].[Expedite_time] ON [dbo].['All_Incidents'].[INC Incident Number] = [dbo].[Expedite_time].[Incident_ID] Where [INC Incident Number]='" + Incident + "' or [dbo].[Expedite_time].[Incident_ID]='" + Incident + "';";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command;
@@ -39,7 +39,7 @@ public partial class Incident_Details : System.Web.UI.Page
                             .Select(x => x.ColumnName)
                          .ToArray();
 
-           for (int i = 0; i < columnNames.Length; i++)
+           for (int i = 0; i < dt.Columns.Count; i++)
            { 
             tRow = new TableRow();
             Table1.Rows.Add(tRow);
@@ -47,7 +47,14 @@ public partial class Incident_Details : System.Web.UI.Page
             tCell.Text = columnNames[i];
             tRow.Cells.Add(tCell);
             tCell = new TableCell();
-            tCell.Text = dt.Rows[0][i].ToString();
+            if (dt.Rows[0][i].ToString() == "")
+            {
+                tCell.Text = "None";
+            }
+            else
+            {
+                tCell.Text = dt.Rows[0][i].ToString();
+            }
             tRow.Cells.Add(tCell);
             
             }
