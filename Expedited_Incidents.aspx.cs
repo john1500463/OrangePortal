@@ -16,9 +16,16 @@ using System.IO;
 using System.Collections;
 using System.Windows.Forms;
 using System.Diagnostics;
+<<<<<<< HEAD
+using System.Net.Mail;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
+=======
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+>>>>>>> 12da84a36095d0f443d20bae281807521504f151
 public partial class Expedited_Incidents : System.Web.UI.Page
 {   
     // THE SELECT YOU'LL NEED
@@ -99,7 +106,6 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
-            
             num = dt.Rows.Count;
 
             DataTable dt1 = new DataTable();
@@ -257,7 +263,6 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-            thetable = dt;
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -266,7 +271,6 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
-            
                     num = dt.Rows.Count;
 
             DataTable dt1 = new DataTable();
@@ -424,7 +428,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-            thetable = dt;
+
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -433,8 +437,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
-            num = dt.Rows.Count;
-            
+                     num = dt.Rows.Count;
 
             DataTable dt1 = new DataTable();
 
@@ -573,7 +576,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     }
     protected void Button2_Click(object sender, System.EventArgs e)
     {
-      
+        
         TextBox1.Text = "";
     }
 
@@ -605,7 +608,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-            thetable = dt;
+
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -615,7 +618,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             GridView1.DataSource = dt;
             GridView1.DataBind();
             num = dt.Rows.Count;
-            
+
             DataTable dt1 = new DataTable();
 
             command = new SqlCommand();
@@ -868,5 +871,88 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             Console.Write(ex.ToString());
         }
 
+    }
+
+
+    protected void notifymanagers() {
+        ArrayList all_managers_emails = new ArrayList();
+        ArrayList all_inc = new ArrayList();
+        ArrayList unique_emails = new ArrayList();
+
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [Incident_ID],[AG M Email Address] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [Incident_ID]=[INC Incident Number]";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                all_managers_emails.Add(dt.Rows[i][1]);
+                all_inc.Add(dt.Rows[i][0]);
+            }
+
+            String temp = all_managers_emails[0].ToString();
+            unique_emails.Add(temp);
+            foreach (String mail in all_managers_emails)
+            {
+                if (!unique_emails.Contains(mail))
+                {
+                    unique_emails.Add(mail);
+                }
+            }
+
+            foreach (String email in unique_emails)
+            {
+                ArrayList alltheinc = new ArrayList();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (((String)(dt.Rows[i][1])) == email)
+                    {
+                        alltheinc.Add(dt.Rows[i][0]);
+                    }
+                }
+                sendmailtomanager(email,alltheinc);
+            }
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+    }
+
+    protected void sendmailtomanager(String manager_email, ArrayList IncidentsIDs)
+    {
+        String body = "The following Incidents are expedited: \n";
+
+        foreach (String id in IncidentsIDs)
+        {
+            body += id + "\n";
+        }
+        MailMessage mail = new MailMessage();
+        SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
+        mail.From = new MailAddress("expedite_portal@orange.com");
+        mail.To.Add(manager_email);
+        mail.Body = body;
+        mail.Subject = "Expedtied Incidents";
+        SmtpServer.Send(mail);
+        //Debug.Write(body + " EMAIL IS " + manager_email);
+    }
+    protected void Notify_Click(object sender, System.EventArgs e)
+    {
+        notifymanagers();
     }
 }
