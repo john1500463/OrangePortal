@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Incident_Details_User.aspx.cs" Inherits="Incident_Details_User" %>
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="My_Expedited_Incidents_User.aspx.cs" Inherits="My_Expedited_Incidents_User" %>
-
 <!DOCTYPE html>
 
 
