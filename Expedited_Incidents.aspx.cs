@@ -99,6 +99,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
+            
             num = dt.Rows.Count;
 
             DataTable dt1 = new DataTable();
@@ -256,6 +257,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
+            thetable = dt;
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -264,6 +266,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
+            
                     num = dt.Rows.Count;
 
             DataTable dt1 = new DataTable();
@@ -421,7 +424,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-
+            thetable = dt;
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -430,7 +433,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
-                     num = dt.Rows.Count;
+            num = dt.Rows.Count;
+            
 
             DataTable dt1 = new DataTable();
 
@@ -601,7 +605,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-
+            thetable = dt;
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -611,7 +615,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             GridView1.DataSource = dt;
             GridView1.DataBind();
             num = dt.Rows.Count;
-
+            
             DataTable dt1 = new DataTable();
 
             command = new SqlCommand();
