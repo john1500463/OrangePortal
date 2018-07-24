@@ -291,7 +291,7 @@ public partial class Home_Page : System.Web.UI.Page
 
         else
         {
-            Y = CryptoEngine.Encrypt(Y, "sblw-3hn8-sqoy19");
+          //  Y = CryptoEngine.Encrypt(Y, "sblw-3hn8-sqoy19");
             Response.Redirect("ExpeditePage.aspx?param1=" + Y);
         }
     }
