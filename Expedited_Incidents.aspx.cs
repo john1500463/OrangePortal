@@ -16,21 +16,17 @@ using System.IO;
 using System.Collections;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
+using System.Net.Mail;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 public partial class Expedited_Incidents : System.Web.UI.Page
 {   
     // THE SELECT YOU'LL NEED
     //Select [INC Incident Number],[INC Tier 2],[INC Status], [AG Assigned Group Name], [AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason] From [Expedite].[dbo].['All_Incidents'] as AL INNER JOIN [Expedite].[dbo].[Expedite_time] as ET ON AL.[INC Incident Number] =  ET.[Incident_ID];
     public static DataTable thetable;
-    DataTable dt;
-    String Inc1;
-    String Inc2;
-    int num;
     protected void exporttoxls(DataTable dt)
     {
-
         //Create a dummy GridView and Bind the data source we have.
         GridView grdExportData = new GridView();
 
@@ -62,12 +58,13 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     {
         if (Session["FTID"] == null)
         {
-            //Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx");
         }
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
         try
         {
+            DataTable dt = new DataTable();
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
@@ -91,6 +88,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 thetable = dt;
             }
             GridView1.Visible = true;
+<<<<<<< HEAD
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
@@ -224,13 +222,14 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             
 
+=======
+>>>>>>> f084f9b09dd40b09867f540f77ee60f687132189
         }
         catch (Exception ex)
         {
             conn.Close();
             Console.Write(ex.ToString());
         }
-
     }
 
     protected void Calendar1_SelectionChanged(object sender, System.EventArgs e)
@@ -257,6 +256,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
+<<<<<<< HEAD
             thetable = dt;
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
@@ -391,6 +391,13 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             
 
+=======
+
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            thetable = dt;
+            //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
+>>>>>>> f084f9b09dd40b09867f540f77ee60f687132189
         }
         catch (Exception ex)
         {
@@ -398,7 +405,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             Console.Write(ex.ToString());
         }
 
-    
+
+
+      // Label1.Text = startdated;
     }
     protected void Calendar2_SelectionChanged(object sender, System.EventArgs e)
     {
@@ -424,6 +433,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
+<<<<<<< HEAD
             thetable = dt;
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
@@ -558,6 +568,13 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             
 
+=======
+
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            thetable = dt;
+            //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
+>>>>>>> f084f9b09dd40b09867f540f77ee60f687132189
         }
         catch (Exception ex)
         {
@@ -565,15 +582,17 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             Console.Write(ex.ToString());
         }
 
+
+
+        // Label1.Text = startdated;
     }
-    
     protected void TextBox1_TextChanged(object sender, System.EventArgs e)
     {
 
     }
     protected void Button2_Click(object sender, System.EventArgs e)
     {
-      
+        
         TextBox1.Text = "";
     }
 
@@ -605,6 +624,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
+<<<<<<< HEAD
             thetable = dt;
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
@@ -738,135 +758,102 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
 
 
+=======
+
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            thetable = dt;
+            Debug.Write("When searching: " + thetable.Rows[0][0]);
+            //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
+>>>>>>> f084f9b09dd40b09867f540f77ee60f687132189
         }
         catch (Exception ex)
         {
             conn.Close();
             Console.Write(ex.ToString());
         }
-
     }
-    void EditingBtn_Click(Object sender,
-                        EventArgs e)
-    {
-        // When the button is clicked,
-        // change the button text, and disable it.
 
-     System.Web.UI.WebControls.Button clickedButton = ( System.Web.UI.WebControls.Button)sender;
-         int IncNum = Int32.Parse(clickedButton.ID);
-        
-        
+
+    protected void notifymanagers() {
+        ArrayList all_managers_emails = new ArrayList();
+        ArrayList all_inc = new ArrayList();
+        ArrayList unique_emails = new ArrayList();
+
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
         try
         {
-            DataTable dt1 = new DataTable();
+            DataTable dt = new DataTable();
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "Insert into [Expedite].[dbo].[Esclation]([Incident Number],[DateEsclated],[NumberOfEsclation]) Values ('" + dt.Rows[IncNum][0] + "',GETDATE(),'1')";
-            
+            command.CommandText = "SELECT [Incident_ID],[AG M Email Address] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [Incident_ID]=[INC Incident Number]";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command;
                 using (dt = new DataTable())
                 {
 
-                    sda.Fill(dt1);
+                    sda.Fill(dt);
 
                 }
             }
-            Response.Redirect("Expedited_Incidents.aspx");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                all_managers_emails.Add(dt.Rows[i][1]);
+                all_inc.Add(dt.Rows[i][0]);
+            }
+
+            String temp = all_managers_emails[0].ToString();
+            unique_emails.Add(temp);
+            foreach (String mail in all_managers_emails)
+            {
+                if (!unique_emails.Contains(mail))
+                {
+                    unique_emails.Add(mail);
+                }
+            }
+
+            foreach (String email in unique_emails)
+            {
+                ArrayList alltheinc = new ArrayList();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (((String)(dt.Rows[i][1])) == email)
+                    {
+                        alltheinc.Add(dt.Rows[i][0]);
+                    }
+                }
+                sendmailtomanager(email,alltheinc);
+            }
         }
         catch (Exception ex)
         {
             conn.Close();
             Console.Write(ex.ToString());
         }
-
     }
 
-
-    void Esclate2_Click(Object sender,
-                        EventArgs e)
+    protected void sendmailtomanager(String manager_email, ArrayList IncidentsIDs)
     {
-        // When the button is clicked,
-        // change the button text, and disable it.
+        String body = "The following Incidents are expedited: \n";
 
-        System.Web.UI.WebControls.Button clickedButton = (System.Web.UI.WebControls.Button)sender;
-        int IncNum = Int32.Parse(clickedButton.ID);
-        IncNum= IncNum - num;
-
-        
-        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
-        try
+        foreach (String id in IncidentsIDs)
         {
-            DataTable dt1 = new DataTable();
-            conn.Open();
-            SqlCommand command = new SqlCommand();
-            command.Connection = conn;
-            //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "Insert into [Expedite].[dbo].[Esclation]([Incident Number],[DateEsclated],[NumberOfEsclation]) Values ('" + dt.Rows[IncNum][0] + "',GETDATE(),'2')";
-            
-            using (SqlDataAdapter sda = new SqlDataAdapter())
-            {
-                sda.SelectCommand = command;
-                using (dt = new DataTable())
-                {
-
-                    sda.Fill(dt1);
-
-                }
-            }
-            Response.Redirect("Expedited_Incidents.aspx");
+            body += id + "\n";
         }
-        catch (Exception ex)
-        {
-            conn.Close();
-            Console.Write(ex.ToString());
-        }
-
+        MailMessage mail = new MailMessage();
+        SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
+        mail.From = new MailAddress("expedite_portal@orange.com");
+        mail.To.Add(manager_email);
+        mail.Body = body;
+        mail.Subject = "Expedtied Incidents";
+        SmtpServer.Send(mail);
+        //Debug.Write(body + " EMAIL IS " + manager_email);
     }
-
-
-    void Esclate3_Click(Object sender,
-                        EventArgs e)
+    protected void Notify_Click(object sender, System.EventArgs e)
     {
-        // When the button is clicked,
-        // change the button text, and disable it.
-
-        System.Web.UI.WebControls.Button clickedButton = (System.Web.UI.WebControls.Button)sender;
-        int IncNum = Int32.Parse(clickedButton.ID);
-        IncNum = IncNum - num- num;
-
-        
-        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
-        try
-        {
-            DataTable dt1 = new DataTable();
-            conn.Open();
-            SqlCommand command = new SqlCommand();
-            command.Connection = conn;
-            //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "Insert into [Expedite].[dbo].[Esclation]([Incident Number],[DateEsclated],[NumberOfEsclation]) Values ('" + dt.Rows[IncNum][0] + "',GETDATE(),'3')";
-            
-            using (SqlDataAdapter sda = new SqlDataAdapter())
-            {
-                sda.SelectCommand = command;
-                using (dt = new DataTable())
-                {
-
-                    sda.Fill(dt1);
-
-                }
-            }
-            Response.Redirect("Expedited_Incidents.aspx");
-        }
-        catch (Exception ex)
-        {
-            conn.Close();
-            Console.Write(ex.ToString());
-        }
-
+        notifymanagers();
     }
 }
