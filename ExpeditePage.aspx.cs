@@ -196,7 +196,8 @@ public partial class ExpeditePage : System.Web.UI.Page
                 mail.Subject = "Bngrb keda :D ";
                 SmtpServer.Send(mail);
 
-            String SubmitDate = myReader.GetValue(0).ToString();
+           // String SubmitDate = myReader.GetValue(0).ToString();
+            String SubmitDate = get_submit_date(Incident); ;
             String UrgenyReason = DropDownList1.SelectedItem.Text;
             String FTID = (string)(Session["FTID"]);
             string strSelect2 = "insert into [Expedite].[dbo].[Expedite_time](Incident_ID,Submit_Date,Expedite_By,Expedite_Date,Urgency_Reason) values ('"
@@ -213,5 +214,37 @@ public partial class ExpeditePage : System.Web.UI.Page
             Response.Redirect("Home_Page.aspx");
         }
 
+    }
+
+    protected String get_submit_date(String subid)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "Select [INC DS Submit Date] From [Expedite].[dbo].['All_Incidents'] where [INC Incident Number]='" + subid + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            String value = dt.Rows[0][0].ToString();
+            return value;
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+        return " ";
     }
 }
