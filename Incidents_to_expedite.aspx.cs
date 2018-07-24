@@ -251,7 +251,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                    // Debug.Write("first");
             }
             else{
-                command.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason +"',Expedite_By='" + x + "', Comment='" + TextBox2.Text + "' Where [Incident_ID] = '" + TextBox1.Text + "';";
+                command.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason +"', Comment='" + TextBox2.Text + "' Where [Incident_ID] = '" + TextBox1.Text + "';";
                 //Debug.Write(" reason " + thereason + " comment " + TextBox2.Text + " id " + searchingid);
            }
             using (SqlDataAdapter sda = new SqlDataAdapter())
