@@ -53,6 +53,13 @@ public partial class My_Expedited_Incidents_Support : System.Web.UI.Page
             GridView1.DataBind();
             GridView1.Visible = true;
             //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                HyperLink hlContro = new HyperLink();
+                hlContro.NavigateUrl = "./Incident_Details_Support.aspx?ID=" + GridView1.Rows[i].Cells[0].Text;
+                hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+                GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+            }
         }
         catch (Exception ex)
         {
