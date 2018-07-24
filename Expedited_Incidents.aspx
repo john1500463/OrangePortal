@@ -483,7 +483,7 @@ margin-top:0px;
     <div style="margin-top: 50px;">
        
        
-        <asp:GridView ID="GridView1" runat="server" CellPadding="10" ForeColor="#FF3300" Visible="False" BorderStyle="None" style="margin-bottom:1%; margin-left:1%;">
+        <asp:GridView ID="GridView1" runat="server" CellPadding="10" ForeColor="#FF3300" Visible="False" BorderStyle="None" style="margin-bottom:1%; margin-left:1%;" >
             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                     <asp:TemplateField HeaderText="Acknowledge">

@@ -434,22 +434,7 @@ margin-top:0px;
 
       </ul>
 
-   </li>
-    
-       <li class='active has-sub'><a href='#'><span>User</span></a>
-
-      <ul>
-
-         <li class='has-sub'><a href='User.aspx'><span>Add New User</span></a>
-
-         </li>
-
-         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
-
-         </li>
-
-      </ul>
-
+  
    </li>
            <li class='active has-sub'><a href='#'><span>User</span></a>
 
