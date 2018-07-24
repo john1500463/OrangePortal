@@ -1,6 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExpeditePageSupport.aspx.cs" Inherits="ExpeditePageSupport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Incident_Details.aspx.cs" Inherits="Incident_Details" %>
+
 
 <!DOCTYPE html>
+
 
 
 
@@ -21,7 +23,7 @@
 
    <script src="script.js"></script>
 
-   <title>Expedite Page</title>
+   <title>Incident Details</title>
 
     <style>
 
@@ -381,7 +383,10 @@ margin-top:0px;
 </head>
 
 <body>
-    <body>
+
+
+
+    <form id="form1" runat="server">
 
 
 
@@ -397,15 +402,48 @@ margin-top:0px;
 
 <ul>
 
-   <li><a href='Home_Page_Support.aspx' style="background: darkorange;border-color: darkorange;"><span>Home</span></a></li>
+   <li><a href='Home_Page.aspx' ><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents_Support.aspx'><span>My Expedited Incidents</span></a></li>
+   <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
 
-   
+   <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
 
-         <li ><a href='Expedited_Incidents_Support.aspx'><span>Expedited Incidents</span></a>
+      <ul>
 
-        
+         <li class='has-sub'><a href='Expedited_Incidents.aspx'><span>Expedited Incidents</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Sita.aspx'><span>SITA Expedited Incidents</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
+
+         </li>
+
+         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
+
+         </li>
+
+      </ul>
+
+   </li>
+
+    <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
+
    <li><a href='#'><span>Help</span></a></li>
 
    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
@@ -417,28 +455,12 @@ margin-top:0px;
 
 
 </div>
-    <form id="form2" runat="server">
-    <div style="margin-top: 50px;">
-        
+
+        <body>
     
-        
-       <asp:Label ID="Label1" runat="server" Text="Label" Font-Bold="True"></asp:Label>
-        </br></br></br>
-        Choose Urgency Reason:
-      <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems = "true">
-     <asp:ListItem Selected = "True" Text = "Select Reason-----" Value = ""></asp:ListItem>
-          
-      </asp:DropDownList>
-        
-        
-    <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
-        </div>
-        
-        <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
-        
-       </form>
-
-<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
-
+            <asp:Table ID="Table1" runat="server">
+            </asp:Table>
+    
+        </form>
 </body>
 </html>

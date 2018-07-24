@@ -20,7 +20,7 @@ public partial class My_Expedited_Incidents : System.Web.UI.Page
     {
         if (Session["FTID"] == null)
         {
-            Response.Redirect("Default.aspx");
+          //  Response.Redirect("Default.aspx");
         }
 
          SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
@@ -48,6 +48,16 @@ public partial class My_Expedited_Incidents : System.Web.UI.Page
              GridView1.DataBind();
              GridView1.Visible = true;
            //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
+        
+        
+for (int i = 0; i < GridView1.Rows.Count; i++)
+{
+HyperLink hlContro = new HyperLink();
+hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + GridView1.Rows[i].Cells[0].Text;
+hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+} 
+
          }
          catch (Exception ex)
          {
