@@ -374,6 +374,12 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 3px solid black;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+    </style>
 
 
 
