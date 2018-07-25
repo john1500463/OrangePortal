@@ -403,7 +403,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
    <li><a href='Home_Page_User.aspx'><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents_User' style="background: darkorange;border-color: darkorange;"><span>My Expedited Incidents</span></a></li>  
+   <li><a href='My_Expedited_Incidents_User'><span>My Expedited Incidents</span></a></li>  
 
    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
