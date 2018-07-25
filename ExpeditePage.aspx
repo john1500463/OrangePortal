@@ -470,11 +470,40 @@ margin-top:0px;
         
        <asp:Label ID="Label1" runat="server" Text="Label" Font-Bold="True"></asp:Label>
         </br></br></br>
+        <input type="search" id="searchBox">
         Choose Urgency Reason:
       <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems = "true">
      <asp:ListItem Selected = "True" Text = "Select Reason-----" Value = ""></asp:ListItem>
           
       </asp:DropDownList>
+        
+
+
+<script>
+    searchBox = document.querySelector("#searchBox");
+    countries = document.querySelector("#DropDownList1");
+    var when = "keyup"; //You can change this to keydown, keypress or change
+
+    searchBox.addEventListener("keyup", function (e) {
+        var text = e.target.value;
+        var options = countries.options;
+        for (var i = 0; i < options.length; i++) {
+            var option = options[i];
+            var optionText = option.text;
+            var lowerOptionText = optionText.toLowerCase();
+            var lowerText = text.toLowerCase();
+            var regex = new RegExp("^" + text, "i");
+            var match = optionText.match(regex);
+            var contains = lowerOptionText.indexOf(lowerText) != -1;
+            if (match || contains) {
+                option.selected = true;
+                return;
+            }
+            searchBox.selectedIndex = 0;
+        }
+    });
+
+</script>
         
         
     <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
