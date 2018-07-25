@@ -467,17 +467,29 @@ margin-top:0px;
     <div style="margin-top: 50px;">
         
     
-        
+        <p>
        <asp:Label ID="Label1" runat="server" Text="Label" Font-Bold="True"></asp:Label>
-        </br></br></br>
-        <input type="search" id="searchBox">
-        Choose Urgency Reason:
+            </p>
+        <div style="display:inline-block">
+        
+        <asp:Label ID="Label3" runat="server" Text="Choose Urgency Reason:"></asp:Label>
+            </div>
+        <div style="display:inline-block">
+            <div style="display:block;">
+        <asp:Label ID="Label4" runat="server" Text="Search By name:"></asp:Label>
+            
+        
+        <input type="search" id="searchBox" style="top:0px;">
+            </div>
+            <div style="display:block;">
       <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems = "true">
+          
      <asp:ListItem Selected = "True" Text = "Select Reason-----" Value = ""></asp:ListItem>
           
       </asp:DropDownList>
         
-
+        </div>
+            </div>
 
 <script>
     searchBox = document.querySelector("#searchBox");
@@ -496,6 +508,7 @@ margin-top:0px;
             var match = optionText.match(regex);
             var contains = lowerOptionText.indexOf(lowerText) != -1;
             if (match || contains) {
+                $("#DropDownList1").attr('size', 0);
                 option.selected = true;
                 return;
             }
@@ -505,8 +518,10 @@ margin-top:0px;
 
 </script>
         
-        
+        <div style="display:inline-block;">  
     <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
+            
+            </div>
         </div>
         
         <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
