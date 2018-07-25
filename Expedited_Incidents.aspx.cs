@@ -273,16 +273,16 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                        
                       if (Inc1 == Inc2)
                       {
-                          Checkbox1 = new System.Web.UI.WebControls.CheckBox();
-                          Checkbox1.Checked = true;
+                          
+                          Checkbox.Checked = true;
                           GridView1.Rows[i].Cells[11].Controls.Clear();
-                          GridView1.Rows[i].Cells[11].Controls.Add(Checkbox1);
+                          GridView1.Rows[i].Cells[11].Controls.Add(Checkbox);
                           break;
 
 
                       }
                       else {
-                          
+                          Checkbox.Checked = false ;
                           GridView1.Rows[i].Cells[11].Controls.Add(Checkbox);
                       }
                   }
