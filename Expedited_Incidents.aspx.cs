@@ -34,6 +34,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     String Inc1;
     String Inc2;
     int num;
+    int Counter = 0;
     protected void exporttoxls(DataTable dt)
     {
 
@@ -70,6 +71,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         {
             //Response.Redirect("Default.aspx");
         }
+        
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
         try
@@ -100,9 +102,15 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
+            dt.Columns.Add(new DataColumn("Acknowledge", typeof(string)));
             System.Web.UI.WebControls.Button Esclate1;
             System.Web.UI.WebControls.Button Esclate2;
             System.Web.UI.WebControls.Button Esclate3;
+            System.Web.UI.WebControls.Label Label1;
+            System.Web.UI.WebControls.Label Label2;
+            System.Web.UI.WebControls.Label Label3;
+            System.Web.UI.WebControls.CheckBox Checkbox;
+            
             GridView1.DataSource = dt;
             GridView1.DataBind();
             num = dt.Rows.Count;
@@ -112,7 +120,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=1; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=1 Order by [DateEsclated]; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -128,14 +136,15 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
 
             DataTable dt2 = new DataTable();
-
+            
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=2; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=2 Order by [DateEsclated]; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
+                
                 sda.SelectCommand = command;
                 using (dt2 = new DataTable())
                 {
@@ -150,7 +159,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=3; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=3 Order by [DateEsclated]; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -175,12 +184,23 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Esclate1 = new System.Web.UI.WebControls.Button();
                 Esclate2 = new System.Web.UI.WebControls.Button();
                 Esclate3 = new System.Web.UI.WebControls.Button();
+                Checkbox = new System.Web.UI.WebControls.CheckBox();
                 Esclate1.ID = (i).ToString();
                 Esclate2.ID = (i + num).ToString();
                 Esclate3.ID = (i + num + num).ToString();
+                Checkbox.ID = (i + num + num + num).ToString();
                 Esclate1.Click += new EventHandler(this.EditingBtn_Click);
                 Esclate2.Click += new EventHandler(this.Esclate2_Click);
                 Esclate3.Click += new EventHandler(this.Esclate3_Click);
+                Checkbox.CheckedChanged += new EventHandler(this.CheckBoxClicked);
+                Checkbox.AutoPostBack = true;
+                Label1 = new System.Web.UI.WebControls.Label();
+                Label2 = new System.Web.UI.WebControls.Label();
+                Label3 = new System.Web.UI.WebControls.Label();
+                
+               
+
+
                   for (int j = 0; j < dt1.Rows.Count;j++ )
                 {
                     Inc1 = (String) dt.Rows[i][0] ;
@@ -188,7 +208,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                     
                     if (Inc1 == Inc2)
                     {
-                        Esclate1.BackColor = System.Drawing.Color.Red; 
+                        Esclate1.BackColor = System.Drawing.Color.Red;
+                        Label1.Text = dt1.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[8].Controls.Add(Label1);
                     
                     }
                 }
@@ -200,6 +222,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                       if (Inc1 == Inc2)
                       {
                           Esclate2.BackColor = System.Drawing.Color.Green;
+                          Label2.Text = dt2.Rows[j][1].ToString();
+                          GridView1.Rows[i].Cells[9].Controls.Add(Label2);
 
                       }
                   
@@ -213,18 +237,21 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                       if (Inc1 == Inc2)
                       {
                           Esclate3.BackColor = System.Drawing.Color.Blue;
+                          Label3.Text = dt3.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[10].Controls.Add(Label3);
 
                       }
 
                   }
 
-
+                
                 Esclate1.Text = "Esclate 1";
                 Esclate2.Text = "Esclate 2";
                 Esclate3.Text = "Esclate 3";
-                GridView1.Rows[i].Cells[9].Controls.Add(Esclate1);
-                GridView1.Rows[i].Cells[10].Controls.Add(Esclate2);
-                GridView1.Rows[i].Cells[11].Controls.Add(Esclate3);
+                GridView1.Rows[i].Cells[8].Controls.Add(Esclate1);
+                GridView1.Rows[i].Cells[9].Controls.Add(Esclate2);
+                GridView1.Rows[i].Cells[10].Controls.Add(Esclate3);
+                GridView1.Rows[i].Cells[11].Controls.Add(Checkbox);
 
             }
             
@@ -269,6 +296,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate1;
             System.Web.UI.WebControls.Button Esclate2;
             System.Web.UI.WebControls.Button Esclate3;
+            System.Web.UI.WebControls.Label Label1;
+            System.Web.UI.WebControls.Label Label2;
+            System.Web.UI.WebControls.Label Label3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
                     num = dt.Rows.Count;
@@ -278,7 +308,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=1; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=1 Order by [DateEsclated]; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -298,7 +328,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=2; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=2 Order by [DateEsclated]; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -316,7 +346,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=3; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=3 Order by [DateEsclated]; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -347,6 +377,11 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Esclate1.Click += new EventHandler(this.EditingBtn_Click);
                 Esclate2.Click += new EventHandler(this.Esclate2_Click);
                 Esclate3.Click += new EventHandler(this.Esclate3_Click);
+                Label1 = new System.Web.UI.WebControls.Label();
+                Label2 = new System.Web.UI.WebControls.Label();
+                Label3 = new System.Web.UI.WebControls.Label();
+
+
                   for (int j = 0; j < dt1.Rows.Count;j++ )
                 {
                     Inc1 = (String) dt.Rows[i][0] ;
@@ -354,7 +389,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                     
                     if (Inc1 == Inc2)
                     {
-                        Esclate1.BackColor = System.Drawing.Color.Red; 
+                        Esclate1.BackColor = System.Drawing.Color.Red;
+                        Label1.Text = dt1.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[9].Controls.Add(Label1);
                     
                     }
                 }
@@ -365,7 +402,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                      
                       if (Inc1 == Inc2)
                       {
-                          Esclate2.BackColor = System.Drawing.Color.Green;
+                          Esclate2.BackColor = System.Drawing.Color.Green; 
+                          Label2.Text = dt2.Rows[j][1].ToString();
+                          GridView1.Rows[i].Cells[10].Controls.Add(Label2);
 
                       }
                   
@@ -379,6 +418,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                       if (Inc1 == Inc2)
                       {
                           Esclate3.BackColor = System.Drawing.Color.Blue;
+                          Label3.Text = dt3.Rows[j][1].ToString();
+                          GridView1.Rows[i].Cells[11].Controls.Add(Label3);
 
                       }
 
@@ -435,6 +476,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate1;
             System.Web.UI.WebControls.Button Esclate2;
             System.Web.UI.WebControls.Button Esclate3;
+            System.Web.UI.WebControls.Label Label1;
+            System.Web.UI.WebControls.Label Label2;
+            System.Web.UI.WebControls.Label Label3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
                      num = dt.Rows.Count;
@@ -444,7 +488,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=1; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=1; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -464,7 +508,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=2; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=2; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -482,7 +526,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=3; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=3; ";
             
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -513,6 +557,12 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Esclate1.Click += new EventHandler(this.EditingBtn_Click);
                 Esclate2.Click += new EventHandler(this.Esclate2_Click);
                 Esclate3.Click += new EventHandler(this.Esclate3_Click);
+                Label1 = new System.Web.UI.WebControls.Label();
+                Label2 = new System.Web.UI.WebControls.Label();
+                Label3 = new System.Web.UI.WebControls.Label();
+
+
+                
                   for (int j = 0; j < dt1.Rows.Count;j++ )
                 {
                     Inc1 = (String) dt.Rows[i][0] ;
@@ -520,7 +570,10 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                     
                     if (Inc1 == Inc2)
                     {
-                        Esclate1.BackColor = System.Drawing.Color.Red; 
+                        Esclate1.BackColor = System.Drawing.Color.Red;
+                        Label1.Text = dt1.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[9].Controls.Add(Label1);
+
                     
                     }
                 }
@@ -532,6 +585,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                       if (Inc1 == Inc2)
                       {
                           Esclate2.BackColor = System.Drawing.Color.Green;
+                          Label2.Text = dt2.Rows[j][1].ToString();
+                          GridView1.Rows[i].Cells[10].Controls.Add(Label2);
+
 
                       }
                   
@@ -545,6 +601,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                       if (Inc1 == Inc2)
                       {
                           Esclate3.BackColor = System.Drawing.Color.Blue;
+                          Label3.Text = dt3.Rows[j][1].ToString();
+                          GridView1.Rows[i].Cells[11].Controls.Add(Label3);
+
 
                       }
 
@@ -615,6 +674,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             System.Web.UI.WebControls.Button Esclate1;
             System.Web.UI.WebControls.Button Esclate2;
             System.Web.UI.WebControls.Button Esclate3;
+            System.Web.UI.WebControls.Label Label1;
+            System.Web.UI.WebControls.Label Label2;
+            System.Web.UI.WebControls.Label Label3;
             GridView1.DataSource = dt;
             GridView1.DataBind();
             num = dt.Rows.Count;
@@ -624,7 +686,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=1; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=1; ";
 
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -644,7 +706,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=2; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=2; ";
 
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -662,7 +724,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
-            command.CommandText = "SELECT  [Incident Number] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=3; ";
+            command.CommandText = "SELECT  [Incident Number],[DateEsclated] FROM [Expedite].[dbo].[Esclation] Where [NumberOfEsclation]=3; ";
 
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
@@ -693,6 +755,11 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Esclate1.Click += new EventHandler(this.EditingBtn_Click);
                 Esclate2.Click += new EventHandler(this.Esclate2_Click);
                 Esclate3.Click += new EventHandler(this.Esclate3_Click);
+                Label1 = new System.Web.UI.WebControls.Label();
+                Label2 = new System.Web.UI.WebControls.Label();
+                Label3 = new System.Web.UI.WebControls.Label();
+                Debug.WriteLine("Ahmed");
+                
                 for (int j = 0; j < dt1.Rows.Count; j++)
                 {
                     Inc1 = (String)dt.Rows[i][0];
@@ -701,7 +768,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                     if (Inc1 == Inc2)
                     {
                         Esclate1.BackColor = System.Drawing.Color.Red;
-
+                        Label1.Text = dt1.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[9].Controls.Add(Label1);
                     }
                 }
                 for (int j = 0; j < dt2.Rows.Count; j++)
@@ -712,6 +780,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                     if (Inc1 == Inc2)
                     {
                         Esclate2.BackColor = System.Drawing.Color.Green;
+                        Label2.Text = dt2.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[10].Controls.Add(Label2);
 
                     }
 
@@ -725,6 +795,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                     if (Inc1 == Inc2)
                     {
                         Esclate3.BackColor = System.Drawing.Color.Blue;
+                        Label3.Text = dt3.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[11].Controls.Add(Label3);
 
                     }
 
@@ -749,6 +821,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         }
 
     }
+
+   
     void EditingBtn_Click(Object sender,
                         EventArgs e)
     {
@@ -789,7 +863,16 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
     }
 
-
+    void CheckBoxClicked(Object sender, EventArgs e)
+    {
+        System.Web.UI.WebControls.CheckBox Checkbox = (System.Web.UI.WebControls.CheckBox)sender;
+        int IncNum = Int32.Parse(Checkbox.ID);
+        IncNum= IncNum - num - num-num;
+        
+        Debug.WriteLine(dt.Rows[IncNum][0]);
+        Counter++;
+        Debug.WriteLine(Counter);
+    }
     void Esclate2_Click(Object sender,
                         EventArgs e)
     {

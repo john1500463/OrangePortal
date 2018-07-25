@@ -29,9 +29,9 @@ def ReadingSQL():
     return results
 
 def ReadingFromExcel():
-    df = pandas.read_excel('C:/Users/wkzw7370/PycharmProjects/Task2/NewExpedite.xls', sheet_name='Report 1')
+    df = pandas.read_excel('C:/NewExpedite.xls', sheet_name='Report 1')
     return df
-# D:/Expedite/NewExpedite.xls
+
 def InsertSQL(num):
     connection = pypyodbc.connect('Driver={SQL Server};' 'Server=10.238.110.196;' 'Database=Expedite;' 'uid=sa; pwd=Orange@123$')
     cursor = connection.cursor()
@@ -104,7 +104,7 @@ def EditSQL(num):
 
 def mainFunction():
 
-    threading.Timer(10.0, mainFunction).start()
+    threading.Timer(900.0, mainFunction).start()
     df= ReadingFromExcel()
     results=ReadingSQL()
     boolean = False

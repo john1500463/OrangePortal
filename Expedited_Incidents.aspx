@@ -485,16 +485,7 @@ margin-top:0px;
        
         <asp:GridView ID="GridView1" runat="server" CellPadding="10" ForeColor="#FF3300" Visible="False" BorderStyle="None" style="margin-bottom:1%; margin-left:1%;" >
             <AlternatingRowStyle BackColor="White" />
-                            <Columns>
-                    <asp:TemplateField HeaderText="Acknowledge">
-                        <EditItemTemplate>
-                            <asp:CheckBox ID="CheckBox1" runat="server" />
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:CheckBox ID="CheckBox1" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-            </Columns>
+                           
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
                 <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
