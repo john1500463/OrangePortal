@@ -55,10 +55,10 @@ public partial class _Default : System.Web.UI.Page
                                 cn_S = de.Properties[property][0].ToString();
                                 break;
                             case "givenName":
-                                givenName_S = de.Properties[property][0].ToString();
+                                givenName_S = de.Properties[property][0].ToString(); // First
                                 break;
                             case "sn":
-                                sn_S = de.Properties[property][0].ToString();
+                                sn_S = de.Properties[property][0].ToString(); //Last
                                 break;
                             case "description":
                                 description_S = de.Properties[property][0].ToString();
@@ -97,6 +97,9 @@ public partial class _Default : System.Web.UI.Page
            // Response.Redirect("Main.aspx");
             Session["FTID"] = cn_S;
             Session["Email"] = description_S;
+            Debug.WriteLine(Session["Email"]);
+            Debug.WriteLine(Session["FTID"]);
+            Debug.WriteLine(sn_S + " heeeeh   " + givenName_S);
                     SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
        
             DataTable dt = new DataTable();
@@ -119,9 +122,7 @@ public partial class _Default : System.Web.UI.Page
                 }
             }
             if (dt.Rows.Count == 0)
-            {
-                Debug.Write(command.CommandText);
-                Response.Redirect("Home_Page_User.aspx");
+            {   Response.Redirect("Home_Page_User.aspx");
                 Session["Right"] = "else";
             }
 
