@@ -75,11 +75,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             //Response.Redirect("Default.aspx");
         }
         Debug.WriteLine(Alaa);
-        if (Alaa == "Search")
-        {
-        }
-        if (Alaa == null)
-        {
+       
             SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
             String x = (string)(Session["FTID"]);
 
@@ -108,7 +104,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             GridView1.Visible = true;
             ButtonsAndCheckBoxes(dt, conn);
         }
-    }
+    
 
     protected void Calendar1_SelectionChanged(object sender, System.EventArgs e)
     {

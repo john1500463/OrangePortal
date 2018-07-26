@@ -99,9 +99,7 @@ public partial class _Default : System.Web.UI.Page
             Session["Email"] = description_S;
             Debug.WriteLine(Session["Email"]);
             Debug.WriteLine(Session["FTID"]);
-            Debug.WriteLine(sn_S + " heeeeh   " + givenName_S);
-                    SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
-       
+            SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
             DataTable dt = new DataTable();
             conn.Open();
             SqlCommand command = new SqlCommand();

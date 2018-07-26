@@ -190,8 +190,8 @@ public partial class ExpeditePage : System.Web.UI.Page
             String SubmitDate = get_submit_date(Incident); ;
             String UrgenyReason = DropDownList1.SelectedItem.Text;
             String FTID = (string)(Session["FTID"]);
-            string strSelect2 = "insert into [Expedite].[dbo].[Expedite_time](Incident_ID,Submit_Date,Expedite_By,Expedite_Date,Urgency_Reason) values ('"
-                + Incident + "','" + SubmitDate + "','" + FTID + "', GETDATE() ,'" + UrgenyReason + "');";
+            string strSelect2 = "insert into [Expedite].[dbo].[Expedite_time](Incident_ID,Submit_Date,Expedite_By,Expedite_Date,Urgency_Reason,Expedited_mail) values ('"
+                + Incident + "','" + SubmitDate + "','" + FTID + "', GETDATE() ,'" + UrgenyReason + "','" + Session["Email"] + "');";
             SqlCommand cmd1 = new SqlCommand(strSelect2, cnn);
             myReader.Close();
             cmd1.ExecuteNonQuery();
