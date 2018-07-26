@@ -6,16 +6,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def notification(from_email,to_email,subject,body):
+def notification(from_email,recipients,subject,body):
     msg = MIMEMultipart('alternative')
     msg['Subject'] = subject
     msg['From'] = from_email
-    msg['To'] = to_email
-    text = body
-    part1 = MIMEText(text, 'plain')
+    msg['To'] = ", ".join(recipients)
+    part1 = MIMEText(body, 'plain')
     msg.attach(part1)
     s = smtplib.SMTP('mx-us.equant.com')
-    s.sendmail(from_email, to_email, msg.as_string())
+    s.sendmail(from_email, recipients, msg.as_string())
     print ("Mail Sent")
     s.quit()
 
@@ -179,7 +178,7 @@ def mainFunction():
                   print (results[SQL][0])
                   boolean1 = True
                   if (str(df['INC Status'][excel]) == "Resolved"):
-                      notification("expedite-portal@orange.com", "waleed.mohamed@orange.com","Expedite Portal Notfication", "The Incident "+ df['INC Incident Number'][excel] +" has been Resolved")
+                      notification("expedite-portal@orange.com", ["waleed.mohamed@orange.com","john.sobhy@orange.com"],"Expedite Portal Notfication", "Hello " + str(df['INC DS Submitter Full Name'][excel]) +", The Incident "+ df['INC Incident Number'][excel] +" has been Resolved.")
               if(str(results[SQL][1]) != str(df['INC Priority'][excel])):
                   print("2")
                   print((results[SQL][1]))
@@ -245,7 +244,7 @@ def mainFunction():
                   print (results[SQL][12])
                   print(df['AG Assigned Group Name'][excel])
                   print(results[SQL][0])
-                  notification("expedite-portal@orange.com","waleed.mohamed@orange.com","Expedite Portal Notfication","The Assigned Group for Incident " + df['INC Incident Number'][excel] +" has been changed to " + df['AG Assigned Group Name'][excel])
+                  notification("expedite-portal@orange.com",["waleed.mohamed@orange.com","john.sobhy@orange.com"],"Expedite Portal Notfication","Incident " + df['INC Incident Number'][excel] +" has been transfered from Team "+str(results[SQL][12]) + " To "+ df['AG Assigned Group Name'][excel])
                   boolean1 = True
               if( str(results[SQL][13]) != str(df['AG M Email Address'][excel])):
                   print("13")

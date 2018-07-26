@@ -186,16 +186,6 @@ public partial class ExpeditePage : System.Web.UI.Page
             myReader.Read();
             //  Label1.Text = myReader.GetValue(0).ToString(); */
             // refresh_grid1();
-
-                MailMessage mail = new MailMessage();
-                //
-                SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
-                mail.From = new MailAddress("george-itsupport@orange.com");
-                mail.To.Add("george.delacroix@orange.com");
-                mail.Body = "The ticket with Incident number " + Incident+ " Expoditued";
-                mail.Subject = "Bngrb keda :D ";
-                SmtpServer.Send(mail);
-
            // String SubmitDate = myReader.GetValue(0).ToString();
             String SubmitDate = get_submit_date(Incident); ;
             String UrgenyReason = DropDownList1.SelectedItem.Text;
@@ -209,11 +199,58 @@ public partial class ExpeditePage : System.Web.UI.Page
 
 
             cnn.Close();
-
+            expedite_mailnotification(Incident, UrgenyReason);
             // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
             Response.Redirect("Home_Page.aspx");
         }
 
+    }
+
+    protected void expedite_mailnotification(String Incident, String Urgency_reason)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
+        String group_name = "";
+        String assignee_name = "";
+        String submitter_mail = "";
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [AG Assigned Group Name],[AG Assignee],[INC CI Email Address] FROM [Expedite].[dbo].['All_Incidents'] where [INC Incident Number]='" + Incident + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            group_name = dt.Rows[0][0].ToString();
+            assignee_name = dt.Rows[0][1].ToString();
+            submitter_mail = dt.Rows[0][2].ToString();
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+
+        MailMessage mail = new MailMessage();
+        //
+        SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
+        mail.From = new MailAddress("expedite_portal@orange.com");
+        mail.To.Add("waleed.mohamed@orange.com");
+        //Debug.Write(submitter_mail);
+        mail.To.Add("john.sobhy@orange.com");
+        //mail.CC.Add();
+        mail.Body = "The ticket with Incident number " + Incident + " has been expedited." + "\n" + "Group: " + group_name + "\n" +"Assignee: " +assignee_name+ "\n" +"Urgency Reason: " +Urgency_reason;
+        mail.Subject = "Incident " + Incident + " Expedited";
+        SmtpServer.Send(mail);
     }
 
     protected String get_submit_date(String subid)
