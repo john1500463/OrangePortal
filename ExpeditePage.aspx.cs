@@ -209,7 +209,7 @@ public partial class ExpeditePage : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, System.EventArgs e)
     {
-        if (DropDownList1.SelectedItem.Text == "Select Reason-----")
+        if (DropDownList1.SelectedItem.Value == "Select Reason")
         {
            // System.Windows.Forms.MessageBox.Show("Please Select A Reason!");
             Label2.Visible = true;
