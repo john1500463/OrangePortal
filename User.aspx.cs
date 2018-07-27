@@ -42,6 +42,7 @@ public partial class User : System.Web.UI.Page
 
             }
         }
+        Response.Redirect("ModifyUser.aspx");
          
     }
     

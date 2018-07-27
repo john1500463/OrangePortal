@@ -14,16 +14,24 @@ public partial class ModifyUser : System.Web.UI.Page
     SqlConnection conn;
     SqlCommand command;
     String Role;
+    Button Edit;
+    Button Delete;
+    static String Flag;
     protected void Page_Load(object sender, EventArgs e)
     {
-        Button Edit;
-        Button Delete;
+        if (Flag == "false")
+        {
+            Search();
+        }
+        if (Flag == null && !Page.IsPostBack )
+        { 
+        Label8.Visible = false;
         conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         try
         {
             dt = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
+            command = new SqlCommand();
             command.Connection = conn;
             command.CommandText = "Select [Username] as 'User Name' ,Rights as 'Role' , Email, FTID From [Expedite].[dbo].[Users]";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
@@ -49,7 +57,7 @@ public partial class ModifyUser : System.Web.UI.Page
 
             
             int num = dt.Rows.Count;
-            Debug.WriteLine(num);
+            
             for (int i = 0; i < num; i++)
             {
                 Edit = new Button();
@@ -72,6 +80,8 @@ public partial class ModifyUser : System.Web.UI.Page
         {
             conn.Close();
             Console.Write(ex.ToString());
+        }
+
         }
     }
     void EditingBtn_Click(Object sender,
@@ -125,9 +135,85 @@ public partial class ModifyUser : System.Web.UI.Page
 
             }
         }
-        Response.Redirect("ModifyUser.aspx");
+       // Response.Redirect("ModifyUser.aspx");
+        Search();
+}
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        
+        Flag = "false";
+        Search();
+
+    }
+
+    void Search() {
+
+        try
+        {
+            conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+            String SearchBox = TextBox1.Text;
+
+            dt = new DataTable();
+            conn.Open();
+            command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "Select [Username] as 'User Name' ,[Rights] as 'Role' , [Email], [FTID] FROM [Expedite].[dbo].[Users] WHERE [Username] +[Rights] + [Email] + [FTID] LIKE '%" + SearchBox + "%';";
+            Debug.WriteLine("Ahmed");
+            Debug.WriteLine(command.CommandText);
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            if (dt.Rows.Count == 0)
+            {
+                Label8.Visible = true;
+                Label9.Visible = false;
+                GridView1.Visible = false;
+            }
+            else
+            {
+
+                Label8.Visible = false;
+                dt.Columns.Add(new DataColumn("Edit", typeof(string)));
+                dt.Columns.Add(new DataColumn("Delete", typeof(string)));
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+                GridView1.Visible = true;
 
 
+                int num = dt.Rows.Count;
+
+                for (int i = 0; i < num; i++)
+                {
+
+                    Edit = new Button();
+                    Delete = new Button();
+                    Edit.ID = i.ToString();
+                    Edit.Click += new EventHandler(this.EditingBtn_Click);
+                    Delete.ID = (i + num).ToString();
+                    Delete.Click += new EventHandler(this.DeleteBtn_Click);
+                    Edit.Text = "Edit";
+                    Delete.Text = "Delete";
+                    GridView1.Rows[i].Cells[4].Controls.Add(Edit);
+                    GridView1.Rows[i].Cells[5].Controls.Add(Delete);
+
+
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
     }
 }
     

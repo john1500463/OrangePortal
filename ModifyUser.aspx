@@ -22,7 +22,7 @@
 
    <script src="script.js"></script>
 
-   <title>Home</title>
+   <title>Modify User</title>
 
     <style>
 
@@ -473,8 +473,16 @@ margin-top:0px;
 
 
     <form id="form1" runat="server">
+        <br />
+        <br />
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
     <div style="margin-left:1%; margin-top:5%;">
-      <p><asp:Label ID="Label7" runat="server" Text="Users: "></asp:Label>
+      <p>
+          <asp:Label ID="Label8" runat="server" Text="No Users!" Style="color:red;" Font-Bold="True"></asp:Label>
+
+        </p>
+        <p><asp:Label ID="Label9" runat="server" Text="Users: "></asp:Label>
 
         </p>
          <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px">
