@@ -22,7 +22,7 @@ public partial class User : System.Web.UI.Page
         String FTID = TextBox3.Text;
         String Email = TextBox4.Text;
         String RoleName = DropDownList1.SelectedItem.Value;
-        /*
+        
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
 
         DataTable dt1 = new DataTable();
@@ -42,7 +42,8 @@ public partial class User : System.Web.UI.Page
 
             }
         }
-         */
+        Response.Redirect("ModifyUser.aspx");
+         
     }
     
 
