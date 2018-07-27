@@ -33,9 +33,21 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     DataTable dt;
     String Inc1;
     String Inc2;
-    static string Alaa;
+    protected static string Alaa;
+    DataTable dt1;
+    DataTable dt2;
+    DataTable dt3;
+    DataTable dt4;
+    SqlCommand command;
     int num;
     int Counter = 0;
+    System.Web.UI.WebControls.Button Esclate1;
+     System.Web.UI.WebControls.Button Esclate2;
+    System.Web.UI.WebControls.Button Esclate3;
+    System.Web.UI.WebControls.Label Label7;
+    System.Web.UI.WebControls.Label Label8;
+    System.Web.UI.WebControls.Label Label9;
+    System.Web.UI.WebControls.CheckBox Checkbox;
     
     protected void exporttoxls(DataTable dt)
     {
@@ -66,21 +78,106 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         Response.Flush();
         Response.End();
     }
+    void Page_PreInit(Object sender, EventArgs e)
+    {
+        if (Alaa != null && !Page.IsPostBack)
+        {
+            Alaa = null;
+        }
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
         if (Session["FTID"] == null)
         {
             //Response.Redirect("Default.aspx");
         }
         Debug.WriteLine(Alaa);
-       
+        if (Alaa == "Search") {
+            Debug.WriteLine(Alaa);
+            String ManagerName = TextBox1.Text.ToString();
+            SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+            dt = new DataTable();
+            conn.Open();
+             command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and [AG Assignee Manager Name]='" + ManagerName + "';";
+            //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            thetable = dt.Copy();
+            ButtonsAndCheckBoxes(dt, conn,"Search");
+            //Alaa = null;
+        }
+        if (Alaa == "Calendar1")
+        {
+            String SelectedData = Calendar1.SelectedDate.ToShortDateString();
+            string startdated = (Convert.ToDateTime(SelectedData)).ToString("yyyy/MM/dd");
+            SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+
+            dt = new DataTable();
+            conn.Open();
+            command = new SqlCommand();
+            command.Connection = conn;
+            //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Submit Date]) <='" + startdated + "';";
+            command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and convert(date, [Expedite_Date]) <='" + startdated + "';";
+            //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            thetable = dt.Copy();
+            ButtonsAndCheckBoxes(dt, conn, "Calendar1");
+        }
+        if (Alaa == "Calendar2")
+        {
+            Debug.WriteLine(Alaa);
+            String SelectedData2 = Calendar2.SelectedDate.ToShortDateString();
+            string startdated2 = (Convert.ToDateTime(SelectedData2)).ToString("yyyy/MM/dd");
+            SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+
+            dt = new DataTable();
+            conn.Open();
+             command = new SqlCommand();
+            command.Connection = conn;
+            //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
+            command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
+            //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            thetable = dt.Copy();
+            ButtonsAndCheckBoxes(dt, conn, "Calendar2");
+        }
+        if (Alaa == null)
+        {
             SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
             String x = (string)(Session["FTID"]);
 
             conn.Open();
-            SqlCommand command = new SqlCommand();
+             command = new SqlCommand();
             command.Connection = conn;
             command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
@@ -100,11 +197,13 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             {
                 thetable = new DataTable();
                 thetable = dt.Copy();
+                
+                ButtonsAndCheckBoxes(dt, conn, null);
             }
             GridView1.Visible = true;
-            ButtonsAndCheckBoxes(dt, conn);
+           
         }
-    
+    }
 
     protected void Calendar1_SelectionChanged(object sender, System.EventArgs e)
     {
@@ -112,9 +211,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         string startdated = (Convert.ToDateTime(SelectedData)).ToString("yyyy/MM/dd");
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         
-            DataTable dt = new DataTable();
+             dt = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
+             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Submit Date]) <='" + startdated + "';";
             command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and convert(date, [Expedite_Date]) <='" + startdated + "';";
@@ -130,7 +229,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 }
             }
             thetable = dt.Copy();
-            ButtonsAndCheckBoxes(dt, conn);
+            ButtonsAndCheckBoxes(dt, conn,"Calendar1");
             
     
     }
@@ -140,9 +239,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         string startdated2= (Convert.ToDateTime(SelectedData2)).ToString("yyyy/MM/dd");
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
   
-            DataTable dt = new DataTable();
+            dt = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
+             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
             command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
@@ -158,7 +257,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 }
             }
             thetable = dt.Copy();
-            ButtonsAndCheckBoxes(dt, conn);
+            ButtonsAndCheckBoxes(dt, conn, "Calendar2");
 
     }
     
@@ -170,6 +269,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     {
         
         TextBox1.Text = "";
+        Alaa = null;
+        Response.Redirect("Expedited_Incidents.aspx");
     }
 
     protected void Button3_Click(object sender, System.EventArgs e)
@@ -182,9 +283,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     {
         String ManagerName = TextBox1.Text.ToString();
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
-            DataTable dt = new DataTable();
+             dt = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
+             command = new SqlCommand();
             command.Connection = conn;
             command.CommandText = "Select [INC Incident Number] as 'Incident ID',[INC Tier 2] as 'Tier 2' ,[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC Status]!='Closed' and [INC Status]!='Resolved' and [AG Assignee Manager Name]='" + ManagerName + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
@@ -199,7 +300,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 }
             }
             thetable = dt.Copy();
-            ButtonsAndCheckBoxes(dt, conn);
+            ButtonsAndCheckBoxes(dt, conn,"Search");
   
     }
 
@@ -217,9 +318,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         try
         {
-            DataTable dt1 = new DataTable();
+             dt1 = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
+             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
             command.CommandText = "Insert into [Expedite].[dbo].[Esclation]([Incident Number],[DateEsclated],[NumberOfEsclation]) Values ('" + dt.Rows[IncNum][0] + "',GETDATE(),'1')";
@@ -251,12 +352,13 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         Debug.WriteLine("Ahmed");
         int IncNum = Int32.Parse(Checkbox.ID);
         IncNum = IncNum - num - num - num;
+        Debug.Write(IncNum);
         String incName = dt.Rows[IncNum][0].ToString();
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
 
-        DataTable dt1 = new DataTable();
+         dt1 = new DataTable();
         conn.Open();
-        SqlCommand command = new SqlCommand();
+         command = new SqlCommand();
         command.Connection = conn;
         //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
         command.CommandText = "Update [Expedite].[dbo].[Expedite_time] Set [Acknowledge]='true' where [Incident_ID]='" + incName + "';";
@@ -264,7 +366,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         using (SqlDataAdapter sda = new SqlDataAdapter())
         {
             sda.SelectCommand = command;
-            using (DataTable dt4 = new DataTable())
+            using ( dt4 = new DataTable())
             {
 
                 sda.Fill(dt4);
@@ -287,9 +389,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         try
         {
-            DataTable dt1 = new DataTable();
+             dt1 = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
+             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
             command.CommandText = "Insert into [Expedite].[dbo].[Esclation]([Incident Number],[DateEsclated],[NumberOfEsclation]) Values ('" + dt.Rows[IncNum][0] + "',GETDATE(),'2')";
@@ -329,9 +431,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         try
         {
-            DataTable dt1 = new DataTable();
+             dt1 = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
+             command = new SqlCommand();
             command.Connection = conn;
             //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
             command.CommandText = "Insert into [Expedite].[dbo].[Esclation]([Incident Number],[DateEsclated],[NumberOfEsclation]) Values ('" + dt.Rows[IncNum][0] + "',GETDATE(),'3')";
@@ -366,9 +468,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         String x = (string)(Session["FTID"]);
         try
         {
-            DataTable dt = new DataTable();
+             dt = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
+             command = new SqlCommand();
             command.Connection = conn;
             command.CommandText = "SELECT [Incident_ID],[AG M Email Address] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [Incident_ID]=[INC Incident Number]";
             using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -439,28 +541,22 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         notifymanagers();
     }
 
-    void ButtonsAndCheckBoxes(DataTable dt ,SqlConnection conn)
+    void ButtonsAndCheckBoxes(DataTable dt ,SqlConnection conn, String Ahmed)
     {
-            Alaa = "Search";
-            SqlCommand command= new SqlCommand();
+            Alaa = Ahmed;
+            Debug.WriteLine(Alaa);
+             command= new SqlCommand();
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 3", typeof(string)));
             dt.Columns.Add(new DataColumn("Acknowledge", typeof(string)));
-            System.Web.UI.WebControls.Button Esclate1;
-              
-            System.Web.UI.WebControls.Button Esclate2;
-            System.Web.UI.WebControls.Button Esclate3;
-            System.Web.UI.WebControls.Label Label1;
-            System.Web.UI.WebControls.Label Label2;
-            System.Web.UI.WebControls.Label Label3;
-            System.Web.UI.WebControls.CheckBox Checkbox;
+            
             
             GridView1.DataSource = dt;
             GridView1.DataBind();
             num = dt.Rows.Count;
 
-            DataTable dt1 = new DataTable();
+             dt1 = new DataTable();
 
             command = new SqlCommand();
             command.Connection = conn;
@@ -479,7 +575,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
 
 
-            DataTable dt4 = new DataTable();
+             dt4 = new DataTable();
 
             command = new SqlCommand();
             command.Connection = conn;
@@ -498,7 +594,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
 
 
-            DataTable dt2 = new DataTable();
+             dt2 = new DataTable();
             
             command = new SqlCommand();
             command.Connection = conn;
@@ -517,7 +613,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 }
             }
 
-            DataTable dt3 = new DataTable();
+             dt3 = new DataTable();
 
             command = new SqlCommand();
             command.Connection = conn;
@@ -534,7 +630,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-            EventHandler Event = new EventHandler(this.CheckBoxClicked);
+            //EventHandler Event = new EventHandler(this.CheckBoxClicked);
            
 
                 
@@ -557,12 +653,13 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Esclate1.Click += new EventHandler(this.EditingBtn_Click);
                 Esclate2.Click += new EventHandler(this.Esclate2_Click);
                 Esclate3.Click += new EventHandler(this.Esclate3_Click);
-               
-                Checkbox.CheckedChanged += Event;
+
+                Checkbox.CheckedChanged += new EventHandler(this.CheckBoxClicked);
+                Checkbox.CausesValidation = false;
                 Checkbox.AutoPostBack = true;
-                Label1 = new System.Web.UI.WebControls.Label();
-                Label2 = new System.Web.UI.WebControls.Label();
-                Label3 = new System.Web.UI.WebControls.Label();
+                Label7 = new System.Web.UI.WebControls.Label();
+                Label8 = new System.Web.UI.WebControls.Label();
+                Label9 = new System.Web.UI.WebControls.Label();
                   for (int j = 0; j < dt1.Rows.Count;j++ )
                 {
                     Inc1 = (String) dt.Rows[i][0] ;
@@ -571,8 +668,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                     if (Inc1 == Inc2)
                     {
                         Esclate1.BackColor = System.Drawing.Color.Red;
-                        Label1.Text = dt1.Rows[j][1].ToString();
-                        GridView1.Rows[i].Cells[8].Controls.Add(Label1);
+                        Label7.Text = dt1.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[8].Controls.Add(Label7);
                     
                     }
                 }
@@ -584,8 +681,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                       if (Inc1 == Inc2)
                       {
                           Esclate2.BackColor = System.Drawing.Color.Green;
-                          Label2.Text = dt2.Rows[j][1].ToString();
-                          GridView1.Rows[i].Cells[9].Controls.Add(Label2);
+                          Label8.Text = dt2.Rows[j][1].ToString();
+                          GridView1.Rows[i].Cells[9].Controls.Add(Label8);
 
                       }
                   
@@ -599,16 +696,22 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                       if (Inc1 == Inc2)
                       {
                           Esclate3.BackColor = System.Drawing.Color.Blue;
-                          Label3.Text = dt3.Rows[j][1].ToString();
-                        GridView1.Rows[i].Cells[10].Controls.Add(Label3);
+                          Label9.Text = dt3.Rows[j][1].ToString();
+                        GridView1.Rows[i].Cells[10].Controls.Add(Label9);
 
                       }
 
-                  } 
+                  }
+                  if (dt4.Rows.Count == 0) {
+                      Checkbox.Checked = false;
+                      GridView1.Rows[i].Cells[11].Controls.Add(Checkbox);
+                  }
+
                 for (int j = 0; j < dt4.Rows.Count; j++)
                   {
                       Inc1 = (String)dt.Rows[i][0];
                       Inc2 = (String)dt4.Rows[j][0];
+
                        
                       if (Inc1 == Inc2)
                       {
@@ -642,5 +745,4 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         }
 
 
-    public object ahmed { get; set; }
 }

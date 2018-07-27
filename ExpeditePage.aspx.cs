@@ -17,11 +17,15 @@ using System.Net;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using System.Collections;
     
 
 public partial class ExpeditePage : System.Web.UI.Page
 {
-
+    public static int tablerow;
+    public static ArrayList emailsarrlist;
+    public static ArrayList emailsarrlistedit;
+    public static ArrayList emailsarrlistremove;
     public class CryptoEngine1
     {
         public static string Encrypt(string input, string key)
@@ -87,9 +91,52 @@ public partial class ExpeditePage : System.Web.UI.Page
         DropDownList1.DataBind();
         //  Label1.Text = myReader.GetValue(0).ToString();
 
+        if (!Page.IsPostBack)
+        {
+            tablerow = 0;
+            emailsarrlist = new ArrayList();
+            emailsarrlistedit = new ArrayList();
+            emailsarrlistremove = new ArrayList();
+        }
+        else
+        {
+            /*
+            foreach (TextBox  t in emailsarrlist)
+            {
 
+                Control myControl1 = FindControl("theoneformails");
+                myControl1.Controls.Add(t);
+                //Debug.WriteLine("Added " + t.ID +"with text" + t.Text);
+            }
 
+            foreach (Button t in emailsarrlistedit)
+            {
 
+                Control myControl1 = FindControl("theoneformails");
+                myControl1.Controls.Add(t);
+                //Debug.WriteLine("Added " + t.ID + "with text" + t.Text);
+            }
+            foreach (Button t in emailsarrlistremove)
+            {
+
+                Control myControl1 = FindControl("theoneformails");
+                myControl1.Controls.Add(t);
+              //  Debug.WriteLine("Added " + t.ID + "with text" + t.Text);
+            }
+            */
+
+            for (int i = 0; i < emailsarrlist.Count; i++)
+            {
+                Control myControl1 = FindControl("theoneformails");
+                myControl1.Controls.Add((TextBox)emailsarrlist[i]);
+                ((Button)emailsarrlistedit[i]).Click += new EventHandler(this.editclick);
+                myControl1.Controls.Add((Button)emailsarrlistedit[i]);
+                ((Button)emailsarrlistremove[i]).Click += new EventHandler(this.deleteclick);
+                myControl1.Controls.Add((Button)emailsarrlistremove[i]);
+            }
+
+        }
+       
         /*   SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
            conn.Open();
            SqlCommand command = new SqlCommand();
@@ -213,13 +260,14 @@ public partial class ExpeditePage : System.Web.UI.Page
         String group_name = "";
         String assignee_name = "";
         String submitter_mail = "";
+        String expeditedby_mail = "";
         try
         {
             DataTable dt = new DataTable();
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "SELECT [AG Assigned Group Name],[AG Assignee],[INC CI Email Address] FROM [Expedite].[dbo].['All_Incidents'] where [INC Incident Number]='" + Incident + "';";
+            command.CommandText = "SELECT [AG Assigned Group Name],[AG Assignee],[INC CI Email Address],[Expedited_mail] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + Incident + "';";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command;
@@ -233,6 +281,7 @@ public partial class ExpeditePage : System.Web.UI.Page
             group_name = dt.Rows[0][0].ToString();
             assignee_name = dt.Rows[0][1].ToString();
             submitter_mail = dt.Rows[0][2].ToString();
+            expeditedby_mail = dt.Rows[0][3].ToString();
         }
         catch (Exception ex)
         {
@@ -241,12 +290,26 @@ public partial class ExpeditePage : System.Web.UI.Page
         }
 
         MailMessage mail = new MailMessage();
-        //
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("expedite_portal@orange.com");
-        mail.To.Add("waleed.mohamed@orange.com");
+        //mail.To.Add("waleed.mohamed@orange.com");
         //Debug.Write(submitter_mail);
-        mail.To.Add("john.sobhy@orange.com");
+        //mail.To.Add(submitter_mail);
+        var textboxesInContainer = FindControl("theoneformails").Controls.OfType<TextBox>();
+        foreach (TextBox tb in textboxesInContainer)
+        {
+            if (tb.ID != "TextBox_Mail")
+            {
+                //Debug.WriteLine("Mail will be sent to" + tb.Text);
+                mail.To.Add(tb.Text);
+            }
+            else
+            {
+                //Debug.WriteLine("Mail will be not sent to" + tb.ID);
+            }
+        }
+        mail.To.Add(Session["Email"].ToString());
+        //mail.To.Add("john.sobhy@orange.com");
         //mail.CC.Add();
         mail.Body = "The ticket with Incident number " + Incident + " has been expedited." + "\n" + "Group: " + group_name + "\n" +"Assignee: " +assignee_name+ "\n" +"Urgency Reason: " +Urgency_reason;
         mail.Subject = "Incident " + Incident + " Expedited";
@@ -283,5 +346,112 @@ public partial class ExpeditePage : System.Web.UI.Page
             Console.Write(ex.ToString());
         }
         return " ";
+    }
+    protected void Button_Addmail_Click(object sender, System.EventArgs e)
+    {
+        if (TextBox_Mail.Text != "")
+        {
+            Button delete = new Button();
+            delete.Text = "Remove";
+            delete.ID = "deleteid" + tablerow;
+            delete.Click += new EventHandler(this.deleteclick);
+
+            Button edit = new Button();
+            edit.Text = "Edit";
+            edit.ID = "editid" + tablerow;
+            edit.Click += new EventHandler(this.editclick);
+
+            TextBox textb = new TextBox();
+            textb.ID = "tbid" + tablerow;
+            textb.Text = TextBox_Mail.Text;
+
+
+          
+            textb.Enabled = false;
+            //textb.BorderStyle = System.Web.UI.WebControls.BorderStyle.None;
+
+            emailsarrlist.Add(textb);
+            emailsarrlistedit.Add(edit);
+            emailsarrlistremove.Add(delete);
+
+            Control myControl1 = FindControl("theoneformails");
+            myControl1.Controls.Add(textb);
+            myControl1.Controls.Add(edit);
+            myControl1.Controls.Add(delete);
+            tablerow++;
+            TextBox_Mail.Text = "";
+            Label_Emailslist.Visible = true;
+        }
+    }
+    void editclick(Object sender, EventArgs e)
+    {
+
+        Debug.WriteLine("Pressed ");
+        System.Web.UI.WebControls.Button clickedButton = (System.Web.UI.WebControls.Button)sender;
+        String id = clickedButton.ID;
+        String finalid = id.Substring(6);
+        String searchfor = "tbid" +finalid;
+        var textboxesInContainer = FindControl("theoneformails").Controls.OfType<TextBox>();
+        foreach (TextBox tb in textboxesInContainer)
+        {
+            if (tb.ID == searchfor)
+            {
+                //Debug.WriteLine("Mail will be sent to" + tb.Text);
+                tb.Enabled = true;
+                tb.Focus();
+            }
+            else
+            {
+                //Debug.WriteLine("Mail will be not sent to" + tb.ID);
+            }
+        }
+
+    }
+    void deleteclick(Object sender, EventArgs e)
+    {
+Debug.WriteLine("Pressed ");
+        System.Web.UI.WebControls.Button clickedButton = (System.Web.UI.WebControls.Button)sender;
+        String id = clickedButton.ID;
+        String finalid = id.Substring(8);
+        String searchfor = "tbid" +finalid;
+        String searchforedit = "editid" + finalid;
+        String searchfordelete = "deleteid" + finalid;
+        Debug.WriteLine("remove row" + finalid);
+        var textboxesInContainer = FindControl("theoneformails").Controls.OfType<TextBox>();
+        foreach (TextBox tb in textboxesInContainer)
+        {
+            if (tb.ID == searchfor)
+            {
+                tb.Visible = false;
+            }
+            else
+            {
+                //Debug.WriteLine("Mail will be not sent to" + tb.ID);
+            }
+        }
+        var editbuttonsInContainer = FindControl("theoneformails").Controls.OfType<Button>();
+        foreach (Button tb in editbuttonsInContainer)
+        {
+            if (tb.ID == searchforedit)
+            {
+                tb.Visible = false;
+            }
+            else
+            {
+                //Debug.WriteLine("Mail will be not sent to" + tb.ID);
+            }
+        }
+        var deletebuttonsInContainer = FindControl("theoneformails").Controls.OfType<Button>();
+        foreach (Button tb in deletebuttonsInContainer)
+        {
+            if (tb.ID == searchfordelete)
+            {
+                tb.Visible = false;
+            }
+            else
+            {
+                //Debug.WriteLine("Mail will be not sent to" + tb.ID);
+            }
+        }
     }
 }
