@@ -391,18 +391,52 @@ public partial class ExpeditePage : System.Web.UI.Page
         String id = clickedButton.ID;
         String finalid = id.Substring(6);
         String searchfor = "tbid" +finalid;
-        var textboxesInContainer = FindControl("theoneformails").Controls.OfType<TextBox>();
-        foreach (TextBox tb in textboxesInContainer)
+        if (clickedButton.Text == "Save")
         {
-            if (tb.ID == searchfor)
+            var textboxesInContainer = FindControl("theoneformails").Controls.OfType<TextBox>();
+            foreach (TextBox tb in textboxesInContainer)
             {
-                //Debug.WriteLine("Mail will be sent to" + tb.Text);
-                tb.Enabled = true;
-                tb.Focus();
+                if (tb.ID == searchfor)
+                {
+                    //Debug.WriteLine("Mail will be sent to" + tb.Text);
+                    tb.Enabled = false;
+                    int index = -1;
+                    for (int i = 0; i < emailsarrlist.Count; i++)
+                    {
+                        if (((TextBox)(emailsarrlist[i])).ID == searchfor)
+                        {
+                            index = i;
+                        }
+                    }
+                    ((Button)(emailsarrlistedit[index])).Text = "Edit";
+                }
             }
-            else
+        }
+        else
+        {
+
+            var textboxesInContainer = FindControl("theoneformails").Controls.OfType<TextBox>();
+            foreach (TextBox tb in textboxesInContainer)
             {
-                //Debug.WriteLine("Mail will be not sent to" + tb.ID);
+                if (tb.ID == searchfor)
+                {
+                    //Debug.WriteLine("Mail will be sent to" + tb.Text);
+                    tb.Enabled = true;
+                    tb.Focus();
+                    int index = -1;
+                    for (int i = 0; i < emailsarrlist.Count; i++)
+                    {
+                        if (((TextBox)(emailsarrlist[i])).ID == searchfor)
+                        {
+                            index = i;
+                        }
+                    }
+                    ((Button)(emailsarrlistedit[index])).Text = "Save";
+                }
+                else
+                {
+                    //Debug.WriteLine("Mail will be not sent to" + tb.ID);
+                }
             }
         }
 
