@@ -114,7 +114,7 @@ public partial class Home_Page_Support : System.Web.UI.Page
 
             if (dt.Rows.Count == 0)
             {
-                command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
+                command.CommandText = "Select [INC Incident Number] as 'Incident Number',[INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
                 //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
 
 
@@ -145,6 +145,7 @@ public partial class Home_Page_Support : System.Web.UI.Page
                     GridView1.DataSource = dt;
                     GridView1.DataBind();
                     GridView1.Visible = true;
+                    clickable_incidents();
                     Button3.Visible = true;
                     Label1.Text = "";
                     Label2.Text = "";
@@ -155,7 +156,7 @@ public partial class Home_Page_Support : System.Web.UI.Page
             }
             else
             {
-                command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified'  ,[Expedite].[dbo].[Expedite_time].[Expedite_Date] as 'Expedite Date',[Expedite].[dbo].[Expedite_time].[Urgency_Reason] 'Urgency Reason'From [dbo].['All_Incidents'] ,[Expedite].[dbo].[Expedite_time] where [INC Incident Number] = '" + x + "' and [Expedite].[dbo].[Expedite_time].[Incident_ID] = '" + x + "';";
+                command.CommandText = "Select [INC Incident Number] as 'Incident Number',[INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified'  ,[Expedite].[dbo].[Expedite_time].[Expedite_Date] as 'Expedite Date',[Expedite].[dbo].[Expedite_time].[Urgency_Reason] 'Urgency Reason'From [dbo].['All_Incidents'] ,[Expedite].[dbo].[Expedite_time] where [INC Incident Number] = '" + x + "' and [Expedite].[dbo].[Expedite_time].[Incident_ID] = '" + x + "';";
                 using (SqlDataAdapter sda = new SqlDataAdapter())
                 {
                     sda.SelectCommand = command;
@@ -198,6 +199,7 @@ public partial class Home_Page_Support : System.Web.UI.Page
                     GridView1.DataSource = dt;
                     GridView1.DataBind();
                     GridView1.Visible = true;
+                    clickable_incidents();
                     Button3.Visible = false;
                     Label1.Text = "Incident " + x + " Already Expedited";
                     Label2.Text = "";
@@ -295,5 +297,17 @@ public partial class Home_Page_Support : System.Web.UI.Page
             Y = CryptoEngine.Encrypt(Y, "sblw-3hn8-sqoy19");
             Response.Redirect("ExpeditePageSupport.aspx?param1=" + Y);
         }
+    }
+    protected void clickable_incidents()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            HyperLink hlContro = new HyperLink();
+            String Incident = GridView1.Rows[i].Cells[0].Text;
+            hlContro.NavigateUrl = "./Incident_Details_Support.aspx?ID=" + Incident;
+            hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+            GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+        }
+
     }
 }

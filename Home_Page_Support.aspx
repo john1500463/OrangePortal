@@ -376,7 +376,14 @@ margin-top:0px;
 
 }
 
+a {
+    text-decoration:none;
+    color:black;
+}
 
+a:hover {
+    color:darkorange;
+}
 
     </style>
 

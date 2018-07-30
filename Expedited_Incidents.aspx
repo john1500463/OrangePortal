@@ -377,7 +377,14 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+a {
+    text-decoration:none;
+    color:black;
+}
 
+a:hover {
+    color:darkorange;
+}
 
 
     </style>
@@ -398,6 +405,7 @@ margin-top:0px;
     
 
 
+
 <ul>
 
    <li><a href='Home_Page.aspx'><span>Home</span></a></li>
@@ -416,7 +424,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
+         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
 
@@ -428,11 +436,11 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
+         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
          </li>
 
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
+         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite Multiple Incidents</span></a>
 
          </li>
 
@@ -440,7 +448,7 @@ margin-top:0px;
 
    </li>
 
-          <li class='active has-sub'><a href='#'><span>User</span></a>
+           <li class='active has-sub'><a href='#'><span>Users</span></a>
 
       <ul>
 
@@ -448,7 +456,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
 
@@ -470,6 +478,9 @@ margin-top:0px;
 </div>
     <form id="form2" runat="server">
             <div style="margin-top:2%">  
+                <p>
+                <asp:Label ID="Label_Title" runat="server" Text="Expedited Incidents" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
+                    </p>
                 <asp:Label ID="Label1" runat="server" Text="Assignee Manager" Style="margin-top:2%;margin-left:1%;"></asp:Label>
                 <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox> &nbsp;
             <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" /> &nbsp;&nbsp;
@@ -485,7 +496,7 @@ margin-top:0px;
     <div style="margin-top: 50px;">
        
        
-        <asp:GridView ID="GridView1" runat="server" CellPadding="10" ForeColor="#FF3300" Visible="False" BorderStyle="None" style="margin-bottom:1%; margin-left:1%;" >
+        <asp:GridView ID="GridView1" runat="server" CellPadding="6" ForeColor="#FF3300" Visible="False" BorderStyle="None" style="margin-bottom:1%; margin-left:1%;" >
             <AlternatingRowStyle BackColor="White" />
                            
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />

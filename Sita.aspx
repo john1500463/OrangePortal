@@ -377,7 +377,14 @@ margin-top:0px;
 
 }
 
+a {
+    text-decoration:none;
+    color:black;
+}
 
+a:hover {
+    color:darkorange;
+}
 
     </style>
 
@@ -395,6 +402,7 @@ margin-top:0px;
       </div>
 
     
+
 
 
 <ul>
@@ -415,7 +423,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
+         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
 
@@ -427,11 +435,11 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
+         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
          </li>
 
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
+         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite Multiple Incidents</span></a>
 
          </li>
 
@@ -439,7 +447,7 @@ margin-top:0px;
 
    </li>
 
-          <li class='active has-sub'><a href='#'><span>User</span></a>
+           <li class='active has-sub'><a href='#'><span>Users</span></a>
 
       <ul>
 
@@ -447,7 +455,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
 
@@ -468,7 +476,9 @@ margin-top:0px;
 
 </div>
     <form id="form1" runat="server">
-
+        <p>
+                <asp:Label ID="Label_Title" runat="server" Text="SITA Expedited Incidents" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
+                    </p>
 
         <p aria-expanded="true">
             <asp:Label ID="Label1" runat="server" Text="From" style="position:relative; margin-left: 1%;"></asp:Label>
@@ -481,6 +491,7 @@ margin-top:0px;
             </p>
             <p aria-expanded="true">
          <asp:Button ID="Button1" runat="server"  style="position: relative; margin-top: 0.25%; margin-left:1%" OnClick="Button1_Click" Text="Get" />
+                <asp:Button ID="Button2" runat="server" Text="Reset Selection" OnClick="Button2_Click" />
         </p>
         
         </p>

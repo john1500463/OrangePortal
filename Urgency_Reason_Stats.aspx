@@ -396,6 +396,7 @@ margin-top:0px;
     
 
 
+
 <ul>
 
    <li><a href='Home_Page.aspx'><span>Home</span></a></li>
@@ -414,7 +415,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
+         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
 
@@ -426,19 +427,19 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
+         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
          </li>
 
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
+         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite Multiple Incidents</span></a>
 
          </li>
 
       </ul>
 
-  
    </li>
-           <li class='active has-sub'><a href='#'><span>User</span></a>
+
+           <li class='active has-sub'><a href='#'><span>Users</span></a>
 
       <ul>
 
@@ -446,7 +447,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
 
@@ -454,6 +455,7 @@ margin-top:0px;
 
    </li>
     <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
+
    <li><a href='#'><span>Help</span></a></li>
 
    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
@@ -467,7 +469,9 @@ margin-top:0px;
 </div>
      <form id="form2" runat="server">
     <div style="margin-top: 50px;">
-
+        <p>
+                <asp:Label ID="Label_Title" runat="server" Text="Urgency Reason Statistics" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
+                    </p>
             <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />

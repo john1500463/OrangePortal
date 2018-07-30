@@ -397,6 +397,7 @@ margin-top:0px;
     
 
 
+
 <ul>
 
    <li><a href='Home_Page.aspx'><span>Home</span></a></li>
@@ -415,7 +416,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
+         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
 
@@ -427,19 +428,19 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
+         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
          </li>
 
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
+         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite Multiple Incidents</span></a>
 
          </li>
 
       </ul>
 
    </li>
-    
-       <li class='active has-sub'><a href='#'><span>User</span></a>
+
+           <li class='active has-sub'><a href='#'><span>Users</span></a>
 
       <ul>
 
@@ -447,22 +448,18 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
 
       </ul>
 
    </li>
-
-
-
-
     <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
 
-    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
+   <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
 
 </ul>

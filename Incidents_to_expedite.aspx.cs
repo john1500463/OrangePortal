@@ -91,6 +91,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             updategrid(TextBox1.Text, " ");
             GridView1.Visible = true;
             Button3.Visible = true;
+            clickable_incidents();
            // Debug.Write(get_submit_date(TextBox1.Text));
         }
     }
@@ -463,6 +464,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             updategrid(TextBox1.Text, "");
             GridView1.Visible = true;
             Button3.Visible = true;
+            clickable_incidents();
         }
     }
     protected bool isexpedited(String id)
@@ -509,5 +511,17 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
         DropDownList1.Visible = false;
         TextBox2.Visible = false;
         Button3.Visible = false;
+    }
+    protected void clickable_incidents()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            HyperLink hlContro = new HyperLink();
+            String Incident = GridView1.Rows[i].Cells[0].Text;
+            hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + Incident;
+            hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+            GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+        }
+
     }
 }

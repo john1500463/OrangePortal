@@ -193,6 +193,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             GridView1.DataSource = dt;
             GridView1.DataBind();
+            clickable_incidents();
             if (!Page.IsPostBack)
             {
                 thetable = new DataTable();
@@ -569,6 +570,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             
             GridView1.DataSource = dt;
             GridView1.DataBind();
+            clickable_incidents();
             num = dt.Rows.Count;
 
              dt1 = new DataTable();
@@ -758,6 +760,17 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             
 
         }
+    protected void clickable_incidents()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            HyperLink hlContro = new HyperLink();
+            String Incident = GridView1.Rows[i].Cells[0].Text;
+            hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + Incident;
+            hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+            GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+        }
 
+    }
 
 }

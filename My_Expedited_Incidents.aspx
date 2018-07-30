@@ -408,11 +408,12 @@ a:hover {
     
 
 
+
 <ul>
 
    <li><a href='Home_Page.aspx'><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents.aspx' style="background: darkorange;border-color: darkorange;"><span>My Expedited Incidents</span></a></li>
+   <li><a href='My_Expedited_Incidents.aspx' style="background: darkorange; border-color:darkorange;"><span>My Expedited Incidents</span></a></li>
 
    <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
 
@@ -426,7 +427,7 @@ a:hover {
 
          </li>
 
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
+         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
 
@@ -438,11 +439,11 @@ a:hover {
 
          </li>
 
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
+         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
          </li>
 
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
+         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite Multiple Incidents</span></a>
 
          </li>
 
@@ -450,7 +451,7 @@ a:hover {
 
    </li>
 
-          <li class='active has-sub'><a href='#'><span>User</span></a>
+           <li class='active has-sub'><a href='#'><span>Users</span></a>
 
       <ul>
 
@@ -458,7 +459,7 @@ a:hover {
 
          </li>
 
-         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
 

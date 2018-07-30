@@ -378,7 +378,14 @@ margin-top:0px;
 
 }
 
+a {
+    text-decoration:none;
+    color:black;
+}
 
+a:hover {
+    color:darkorange;
+}
 
     </style>
 
@@ -416,7 +423,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents to Expedite</span></a>
+         <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
 
@@ -428,11 +435,11 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM expedite Incidents</span></a>
+         <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
          </li>
 
-         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite multiple incidents</span></a>
+         <li class='has-sub'><a href='Expedite_multiple_incidents.aspx'><span>Expedite Multiple Incidents</span></a>
 
          </li>
 
@@ -440,7 +447,7 @@ margin-top:0px;
 
    </li>
 
-           <li class='active has-sub'><a href='#'><span>User</span></a>
+           <li class='active has-sub'><a href='#'><span>Users</span></a>
 
       <ul>
 
@@ -448,7 +455,7 @@ margin-top:0px;
 
          </li>
 
-         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify user</span></a>
+         <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
 

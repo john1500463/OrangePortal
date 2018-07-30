@@ -375,7 +375,14 @@ margin-top:0px;
 
 }
 
+a {
+    text-decoration:none;
+    color:black;
+}
 
+a:hover {
+    color:darkorange;
+}
 
     </style>
 
@@ -414,6 +421,10 @@ margin-top:0px;
     <form id="form1" runat="server" aria-expanded="true">
         <p>
             &nbsp;</p>
+        
+        <p aria-expanded="true">
+            <asp:Label ID="Label1" runat="server" Font-Size="12pt" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
+        </p>
     <div style="margin-top: 50px;" aria-expanded="true">
         <asp:Label ID="Label3" runat="server" Text="Incident ID" Style="margin-bottom:3px; margin-left:3px"></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> &nbsp&nbsp&nbsp&nbsp&nbsp <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
@@ -425,9 +436,6 @@ margin-top:0px;
         
         
         </div>
-        <p aria-expanded="true">
-            <asp:Label ID="Label1" runat="server" Font-Size="12pt" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
-        </p>
         <p aria-expanded="true">
             <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px">
                 <AlternatingRowStyle BackColor="White" />

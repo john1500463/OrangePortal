@@ -225,6 +225,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 GridView1.Visible = true;
+                clickable_incidents();
 
             }
         }
@@ -277,5 +278,17 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             selectedListItem.Selected = true;
             //DropDownList1.Visible = true;
         }
+    }
+    protected void clickable_incidents()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            HyperLink hlContro = new HyperLink();
+            String Incident = GridView1.Rows[i].Cells[0].Text;
+            hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + Incident;
+            hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+            GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+        }
+
     }
 }

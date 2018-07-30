@@ -123,7 +123,7 @@ public partial class CSM_entity : System.Web.UI.Page
                 GridView1.DataSource = DtCSMExpoditeIncidents;
                 GridView1.DataBind();
                 GridView1.Visible = true;
-
+                clickable_incidents();
 
             }
 
@@ -252,7 +252,7 @@ public partial class CSM_entity : System.Web.UI.Page
                     GridView1.DataSource = DtCSMExpoditeIncidents;
                     GridView1.DataBind();
                     GridView1.Visible = true;
-
+                    clickable_incidents();
 
                 }
 
@@ -305,5 +305,22 @@ public partial class CSM_entity : System.Web.UI.Page
     protected void Exportxls_Click(object sender, EventArgs e)
     {
         exporttoxls(thedatatable);
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CSM_entity.aspx");
+    }
+
+    protected void clickable_incidents()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            HyperLink hlContro = new HyperLink();
+            String Incident = GridView1.Rows[i].Cells[0].Text;
+            hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + Incident;
+            hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+            GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+        }
+
     }
 }

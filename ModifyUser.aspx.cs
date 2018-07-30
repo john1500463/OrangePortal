@@ -23,8 +23,8 @@ public partial class ModifyUser : System.Web.UI.Page
         {
             Search();
         }
-        if (Flag == null && !Page.IsPostBack )
-        { 
+        if (Flag == null)
+        {
         Label8.Visible = false;
         conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         try
@@ -214,6 +214,11 @@ public partial class ModifyUser : System.Web.UI.Page
             conn.Close();
             Console.Write(ex.ToString());
         }
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Flag = null;
+        Response.Redirect("ModifyUser.aspx");
     }
 }
     

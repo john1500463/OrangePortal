@@ -55,6 +55,7 @@ public partial class Home_Page_User : System.Web.UI.Page
      } */
     void refresh_grid1()
     {
+
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = TextBox1.Text.ToString();
         try
@@ -82,7 +83,7 @@ public partial class Home_Page_User : System.Web.UI.Page
 
             if (dt.Rows.Count == 0)
             {
-                command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
+                command.CommandText = "Select [INC Incident Number] as 'Incident Number',[INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + x + "';";
                 //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
 
 
@@ -113,6 +114,7 @@ public partial class Home_Page_User : System.Web.UI.Page
                     GridView1.DataSource = dt;
                     GridView1.DataBind();
                     GridView1.Visible = true;
+                    clickable_incidents();
                     Button3.Visible = true;
                     Label1.Text = "";
                     Label2.Text = "";
@@ -123,7 +125,7 @@ public partial class Home_Page_User : System.Web.UI.Page
             }
             else
             {
-                command.CommandText = "Select [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified'  ,[Expedite].[dbo].[Expedite_time].[Expedite_Date] as 'Expedite Date',[Expedite].[dbo].[Expedite_time].[Urgency_Reason] 'Urgency Reason'From [dbo].['All_Incidents'] ,[Expedite].[dbo].[Expedite_time] where [INC Incident Number] = '" + x + "' and [Expedite].[dbo].[Expedite_time].[Incident_ID] = '" + x + "';";
+                command.CommandText = "Select [INC Incident Number] as 'Incident Number', [INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified'  ,[Expedite].[dbo].[Expedite_time].[Expedite_Date] as 'Expedite Date',[Expedite].[dbo].[Expedite_time].[Urgency_Reason] 'Urgency Reason'From [dbo].['All_Incidents'] ,[Expedite].[dbo].[Expedite_time] where [INC Incident Number] = '" + x + "' and [Expedite].[dbo].[Expedite_time].[Incident_ID] = '" + x + "';";
                 using (SqlDataAdapter sda = new SqlDataAdapter())
                 {
                     sda.SelectCommand = command;
@@ -136,46 +138,47 @@ public partial class Home_Page_User : System.Web.UI.Page
                     }
                 }
 
-              
-                   
 
-                    using (SqlDataAdapter sda = new SqlDataAdapter())
+
+
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    sda.SelectCommand = command;
+
+                    using (dt = new DataTable())
                     {
-                        sda.SelectCommand = command;
 
-                        using (dt = new DataTable())
-                        {
-
-                            sda.Fill(dt);
-
-                        }
-                    }
-
-
-                    if (dt.Rows.Count == 0)
-                    {
-                        Label1.Text = "Incident doesn't exist";
-
-                        Button3.Visible = false;
-                        GridView1.Visible = false;
-                        // Label1.Text = "";
+                        sda.Fill(dt);
 
                     }
-                    else
-                    {
-                        GridView1.DataSource = dt;
-                        GridView1.DataBind();
-                        GridView1.Visible = true;
-                        //Button3.Visible = true;
-                        Label1.Text = "";
-                        Label2.Text = "";
+                }
 
-                    }
-                    //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
+
+                if (dt.Rows.Count == 0)
+                {
+                    Label1.Text = "Incident doesn't exist";
+
+                    Button3.Visible = false;
+                    GridView1.Visible = false;
+                    // Label1.Text = "";
 
                 }
+                else
+                {
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                    GridView1.Visible = true;
+                    clickable_incidents();
+                    Button3.Visible = false;
+                    Label1.Text = "Incident " + x + " Already Expedited";
+                    Label2.Text = "";
+
+                }
+                //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
+
             }
-        
+        }
+
 
         // Response.Write("ya3");
         catch (Exception ex)
@@ -263,5 +266,16 @@ public partial class Home_Page_User : System.Web.UI.Page
             Response.Redirect("ExpeditePageUser.aspx?param1=" + Y);
         }
     }
+    protected void clickable_incidents()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            HyperLink hlContro = new HyperLink();
+            String Incident = GridView1.Rows[i].Cells[0].Text;
+            hlContro.NavigateUrl = "./Incident_Details_User.aspx?ID=" + Incident;
+            hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+            GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+        }
 
+    }
 }
