@@ -497,7 +497,7 @@ margin-top:0px;
                 <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
         </div>
-        <div style="margin-bottom:10%;margin-left:1%; margin-top:1%;">
+        <div style="margin-bottom:20%;margin-left:1%; margin-top:1%;">
         <asp:Button ID="Button3" runat="server" Text="Export to xls" OnClick="Button3_Click"  />
             <asp:Button ID="Button4" runat="server" Text="Bulk to Managers" OnClick="Notify_Click" />
            </div>

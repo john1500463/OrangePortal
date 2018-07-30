@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +11,7 @@ using System.Web.UI.WebControls;
 
 public partial class Expedite_Extraction : System.Web.UI.Page
 {
+    public static DataTable thedatatable;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["FTID"] == null)
@@ -54,19 +56,56 @@ public partial class Expedite_Extraction : System.Web.UI.Page
                 {
                     Label2.Visible = true;
                     Label2.Text = "No Incidents Available In This Range";
+                    Button_Export.Visible = false;
                 }
-                else { 
+                else {
+                thedatatable = dt.Copy();
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 GridView1.Visible = true;
+                Button_Export.Visible = true;
                 }
             }
         }
         else {
             Label2.Visible = true;
             Label2.Text="Wrong Selected Range";
+            Button_Export.Visible = false;
         }
 
     }
- 
+    protected void exporttoxls(DataTable dt)
+    {
+
+        //Create a dummy GridView and Bind the data source we have.
+        GridView grdExportData = new GridView();
+
+        grdExportData.AllowPaging = false;
+        grdExportData.DataSource = dt;
+        grdExportData.DataBind();
+
+        //Clear the response and add the content types and headers to it.
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=MyReport.xls");
+        Response.Charset = "";
+        Response.ContentType = "application/vnd.ms-excel";
+
+        //We need this string writer and HTML writer in order to render the grid inside it.
+        StringWriter swExportData = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(swExportData);
+
+        //Lets render the Grid inside the HtmlWriter and then automatically we will have it converted into eauivalent string.
+        grdExportData.RenderControl(hw);
+
+        //Write the response now and you will get your excel sheet as download file
+        Response.Output.Write(swExportData.ToString());
+        Response.Flush();
+        Response.End();
+    }
+
+    protected void Exportxls_Click(object sender, EventArgs e)
+    {
+        exporttoxls(thedatatable);
+    }
 }

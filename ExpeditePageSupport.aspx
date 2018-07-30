@@ -495,7 +495,7 @@ margin-top:0px;
         
         <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
         <p>
-            <asp:Label ID="Label5" runat="server" Text="Add Email to Notify: "></asp:Label>
+            <asp:Label ID="Label5" runat="server" Text="Add Email to be Notified: "></asp:Label>
         <asp:TextBox ID="TextBox_Mail" runat="server"></asp:TextBox>
             <asp:Button ID="Button_Addmail" runat="server" OnClick="Button_Addmail_Click" Text="ADD" />
             </p>

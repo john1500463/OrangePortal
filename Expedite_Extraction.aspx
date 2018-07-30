@@ -501,13 +501,15 @@ margin-top:0px;
             </asp:GridView>   
                   
         </p>
+        <div style="position: relative; margin-top: 0.25%; margin-left:1%; margin-bottom:20%">
+        <asp:Button ID="Button_Export" runat="server" OnClick="Exportxls_Click" Text="Export to xls" Visible="False" />
          <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-         
+         </div>
        
     <div>
 
     </div>
     </form>
-    
+    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 </body>
 </html>
