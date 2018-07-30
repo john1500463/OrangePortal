@@ -83,6 +83,8 @@
 
   padding: 1%;
 
+  padding-top:1.3%;
+
 }
 
 #cssmenu.align-center > ul {

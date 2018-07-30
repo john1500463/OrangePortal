@@ -77,9 +77,11 @@
 
   position: relative;
 
-  margin: 0;
+  margin: 0.25%;
 
-  padding: 20px;
+  padding: 1%;
+
+  padding-top:1.3%;
 
 }
 

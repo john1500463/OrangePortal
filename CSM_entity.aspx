@@ -78,10 +78,12 @@
 
   position: relative;
 
-  margin: 0;
 
-  padding: 20px;
+  margin: 0.25%;
 
+  padding: 1%;
+
+  padding-top:1.3%;
 }
 
 #cssmenu.align-center > ul {
