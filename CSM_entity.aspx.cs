@@ -8,10 +8,12 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Collections;
 using System.Diagnostics;
+using System.IO;
 
 
 public partial class CSM_entity : System.Web.UI.Page
 {
+    public static DataTable thedatatable;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["FTID"] == null)
@@ -111,12 +113,13 @@ public partial class CSM_entity : System.Web.UI.Page
             }
             if (DtCSMExpoditeIncidents.Rows.Count == 0)
             {
-                Label1.Text = "No Incidents exist";
+                Label2.Text = "No Incidents exist";
 
             }
             else
             {
-                Label1.Visible = false;
+                Label2.Visible = false;
+                thedatatable = DtCSMExpoditeIncidents.Copy();
                 GridView1.DataSource = DtCSMExpoditeIncidents;
                 GridView1.DataBind();
                 GridView1.Visible = true;
@@ -131,5 +134,176 @@ public partial class CSM_entity : System.Web.UI.Page
             conn.Close();
             Console.Write(ex.ToString());
         }
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        GridView1.Visible = false;
+        DateTime DateFrom = Calendar1.SelectedDate;
+        DateTime DateTo = Calendar2.SelectedDate;
+        if (DateTo > DateFrom)
+        {
+            SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+
+            try
+            {
+
+                String DateFromString = Calendar1.SelectedDate.ToString();
+                String DateToString = Calendar2.SelectedDate.ToString();
+                ArrayList AllCSMIncidents = new ArrayList();
+                ArrayList AllIncidents = new ArrayList();
+                ArrayList CSMExpoditeIncidents = new ArrayList();
+                DataTable DtOfCSMIncidents = new DataTable();
+                DataTable dtOfAllIncidents = new DataTable();
+                DataTable DtCSMExpoditeIncidents = new DataTable();
+                conn.Open();
+                SqlCommand command = new SqlCommand();
+                SqlCommand command2 = new SqlCommand();
+                command.Connection = conn;
+                //Get All Indients with CSM 
+                command.CommandText = "Select [INC Incident Number] From [dbo].['All_Incidents'] where [INC CI Entity] LIKE '%CSM%' AND convert(date,[INC DS Submit Date])>='" + DateFromString + "'AND convert(date,[INC DS Submit Date])<='" + DateToString + "';";
+                command2.Connection = conn;
+                command2.CommandText = "Select [Incident_ID] From [dbo].[Expedite_time]";
+                Debug.WriteLine(command2.CommandText);
+                Debug.WriteLine(command2.CommandText);
+
+
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    sda.SelectCommand = command;
+
+                    using (DtOfCSMIncidents = new DataTable())
+                    {
+
+                        sda.Fill(DtOfCSMIncidents);
+
+
+                    }
+                }
+                foreach (DataRow row in DtOfCSMIncidents.Rows)
+                {
+                    foreach (DataColumn column in DtOfCSMIncidents.Columns)
+                    {
+                        AllCSMIncidents.Add(row[column]);
+
+                    }
+                }
+
+
+                using (SqlDataAdapter sda1 = new SqlDataAdapter())
+                {
+                    sda1.SelectCommand = command2;
+
+                    using (dtOfAllIncidents = new DataTable())
+                    {
+
+                        sda1.Fill(dtOfAllIncidents);
+
+
+                    }
+                }
+
+
+                foreach (DataRow row in dtOfAllIncidents.Rows)
+                {
+                    foreach (DataColumn column in dtOfAllIncidents.Columns)
+                    {
+                        AllIncidents.Add(row[column]);
+                    }
+                }
+
+                for (int i = 0; i < AllIncidents.Count; i++)
+                {
+                    for (int j = 0; j < AllCSMIncidents.Count; j++)
+                    {
+                        if (AllIncidents[i].Equals(AllCSMIncidents[j]))
+                        {
+                            CSMExpoditeIncidents.Add(AllIncidents[i]);
+
+
+                        }
+
+                    }
+
+                }
+
+                SqlCommand command3 = new SqlCommand();
+                for (int counter = 0; counter < CSMExpoditeIncidents.Count; counter++)
+                {
+                    command3.Connection = conn;
+                    command3.CommandText = "Select [Incident_ID] as 'Incident ID',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] Where [Incident_ID] ='" + CSMExpoditeIncidents[counter] + "' ;";
+
+                    SqlDataAdapter sda = new SqlDataAdapter();
+                    sda.SelectCommand = command3;
+                    sda.Fill(DtCSMExpoditeIncidents);
+                }
+                if (DtCSMExpoditeIncidents.Rows.Count == 0)
+                {
+                    Label2.Visible = true;
+                    Label2.Text = "No Incidents Available In This Range";
+                    Button_Export.Visible = false;
+
+                }
+                else
+                {
+                    thedatatable = DtCSMExpoditeIncidents.Copy();
+                    Button_Export.Visible = true;
+                    Label2.Visible = false;
+                    GridView1.DataSource = DtCSMExpoditeIncidents;
+                    GridView1.DataBind();
+                    GridView1.Visible = true;
+
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                conn.Close();
+                Console.Write(ex.ToString());
+            }
+        }
+        else
+        {
+            Label2.Visible = true;
+            Label2.Text = "Wrong Selected Range";
+            Button_Export.Visible = false;
+        }
+
+    }
+    protected void exporttoxls(DataTable dt)
+    {
+
+        //Create a dummy GridView and Bind the data source we have.
+        GridView grdExportData = new GridView();
+
+        grdExportData.AllowPaging = false;
+        grdExportData.DataSource = dt;
+        grdExportData.DataBind();
+
+        //Clear the response and add the content types and headers to it.
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=MyReport.xls");
+        Response.Charset = "";
+        Response.ContentType = "application/vnd.ms-excel";
+
+        //We need this string writer and HTML writer in order to render the grid inside it.
+        StringWriter swExportData = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(swExportData);
+
+        //Lets render the Grid inside the HtmlWriter and then automatically we will have it converted into eauivalent string.
+        grdExportData.RenderControl(hw);
+
+        //Write the response now and you will get your excel sheet as download file
+        Response.Output.Write(swExportData.ToString());
+        Response.Flush();
+        Response.End();
+    }
+
+    protected void Exportxls_Click(object sender, EventArgs e)
+    {
+        exporttoxls(thedatatable);
     }
 }
