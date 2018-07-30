@@ -547,7 +547,7 @@ margin-top:0px;
             </p>
         <div id="theoneformails" runat="server" style="width:400px">
             <p>
-            <asp:Label ID="Label_Emailslist" runat="server" Text="Emails to Notify: " Visible="False"></asp:Label>
+            <asp:Label ID="Label_Emailslist" runat="server" Text="Emails to be Notified: " Visible="False"></asp:Label>
                </p>
         </div>
        </form>

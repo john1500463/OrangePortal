@@ -375,7 +375,9 @@ margin-top:0px;
 
 }
 
-
+td {
+    border: 3px solid black;
+}
 
     </style>
 

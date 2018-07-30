@@ -463,7 +463,16 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         ArrayList all_managers_emails = new ArrayList();
         ArrayList all_inc = new ArrayList();
         ArrayList unique_emails = new ArrayList();
+        ArrayList idstoextract = new ArrayList();
+        for (int i = 0; i < thetable.Rows.Count; i++)
+        {
+            idstoextract.Add(thetable.Rows[i][0].ToString());
+        }
 
+        foreach (String idd in idstoextract)
+        {
+            Debug.WriteLine(idd);
+        }
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
         try
@@ -485,8 +494,11 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                if(idstoextract.Contains(dt.Rows[i][0]))
+                {
                 all_managers_emails.Add(dt.Rows[i][1]);
                 all_inc.Add(dt.Rows[i][0]);
+                }
             }
 
             String temp = all_managers_emails[0].ToString();
@@ -506,7 +518,10 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 {
                     if (((String)(dt.Rows[i][1])) == email)
                     {
-                        alltheinc.Add(dt.Rows[i][0]);
+                        if (idstoextract.Contains(dt.Rows[i][0]))
+                        {
+                            alltheinc.Add(dt.Rows[i][0]);
+                        }
                     }
                 }
                 sendmailtomanager(email,alltheinc);
