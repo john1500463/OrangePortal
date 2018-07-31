@@ -79,7 +79,7 @@
 
   margin: 0.25%;
 
-  padding: 1%;
+  padding: 0.8%;
 
   padding-top:1.3%;
 
