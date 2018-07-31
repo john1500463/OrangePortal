@@ -199,8 +199,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 thetable = new DataTable();
                 thetable = dt.Copy();
                 
-                ButtonsAndCheckBoxes(dt, conn, null);
             }
+            ButtonsAndCheckBoxes(dt, conn, null);
+
             GridView1.Visible = true;
            
         }
@@ -361,7 +362,6 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         conn.Open();
          command = new SqlCommand();
         command.Connection = conn;
-        //command.CommandText = "Select [INC Incident Number],[INC Tier 2] ,[INC Status],[AG Assigned Group Name],[AG Assignee],[INC DS Last Modified Date],[Expedite_Date],[Urgency_Reason]From [Expedite].[dbo].[Expedite_time] as A ,[Expedite].[dbo].['All_Incidents'] as B  where A.[Incident_ID]=B.[INC Incident Number] and convert(date, [INC DS Last Modified Date]) <='" + startdated2 + "';";
         command.CommandText = "Update [Expedite].[dbo].[Expedite_time] Set [Acknowledge]='true' where [Incident_ID]='" + incName + "';";
 
         using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -374,6 +374,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Debug.WriteLine(command.CommandText);
             }
         }
+        Response.Redirect("Expedited_Incidents.aspx");
     }
 
     void Esclate2_Click(Object sender,
