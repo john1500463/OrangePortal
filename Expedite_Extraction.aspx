@@ -495,8 +495,9 @@ font-family: Arial;
         <p aria-expanded="true">
           <asp:Calendar ID="Calendar1" runat="server" style="position:relative; margin-left:1%; display:inline-block"></asp:Calendar>
             <asp:Calendar ID="Calendar2" runat="server"  style="position:relative; margin-left:5%; display:inline-block"></asp:Calendar>
-            <p aria-expanded="true">
-         <asp:Button ID="Button1" runat="server"  style="position: relative; margin-top: 0.25%; margin-left:1%" OnClick="Button1_Click" Text="Get" />
+            <p aria-expanded="true" style="position: relative; margin-top: 0.25%; margin-left:1%">
+         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Get" />
+                <asp:Button ID="Button2" runat="server" Text="Clear Selection" OnClick="Button2_Click" />
         </p>
         
         </p>

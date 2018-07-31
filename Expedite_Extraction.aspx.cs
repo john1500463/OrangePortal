@@ -121,4 +121,8 @@ public partial class Expedite_Extraction : System.Web.UI.Page
         }
 
     }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Expedite_Extraction.aspx");
+    }
 }
