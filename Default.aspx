@@ -405,13 +405,13 @@ font-family: Arial;
             UserName<br>
             <asp:TextBox ID="UserName" runat="server" value=""></asp:TextBox>
             <br>
-            <asp:Label class="description" ID="Label1" runat="server" Text="FTID Username (ex: ABCD1234) "></asp:Label>
+            <asp:Label class="description" ID="Label1" runat="server" Text="FTID (ex: ABCD1234) "></asp:Label>
             </br>
             <br />
             Password<br>
             <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
             <br>
-            <asp:Label class="description" ID="Label2" runat="server" Text="FTID Password"></asp:Label>
+            <asp:Label class="description" ID="Label2" runat="server" Text="AD Password"></asp:Label>
             <br/>
             </br>
             <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click1" Font-Names="Arial"  />
