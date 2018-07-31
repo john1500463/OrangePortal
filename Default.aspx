@@ -199,9 +199,9 @@
 
 #cssmenu > ul > li.has-sub:hover > a {
 
-  background: darkorange;
+  background: #FF6501;
 
-  border-color: darkorange;
+  border-color: #FF6501;
 
 }
 
@@ -289,7 +289,7 @@
 
   position: relative;
 
-  color: darkorange;
+  color: #FF6501;
 
   top:30%;
 
@@ -323,7 +323,7 @@
 
 #cssmenu > ul > li > a:hover {
 
-  background: darkorange;
+  background: #FF6501;
 
   color: #ffffff;
 
@@ -331,7 +331,7 @@
 
 #cssmenu ul ul a:hover {
 
-  color: darkorange;
+  color: #FF6501;
 
 }
 
@@ -370,7 +370,9 @@ img {
 
 }
 
-
+*{
+font-family: Arial;
+}
 
     </style>
 
@@ -412,7 +414,7 @@ img {
             <asp:Label class="description" ID="Label2" runat="server" Text="FTID Password"></asp:Label>
             <br/>
             </br>
-            <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click1" Font-Names="Sitka Text"  />
+            <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click1" Font-Names="Arial"  />
            
             </br>
             </br>
@@ -421,7 +423,7 @@ img {
             </div>
         
     </form>
-    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501"  center  width="10"><center><b><br />For portal issues, contact us <a href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 </body>
 
 </html>

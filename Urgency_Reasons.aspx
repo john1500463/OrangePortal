@@ -207,9 +207,9 @@
 
 #cssmenu > ul > li.has-sub:hover > a {
 
-  background: darkorange;
+  background: #FF6501;
 
-  border-color: darkorange;
+  border-color: #FF6501;
 
 }
 
@@ -297,7 +297,7 @@
 
   position: relative;
 
-  color: darkorange;
+  color: #FF6501;
 
   top:10%;
 
@@ -331,7 +331,7 @@
 
 #cssmenu > ul > li > a:hover {
 
-  background: darkorange;
+  background: #FF6501;
 
   color: #ffffff;
 
@@ -339,7 +339,7 @@
 
 #cssmenu ul ul a:hover {
 
-  color: darkorange;
+  color: #FF6501;
 
 }
 
@@ -376,7 +376,9 @@ margin-top:0px;
 
 }
 
-
+*{
+font-family: Arial;
+}
 
     </style>
 
@@ -453,7 +455,7 @@ margin-top:0px;
       </ul>
 
    </li>
-    <li><a href='Urgency_Reasons.aspx'  style="background: darkorange; border-color:darkorange;"><span>Urgency Reasons</span></a></li>
+    <li><a href='Urgency_Reasons.aspx'  style="background: #FF6501; border-color:#FF6501;"><span>Urgency Reasons</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
 
@@ -485,7 +487,7 @@ margin-top:0px;
             <asp:Button ID="Button_Save" runat="server" Text="Save" OnClick="Button_Save_Click" />
         <asp:Label ID="Label_info" runat="server" Text="info"></asp:Label>
         </div>
-<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 
         
     </form>

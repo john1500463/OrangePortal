@@ -206,9 +206,9 @@
 
 #cssmenu > ul > li.has-sub:hover > a {
 
-  background: darkorange;
+  background: #FF6501;
 
-  border-color: darkorange;
+  border-color: #FF6501;
 
 }
 
@@ -296,7 +296,7 @@
 
   position: relative;
 
-  color: darkorange;
+  color: #FF6501;
 
   top:10%;
 
@@ -330,7 +330,7 @@
 
 #cssmenu > ul > li > a:hover {
 
-  background: darkorange;
+  background: #FF6501;
 
   color: #ffffff;
 
@@ -338,7 +338,7 @@
 
 #cssmenu ul ul a:hover {
 
-  color: darkorange;
+  color: #FF6501;
 
 }
 
@@ -387,9 +387,11 @@ a {
 }
 
 a:hover {
-    color:darkorange;
+    color:#FF6501;
 }
-
+*{
+font-family: Arial;
+}
 
     </style>
 
@@ -414,7 +416,7 @@ a:hover {
 
    <li><a href='Home_Page_Support.aspx'><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents_Support.aspx' style="background: darkorange;border-color: darkorange;"><span>My Expedited Incidents</span></a></li>
+   <li><a href='My_Expedited_Incidents_Support.aspx' style="background: #FF6501;border-color: #FF6501;"><span>My Expedited Incidents</span></a></li>
 
    
 
@@ -438,7 +440,7 @@ a:hover {
                 <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="DarkOrange" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="#FF6501" />
                 <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
                 <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
                 <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
@@ -454,7 +456,7 @@ a:hover {
        
        </form>
 
-<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="orange"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501"  center  width="10"><center><b><br />For portal issues, contact us <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
 
 </body>
 </html>
