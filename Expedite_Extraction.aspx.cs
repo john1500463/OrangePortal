@@ -37,7 +37,7 @@ public partial class Expedite_Extraction : System.Web.UI.Page
             DataTable dt = new DataTable();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [Incident_ID] as 'Incident ID',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] where [Submit_Date] Between '" + DateFromString + "'AND'" + DateToString + "';";
+            command.CommandText = "Select [Incident_ID] as 'Incident ID',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] where convert(date,[Expedite_Date])>='" + DateFromString + "'AND convert(date,[Expedite_Date])<='" + DateToString + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
            
 
