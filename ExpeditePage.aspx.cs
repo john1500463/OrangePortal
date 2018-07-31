@@ -59,7 +59,7 @@ public partial class ExpeditePage : System.Web.UI.Page
     {
         if (Session["FTID"] == null)
         {
-        //    Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx");
         }
         String Incident = Request.QueryString["param1"];
         try

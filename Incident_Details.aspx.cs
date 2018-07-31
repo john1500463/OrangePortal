@@ -16,6 +16,10 @@ public partial class Incident_Details : System.Web.UI.Page
         
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         String name;
         String Incident = Request.QueryString["ID"];
        

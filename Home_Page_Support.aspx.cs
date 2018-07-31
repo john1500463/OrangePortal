@@ -45,7 +45,7 @@ public partial class Home_Page_Support : System.Web.UI.Page
     {
         if (Session["FTID"] == null)
         {
-            //Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx");
         }
         // GridView1.Visible = false;
         //TextBox1.Text = "";

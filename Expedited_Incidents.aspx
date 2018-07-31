@@ -51,8 +51,6 @@
 
   display: block;
 
-  width: 100%;
-
   border-color: #080808;
 
   margin: 0;

@@ -91,7 +91,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
         if (Session["FTID"] == null)
         {
-            //Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx");
         }
         Debug.WriteLine(Alaa);
         if (Alaa == "Search") {

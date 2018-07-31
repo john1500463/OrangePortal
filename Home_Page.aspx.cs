@@ -42,10 +42,23 @@ public partial class Home_Page : System.Web.UI.Page
     }    
     protected void Page_Load(object sender, EventArgs e)
     {
+        HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        HttpContext.Current.Response.AddHeader("Pragma", "no-cache");
+        HttpContext.Current.Response.AddHeader("Expires", "0");
         if (Session["FTID"] == null)
         {
-            //Response.Redirect("Default.aspx");
+            Response.Redirect("Default.aspx");
         }
+        /*
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
+         */
         // GridView1.Visible = false;
         //TextBox1.Text = "";
     }

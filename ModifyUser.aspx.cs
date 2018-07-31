@@ -19,6 +19,10 @@ public partial class ModifyUser : System.Web.UI.Page
     static String Flag;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         if (Flag == "false")
         {
             Search();

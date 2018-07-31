@@ -16,6 +16,9 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        HttpContext.Current.Response.AddHeader("Pragma", "no-cache");
+        HttpContext.Current.Response.AddHeader("Expires", "0");
         if (Session["FTID"] != null)
         {
             Session["FTID"] = null;
@@ -120,8 +123,9 @@ public partial class _Default : System.Web.UI.Page
                 }
             }
             if (dt.Rows.Count == 0)
-            {   Response.Redirect("Home_Page_User.aspx");
+            {
                 Session["Right"] = "else";
+                Response.Redirect("Home_Page_User.aspx");
             }
 
             String Role = dt.Rows[0][0].ToString();

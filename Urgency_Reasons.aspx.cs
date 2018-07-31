@@ -14,6 +14,10 @@ public partial class Urgency_Reasons : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         if (!IsPostBack)
         {
             fill_dropdown();
