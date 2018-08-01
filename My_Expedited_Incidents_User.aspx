@@ -426,7 +426,7 @@ font-family: Arial;
 </div>
     <form id="form2" runat="server">
     <div style="margin-top: 50px;">
-        <asp:Label id="Label_info" Text="No expedited tickets" runat="server" Visible="false" ForeColor="Red" Style="margin-left:1%;"/>
+        <asp:Label id="Label_info" Text="No expedited tickets" runat="server" Visible="false" Font-Bold="True" ForeColor="Red" Style="margin-left:1%;"/>
                 <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />

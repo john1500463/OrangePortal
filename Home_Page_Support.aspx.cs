@@ -133,7 +133,11 @@ public partial class Home_Page_Support : System.Web.UI.Page
 
                 if (dt.Rows.Count == 0)
                 {
-                    Label1.Text = "Incident doesn't exist";
+                    DateTime LastModifiedExcel = GetLastModifiedDateTime();
+                    DateTime LastModifedExcelPlusThirty = LastModifiedExcel.AddMinutes(30);
+                    String Time = (LastModifedExcelPlusThirty - DateTime.Now).ToString();
+                    Time = Time.Substring(0, 9);
+                    Label1.Text = "The Incident will be avalable in max " + Time;
 
                     Button3.Visible = false;
                     GridView1.Visible = false;
@@ -309,5 +313,9 @@ public partial class Home_Page_Support : System.Web.UI.Page
             GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
         }
 
+    }
+    DateTime GetLastModifiedDateTime()
+    {
+        return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls");
     }
 }
