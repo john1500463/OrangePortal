@@ -147,7 +147,11 @@ public partial class Home_Page : System.Web.UI.Page
 
                 if (dt.Rows.Count == 0)
                 {
-                    Label1.Text = "Incident doesn't exist";
+                    DateTime LastModifiedExcel = GetLastModifiedDateTime();
+                    DateTime LastModifedExcelPlusThirty = LastModifiedExcel.AddMinutes(30);
+                    String Time = (LastModifedExcelPlusThirty - DateTime.Now).ToString();
+                    Time = Time.Substring(0,9);
+                    Label1.Text = "The Incident will be avalable in max "+ Time;
 
                     Button3.Visible = false;
                     GridView1.Visible = false;
@@ -201,7 +205,7 @@ public partial class Home_Page : System.Web.UI.Page
 
                 if (dt.Rows.Count == 0)
                 {
-                    Label1.Text = "Incident doesn't exist";
+                    Label1.Text = (DateTime.Now - GetLastModifiedDateTime()).ToString();
 
                     Button3.Visible = false;
                     GridView1.Visible = false;
@@ -238,8 +242,13 @@ public partial class Home_Page : System.Web.UI.Page
         //String x = TextBox1.Text.ToString();
         Label1.Text = "";
         Label2.Text = "";
+        if (TextBox1.Text == "")
+        {
+            Label1.Text = "Please Enter Incident ID ";
+        }
+        else { 
         refresh_grid1();
-
+        }
 
         //  Label1.Text = x;
         // string connetionString;
@@ -329,6 +338,10 @@ public partial class Home_Page : System.Web.UI.Page
     string GetLastModifiedDate()
     {
         return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls").ToString();
+    }
+    DateTime GetLastModifiedDateTime()
+    {
+        return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls");
     }
 
     string GetLastModifiedDateExe()
