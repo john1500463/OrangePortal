@@ -517,8 +517,8 @@ font-family: Arial;
                   
         </p>
         <div style="position: relative; margin-top: 0.25%; margin-left:1%; margin-bottom:20%">
-        <asp:Button ID="Button_Export" runat="server" OnClick="Exportxls_Click" Text="Export to xls" Visible="False" />
-         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <asp:ImageButton ID="Button_Export" runat="server" width="100px" ImageUrl="Excel-Export.jpg" OnClick="Exportxls_Click" Visible="false"/>
+            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
          </div>
        
     <div>
