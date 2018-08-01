@@ -49,6 +49,8 @@ public partial class Home_Page : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
+        Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
         /*
         if (((String)Session["Right"]) == "else")
         {
@@ -322,6 +324,33 @@ public partial class Home_Page : System.Web.UI.Page
             GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
         } 
 
+    }
+
+    string GetLastModifiedDate()
+    {
+        return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls").ToString();
+    }
+
+    string GetLastModifiedDateExe()
+    {
+        DataTable dt;
+        SqlCommand command = new SqlCommand();
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        conn.Open();
+        command.Connection = conn;
+        command.CommandText = "select * from [expedite].[dbo].[Last_Update_Time]";
+        using (SqlDataAdapter sda = new SqlDataAdapter())
+        {
+            sda.SelectCommand = command;
+            using (dt = new DataTable())
+            {
+
+                sda.Fill(dt);
+
+            }
+
+        }
+        return dt.Rows[0][0].ToString();
     }
 
 }
