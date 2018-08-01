@@ -46,7 +46,14 @@ public partial class My_Expedited_Incidents : System.Web.UI.Page
 
                  }
              }
-
+             if (dt.Rows.Count == 0)
+             {
+                 Label_info.Visible = true;
+             }
+             else
+             {
+                 Label_info.Visible = false;
+             }
              GridView1.DataSource = dt;
              GridView1.DataBind();
              GridView1.Visible = true;

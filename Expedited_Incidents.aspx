@@ -488,7 +488,7 @@ font-family: Arial;
         </div>
         <div Style="margin-top:5%;">
         <asp:Label ID="Label2" runat="server" Text="Expedite Date less than or equal to" Style="margin-left:1%;"></asp:Label>
-        <asp:Label ID="Label3" runat="server" Text="Last Modified Date less than or equal to" Style="margin-left:6%;"></asp:Label>
+        <asp:Label ID="Label3" runat="server" Text="Last Modified Date less than or equal to" Style="margin-left:4.5%;"></asp:Label>
         </div>
         <div> 
         <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-left: 1%; margin-top: 3%; display:inline-block;"></asp:Calendar>
