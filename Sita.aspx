@@ -514,7 +514,7 @@ font-family: Arial;
         </p>
         <div style="position: relative; margin-top: 0.25%; margin-left:1%; margin-bottom:20%">
         <asp:ImageButton ID="Button_Export" runat="server" width="100px" ImageUrl="Excel-Export.jpg" OnClick="Exportxls_Click"/>
-         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+         <asp:Label ID="Label2" runat="server" Text="Label" ForeColor="Red"></asp:Label>
          </div>
        </form>
    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"><br /><font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a><br /> <asp:label ID="Label_ModifiedDateExcel" text="7amada" runat="server" Font-Size="10pt" /><br /><asp:label ID="Label_ModifiedDateExe" text="7amada" runat="server" Font-Size="10pt" /></center></font> </div>

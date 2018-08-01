@@ -512,7 +512,7 @@ font-family: Arial;
         </p>
         <div style="position: relative; margin-top: 0.25%; margin-left:1%; margin-bottom:20%">
         <asp:ImageButton ID="Button_Export" runat="server" width="100px" ImageUrl="Excel-Export.jpg" OnClick="Exportxls_Click"/>
-         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+         <asp:Label ID="Label2" runat="server" Text="Label" ForeColor="Red"></asp:Label>
          </div>
        </form>
 
