@@ -484,15 +484,26 @@ font-family: Arial;
             <asp:Label ID="Label1" runat="server" Font-Size="12pt" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
         </p>
     <div style="margin-top: 50px;" aria-expanded="true">
-        <asp:Label ID="Label3" runat="server" Text="Incident ID" Style="margin-bottom:3px; margin-left:3px"></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> &nbsp&nbsp&nbsp&nbsp&nbsp <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
+        <div style="display:inline-block;">
+        <asp:Label ID="Label3" runat="server" Text="Incident ID" Style="margin-bottom:3px; margin-left:3px; display:block;"></asp:Label>
+        </div>
+
+        <div style="display:inline-block;">
+        <asp:TextBox ID="TextBox1" runat="server" style="display:block;"></asp:TextBox>
+            </div>
+
+        <div style="display:inline-block;">
+            <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" style="display:block;"/>   
+            </div>
        
         
+        <div style="display:inline-block;">
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Clear" style="display:block;"/>
+            </div>
         
-        &nbsp;<asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Clear" />
-       
-        
-        
+        <p>
+            <asp:Label ID="Label4" Text="Enter your Incident ID" runat="server" style=" margin-left:3px; display:block;color:gray"/> 
+        </p>
         </div>
         <p aria-expanded="true">
             &nbsp;</p>
