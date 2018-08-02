@@ -17,6 +17,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     String searchingid;
     public static DataTable thetable;
     public static DropDownList newDropDownList1;
+    public static String theidnow;
 
     public static DataTable readdt()
     {
@@ -84,8 +85,9 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (TextBox1.Text != null)
+        if (TextBox1.Text != null && !String.IsNullOrEmpty(TextBox1.Text) && !String.IsNullOrWhiteSpace(TextBox1.Text))
         {
+            theidnow = TextBox1.Text;
             //GridView1.Rows[0].Cells[0].Text = "ID";
             //GridView1.Rows[0].Cells[1].Text= "Hello";
             //Debug.Write(newDropDownList1.SelectedItem.Value);
@@ -94,7 +96,14 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             GridView1.Visible = true;
             Button3.Visible = true;
             clickable_incidents();
-           // Debug.Write(get_submit_date(TextBox1.Text));
+            Textbox_message.Visible = false;
+            // Debug.Write(get_submit_date(TextBox1.Text));
+        }
+        else
+        {
+            Textbox_message.Visible = true;
+            Textbox_message.ForeColor = System.Drawing.Color.Red;
+            Textbox_message.Text = "Please Enter an ID";
         }
     }
     protected void preselectdropdown()
@@ -232,6 +241,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
         //DropDownList1.Visible = true;
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
+        String idtoexp = GridView1.Rows[0].Cells[0].Text;
         //Debug.Write("my id is" + x);
         //BindingSource bs = (BindingSource)GridView1.DataSource;
         //DataTable tCxC = (DataTable)bs.DataSource;
@@ -247,14 +257,13 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             //Debug.Write("Header is "+GridView1.Columns[0].HeaderText.ToString());
             //Debug.Write("Header is " + GridView1.HeaderRow.Cells[2].Text.ToString());
             //Debug.Write("Value is " + ((DataColumn)readdt().Columns[0]).ColumnName);
-            String thesubmitdate = get_submit_date(TextBox1.Text);
+            String thesubmitdate = get_submit_date(theidnow);
             if (num==2) //exists only in all inc
             {
-                command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment,Expedite_By,Submit_Date) VALUES ('" + TextBox1.Text + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "','" + x + "',convert (datetime,'"+thesubmitdate+"'));";
-                insert_expedite_time_to_allinc(id);
+                command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment,Expedite_By,Submit_Date) VALUES ('" + theidnow + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "','" + x + "',convert (datetime,'"+thesubmitdate+"'));";
             }
             else{
-                command.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason +"', Comment='" + TextBox2.Text + "' Where [Incident_ID] = '" + TextBox1.Text + "';";
+                command.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason +"', Comment='" + TextBox2.Text + "' Where [Incident_ID] = '" + theidnow + "';";
                 //Debug.Write(" reason " + thereason + " comment " + TextBox2.Text + " id " + searchingid);
            }
             using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -268,6 +277,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             GridView1.DataSource = dt;
             GridView1.DataBind();
             DropDownList1.Visible = false;
+            insert_expedite_time_to_allinc(theidnow);
         }
         catch (Exception ex)
         {
@@ -487,9 +497,10 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
+        Debug.WriteLine("id is " + theidnow);
         if (newDropDownList1.SelectedItem.Value != "-None-")
         {
-            if (isexpedited(TextBox1.Text))
+            if (isexpedited(theidnow))
             {
                 post_reason(1);
                 GridView1.Visible = false;
@@ -511,7 +522,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             Textbox_message.Visible = true;
             Textbox_message.ForeColor = System.Drawing.Color.Red;
             Textbox_message.Text = "Please Choose an Urgency Reason!";
-            updategrid(TextBox1.Text, "");
+            updategrid(theidnow, "");
             GridView1.Visible = true;
             Button3.Visible = true;
             clickable_incidents();
