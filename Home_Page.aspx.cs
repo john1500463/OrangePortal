@@ -337,11 +337,11 @@ public partial class Home_Page : System.Web.UI.Page
 
     string GetLastModifiedDate()
     {
-        return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls").ToString();
+        return System.IO.File.GetLastWriteTime("D:/Expedite/NewExpedite.xls").ToString();
     }
     DateTime GetLastModifiedDateTime()
     {
-        return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls");
+        return System.IO.File.GetLastWriteTime("D:/Expedite/NewExpedite.xls");
     }
 
     string GetLastModifiedDateExe()

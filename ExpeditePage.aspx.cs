@@ -249,7 +249,7 @@ public partial class ExpeditePage : System.Web.UI.Page
 
             cnn.Close();
             insert_expedite_time_to_allinc(Incident);
-            expedite_mailnotification(Incident, UrgenyReason);
+            //expedite_mailnotification(Incident, UrgenyReason);
             // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
             Response.Redirect("Home_Page.aspx");
         }
@@ -544,7 +544,7 @@ Debug.WriteLine("Pressed ");
 
     string GetLastModifiedDate()
     {
-        return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls").ToString();
+        return System.IO.File.GetLastWriteTime("D:/Expedite/NewExpedite.xls").ToString();
     }
 
     string GetLastModifiedDateExe()

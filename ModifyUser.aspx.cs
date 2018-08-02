@@ -228,7 +228,7 @@ public partial class ModifyUser : System.Web.UI.Page
     }
     string GetLastModifiedDate()
     {
-        return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls").ToString();
+        return System.IO.File.GetLastWriteTime("D:/Expedite/NewExpedite.xls").ToString();
     }
 
     string GetLastModifiedDateExe()

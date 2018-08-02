@@ -245,7 +245,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
 
             cnn.Close();
             insert_expedite_time_to_allinc(Incident);
-            expedite_mailnotification(Incident, UrgenyReason);
+            //expedite_mailnotification(Incident, UrgenyReason);
             // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
             Response.Redirect("Home_Page.aspx");
         }
