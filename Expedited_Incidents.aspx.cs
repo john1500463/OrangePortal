@@ -398,7 +398,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
     void CheckBoxClicked(Object sender, EventArgs e)
     {
-
+        Debug.WriteLine("Checkbox interaction");
         System.Web.UI.WebControls.CheckBox Checkbox = (System.Web.UI.WebControls.CheckBox)sender;
         Debug.WriteLine("Ahmed");
         int IncNum = Int32.Parse(Checkbox.ID);
@@ -829,6 +829,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
     string GetLastModifiedDateExe() { 
            command = new SqlCommand();
+           DataTable dt12;
            SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
            conn.Open();
             command.Connection = conn;
@@ -836,14 +837,14 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command;
-                using (dt = new DataTable())
+                using ( dt12 = new DataTable())
                 {
 
-                    sda.Fill(dt);
+                    sda.Fill(dt12);
 
                 }
                  
             }
-        return dt.Rows[0][0].ToString();
+        return dt12.Rows[0][0].ToString();
     }
 }
