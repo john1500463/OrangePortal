@@ -113,7 +113,8 @@ public partial class CSM_entity : System.Web.UI.Page
             }
             if (DtCSMExpoditeIncidents.Rows.Count == 0)
             {
-                Label2.Text = "No Incidents exist";
+                Label2.Text = "No CSM Incidents exist";
+                Button_Export.Visible = false;
 
             }
             else
@@ -124,7 +125,7 @@ public partial class CSM_entity : System.Web.UI.Page
                 GridView1.DataBind();
                 GridView1.Visible = true;
                 clickable_incidents();
-
+                Button_Export.Visible = true;
             }
 
         }

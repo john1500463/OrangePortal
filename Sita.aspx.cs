@@ -117,7 +117,8 @@ public partial class Sita : System.Web.UI.Page
 
             if (DtSitaExpoditeIncidents.Rows.Count <= 0)
             {
-                Label2.Text = "No Incidents exist";
+                Label2.Text = "No SITA Incidents exist";
+                Button_Export.Visible = false;
 
             }
             else
@@ -128,7 +129,7 @@ public partial class Sita : System.Web.UI.Page
                 GridView1.DataBind();
                 GridView1.Visible = true;
                 clickable_incidents();
-
+                Button_Export.Visible = true;
             }
 
         }
