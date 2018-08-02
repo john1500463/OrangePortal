@@ -39,7 +39,7 @@ public partial class Expedite_Extraction : System.Web.UI.Page
             DataTable dt = new DataTable();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [Incident_ID] as 'Incident ID',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedite Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] where convert(date,[Expedite_Date])>='" + DateFromString + "'AND convert(date,[Expedite_Date])<='" + DateToString + "';";
+            command.CommandText = "SELECT [Incident_ID] as 'Incident ID', [INC Tier 2] as 'Tier 2',[INC Tier 3] as 'Tier 3',[INC Priority] as 'Priority',[INC Status] as 'Status',[Urgency_Reason] as 'Urgency Reason',[INC DS Submitter Full Name] as 'Submitter',[RG Resolved By]as 'Resolved By' ,[RG Resolved Group Name] as 'Resolver Group', [INC DS Submit Date] as 'Submit Date',[dbo].['All_Incidents'].[Expedite Date] as 'Expedite Date', [INC DS Last Resolved Date] as 'Resolved Date',[INC DS Closed Date] as 'Closed Date', [MTTR] as 'MTTR',[MTTR_From_ExpediteDate] as 'MTTR From Expedite Date' FROM [Expedite].[dbo].[Expedite_time]INNER JOIN [Expedite].[dbo].['All_Incidents'] ON [Expedite].[dbo].[Expedite_time].[Incident_ID] = [Expedite].[dbo].['All_Incidents'].[INC Incident Number] where convert(date,[Expedite_Date])>='" + DateFromString + "'AND convert(date,[Expedite_Date])<='" + DateToString + "';";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
            
 
