@@ -251,7 +251,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             if (num==2) //exists only in all inc
             {
                 command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment,Expedite_By,Submit_Date) VALUES ('" + TextBox1.Text + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "','" + x + "',convert (datetime,'"+thesubmitdate+"'));";
-                   // Debug.Write("first");
+                insert_expedite_time_to_allinc(id);
             }
             else{
                 command.CommandText = "UPDATE [Expedite].[dbo].[Expedite_time] SET Urgency_Reason = '" + thereason +"', Comment='" + TextBox2.Text + "' Where [Incident_ID] = '" + TextBox1.Text + "';";
@@ -275,6 +275,54 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             Console.Write(ex.ToString());
         }
     }
+     void insert_expedite_time_to_allinc(String idd)
+     {
+         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+         String x = (string)(Session["FTID"]);
+         try
+         {
+             DataTable dt = new DataTable();
+             conn.Open();
+             SqlCommand command = new SqlCommand();
+             command.Connection = conn;
+             command.CommandText = "Select [Expedite_Date] From [Expedite].[dbo].[Expedite_time] where [Incident_ID]='" + idd + "';";
+             Debug.WriteLine(command.CommandText);
+             using (SqlDataAdapter sda = new SqlDataAdapter())
+             {
+                 sda.SelectCommand = command;
+                 using (dt = new DataTable())
+                 {
+
+                     sda.Fill(dt);
+
+                 }
+             }
+             Debug.WriteLine("Value is " + dt.Rows[0][0]);
+             DateTime value = (DateTime)dt.Rows[0][0];
+             Debug.WriteLine("DAte time Value is " + value);
+             DataTable dt2 = new DataTable();
+             SqlCommand command2 = new SqlCommand();
+             command2.Connection = conn;
+             command2.CommandText = "Update [Expedite].[dbo].['All_Incidents'] SET [Expedite Date]= '" + value + "' where [INC Incident Number]='" + idd + "';";
+             Debug.WriteLine(command2.CommandText);
+             using (SqlDataAdapter sda = new SqlDataAdapter())
+             {
+                 sda.SelectCommand = command2;
+                 using (dt2 = new DataTable())
+                 {
+
+                     sda.Fill(dt2);
+
+                 }
+             }
+
+         }
+         catch (Exception ex)
+         {
+             conn.Close();
+             Console.Write(ex.ToString());
+         }
+     }
 
      protected String get_submit_date(String subid)
      {
