@@ -483,7 +483,7 @@ font-family: Arial;
         <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
         <asp:Button ID="Button2" runat="server" Text="Reset" OnClick="Button2_Click" />
             </div>
-    <div style="margin-left:1%; margin-top:5%;">
+    <div style="margin-left:1%; margin-top:5%; margin-bottom:20%">
       <p>
           <asp:Label ID="Label8" runat="server" Text="No Users!" Style="color:red;" Font-Bold="True"></asp:Label>
 

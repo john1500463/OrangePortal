@@ -244,11 +244,60 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
 
 
             cnn.Close();
+            insert_expedite_time_to_allinc(Incident);
             expedite_mailnotification(Incident, UrgenyReason);
             // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
             Response.Redirect("Home_Page.aspx");
         }
 
+    }
+    void insert_expedite_time_to_allinc(String idd)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "Select [Expedite_Date] From [Expedite].[dbo].[Expedite_time] where [Incident_ID]='" + idd + "';";
+            Debug.WriteLine(command.CommandText);
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            Debug.WriteLine("Value is " + dt.Rows[0][0]);
+            DateTime value = (DateTime)dt.Rows[0][0];
+            Debug.WriteLine("DAte time Value is " + value);
+            DataTable dt2 = new DataTable();
+            SqlCommand command2 = new SqlCommand();
+            command2.Connection = conn;
+            command2.CommandText = "Update [Expedite].[dbo].['All_Incidents'] SET [Expedite Date]= '" + value + "' where [INC Incident Number]='" + idd + "';";
+            Debug.WriteLine(command2.CommandText);
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command2;
+                using (dt2 = new DataTable())
+                {
+
+                    sda.Fill(dt2);
+
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
     }
 
     protected void expedite_mailnotification(String Incident, String Urgency_reason)
