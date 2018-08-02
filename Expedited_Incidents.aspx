@@ -513,7 +513,10 @@ font-family: Arial;
         <div style="margin-bottom:20%;margin-left:1%; margin-top:1%;">
             <asp:ImageButton ID="Button3" runat="server" width="100px" ImageUrl="Excel-Export.jpg" OnClick="Button3_Click"/>
             <asp:Button ID="Button4" runat="server" Text="Bulk to Managers" OnClick="Notify_Click" />
-           </div>
+        <p>
+            <asp:Label ID="Label_Error" Text="No Incidents Exist" runat="server" Visible="False" Font-Bold="True" ForeColor="Red" />
+        </p>   
+        </div>
         
        
        </form>

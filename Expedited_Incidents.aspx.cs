@@ -33,7 +33,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     DataTable dt;
     String Inc1;
     String Inc2;
-    protected static string Alaa;
+    protected static String Alaa;
     DataTable dt1;
     DataTable dt2;
     DataTable dt3;
@@ -95,9 +95,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         {
            // Response.Redirect("Default.aspx");
         }
-        Debug.WriteLine(Alaa);
+        Debug.WriteLine("Page Load : "+Alaa);
         if (Alaa == "Search") {
-            Debug.WriteLine(Alaa);
             String ManagerName = TextBox1.Text.ToString();
             SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
             dt = new DataTable();
@@ -117,6 +116,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 }
             }
             thetable = dt.Copy();
+            Alaa = "Search";
             ButtonsAndCheckBoxes(dt, conn,"Search");
             //Alaa = null;
         }
@@ -145,10 +145,9 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             thetable = dt.Copy();
             ButtonsAndCheckBoxes(dt, conn, "Calendar1");
-        }
+                    }
         if (Alaa == "Calendar2")
         {
-            Debug.WriteLine(Alaa);
             String SelectedData2 = Calendar2.SelectedDate.ToShortDateString();
             string startdated2 = (Convert.ToDateTime(SelectedData2)).ToString("yyyy/MM/dd");
             SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
@@ -200,7 +199,6 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             {
                 thetable = new DataTable();
                 thetable = dt.Copy();
-                
             }
             ButtonsAndCheckBoxes(dt, conn, null);
             GridView1.Visible = true;
@@ -208,10 +206,24 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
             Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
         }
+
+        if (GridView1.Rows.Count == 0)
+        {
+            Button3.Visible = false;
+            Button4.Visible = false;
+            Label_Error.Visible = true;
+        }
+        else
+        {
+            Button3.Visible = true;
+            Button4.Visible = true;
+            Label_Error.Visible = false;
+        }
     }
 
     protected void Calendar1_SelectionChanged(object sender, System.EventArgs e)
     {
+        Calendar2.SelectedDates.Clear();
         String SelectedData = Calendar1.SelectedDate.ToShortDateString();
         string startdated = (Convert.ToDateTime(SelectedData)).ToString("yyyy/MM/dd");
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
@@ -235,11 +247,22 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             thetable = dt.Copy();
             ButtonsAndCheckBoxes(dt, conn,"Calendar1");
-            
-    
+            if (GridView1.Rows.Count == 0)
+            {
+                Button3.Visible = false;
+                Button4.Visible = false;
+                Label_Error.Visible = true;
+            }
+            else
+            {
+                Button3.Visible = true;
+                Button4.Visible = true;
+                Label_Error.Visible = false;
+            }
     }
     protected void Calendar2_SelectionChanged(object sender, System.EventArgs e)
     {
+        Calendar1.SelectedDates.Clear();
         String SelectedData2 = Calendar2.SelectedDate.ToShortDateString();
         string startdated2= (Convert.ToDateTime(SelectedData2)).ToString("yyyy/MM/dd");
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
@@ -263,7 +286,18 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             thetable = dt.Copy();
             ButtonsAndCheckBoxes(dt, conn, "Calendar2");
-
+            if (GridView1.Rows.Count == 0)
+            {
+                Button3.Visible = false;
+                Button4.Visible = false;
+                Label_Error.Visible = true;
+            }
+            else
+            {
+                Button3.Visible = true;
+                Button4.Visible = true;
+                Label_Error.Visible = false;
+            }
     }
     
     protected void TextBox1_TextChanged(object sender, System.EventArgs e)
@@ -305,8 +339,20 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 }
             }
             thetable = dt.Copy();
+            Alaa = "Search";
             ButtonsAndCheckBoxes(dt, conn,"Search");
-  
+            if (GridView1.Rows.Count == 0)
+            {
+                Button3.Visible = false;
+                Button4.Visible = false;
+                Label_Error.Visible = true;
+            }
+            else
+            {
+                Button3.Visible = true;
+                Button4.Visible = true;
+                Label_Error.Visible = false;
+            }
     }
 
    
@@ -564,7 +610,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     void ButtonsAndCheckBoxes(DataTable dt ,SqlConnection conn, String Ahmed)
     {
             Alaa = Ahmed;
-            Debug.WriteLine(Alaa);
+            Debug.WriteLine("Buttons and Checkboxes : " + Alaa);
              command= new SqlCommand();
             dt.Columns.Add(new DataColumn("Esclate 1", typeof(string)));
             dt.Columns.Add(new DataColumn("Esclate 2", typeof(string)));

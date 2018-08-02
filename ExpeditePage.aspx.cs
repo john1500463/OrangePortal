@@ -310,7 +310,10 @@ public partial class ExpeditePage : System.Web.UI.Page
                 //Debug.WriteLine("Mail will be not sent to" + tb.ID);
             }
         }
-        mail.To.Add(Session["Email"].ToString());
+        if (Session["Email"].ToString() != "" || Session["Email"].ToString() != null)
+        {
+            mail.To.Add(Session["Email"].ToString());
+        }
         //mail.To.Add("john.sobhy@orange.com");
         //mail.CC.Add();
         mail.Body = "The ticket with Incident number " + Incident + " has been expedited." + "\n" + "Group: " + group_name + "\n" +"Assignee: " +assignee_name+ "\n" +"Urgency Reason: " +Urgency_reason;
