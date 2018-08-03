@@ -481,19 +481,33 @@ font-family: Arial;
                 <p>
                 <asp:Label ID="Label_Title" runat="server" Text="Expedited Incidents" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
                     </p>
+                <div style="position:absolute; right:2%">
+                <asp:Label ID="Label4" runat="server" Text="Sort By: "></asp:Label>
+                <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true">
+                    <asp:ListItem Text="Incident ID" Value="[INC Incident Number]"></asp:ListItem>
+                    <asp:ListItem Text="Tier 2" Value="[INC Tier 2]"></asp:ListItem>
+                    <asp:ListItem Text="Status" Value="[INC Status]"></asp:ListItem>
+                    <asp:ListItem Text="Assigned Group" Value="[AG Assigned Group Name]" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Assignee" Value="[AG Assignee]"></asp:ListItem>
+                    <asp:ListItem Text="Last Modified Date" Value="[INC DS Last Modified Date]"></asp:ListItem>
+                    <asp:ListItem Text="Expedite Date" Value="[Expedite_Date]"></asp:ListItem>
+                    <asp:ListItem Text="Urgency Reason" Value="[Urgency_Reason]"></asp:ListItem>
+                </asp:DropDownList>
+            <asp:Button ID="Button5" runat="server" OnClick="Button2_Click" Text="Reset" />
+                    </div>
                 <asp:Label ID="Label1" runat="server" Text="Assignee Manager" Style="margin-top:2%;margin-left:1%;"></asp:Label>
                 <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox> &nbsp;
             <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" /> &nbsp;&nbsp;
             <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Reset" />
         </div>
-        <div Style="margin-top:5%;">
+        <div Style="margin-top:2%;">
         <asp:Label ID="Label2" runat="server" Text="Expedite Date less than or equal to" Style="margin-left:1%;"></asp:Label>
         <asp:Label ID="Label3" runat="server" Text="Last Modified Date less than or equal to" Style="margin-left:4.5%;"></asp:Label>
         </div>
         <div> 
-        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-left: 1%; margin-top: 3%; display:inline-block;"></asp:Calendar>
-        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-top: 3%; margin-left:6%; display:inline-block;"></asp:Calendar></div>   
-    <div style="margin-top: 50px;">
+        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-left: 1%; margin-top: 0.5%; display:inline-block;"></asp:Calendar>
+        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-top: 0.5%; margin-left:6%; display:inline-block;"></asp:Calendar></div>   
+    <div style="margin-top: 30px;">
        
        
         <asp:GridView ID="GridView1" runat="server" CellPadding="6" ForeColor="#FF3300" Visible="False" BorderStyle="None" style="margin-bottom:1%; margin-left:1%;" >
