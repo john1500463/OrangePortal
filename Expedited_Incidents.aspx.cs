@@ -253,6 +253,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Button4.Visible = true;
                 Label_Error.Visible = false;
             }
+            Calendar1.Visible = false;
     }
     protected void Calendar2_SelectionChanged(object sender, System.EventArgs e)
     {
@@ -292,6 +293,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Button4.Visible = true;
                 Label_Error.Visible = false;
             }
+            Calendar2.Visible = false;
     }
     
     protected void TextBox1_TextChanged(object sender, System.EventArgs e)
@@ -675,5 +677,36 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                  
             }
         return dt12.Rows[0][0].ToString();
+    }
+    protected void calendar1info_Click(object sender, System.EventArgs e)
+    {
+        if (Calendar1.Visible != true)
+        {
+            Calendar1.Visible = true;
+        }
+        else
+        {
+            Calendar1.Visible = false;
+        }
+        if (Calendar2.Visible)
+        {
+            Calendar2.Visible = false;
+        }
+
+    }
+    protected void calendar2info_Click(object sender, System.EventArgs e)
+    {
+        if (Calendar2.Visible != true)
+        {
+            Calendar2.Visible = true;
+        }
+        else
+        {
+            Calendar2.Visible = false;
+        }
+        if (Calendar1.Visible)
+        {
+            Calendar1.Visible = false;
+        }
     }
 }
