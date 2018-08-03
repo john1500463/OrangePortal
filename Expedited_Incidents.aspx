@@ -476,7 +476,7 @@ font-family: Arial;
 
 
 </div>
-    <form id="form2" runat="server">
+    <form id="form2" runat="server" defaultbutton="Button1">
             <div style="margin-top:2%">  
                 <p>
                 <asp:Label ID="Label_Title" runat="server" Text="Expedited Incidents" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
