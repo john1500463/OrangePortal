@@ -38,7 +38,7 @@ public partial class Sita : System.Web.UI.Page
             SqlCommand command2 = new SqlCommand();
             command.Connection = conn;
             //Get All Incidents in Sita
-            command.CommandText = "Select [Inc Incident Number] From [dbo].['All_Incidents'] Where [INC CI Corporate ID] IN ('KXZP1876','TVDB2230');";
+            command.CommandText = "Select [Inc Incident Number] From [dbo].['All_Incidents'] Where [INC CI Corporate ID] IN ('NGSL4427','TVDB2230');";
             command2.Connection = conn;
             command2.CommandText = "Select [Incident_ID] From [dbo].[Expedite_time];";
 
@@ -164,7 +164,7 @@ public partial class Sita : System.Web.UI.Page
             SqlCommand command2 = new SqlCommand();
             command.Connection = conn;
             //Get All Incidents in Sita
-            command.CommandText = "Select [Inc Incident Number] From [dbo].['All_Incidents'] Where [INC CI Corporate ID] IN ('KXZP1876','TVDB2230') AND convert(date,[INC DS Submit Date])>='" + DateFromString + "'AND convert(date,[INC DS Submit Date])<='" + DateToString + "';";
+            command.CommandText = "Select [Inc Incident Number] From [dbo].['All_Incidents'] Where [INC CI Corporate ID] IN ('NGSL4427','TVDB2230') AND convert(date,[INC DS Submit Date])>='" + DateFromString + "'AND convert(date,[INC DS Submit Date])<='" + DateToString + "';";
             command2.Connection = conn;
             command2.CommandText = "Select [Incident_ID] From [dbo].[Expedite_time]";
 

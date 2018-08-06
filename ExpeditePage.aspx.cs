@@ -294,7 +294,7 @@ public partial class ExpeditePage : System.Web.UI.Page
 
                 }
             }
-
+            conn.Close();
         }
         catch (Exception ex)
         {
