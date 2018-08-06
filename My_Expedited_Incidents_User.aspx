@@ -460,7 +460,7 @@ font-family: Arial;
        
        </form>
 
-<div style="width: 100%; height:10%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+<div style="width: 100%; height:10%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a></b></center></font> </div>
 
 </body>
 </html>

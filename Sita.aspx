@@ -485,14 +485,14 @@ font-family: Arial;
             <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
             <asp:Label ID="Label1" runat="server" Text="Date From" Style="display:inline-block;"></asp:Label>
             <asp:Button ID="calendar1info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar1info_Click"/>
-            <asp:Label ID="Date1view" Text="" runat="server" style="position:relative; margin-left: 0%; display:block;" Visible="false"></asp:Label>
+            <asp:Label ID="Date1view" Text="" runat="server" style=" margin-left: 0%; display:block;" Visible="false"></asp:Label>
              <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-right: 10%; display:block;" Visible="false"></asp:Calendar>
                 </div>
        
          <div Style="margin-top:2%; margin-left:0%; display:inline-block;">
             <asp:Label ID="Label3" runat="server" Text="Date To" style="display:inline-block;"></asp:Label>
              <asp:Button ID="calendar2info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar2info_Click"/>
-                <asp:Label ID="Date2view" Text="" runat="server" style="position:relative; margin-left: 0%; display:block;" Visible="false"></asp:Label>
+                <asp:Label ID="Date2view" Text="" runat="server" style=" margin-left: 0%; display:block;" Visible="false"></asp:Label>
             <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-right:5%; display:block" Visible="false"></asp:Calendar>
             </div>
 
@@ -533,7 +533,7 @@ font-family: Arial;
             <asp:Button ID="Button5" runat="server" OnClick="Button2_Click" Text="Reset" />
                     </div>  
        </form>
-   <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"><br /><font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a><br /> <asp:label ID="Label_ModifiedDateExcel" text="Text" runat="server" Font-Size="10pt" /><br /><asp:label ID="Label_ModifiedDateExe" text="Text" runat="server" Font-Size="10pt" /></center></font> </div>
+   <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"><br /><font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a><br /> <asp:label ID="Label_ModifiedDateExcel" text="Text" runat="server" Font-Size="10pt" /><br /><asp:label ID="Label_ModifiedDateExe" text="Text" runat="server" Font-Size="10pt" /></center></font> </div>
 
 </body>
 </html>

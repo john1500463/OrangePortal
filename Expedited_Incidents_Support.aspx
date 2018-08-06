@@ -442,13 +442,18 @@ font-family: Arial;
             <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Reset" />
                     </div>
         </div>
-        <div Style="margin-top:1%;">
-        <asp:Label ID="Label2" runat="server" Text="Expedite Date less than or equal to" Style="margin-left:1%;"></asp:Label>
-        <asp:Label ID="Label3" runat="server" Text="Last Modified Date less than or equal to" Style="margin-left:4.5%;"></asp:Label>
+        <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
+        <asp:Label ID="Label2" runat="server" Text="Expedite Date less than or equal to" Style="display:inline-block;"></asp:Label>
+        <asp:Button ID="calendar1info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar1info_Click"/>
+            <asp:Label ID="Date1view" Text="" runat="server" style="position:relative; margin-left: 27%; display:block;" Visible="false"></asp:Label>
+        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-right: 10%; display:block;" Visible="false"></asp:Calendar>
         </div>
-        <div> 
-        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-left: 1%; margin-top: 0.5%; display:inline-block;"></asp:Calendar>
-        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-top: 0.5%; margin-left:6%; display:inline-block;"></asp:Calendar></div>   
+            <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
+                <asp:Label ID="Label3" runat="server" Text="Last Modified Date less than or equal to" Style="display:inline-block"></asp:Label>
+                <asp:Button ID="calendar2info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar2info_Click"/>
+                <asp:Label ID="Date2view" Text="" runat="server" style="position:relative; margin-left: 27%; display:block;" Visible="false"></asp:Label>
+        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-right:20%; display:block" Visible="false"></asp:Calendar>
+            </div>  
     <div style="margin-top: 30px;">
        
        
@@ -475,7 +480,7 @@ font-family: Arial;
         
        
        </form>
-    <div style="width: 100%; height:10%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a></b></center></font> </div>
+    <div style="width: 100%; height:10%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a></b></center></font> </div>
 
 </body>
 </html>

@@ -484,9 +484,8 @@ font-family: Arial;
    
        
     <form id="form1" runat="server">
-   <p>
                 <asp:Label ID="Label_Title" runat="server" Text="Expedite Extraction" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
-                    </p>
+        <p></p>
          <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
             <asp:Label ID="Label1" runat="server" Text="Date From" Style="display:inline-block;"></asp:Label>
             <asp:Button ID="calendar1info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar1info_Click"/>
@@ -500,6 +499,7 @@ font-family: Arial;
                 <asp:Label ID="Date2view" Text="" runat="server" style="position:relative; display:block;" Visible="false"></asp:Label>
             <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-right:5%; display:block" Visible="false"></asp:Calendar>
             </div>
+        <p></p>
          <p aria-expanded="true" style="position: relative; margin-top: 0.25%; margin-left:1%">
          <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Get" />
                 <asp:Button ID="Button2" runat="server" Text="Clear Selection" OnClick="Button2_Click" />
@@ -528,6 +528,6 @@ font-family: Arial;
 
     </div>
     </form>
-<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"><br /><font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a><br /> <asp:label ID="Label_ModifiedDateExcel" text="Text" runat="server" Font-Size="10pt" /><br /><asp:label ID="Label_ModifiedDateExe" text="Text" runat="server" Font-Size="10pt" /></center></font> </div>
+<div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"><br /><font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a><br /> <asp:label ID="Label_ModifiedDateExcel" text="Text" runat="server" Font-Size="10pt" /><br /><asp:label ID="Label_ModifiedDateExe" text="Text" runat="server" Font-Size="10pt" /></center></font> </div>
 </body>
 </html>

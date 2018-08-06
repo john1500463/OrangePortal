@@ -24,6 +24,7 @@ using System.Text;
 
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 
 public partial class Expedited_Incidents_Support : System.Web.UI.Page
@@ -291,6 +292,13 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             Button3.Visible = true;
             Label_Error.Visible = false;
         }
+        Calendar1.Visible = false;
+        Date1view.ForeColor = Color.Black;
+        Date1view.Text = Calendar1.SelectedDate.ToString().Substring(0, 10);
+        Date1view.Visible = true;
+        Date2view.Text = "-";
+        Date2view.ForeColor = Color.White;
+        Date2view.Visible = true;
     }
     protected void Calendar2_SelectionChanged(object sender, System.EventArgs e)
     {
@@ -345,6 +353,13 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             Button3.Visible = true;
             Label_Error.Visible = false;
         }
+        Calendar2.Visible = false;
+        Date2view.ForeColor = Color.Black;
+        Date2view.Text = Calendar2.SelectedDate.ToString().Substring(0, 10);
+        Date2view.Visible = true;
+        Date1view.Text = "-";
+        Date1view.ForeColor = Color.White;
+        Date1view.Visible = true;
     }
     protected void Button2_Click(object sender, System.EventArgs e)
     {
@@ -451,8 +466,35 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
 
     }
 
-    protected void Button_Sort_Click(object sender, System.EventArgs e)
+    protected void calendar1info_Click(object sender, System.EventArgs e)
     {
-        Debug.WriteLine("chosen is " + DropDownList1.SelectedValue);
+        if (Calendar1.Visible != true)
+        {
+            Calendar1.Visible = true;
+        }
+        else
+        {
+            Calendar1.Visible = false;
+        }
+        if (Calendar2.Visible)
+        {
+            Calendar2.Visible = false;
+        }
+
+    }
+    protected void calendar2info_Click(object sender, System.EventArgs e)
+    {
+        if (Calendar2.Visible != true)
+        {
+            Calendar2.Visible = true;
+        }
+        else
+        {
+            Calendar2.Visible = false;
+        }
+        if (Calendar1.Visible)
+        {
+            Calendar1.Visible = false;
+        }
     }
 }
