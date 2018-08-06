@@ -522,6 +522,7 @@ font-family: Arial;
                 <asp:Label ID="Label4" runat="server" Text="Sort By: "></asp:Label>
                 <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true">
                     <asp:ListItem Text="Incident ID"></asp:ListItem>
+                    <asp:ListItem Text="Tier 2"></asp:ListItem>
                     <asp:ListItem Text="Submit Date" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="Expedited By"></asp:ListItem>
                     <asp:ListItem Text="Expedited Date" Value="[Expedite_Date]"></asp:ListItem>

@@ -489,7 +489,7 @@ font-family: Arial;
             </asp:DropDownList>
                 </p>
             <p>
-            <asp:Button ID="Button1" runat="server"  Text="Edit" OnClick="Button1_Click" />
+            <asp:Button ID="Button1" runat="server"  Text="Save" OnClick="Button1_Click" />
                 </p>
     
     </div>

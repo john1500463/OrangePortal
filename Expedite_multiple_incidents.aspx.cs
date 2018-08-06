@@ -244,7 +244,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            String cmdstring = "Select [INC Incident Number] as 'Incident Number',[INC Status] as 'Status',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + arr[0] + "'";
+            String cmdstring = "Select [INC Incident Number] as 'Incident Number',[INC Status] as 'Status',[INC Tier 2] as 'Tier 2',[INC DS Submit Date] as 'Submit Date',[AG Assigned Group Name] as 'Assigned Group',[AG Assignee] as 'Assignee',[INC DS Last Modified Date] as 'Last Modified' From [dbo].['All_Incidents'] where [INC Incident Number]='" + arr[0] + "'";
                 
             foreach(String idstring in arr){
                 cmdstring +=" or [INC Incident Number]='" +idstring+ "'";

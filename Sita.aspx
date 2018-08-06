@@ -527,6 +527,7 @@ font-family: Arial;
                     <asp:ListItem Text="Incident ID"></asp:ListItem>
                     <asp:ListItem Text="Submit Date" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="Expedited By"></asp:ListItem>
+                    <asp:ListItem Text="Tier 2"></asp:ListItem>
                     <asp:ListItem Text="Expedited Date" Value="[Expedite_Date]"></asp:ListItem>
                     <asp:ListItem Text="Urgency Reason" Value="[Urgency_Reason]"></asp:ListItem>
                 </asp:DropDownList>
