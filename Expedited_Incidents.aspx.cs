@@ -24,6 +24,7 @@ using System.Text;
 
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 public partial class Expedited_Incidents : System.Web.UI.Page
 {   
@@ -253,7 +254,14 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Button4.Visible = true;
                 Label_Error.Visible = false;
             }
+
             Calendar1.Visible = false;
+            Date1view.ForeColor = Color.Black;
+            Date1view.Text = Calendar1.SelectedDate.ToString().Substring(0, 10);
+            Date1view.Visible = true;
+            Date2view.Text = "-";
+            Date2view.ForeColor = Color.White;
+            Date2view.Visible = true;
     }
     protected void Calendar2_SelectionChanged(object sender, System.EventArgs e)
     {
@@ -294,6 +302,12 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Label_Error.Visible = false;
             }
             Calendar2.Visible = false;
+            Date2view.ForeColor = Color.Black;
+            Date2view.Text = Calendar2.SelectedDate.ToString().Substring(0, 10);
+            Date2view.Visible = true;
+            Date1view.Text = "-";
+            Date1view.ForeColor = Color.White;
+            Date1view.Visible = true;
     }
     
     protected void TextBox1_TextChanged(object sender, System.EventArgs e)
@@ -349,6 +363,10 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Button4.Visible = true;
                 Label_Error.Visible = false;
             }
+            Calendar1.Visible = false;
+            Calendar2.Visible = false;
+            Date1view.Visible = false;
+            Date2view.Visible = false;
     }
 
    

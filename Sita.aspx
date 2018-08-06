@@ -473,8 +473,8 @@ font-family: Arial;
 
 </ul>
 
-    <img src="download.png">
 
+    <img src="download.png">
 
 </div>
     <form id="form1" runat="server">
@@ -482,15 +482,20 @@ font-family: Arial;
                 <asp:Label ID="Label_Title" runat="server" Text="SITA Expedited Incidents" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
                     </p>
 
-        <p aria-expanded="true">
-            <asp:Label ID="Label1" runat="server" Text="From" style="position:relative; margin-left: 1%;"></asp:Label>
-            <asp:Label ID="Label3" runat="server" Text="To" style="position:relative; margin-left: 22%;"></asp:Label>
-        </p>
+            <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
+            <asp:Label ID="Label1" runat="server" Text="Date From" Style="display:inline-block;"></asp:Label>
+            <asp:Button ID="calendar1info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar1info_Click"/>
+            <asp:Label ID="Date1view" Text="" runat="server" style="position:relative; margin-left: 0%; display:block;" Visible="false"></asp:Label>
+             <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-right: 10%; display:block;" Visible="false"></asp:Calendar>
+                </div>
        
-        <p aria-expanded="true">
-          <asp:Calendar ID="Calendar1" runat="server" style="position:relative; margin-left:1%; display:inline-block"></asp:Calendar>
-            <asp:Calendar ID="Calendar2" runat="server"  style="position:relative; margin-left:5%; display:inline-block"></asp:Calendar>
-            </p>
+         <div Style="margin-top:2%; margin-left:0%; display:inline-block;">
+            <asp:Label ID="Label3" runat="server" Text="Date To" style="display:inline-block;"></asp:Label>
+             <asp:Button ID="calendar2info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar2info_Click"/>
+                <asp:Label ID="Date2view" Text="" runat="server" style="position:relative; margin-left: 0%; display:block;" Visible="false"></asp:Label>
+            <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-right:5%; display:block" Visible="false"></asp:Calendar>
+            </div>
+
             <p aria-expanded="true">
          <asp:Button ID="Button1" runat="server"  style="position: relative; margin-top: 0.25%; margin-left:1%" OnClick="Button1_Click" Text="Get" />
                 <asp:Button ID="Button2" runat="server" Text="Reset Selection" OnClick="Button2_Click" />
@@ -516,6 +521,17 @@ font-family: Arial;
         <asp:ImageButton ID="Button_Export" runat="server" width="100px" ImageUrl="Excel-Export.jpg" OnClick="Exportxls_Click"/>
          <asp:Label ID="Label2" runat="server" Text="Label" Font-Bold="True" ForeColor="Red"></asp:Label>
          </div>
+        <div style="position:absolute; top:25%; right:2%">
+                <asp:Label ID="Label4" runat="server" Text="Sort By: "></asp:Label>
+                <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true">
+                    <asp:ListItem Text="Incident ID"></asp:ListItem>
+                    <asp:ListItem Text="Submit Date" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Expedited By"></asp:ListItem>
+                    <asp:ListItem Text="Expedited Date" Value="[Expedite_Date]"></asp:ListItem>
+                    <asp:ListItem Text="Urgency Reason" Value="[Urgency_Reason]"></asp:ListItem>
+                </asp:DropDownList>
+            <asp:Button ID="Button5" runat="server" OnClick="Button2_Click" Text="Reset" />
+                    </div>  
        </form>
    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"><br /><font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;" href="oniness@orange.com">it.support4business@orange.com</a><br /> <asp:label ID="Label_ModifiedDateExcel" text="Text" runat="server" Font-Size="10pt" /><br /><asp:label ID="Label_ModifiedDateExe" text="Text" runat="server" Font-Size="10pt" /></center></font> </div>
 

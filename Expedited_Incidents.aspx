@@ -477,11 +477,30 @@ font-family: Arial;
 
 </div>
     <form id="form2" runat="server" defaultbutton="Button1">
-            <div style="margin-top:2%">  
+            <div style="margin-left:1%">  
                 <p>
-                <asp:Label ID="Label_Title" runat="server" Text="Expedited Incidents" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
+                <asp:Label ID="Label_Title" runat="server" Text="Expedited Incidents" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;"></asp:Label>
                     </p>
-                <div style="position:absolute; right:2%">
+                
+                <asp:Label ID="Label1" runat="server" Text="Assignee Manager" Style="margin-top:2%;"></asp:Label>
+                <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Reset" />
+        </div>
+        <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
+        <asp:Label ID="Label2" runat="server" Text="Expedite Date less than or equal to" Style="display:inline-block;"></asp:Label>
+        <asp:Button ID="calendar1info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar1info_Click"/>
+            <asp:Label ID="Date1view" Text="" runat="server" style="position:relative; margin-left: 27%; display:block;" Visible="false"></asp:Label>
+        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-right: 10%; display:block;" Visible="false"></asp:Calendar>
+        </div>
+            <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
+                <asp:Label ID="Label3" runat="server" Text="Last Modified Date less than or equal to" Style="display:inline-block"></asp:Label>
+                <asp:Button ID="calendar2info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar2info_Click"/>
+                <asp:Label ID="Date2view" Text="" runat="server" style="position:relative; margin-left: 27%; display:block;" Visible="false"></asp:Label>
+        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-right:20%; display:block" Visible="false"></asp:Calendar>
+
+            </div>  
+        <div style="position:absolute; right:2%">
                 <asp:Label ID="Label4" runat="server" Text="Sort By: "></asp:Label>
                 <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true">
                     <asp:ListItem Text="Incident ID" Value="[INC Incident Number]"></asp:ListItem>
@@ -494,23 +513,7 @@ font-family: Arial;
                     <asp:ListItem Text="Urgency Reason" Value="[Urgency_Reason]"></asp:ListItem>
                 </asp:DropDownList>
             <asp:Button ID="Button5" runat="server" OnClick="Button2_Click" Text="Reset" />
-                    </div>
-                <asp:Label ID="Label1" runat="server" Text="Assignee Manager" Style="margin-top:2%;margin-left:1%;"></asp:Label>
-                <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox> &nbsp;
-            <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" /> &nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Reset" />
-        </div>
-        <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
-        <asp:Label ID="Label2" runat="server" Text="Expedite Date less than or equal to" Style="display:inline-block;"></asp:Label>
-        <asp:Button ID="calendar1info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar1info_Click"/>
-        <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-left: 8%; display:block;" Visible="false"></asp:Calendar>
-        </div>
-            <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
-                <asp:Label ID="Label3" runat="server" Text="Last Modified Date less than or equal to" Style="display:inline-block"></asp:Label>
-                <asp:Button ID="calendar2info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar2info_Click"/>
-        <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-left:1%; display:block" Visible="false"></asp:Calendar>
-
-            </div>   
+                    </div>  
     <div style="margin-top: 30px;">
        
        

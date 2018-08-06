@@ -151,7 +151,7 @@ public partial class Home_Page : System.Web.UI.Page
                     DateTime LastModifedExcelPlusThirty = LastModifiedExcel.AddMinutes(30);
                     String Time = (LastModifedExcelPlusThirty - DateTime.Now).ToString();
                     Time = Time.Substring(0,9);
-                    Label1.Text = "This Incident will be avalable in max "+ Time;
+                    Label1.Text = "This Incident will be available in " + Time;
 
                     Button3.Visible = false;
                     GridView1.Visible = false;

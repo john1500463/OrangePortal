@@ -487,19 +487,22 @@ font-family: Arial;
    <p>
                 <asp:Label ID="Label_Title" runat="server" Text="Expedite Extraction" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
                     </p>
-        <p aria-expanded="true">
-            <asp:Label ID="Label1" runat="server" Text="From" style="position:relative; margin-left: 1%;"></asp:Label>
-            <asp:Label ID="Label3" runat="server" Text="To" style="position:relative; margin-left: 22%;"></asp:Label>
-        </p>
+         <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
+            <asp:Label ID="Label1" runat="server" Text="Date From" Style="display:inline-block;"></asp:Label>
+            <asp:Button ID="calendar1info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar1info_Click"/>
+            <asp:Label ID="Date1view" Text="" runat="server" style="position:relative; margin-left: 0%; display:block;" Visible="false"></asp:Label>
+             <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" style="position:relative; margin-right: 10%; display:block;" Visible="false"></asp:Calendar>
+                </div>
        
-        <p aria-expanded="true">
-          <asp:Calendar ID="Calendar1" runat="server" style="position:relative; margin-left:1%; display:inline-block"></asp:Calendar>
-            <asp:Calendar ID="Calendar2" runat="server"  style="position:relative; margin-left:5%; display:inline-block"></asp:Calendar>
-            <p aria-expanded="true" style="position: relative; margin-top: 0.25%; margin-left:1%">
+         <div Style="margin-top:2%; margin-left:5%; display:inline-block;">
+            <asp:Label ID="Label3" runat="server" Text="Date To" style="display:inline-block;"></asp:Label>
+             <asp:Button ID="calendar2info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar2info_Click"/>
+                <asp:Label ID="Date2view" Text="" runat="server" style="position:relative; display:block;" Visible="false"></asp:Label>
+            <asp:Calendar ID="Calendar2" runat="server" OnSelectionChanged="Calendar2_SelectionChanged" style="position:relative; margin-right:5%; display:block" Visible="false"></asp:Calendar>
+            </div>
+         <p aria-expanded="true" style="position: relative; margin-top: 0.25%; margin-left:1%">
          <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Get" />
                 <asp:Button ID="Button2" runat="server" Text="Clear Selection" OnClick="Button2_Click" />
-        </p>
-        
         </p>
         <p aria-expanded="true">
             <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="position:relative; margin-top:3%; margin-left: 1%;">

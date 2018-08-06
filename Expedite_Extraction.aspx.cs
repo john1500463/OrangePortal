@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -152,5 +153,62 @@ public partial class Expedite_Extraction : System.Web.UI.Page
 
         }
         return dt.Rows[0][0].ToString();
+    }
+    protected void calendar1info_Click(object sender, System.EventArgs e)
+    {
+        if (Calendar1.Visible != true)
+        {
+            Calendar1.Visible = true;
+        }
+        else
+        {
+            Calendar1.Visible = false;
+        }
+        if (Calendar2.Visible)
+        {
+            Calendar2.Visible = false;
+        }
+
+    }
+    protected void calendar2info_Click(object sender, System.EventArgs e)
+    {
+        if (Calendar2.Visible != true)
+        {
+            Calendar2.Visible = true;
+        }
+        else
+        {
+            Calendar2.Visible = false;
+        }
+        if (Calendar1.Visible)
+        {
+            Calendar1.Visible = false;
+        }
+    }
+    protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+    {
+        Calendar1.Visible = false;
+        Date1view.ForeColor = Color.Black;
+        Date1view.Text = Calendar1.SelectedDate.ToString().Substring(0, 10);
+        Date1view.Visible = true;
+        if (Date2view.Visible == false)
+        {
+            Date2view.Visible = true;
+            Date2view.ForeColor = Color.White;
+            Date2view.Text = "-";
+        }
+    }
+    protected void Calendar2_SelectionChanged(object sender, EventArgs e)
+    {
+        Calendar2.Visible = false;
+        Date2view.ForeColor = Color.Black;
+        Date2view.Text = Calendar2.SelectedDate.ToString().Substring(0, 10);
+        Date2view.Visible = true;
+        if (Date1view.Visible == false)
+        {
+            Date1view.Visible = true;
+            Date1view.ForeColor = Color.White;
+            Date1view.Text = "-";
+        }
     }
 }
