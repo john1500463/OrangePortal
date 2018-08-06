@@ -504,6 +504,7 @@ font-family: Arial;
          <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Get" />
                 <asp:Button ID="Button2" runat="server" Text="Clear Selection" OnClick="Button2_Click" />
         </p>
+        <div style="width:100%; overflow:auto;">
         <p aria-expanded="true">
             <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="position:relative; margin-top:3%; margin-left: 1%;">
                 <AlternatingRowStyle BackColor="White" />
@@ -517,7 +518,7 @@ font-family: Arial;
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>   
-                  
+                  </div>
         </p>
         <div style="position: relative; margin-top: 0.25%; margin-left:1%; margin-bottom:20%">
         <asp:ImageButton ID="Button_Export" runat="server" width="100px" ImageUrl="Excel-Export.jpg" OnClick="Exportxls_Click" Visible="false"/>

@@ -212,6 +212,10 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
 
                     }
                 }
+                if (getsgroups.Count == 0)
+                {
+                    dt.Clear();
+                }
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 clickable_incidents();
@@ -225,8 +229,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             GridView1.Visible = true;
 
         }
-
-        if (GridView1.Rows.Count == 0)
+        if (GridView1.Rows.Count == 0 || getsgroups.Count == 0)
         {
             Button3.Visible = false;
             Label_Error.Visible = true;
@@ -282,7 +285,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
         }
         thetable = dt.Copy();
         ButtonsAndCheckBoxes(dt, conn, "Calendar1");
-        if (GridView1.Rows.Count == 0)
+        if (GridView1.Rows.Count == 0 || getsgroups.Count==0)
         {
             Button3.Visible = false;
             Label_Error.Visible = true;
@@ -343,7 +346,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
         }
         thetable = dt.Copy();
         ButtonsAndCheckBoxes(dt, conn, "Calendar2");
-        if (GridView1.Rows.Count == 0)
+        if (GridView1.Rows.Count == 0 || getsgroups.Count == 0)
         {
             Button3.Visible = false;
             Label_Error.Visible = true;
