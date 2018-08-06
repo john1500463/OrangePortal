@@ -109,7 +109,7 @@ public partial class Sita : System.Web.UI.Page
             for (int counter = 0; counter < SitaExpoditeIncidents.Count; counter++)
             {
                 command3.Connection = conn;
-                command3.CommandText = "Select [Incident_ID] as 'Incident ID',[INC Tier 2] as 'Tier 2',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedited Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] Where [Incident_ID] ='" + SitaExpoditeIncidents[counter] + "' ; ";
+                command3.CommandText = "Select [Incident_ID] as 'Incident ID',[INC Tier 2] as 'Tier 2',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedited Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].['All_Incidents'] ,[Expedite].[dbo].[Expedite_time] where [INC Incident Number] = '" + SitaExpoditeIncidents[counter] + "' and [Expedite].[dbo].[Expedite_time].[Incident_ID] = '" + SitaExpoditeIncidents[counter] + "';";
 
                 SqlDataAdapter sda = new SqlDataAdapter();
                 sda.SelectCommand = command3;
@@ -235,8 +235,7 @@ public partial class Sita : System.Web.UI.Page
             for (int counter = 0; counter < SitaExpoditeIncidents.Count; counter++)
             {
                 command3.Connection = conn;
-                command3.CommandText = "Select [Incident_ID] as 'Incident ID',[INC Tier 2] as 'Tier 2',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedited Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].[Expedite_time] Where [Incident_ID] ='" + SitaExpoditeIncidents[counter] + "' ; ";
-
+                command3.CommandText = "Select [Incident_ID] as 'Incident ID',[INC Tier 2] as 'Tier 2',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedited Date',[Urgency_Reason] as 'Urgency Reason' From [dbo].['All_Incidents'] ,[Expedite].[dbo].[Expedite_time] where [INC Incident Number] = '" + SitaExpoditeIncidents[counter] + "' and [Expedite].[dbo].[Expedite_time].[Incident_ID] = '" + SitaExpoditeIncidents[counter] + "';";
                 SqlDataAdapter sda = new SqlDataAdapter();
                 sda.SelectCommand = command3;
                 sda.Fill(DtSitaExpoditeIncidents);
