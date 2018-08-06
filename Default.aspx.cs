@@ -75,7 +75,7 @@ public partial class _Default : System.Web.UI.Page
                 {
                     //Response.Write(ex.ToString());
                 }
-            }
+            }            
         }
         catch (Exception ex)
         {
@@ -145,8 +145,8 @@ public partial class _Default : System.Web.UI.Page
 
             }
 
-            
 
+            conn.Close();
         }
         else
         {
