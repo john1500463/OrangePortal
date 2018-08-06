@@ -393,7 +393,7 @@ public partial class CSM_entity : System.Web.UI.Page
     {
         Calendar1.Visible = false;
         Date1view.ForeColor = Color.Black;
-        Date1view.Text = Calendar1.SelectedDate.ToString().Substring(0, 10);
+        Date1view.Text = Calendar1.SelectedDate.Day + "/" + Calendar1.SelectedDate.Month + "/" + Calendar1.SelectedDate.Year;
         Date1view.Visible = true;
         if (Date2view.Visible == false)
         {
@@ -406,7 +406,7 @@ public partial class CSM_entity : System.Web.UI.Page
     {
         Calendar2.Visible = false;
         Date2view.ForeColor = Color.Black;
-        Date2view.Text = Calendar2.SelectedDate.ToString().Substring(0, 10);
+        Date2view.Text = Calendar2.SelectedDate.Day + "/" + Calendar2.SelectedDate.Month + "/" + Calendar2.SelectedDate.Year;
         Date2view.Visible = true;
         if (Date1view.Visible == false)
         {

@@ -257,7 +257,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
             Calendar1.Visible = false;
             Date1view.ForeColor = Color.Black;
-            Date1view.Text = Calendar1.SelectedDate.ToString().Substring(0, 10);
+            Date1view.Text = Calendar1.SelectedDate.Day + "/" + Calendar1.SelectedDate.Month + "/" + Calendar1.SelectedDate.Year;
             Date1view.Visible = true;
             Date2view.Text = "-";
             Date2view.ForeColor = Color.White;
@@ -303,7 +303,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             Calendar2.Visible = false;
             Date2view.ForeColor = Color.Black;
-            Date2view.Text = Calendar2.SelectedDate.ToString().Substring(0, 10);
+            Date2view.Text = Calendar2.SelectedDate.Day + "/" + Calendar2.SelectedDate.Month + "/" + Calendar2.SelectedDate.Year;
             Date2view.Visible = true;
             Date1view.Text = "-";
             Date1view.ForeColor = Color.White;
