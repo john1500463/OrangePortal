@@ -348,19 +348,20 @@
 
 img {
 
-    position: relative;
+    position: absolute;
 
     z-index:0;
 
-    left: 91.5%;
+    right:10px;
 
-    top: -80%;
+    top: 10px;
 
     width: 7%;
 
     min-width:0.05%;
 
     max-width:50%;
+
     max-height:110px;
 
 }
