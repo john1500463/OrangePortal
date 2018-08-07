@@ -205,7 +205,7 @@ public partial class ExpeditePageUser : System.Web.UI.Page
 
             */
         Label2.Visible = false;
-
+        cnn.Close();
     }
     protected void Button1_Click(object sender, System.EventArgs e)
     {
@@ -293,7 +293,7 @@ public partial class ExpeditePageUser : System.Web.UI.Page
 
                 }
             }
-
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -331,6 +331,7 @@ public partial class ExpeditePageUser : System.Web.UI.Page
             assignee_name = dt.Rows[0][1].ToString();
             submitter_mail = dt.Rows[0][2].ToString();
             expeditedby_mail = dt.Rows[0][3].ToString();
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -387,6 +388,7 @@ public partial class ExpeditePageUser : System.Web.UI.Page
                 }
             }
             String value = dt.Rows[0][0].ToString();
+            conn.Close();
             return value;
         }
         catch (Exception ex)

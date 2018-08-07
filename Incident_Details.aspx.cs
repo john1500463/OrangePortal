@@ -78,7 +78,7 @@ public partial class Incident_Details : System.Web.UI.Page
 
            Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
            Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
-           
+           conn.Close();
             
             }
         catch (Exception ex)
@@ -86,7 +86,6 @@ public partial class Incident_Details : System.Web.UI.Page
             conn.Close();
             Console.Write(ex.ToString());
         }
-
          }
     string GetLastModifiedDate()
     {
@@ -112,6 +111,7 @@ public partial class Incident_Details : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
 }

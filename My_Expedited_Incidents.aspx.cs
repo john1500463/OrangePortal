@@ -69,8 +69,8 @@ String Incident = GridView1.Rows[i].Cells[0].Text;
  hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + Incident;
 hlContro.Text = GridView1.Rows[i].Cells[0].Text;
 GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
-} 
-
+}
+conn.Close();
          }
          catch (Exception ex)
          {
@@ -103,6 +103,7 @@ GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
     protected void Button2_Click(object sender, System.EventArgs e)

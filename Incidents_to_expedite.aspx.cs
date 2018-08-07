@@ -138,6 +138,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             {
                 selectedListItem.Selected = true;
             }
+            conn2.Close();
         }
         catch (Exception ex)
         {
@@ -179,6 +180,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 if(dt.Rows[0][6].ToString() !=""){
                 TextBox2.Text = dt.Rows[0][7].ToString();
                 }
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -216,6 +218,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                         ar.Add(row[column]);
                     }
                 }
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -278,6 +281,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             GridView1.DataBind();
             DropDownList1.Visible = false;
             insert_expedite_time_to_allinc(theidnow);
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -325,7 +329,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
 
                  }
              }
-
+             conn.Close();
          }
          catch (Exception ex)
          {
@@ -356,6 +360,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                  }
              }
              String value = dt.Rows[0][0].ToString();
+             conn.Close();
              return value;
          }
          catch (Exception ex)
@@ -388,6 +393,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                GridView1.DataSource = dt;
                 GridView1.DataBind();
                 DropDownList1.Visible = false;
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -437,6 +443,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                         ar.Add(row[column]);
                     }
                 }
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -482,6 +489,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                     //Debug.Write("madeit");
                     selectedListItem.Selected = true;
                 }
+                conn2.Close();
             }
             catch (Exception ex)
             {
@@ -547,7 +555,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                     sda.Fill(dt);
                 }
             }
-
+            conn.Close();
             if (dt.Rows.Count == 0)
             {
                 return false;
@@ -609,6 +617,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
 }

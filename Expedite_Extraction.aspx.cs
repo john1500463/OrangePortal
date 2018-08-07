@@ -70,6 +70,7 @@ public partial class Expedite_Extraction : System.Web.UI.Page
                 Button_Export.Visible = true;
                 }
             }
+            conn.Close();
         }
         else {
             Label2.Visible = true;
@@ -152,6 +153,7 @@ public partial class Expedite_Extraction : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
     protected void calendar1info_Click(object sender, System.EventArgs e)

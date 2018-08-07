@@ -42,7 +42,7 @@ public partial class EditUser : System.Web.UI.Page
             TextBox1.Text = dt.Rows[0][1].ToString();
             TextBox3.Text = dt.Rows[0][3].ToString();
         }
-
+        conn.Close();
         Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
         Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
     }
@@ -70,6 +70,7 @@ public partial class EditUser : System.Web.UI.Page
 
             }
         }
+        conn.Close();
         Response.Redirect("ModifyUser.aspx");
    
     }
@@ -97,6 +98,7 @@ public partial class EditUser : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
 }

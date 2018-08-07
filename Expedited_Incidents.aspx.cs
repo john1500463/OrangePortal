@@ -113,6 +113,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             thetable = dt.Copy();
             Alaa = "Search";
             ButtonsAndCheckBoxes(dt, conn,"Search");
+            conn.Close();
             //Alaa = null;
         }
         if (Alaa == "Calendar1")
@@ -140,6 +141,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             thetable = dt.Copy();
             ButtonsAndCheckBoxes(dt, conn, "Calendar1");
+            conn.Close();
                     }
         if (Alaa == "Calendar2")
         {
@@ -166,6 +168,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             thetable = dt.Copy();
             ButtonsAndCheckBoxes(dt, conn, "Calendar2");
+            conn.Close();
         }
         if (Alaa == null)
         {
@@ -197,7 +200,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             }
             ButtonsAndCheckBoxes(dt, conn, null);
             GridView1.Visible = true;
-
+            conn.Close();
             Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
             Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
         }
@@ -254,7 +257,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Button4.Visible = true;
                 Label_Error.Visible = false;
             }
-
+            conn.Close();
             Calendar1.Visible = false;
             Date1view.ForeColor = Color.Black;
             Date1view.Text = Calendar1.SelectedDate.Day + "/" + Calendar1.SelectedDate.Month + "/" + Calendar1.SelectedDate.Year;
@@ -301,6 +304,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Button4.Visible = true;
                 Label_Error.Visible = false;
             }
+            conn.Close();
             Calendar2.Visible = false;
             Date2view.ForeColor = Color.Black;
             Date2view.Text = Calendar2.SelectedDate.Day + "/" + Calendar2.SelectedDate.Month + "/" + Calendar2.SelectedDate.Year;
@@ -367,6 +371,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             Calendar2.Visible = false;
             Date1view.Visible = false;
             Date2view.Visible = false;
+            conn.Close();
     }
 
    
@@ -400,6 +405,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
+            conn.Close();
             Response.Redirect("Expedited_Incidents.aspx");
         }
         catch (Exception ex)
@@ -437,6 +443,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 Debug.WriteLine(command.CommandText);
             }
         }
+        conn.Close();
         Response.Redirect("Expedited_Incidents.aspx");
     }
     
@@ -515,6 +522,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             conn.Close();
             Console.Write(ex.ToString());
         }
+        conn.Close();
     }
 
     protected void sendmailtomanager(String manager_email, ArrayList IncidentsIDs)
@@ -657,7 +665,6 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
             }
             
-
         }
     protected void clickable_incidents()
     {
@@ -694,6 +701,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 }
                  
             }
+            conn.Close();
         return dt12.Rows[0][0].ToString();
     }
     protected void calendar1info_Click(object sender, System.EventArgs e)

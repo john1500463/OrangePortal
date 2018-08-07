@@ -67,13 +67,13 @@ public partial class My_Expedited_Incidents_Support : System.Web.UI.Page
                 hlContro.Text = GridView1.Rows[i].Cells[0].Text;
                 GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
             conn.Close();
             Console.Write(ex.ToString());
         }
-
     }
     protected void Button2_Click(object sender, System.EventArgs e)
     {
