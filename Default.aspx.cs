@@ -51,6 +51,7 @@ public partial class _Default : System.Web.UI.Page
                 {
                     foreach (String property in de.Properties.PropertyNames)
                     {
+                        //Debug.WriteLine(property);
                         String value = de.Properties[property][0].ToString();
                         switch (property.ToString())
                         {
@@ -63,7 +64,7 @@ public partial class _Default : System.Web.UI.Page
                             case "sn":
                                 sn_S = de.Properties[property][0].ToString(); //Last
                                 break;
-                            case "description":
+                            case "mail":
                                 description_S = de.Properties[property][0].ToString();
                                 break;
                             default:
