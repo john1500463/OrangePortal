@@ -47,6 +47,7 @@ public partial class User : System.Web.UI.Page
 
             }
         }
+        conn.Close();
         Response.Redirect("ModifyUser.aspx");
          
     }
@@ -74,6 +75,7 @@ public partial class User : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
     

@@ -61,6 +61,7 @@ public partial class Urgency_Reasons : System.Web.UI.Page
                     ar.Add(row[column]);
                 }
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -129,6 +130,7 @@ public partial class Urgency_Reasons : System.Web.UI.Page
                 }
 
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -158,6 +160,7 @@ public partial class Urgency_Reasons : System.Web.UI.Page
                 }
 
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -216,6 +219,7 @@ public partial class Urgency_Reasons : System.Web.UI.Page
                 }
 
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -244,6 +248,7 @@ public partial class Urgency_Reasons : System.Web.UI.Page
                 }
 
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -275,6 +280,7 @@ public partial class Urgency_Reasons : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
 

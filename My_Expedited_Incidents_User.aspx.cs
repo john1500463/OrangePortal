@@ -62,6 +62,7 @@ public partial class My_Expedited_Incidents_User : System.Web.UI.Page
                 hlContro.Text = GridView1.Rows[i].Cells[0].Text;
                 GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
             }
+            conn.Close();
         }
         catch (Exception ex)
         {

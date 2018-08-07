@@ -134,6 +134,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             }
             thetable = dt.Copy();
             ButtonsAndCheckBoxes(dt, conn, "Calendar1");
+            conn.Close();
         }
         if (Alaa == "Calendar2")
         {
@@ -177,6 +178,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             }
             thetable = dt.Copy();
             ButtonsAndCheckBoxes(dt, conn, "Calendar2");
+            conn.Close();
         }
         if (Alaa == null)
         {
@@ -227,7 +229,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             }
             ButtonsAndCheckBoxes(dt, conn, null);
             GridView1.Visible = true;
-
+            conn.Close();
         }
         if (GridView1.Rows.Count == 0 || getsgroups.Count == 0)
         {
@@ -239,7 +241,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             Button3.Visible = true;
             Label_Error.Visible = false;
         }
-
+        
     }
 
     protected void Calendar1_SelectionChanged(object sender, System.EventArgs e)
@@ -295,6 +297,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             Button3.Visible = true;
             Label_Error.Visible = false;
         }
+        conn.Close();
         Calendar1.Visible = false;
         Date1view.ForeColor = Color.Black;
         Date1view.Text = Calendar1.SelectedDate.Day + "/" + Calendar1.SelectedDate.Month + "/" + Calendar1.SelectedDate.Year;
@@ -356,6 +359,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
             Button3.Visible = true;
             Label_Error.Visible = false;
         }
+        conn.Close();
         Calendar2.Visible = false;
         Date2view.ForeColor = Color.Black;
         Date2view.Text = Calendar2.SelectedDate.Day + "/" + Calendar2.SelectedDate.Month + "/" + Calendar2.SelectedDate.Year;
@@ -403,7 +407,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
         {
             output.Add(dtgroups.Rows[i][0]);
         }
-
+        conn.Close();
         return output;
     }
     
@@ -437,6 +441,7 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
 
                 }
             }
+            conn.Close();
             Response.Redirect("Expedited_Incidents.aspx");
         }
         catch (Exception ex)

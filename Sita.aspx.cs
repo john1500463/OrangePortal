@@ -133,7 +133,7 @@ public partial class Sita : System.Web.UI.Page
                 clickable_incidents();
                 Button_Export.Visible = true;
             }
-
+            conn.Close();
         }
 
         catch (Exception ex)
@@ -259,7 +259,7 @@ public partial class Sita : System.Web.UI.Page
                     clickable_incidents();
 
                 }
-
+            conn.Close();
             }
 
             catch (Exception ex)
@@ -350,6 +350,7 @@ public partial class Sita : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
     protected void calendar1info_Click(object sender, System.EventArgs e)

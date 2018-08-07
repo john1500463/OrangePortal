@@ -76,7 +76,7 @@ public partial class Urgency_Reason_Stats : System.Web.UI.Page
             GridView1.DataBind();
             GridView1.Visible = true;
         }
-
+        conn.Close();
     }
     string GetLastModifiedDate()
     {
@@ -102,6 +102,7 @@ public partial class Urgency_Reason_Stats : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
 }

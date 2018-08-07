@@ -55,6 +55,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
                     ar.Add(row[column]);
                 }
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -143,7 +144,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         {
             Textbox_message.Text += " ID: " + id + " is already expedited" + "<br />";
         }
-
+        conn.Close();
     }
     void insert_expedite_time_to_allinc(String idd)
     {
@@ -185,7 +186,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
 
                 }
             }
-
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -279,6 +280,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
                 clickable_incidents();
 
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -308,6 +310,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
                 }
             }
             String value = dt.Rows[0][0].ToString();
+            conn.Close();
             return value;
         }
         catch (Exception ex)
@@ -366,6 +369,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
 }

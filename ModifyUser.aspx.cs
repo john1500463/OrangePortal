@@ -78,7 +78,6 @@ public partial class ModifyUser : System.Web.UI.Page
                 
                 
             }
-          
         }
         catch (Exception ex)
         {
@@ -89,6 +88,7 @@ public partial class ModifyUser : System.Web.UI.Page
         Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
 
         }
+        conn.Close();
     }
     void EditingBtn_Click(Object sender,
                           EventArgs e)
@@ -141,6 +141,7 @@ public partial class ModifyUser : System.Web.UI.Page
 
             }
         }
+        conn.Close();
        // Response.Redirect("ModifyUser.aspx");
         Search();
 }
@@ -214,6 +215,7 @@ public partial class ModifyUser : System.Web.UI.Page
                 }
 
             }
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -250,6 +252,7 @@ public partial class ModifyUser : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
 }

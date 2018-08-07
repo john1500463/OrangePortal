@@ -211,7 +211,8 @@ public partial class Home_Page_Support : System.Web.UI.Page
                 }
                 //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
 
-            }
+            } 
+            conn.Close();
         }
 
 
@@ -290,6 +291,7 @@ public partial class Home_Page_Support : System.Web.UI.Page
         }
 
 
+        conn.Close();
         if (dt.Rows.Count != 0)
         {
             Label2.Text = "Already Expedited";

@@ -80,6 +80,6 @@ public partial class Incident_Details_User : System.Web.UI.Page
             conn.Close();
             Console.Write(ex.ToString());
         }
-
+        conn.Close();
     }
 }

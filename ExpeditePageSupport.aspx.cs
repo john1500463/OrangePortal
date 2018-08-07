@@ -202,6 +202,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
             }
 
             */
+        cnn.Close();
         Label2.Visible = false;
 
     }
@@ -291,7 +292,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
 
                 }
             }
-
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -329,6 +330,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
             assignee_name = dt.Rows[0][1].ToString();
             submitter_mail = dt.Rows[0][2].ToString();
             expeditedby_mail = dt.Rows[0][3].ToString();
+            conn.Close();
         }
         catch (Exception ex)
         {
@@ -385,6 +387,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
                 }
             }
             String value = dt.Rows[0][0].ToString();
+            conn.Close();
             return value;
         }
         catch (Exception ex)

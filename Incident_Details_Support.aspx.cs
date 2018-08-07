@@ -69,7 +69,7 @@ public partial class Incident_Details_Support : System.Web.UI.Page
             tRow.Cells.Add(tCell);
             
             }
-           
+           conn.Close();
              
             
            
