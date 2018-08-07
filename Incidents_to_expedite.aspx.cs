@@ -225,7 +225,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 conn.Close();
                 Console.Write(ex.ToString());
             }
-            newDropDownList1.Items.Add(new ListItem("-None-"));
+            newDropDownList1.Items.Add(new ListItem("Type a reason..","-None-"));
             for (int i = 0; i < ar.Count; i++)
             {
                 newDropDownList1.Items.Add(new ListItem(ar[i].ToString()));
@@ -450,7 +450,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 conn.Close();
                 Console.Write(ex.ToString());
             }
-            DropDownList1.Items.Add(new ListItem("-None-"));
+            DropDownList1.Items.Add(new ListItem("Type a reason..","-None-"));
             for (int i = 0; i < ar.Count; i++)
             {
                 DropDownList1.Items.Add(new ListItem(ar[i].ToString()));

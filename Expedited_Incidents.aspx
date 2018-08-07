@@ -117,7 +117,7 @@
 
   display: block;
 
-  position: relative;
+  position: fixed;
 
   text-align: center;
 
@@ -375,6 +375,7 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+
 a {
     text-decoration:none;
     color:black;

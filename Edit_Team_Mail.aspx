@@ -500,14 +500,23 @@ font-family: Arial;
 
 </div>
     <form id="form1" runat="server">
-    <div>
-    
-    </div>
-        <asp:Label ID="Label1" runat="server" Text="Please Select The Team That will be changed  "></asp:Label>
+    <div style="margin-left:1%; margin-top:5%;">
+
+        <div style="display:inline-block">
+        <asp:Label ID="Label1" runat="server" Text="Please Select The Team to be changed:  " ></asp:Label>
+            </div>
+
+        <div style="display:inline-block">
         <asp:DropDownList ID="DropDownList1" runat="server">
-            <asp:ListItem Text="Type Team Name .."  Value="none"></asp:ListItem>
+            <asp:ListItem Text="Type Team Name .."  Value="none" Selected="True"></asp:ListItem>
         </asp:DropDownList>
+        </div>
+
+        <div style="display:inline-block">
         <asp:Button ID="Button1" runat="server" Text="Edit" OnClick="Button1_Click" />
+        </div>
+         
+        </div>
         <p>
             <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label"></asp:Label>
         </p>

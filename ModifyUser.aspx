@@ -491,7 +491,7 @@ font-family: Arial;
         <p><asp:Label ID="Label9" runat="server" Text="Users: "></asp:Label>
 
         </p>
-         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px">
+         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" PageSize="50" AllowPaging="True" OnPageIndexChanging="gridviewnewpage">
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="#FF6501" />

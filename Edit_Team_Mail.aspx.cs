@@ -40,7 +40,7 @@ public partial class OrangePortal_Edit_Team_Mail : System.Web.UI.Page
             DropDownList1.DataValueField = "GroupName";
             DropDownList1.DataSource = dt;
             DropDownList1.DataBind();
-
+            //DropDownList1.Items.Add(new ListItem("Type group","none"));
 
             conn.Close();
         }

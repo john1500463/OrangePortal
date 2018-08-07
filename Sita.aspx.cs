@@ -410,4 +410,33 @@ public partial class Sita : System.Web.UI.Page
             Date1view.Text = "-";
         }
     }
+    protected void Search_Click(object sender, EventArgs e)
+    {
+        String ManagerName = TextBox1.Text.ToString();
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        DataTable dt = new DataTable();
+        conn.Open();
+        SqlCommand command = new SqlCommand();
+        command.Connection = conn;
+        command.CommandText = "Select [Incident_ID] as 'Incident ID',[INC Tier 2] as 'Tier 2',[Submit_Date] as 'Submit Date',[Expedite_By] as 'Expedited By',[Expedite_Date] as 'Expedited Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].[Expedite_time] as A inner join [Expedite].[dbo].['All_Incidents'] as B  on A.[Incident_ID]=B.[INC Incident Number] and [INC CI Corporate ID] IN ('NGSL4427','TVDB2230') and [AG Assignee Manager Name]='" + ManagerName + "' ORDER BY " + DropDownList1.SelectedValue;
+        //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
+        using (SqlDataAdapter sda = new SqlDataAdapter())
+        {
+            sda.SelectCommand = command;
+            using (dt = new DataTable())
+            {
+
+                sda.Fill(dt);
+
+            }
+        }
+        thedatatable = dt.Copy();
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+
+    }
+    protected void Reset_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Sita.aspx");
+    }
 }

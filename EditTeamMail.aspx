@@ -470,17 +470,19 @@ font-family: Arial;
     <div>
     
     </div>
-        <asp:Label ID="Label1" runat="server" Text="Team Name "></asp:Label>
+        <div style="margin-left:1%; margin-top:5%">
+        <asp:Label ID="Label1" runat="server" Text="Team Name: "></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <p>
-            <asp:Label ID="Label3" runat="server" Text="Old Mail "></asp:Label>
+            <asp:Label ID="Label3" runat="server" Text="Old Mail: "></asp:Label>
         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
         </p>
         <p>
-            <asp:Label ID="Label4" runat="server" Text="New Mail "></asp:Label>
+            <asp:Label ID="Label4" runat="server" Text="New Mail: "></asp:Label>
         <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
         </p>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Edit" />
+            </div>
         <p>
             <asp:Label ID="Label5" runat="server" Font-Bold="True" ForeColor="Red" Text="Label"></asp:Label>
         </p>

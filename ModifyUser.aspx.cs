@@ -23,69 +23,75 @@ public partial class ModifyUser : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        mypageload();
+    }
+
+    protected void mypageload()
+    {
         if (Flag == "false")
         {
             Search();
         }
         if (Flag == null)
         {
-        Label8.Visible = false;
-        conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
-        try
-        {
-            dt = new DataTable();
-            conn.Open();
-            command = new SqlCommand();
-            command.Connection = conn;
-            command.CommandText = "Select [Username] as 'User Name' ,Rights as 'Role' , Email, FTID From [Expedite].[dbo].[Users]";
-            //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
-
-
-            using (SqlDataAdapter sda = new SqlDataAdapter())
+            Label8.Visible = false;
+            conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+            try
             {
-                sda.SelectCommand = command;
+                dt = new DataTable();
+                conn.Open();
+                command = new SqlCommand();
+                command.Connection = conn;
+                command.CommandText = "Select [Username] as 'User Name' ,Rights as 'Role' , Email, FTID From [Expedite].[dbo].[Users]";
+                //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
 
-                using (dt = new DataTable())
+
+                using (SqlDataAdapter sda = new SqlDataAdapter())
                 {
+                    sda.SelectCommand = command;
 
-                    sda.Fill(dt);
+                    using (dt = new DataTable())
+                    {
+
+                        sda.Fill(dt);
+
+                    }
+                }
+
+                dt.Columns.Add(new DataColumn("Edit", typeof(string)));
+                dt.Columns.Add(new DataColumn("Delete", typeof(string)));
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+                GridView1.Visible = true;
+
+
+                int num = dt.Rows.Count;
+
+                for (int i = 0; i < num; i++)
+                {
+                    Edit = new Button();
+                    Delete = new Button();
+                    Edit.ID = i.ToString();
+                    Edit.Click += new EventHandler(this.EditingBtn_Click);
+                    Delete.ID = (i + num).ToString();
+                    Delete.Click += new EventHandler(this.DeleteBtn_Click);
+
+                    Edit.Text = "Edit";
+                    Delete.Text = "Delete";
+                    GridView1.Rows[i].Cells[4].Controls.Add(Edit);
+                    GridView1.Rows[i].Cells[5].Controls.Add(Delete);
+
 
                 }
             }
-
-            dt.Columns.Add(new DataColumn("Edit", typeof(string)));
-            dt.Columns.Add(new DataColumn("Delete", typeof(string)));
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            GridView1.Visible = true;  
-
-            
-            int num = dt.Rows.Count;
-            
-            for (int i = 0; i < num; i++)
+            catch (Exception ex)
             {
-                Edit = new Button();
-                Delete = new Button();
-                Edit.ID = i.ToString();
-                Edit.Click += new EventHandler(this.EditingBtn_Click);
-                Delete.ID = (i + num).ToString();
-                Delete.Click += new EventHandler(this.DeleteBtn_Click);
-
-                Edit.Text = "Edit";
-                Delete.Text = "Delete";
-                GridView1.Rows[i].Cells[4].Controls.Add(Edit);
-                GridView1.Rows[i].Cells[5].Controls.Add(Delete);
-                
-                
+                conn.Close();
+                Console.Write(ex.ToString());
             }
-        }
-        catch (Exception ex)
-        {
-            conn.Close();
-            Console.Write(ex.ToString());
-        }
-        Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
-        Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
+
+            Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
+            Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
 
         }
         conn.Close();
@@ -147,14 +153,12 @@ public partial class ModifyUser : System.Web.UI.Page
 }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        
         Flag = "false";
+        GridView1.PageIndex = 0;
         Search();
-
     }
 
     void Search() {
-
         try
         {
             conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
@@ -254,6 +258,12 @@ public partial class ModifyUser : System.Web.UI.Page
         }
         conn.Close();
         return dt.Rows[0][0].ToString();
+    }
+
+    protected void gridviewnewpage(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        mypageload();
     }
 }
     

@@ -527,18 +527,21 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
     protected void sendmailtomanager(String manager_email, ArrayList IncidentsIDs)
     {
-        String body = "The following Incidents are expedited: \n";
-
+        String body = "The following Incidents are expedited: </br> <style>table, th, td {border: 1px solid black; border-collapse: collapse;}</style> <table>";
+        body += "<tr> <th>Incident ID</th> </tr>";
         foreach (String id in IncidentsIDs)
         {
-            body += id + "\n";
+            body +="<tr> <td> " + id + "</td> </tr>";
         }
+        body+="</table>";
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("expedite_portal@orange.com");
-        mail.To.Add(manager_email);
+        //mail.To.Add(manager_email);
+        mail.To.Add("waleed.mohamed@orange.com");
         mail.Body = body;
         mail.Subject = "Expedtied Incidents";
+        mail.IsBodyHtml = true;
         SmtpServer.Send(mail);
         //Debug.Write(body + " EMAIL IS " + manager_email);
     }

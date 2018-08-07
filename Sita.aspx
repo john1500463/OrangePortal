@@ -478,10 +478,15 @@ font-family: Arial;
 
 </div>
     <form id="form1" runat="server">
+        <div style="margin-left:1%">  
         <p>
                 <asp:Label ID="Label_Title" runat="server" Text="SITA Expedited Incidents" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
                     </p>
-
+        <asp:Label ID="Label5" runat="server" Text="Assignee Manager" Style="margin-top:2%;"></asp:Label>
+                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Button ID="Button3" runat="server" Text="Search" OnClick="Search_Click" />
+            <asp:Button ID="Button4" runat="server" OnClick="Reset_Click" Text="Reset" />
+            </div>
             <div Style="margin-top:2%; margin-left:1%; display:inline-block;">
             <asp:Label ID="Label1" runat="server" Text="Date From" Style="display:inline-block;"></asp:Label>
             <asp:Button ID="calendar1info" Text="..." runat="server" style="display:inline-block;" OnClick="calendar1info_Click"/>
@@ -524,10 +529,10 @@ font-family: Arial;
         <div style="position:absolute; top:25%; right:2%">
                 <asp:Label ID="Label4" runat="server" Text="Sort By: "></asp:Label>
                 <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true">
-                    <asp:ListItem Text="Incident ID"></asp:ListItem>
-                    <asp:ListItem Text="Submit Date" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Expedited By"></asp:ListItem>
-                    <asp:ListItem Text="Tier 2"></asp:ListItem>
+                    <asp:ListItem Text="Incident ID" Value="[Incident_ID]"></asp:ListItem>
+                    <asp:ListItem Text="Submit Date" Value="[Submit_Date]" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Expedited By" Value="[Expedite_By]"></asp:ListItem>
+                    <asp:ListItem Text="Tier 2" Value="[INC Tier 2]"></asp:ListItem>
                     <asp:ListItem Text="Expedited Date" Value="[Expedite_Date]"></asp:ListItem>
                     <asp:ListItem Text="Urgency Reason" Value="[Urgency_Reason]"></asp:ListItem>
                 </asp:DropDownList>
