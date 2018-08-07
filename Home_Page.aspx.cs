@@ -307,7 +307,7 @@ public partial class Home_Page : System.Web.UI.Page
             }
         }
 
-
+        conn.Close();
         if (dt.Rows.Count != 0)
         {
             Label2.Text = "Already Expedited";
@@ -362,6 +362,7 @@ public partial class Home_Page : System.Web.UI.Page
             }
 
         }
+        conn.Close();
         return dt.Rows[0][0].ToString();
     }
 

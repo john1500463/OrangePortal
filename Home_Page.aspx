@@ -363,7 +363,7 @@ img {
 
     max-width:50%;
 
-    max-height:110px;
+    max-height:50%;
 
 }
 

@@ -354,15 +354,21 @@ a{
 
 img {
 
-    position: relative;
+    position: absolute;
 
-    left: 92%;
+    z-index:0;
+
+    right:10px;
+
+    top: 10px;
 
     width: 7%;
-    height:auto;
-    top:-23%;
 
+    min-width:0.05%;
 
+    max-width:50%;
+
+    max-height:50%;
 
 }
 
