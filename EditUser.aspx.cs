@@ -15,6 +15,10 @@ public partial class EditUser : System.Web.UI.Page
     {
 
          FTID = Request.QueryString["param1"];
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         if (FTID == null)
         {
             Response.Redirect("Default.aspx");
