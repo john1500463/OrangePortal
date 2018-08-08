@@ -77,13 +77,13 @@ public partial class Home_Page : System.Web.UI.Page
         String x = TextBox1.Text.ToString();
         if (x.Count() < 8)
         {
-            Label1.Text = "Wrong Ticket Format";
+            Label1.Text = "Please enter a valid Incident";
         }
         else {
             string y = x.Substring(0, 8);
             if (y != "INC00100")
             {
-                Label1.Text = "Wrong Ticket Format";
+                Label1.Text = "Please enter a valid Incident";
             }
             else
             {
@@ -132,7 +132,7 @@ public partial class Home_Page : System.Web.UI.Page
                         if (dt.Rows.Count == 0)
                         {
                             DateTime LastModifiedExcel = GetLastModifiedDateTime();
-                            DateTime LastModifedExcelPlusThirty = LastModifiedExcel.AddMinutes(30);
+                            DateTime LastModifedExcelPlusThirty = LastModifiedExcel.AddMinutes(60);
                             String Time = (LastModifedExcelPlusThirty - DateTime.Now).ToString();
                             Time = Time.Substring(0, 9);
                             Label1.Text = "This Incident will be available in " + Time;
