@@ -117,7 +117,7 @@
 
   display: block;
 
-  position: fixed;
+  position: relative;
 
   text-align: center;
 

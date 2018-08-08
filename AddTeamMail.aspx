@@ -498,17 +498,22 @@ font-family: Arial;
 
 </div>
     <form id="form1" runat="server">
-    <div>
+    <div style="margin-top:5%;margin-left:1%">
     
-    </div>
-        <asp:Label ID="Label1" runat="server" Text="Teams Doesn't have group mail "></asp:Label>
+        <div style="display:inline-block">
+        <asp:Label ID="Label1" runat="server" Text="Team To Add E-mail: "></asp:Label>
+            </div>
+        <div style="display:inline-block">
         <asp:DropDownList ID="DropDownList1" runat="server">
         </asp:DropDownList>
+            </div>
         <p>
             <asp:Label ID="Label2" runat="server" Text="Email To Add "></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         </p>
         <asp:Button ID="Button1" runat="server" Text="Add" Height="26px" OnClick="Button1_Click" />
+        
+    </div>
         <p>
             <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="Red" Text="Label"></asp:Label>
         </p>
