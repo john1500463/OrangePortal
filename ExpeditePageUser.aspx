@@ -489,6 +489,8 @@ font-family: Arial;
         </div>
         
         <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+        <br />
+        <asp:LinkButton id="Plaza_link" Text="Start a Discusion on Plaza" runat="server" OnClick="plazadiscussion_click" />
         <p>
             <asp:Label ID="Label5" runat="server" Text="Add Email to be Notified: "></asp:Label>
         <asp:TextBox ID="TextBox_Mail" runat="server"></asp:TextBox>

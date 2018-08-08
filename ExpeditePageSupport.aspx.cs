@@ -600,4 +600,27 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
             }
         }
     }
+    protected void plazadiscussion_click(object sender, System.EventArgs e)
+    {
+        DataTable dtpz;
+        SqlCommand command = new SqlCommand();
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        conn.Open();
+        command.Connection = conn;
+        command.CommandText = "select [INC Summary] from [Expedite].[dbo].['All_Incidents'] where [INC Incident Number]='" + Label1.Text + "'"; ;
+        using (SqlDataAdapter sda = new SqlDataAdapter())
+        {
+            sda.SelectCommand = command;
+            using (dtpz = new DataTable())
+            {
+
+                sda.Fill(dtpz);
+
+            }
+
+        }
+        String thesummary = dtpz.Rows[0][0].ToString();
+        conn.Close();
+        Response.Redirect("https://plazza.orange.com/discussion/create.jspa?containerType=14&containerID=2491&subject=" + Label1.Text + thesummary);
+    }
 }
