@@ -37,16 +37,12 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Label2.Visible = false;
         if (Session["FTID"] == null)
         {
             Response.Redirect("Default.aspx");
         }
-        //Debug.Write("entered");
-           // DropDownList1.Visible = false;
-            //TextBox2.Visible = false;
-            //Button3.Visible = false;
-                //[INC Incident Number],[INC Status],[Submit_Date], [AG Assigned Group Name], [AG Assignee],[Urgency_Reason],[Expedite_Date]
-            Textbox_message.Visible = false;
+          Textbox_message.Visible = false;
             newDropDownList1 = new DropDownList();
             //newDropDownList1.EnableViewState = true;
             fill_dropdown();
@@ -85,26 +81,54 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (TextBox1.Text != null && !String.IsNullOrEmpty(TextBox1.Text) && !String.IsNullOrWhiteSpace(TextBox1.Text))
-        {
-            theidnow = TextBox1.Text;
-            //GridView1.Rows[0].Cells[0].Text = "ID";
-            //GridView1.Rows[0].Cells[1].Text= "Hello";
-            //Debug.Write(newDropDownList1.SelectedItem.Value);
-            newDropDownList1.ClearSelection();
-            updategrid(TextBox1.Text, " ");
-            GridView1.Visible = true;
-            Button3.Visible = true;
-            clickable_incidents();
-            Textbox_message.Visible = false;
-            // Debug.Write(get_submit_date(TextBox1.Text));
-        }
-        else
+        if (TextBox1.Text == null || String.IsNullOrEmpty(TextBox1.Text) || String.IsNullOrWhiteSpace(TextBox1.Text))
         {
             Textbox_message.Visible = true;
             Textbox_message.ForeColor = System.Drawing.Color.Red;
+            Textbox_message.Font.Bold = true;
             Textbox_message.Text = "Please Enter an ID";
         }
+        else if (TextBox1.Text.Count() < 8)
+        {
+            Textbox_message.Visible = true;
+            Textbox_message.ForeColor = System.Drawing.Color.Red;
+            Textbox_message.Font.Bold = true;
+            Textbox_message.Text = "Wrong Ticket Format";
+        }
+        else
+        {
+            string y = TextBox1.Text.Substring(0, 8);
+            if (y != "INC00100")
+            {
+                Textbox_message.Visible = true;
+                Textbox_message.ForeColor = System.Drawing.Color.Red;
+                Textbox_message.Font.Bold = true;
+                Textbox_message.Text = "Wrong Ticket Format";
+            }
+            else {
+
+                theidnow = TextBox1.Text;
+                //GridView1.Rows[0].Cells[0].Text = "ID";
+                //GridView1.Rows[0].Cells[1].Text= "Hello";
+                //Debug.Write(newDropDownList1.SelectedItem.Value);
+                newDropDownList1.ClearSelection();
+                updategrid(TextBox1.Text, " ");
+                GridView1.Visible = true;
+                Button3.Visible = true;
+                clickable_incidents();
+                Textbox_message.Visible = false;
+            }
+
+
+        }
+        if (TextBox1.Text != null && !String.IsNullOrEmpty(TextBox1.Text) && !String.IsNullOrWhiteSpace(TextBox1.Text))
+        {
+            
+            // Debug.Write(get_submit_date(TextBox1.Text));
+        }
+       
+
+        
     }
     protected void preselectdropdown()
     {

@@ -300,7 +300,7 @@ public partial class Home_Page_Support : System.Web.UI.Page
 
         else
         {
-            Y = CryptoEngine.Encrypt(Y, "sblw-3hn8-sqoy19");
+            
             Response.Redirect("ExpeditePageSupport.aspx?param1=" + Y);
         }
     }

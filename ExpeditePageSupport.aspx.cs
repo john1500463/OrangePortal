@@ -60,14 +60,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
                 Response.Redirect("Default.aspx");
         }
         String Incident = Request.QueryString["param1"];
-        try
-        {
-            Incident = CryptoEngine1.Decrypt(Incident, "sblw-3hn8-sqoy19");
-        }
-        catch (Exception ex)
-        {
-            //  Response.Redirect("Default.aspx");
-        }
+
         Label1.Text = Incident;
 
         string connetionString;
