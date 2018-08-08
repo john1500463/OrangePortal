@@ -395,7 +395,7 @@ font-family: Arial;
 
 
 
-<div id='cssmenu'>
+<div id='cssmenu' style="min-width:900px; width:100%; top:0;">
     
   <div id='OrangeText'>
 
