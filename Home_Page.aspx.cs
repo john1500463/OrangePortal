@@ -132,7 +132,7 @@ public partial class Home_Page : System.Web.UI.Page
                         if (dt.Rows.Count == 0)
                         {
                             DateTime LastModifiedExcel = GetLastModifiedDateTime();
-                            DateTime LastModifedExcelPlusThirty = LastModifiedExcel.AddMinutes(60);
+                            DateTime LastModifedExcelPlusThirty = LastModifiedExcel.AddMinutes(30);
                             String Time = (LastModifedExcelPlusThirty - DateTime.Now).ToString();
                             Time = Time.Substring(0, 9);
                             Label1.Text = "This Incident will be available in " + Time;
