@@ -508,7 +508,6 @@ font-family: Arial;
 
         <div style="display:inline-block">
         <asp:DropDownList ID="DropDownList1" runat="server">
-            <asp:ListItem Text="Type Team Name .."  Value="none" Selected="True"></asp:ListItem>
         </asp:DropDownList>
         </div>
 

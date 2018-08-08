@@ -40,7 +40,8 @@ public partial class OrangePortal_Edit_Team_Mail : System.Web.UI.Page
             DropDownList1.DataValueField = "GroupName";
             DropDownList1.DataSource = dt;
             DropDownList1.DataBind();
-            //DropDownList1.Items.Add(new ListItem("Type group","none"));
+            DropDownList1.Items.Add(new ListItem("Type Team Name ..", "none"));
+            DropDownList1.SelectedIndex = DropDownList1.Items.Count-1;
 
             conn.Close();
         }
@@ -53,6 +54,14 @@ public partial class OrangePortal_Edit_Team_Mail : System.Web.UI.Page
         
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Response.Redirect("EditTeamMail.aspx?param=" + DropDownList1.SelectedValue + "");
+        if (DropDownList1.SelectedValue != "none")
+        {
+            Response.Redirect("EditTeamMail.aspx?param=" + DropDownList1.SelectedValue + "");
+        }
+        else
+        {
+            Label2.Visible = true;
+            Label2.Text = "Please Select A Group";
+        }
     }
 }

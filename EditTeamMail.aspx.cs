@@ -15,6 +15,10 @@ public partial class OrangePortal_EditTeamMail : System.Web.UI.Page
     String TeamName;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["FTID"] == null)
+        {
+            Response.Redirect("Default.aspx");
+        }
         Label5.Visible = false;
         try
         {
