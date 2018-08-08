@@ -239,7 +239,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
 
             cnn.Close();
             insert_expedite_time_to_allinc(Incident);
-            //expedite_mailnotification(Incident, UrgenyReason);
+            expedite_mailnotification(Incident, UrgenyReason);
             // Response.Write("<script LANGUAGE='JavaScript' >alert('The Incident has been Expedited')</script>");
             Response.Redirect("Home_Page.aspx");
         }
@@ -302,13 +302,14 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
         String assignee_name = "";
         String submitter_mail = "";
         String expeditedby_mail = "";
+        String assigned_group = "";
         try
         {
             DataTable dt = new DataTable();
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "SELECT [AG Assigned Group Name],[AG Assignee],[INC CI Email Address],[Expedited_mail] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + Incident + "';";
+            command.CommandText = "SELECT [AG Assigned Group Name],[AG Assignee],[INC CI Email Address],[Expedited_mail],[AG Assigned Group Name] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + Incident + "';";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command;
@@ -323,6 +324,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
             assignee_name = dt.Rows[0][1].ToString();
             submitter_mail = dt.Rows[0][2].ToString();
             expeditedby_mail = dt.Rows[0][3].ToString();
+            assigned_group = dt.Rows[0][4].ToString();
             conn.Close();
         }
         catch (Exception ex)
@@ -333,10 +335,15 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
 
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
-        mail.From = new MailAddress("expedite_portal@orange.com");
-        //mail.To.Add("waleed.mohamed@orange.com");
+        mail.From = new MailAddress("it.support4business@orange.com");
         //Debug.Write(submitter_mail);
-        //mail.To.Add(submitter_mail);
+        mail.To.Add(submitter_mail);
+        ArrayList teamlist = getteamlist(assigned_group);
+        foreach (String team_member in teamlist)
+        {
+            mail.To.Add(team_member);
+        }
+
         var textboxesInContainer = FindControl("theoneformails").Controls.OfType<TextBox>();
         foreach (TextBox tb in textboxesInContainer)
         {
@@ -350,12 +357,74 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
                 //Debug.WriteLine("Mail will be not sent to" + tb.ID);
             }
         }
-        mail.To.Add(Session["Email"].ToString());
-        //mail.To.Add("john.sobhy@orange.com");
-        //mail.CC.Add();
+        if (!String.IsNullOrEmpty(Session["Email"].ToString()) && (Session["Email"]) != null && !String.IsNullOrWhiteSpace(Session["Email"].ToString()))
+        {
+            mail.To.Add(Session["Email"].ToString());
+        }
+        mail.CC.Add("it.support4business@orange.com");
         mail.Body = "The ticket with Incident number " + Incident + " has been expedited." + "\n" + "Group: " + group_name + "\n" + "Assignee: " + assignee_name + "\n" + "Urgency Reason: " + Urgency_reason;
         mail.Subject = "Incident " + Incident + " Expedited";
         SmtpServer.Send(mail);
+    }
+
+    protected ArrayList getteamlist(String group_name)
+    {
+        ArrayList outputeamlist = new ArrayList();
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [mail] FROM [Expedite].[dbo].[Group_Mail] Where [GRP Group Name]='" + group_name + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            if (dt.Rows.Count != 0)
+            {
+                outputeamlist.Add(dt.Rows[0][0].ToString());
+                conn.Close();
+                return outputeamlist;
+            }
+            else
+            {
+                DataTable dt2;
+                SqlCommand command2 = new SqlCommand();
+                command2.Connection = conn;
+                command2.CommandText = "SELECT [PE Email] FROM [Expedite].[dbo].[Staff] Where [GRP Group Name]='" + group_name + "';";
+                using (SqlDataAdapter sda2 = new SqlDataAdapter())
+                {
+                    sda2.SelectCommand = command2;
+                    using (dt2 = new DataTable())
+                    {
+
+                        sda2.Fill(dt2);
+
+                    }
+                }
+
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    outputeamlist.Add(dt2.Rows[i][0].ToString());
+                }
+                conn.Close();
+                return outputeamlist;
+            }
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+        return outputeamlist;
     }
 
     protected String get_submit_date(String subid)

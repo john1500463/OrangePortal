@@ -429,7 +429,7 @@ font-family: Arial;
 
 <ul>
 
-   <li><a href='Home_Page.aspx' style="background: #FF6501;border-color: #FF6501;"><span>Home</span></a></li>
+   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
 
    <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
 
@@ -514,9 +514,10 @@ font-family: Arial;
         <asp:Button ID="Button1" runat="server" Text="Add" Height="26px" OnClick="Button1_Click" />
         
     </div>
-        <p>
+        <p style="margin-left:1%">
             <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="Red" Text="Label"></asp:Label>
         </p>
     </form>
+    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"><br /><font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a><br /> <asp:label ID="Label_ModifiedDateExcel" text="Text" runat="server" Font-Size="10pt" /><br /><asp:label ID="Label_ModifiedDateExe" text="Text" runat="server" Font-Size="10pt" /></center></font> </div>
 </body>
 </html>

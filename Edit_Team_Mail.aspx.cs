@@ -50,7 +50,11 @@ public partial class OrangePortal_Edit_Team_Mail : System.Web.UI.Page
             conn.Close();
             Console.Write(ex.ToString());
         }
-    }}
+    }
+
+        Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
+        Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
+    }
         
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -63,5 +67,32 @@ public partial class OrangePortal_Edit_Team_Mail : System.Web.UI.Page
             Label2.Visible = true;
             Label2.Text = "Please Select A Group";
         }
+    }
+    string GetLastModifiedDate()
+    {
+        return System.IO.File.GetLastWriteTime("D:/Expedite/NewExpedite.xls").ToString();
+    }
+
+    string GetLastModifiedDateExe()
+    {
+        SqlCommand command = new SqlCommand();
+        DataTable dt12;
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        conn.Open();
+        command.Connection = conn;
+        command.CommandText = "select * from [expedite].[dbo].[Last_Update_Time]";
+        using (SqlDataAdapter sda = new SqlDataAdapter())
+        {
+            sda.SelectCommand = command;
+            using (dt12 = new DataTable())
+            {
+
+                sda.Fill(dt12);
+
+            }
+
+        }
+        conn.Close();
+        return dt12.Rows[0][0].ToString();
     }
 }

@@ -388,7 +388,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         try
         {
-             dt1 = new DataTable();
+             
             conn.Open();
              command = new SqlCommand();
             command.Connection = conn;
@@ -398,13 +398,14 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command;
-                using (dt = new DataTable())
+                using (dt1 = new DataTable())
                 {
 
                     sda.Fill(dt1);
 
                 }
             }
+            esclate_to_manager(dt1.Rows[IncNum][0].ToString());
             conn.Close();
             Response.Redirect("Expedited_Incidents.aspx");
         }
@@ -415,6 +416,118 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         }
 
     }
+    protected void esclate_to_manager(String Inc_id)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
+        String group_name = "";
+        String assignee_name = "";
+        String manager_mail = "";
+        String expeditedby_mail = "";
+        String assigned_group = "";
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [AG Assigned Group Name],[AG M Email Address],[INC CI Email Address],[Expedited_mail],[AG Assigned Group Name] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + Inc_id + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            group_name = dt.Rows[0][0].ToString();
+            assignee_name = dt.Rows[0][1].ToString();
+            manager_mail = dt.Rows[0][2].ToString();
+            expeditedby_mail = dt.Rows[0][3].ToString();
+            assigned_group = dt.Rows[0][4].ToString();
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+
+        MailMessage mail = new MailMessage();
+        SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
+        mail.From = new MailAddress("it.support4business@orange.com");
+        ArrayList teamlist = getteamlist(assigned_group);
+        foreach (String team_member in teamlist)
+        {
+            mail.CC.Add(team_member);
+        }
+        mail.CC.Add("it.support4business@orange.com");
+        mail.Body = "Hello Manager";
+        mail.Subject = "Incident " + Inc_id + " Expedited";
+        SmtpServer.Send(mail);
+    }
+    protected ArrayList getteamlist(String group_name)
+    {
+        ArrayList outputeamlist = new ArrayList();
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [mail] FROM [Expedite].[dbo].[Group_Mail] Where [GRP Group Name]='" + group_name + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
+                {
+
+                    sda.Fill(dt);
+
+                }
+            }
+            if (dt.Rows.Count != 0)
+            {
+                outputeamlist.Add(dt.Rows[0][0].ToString());
+                conn.Close();
+                return outputeamlist;
+            }
+            else
+            {
+                DataTable dt2;
+                SqlCommand command2 = new SqlCommand();
+                command2.Connection = conn;
+                command2.CommandText = "SELECT [PE Email] FROM [Expedite].[dbo].[Staff] Where [GRP Group Name]='" + group_name + "';";
+                using (SqlDataAdapter sda2 = new SqlDataAdapter())
+                {
+                    sda2.SelectCommand = command2;
+                    using (dt2 = new DataTable())
+                    {
+
+                        sda2.Fill(dt2);
+
+                    }
+                }
+
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    outputeamlist.Add(dt2.Rows[i][0].ToString());
+                }
+                conn.Close();
+                return outputeamlist;
+            }
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+        return outputeamlist;
+    }
+
 
     void CheckBoxClicked(Object sender, EventArgs e)
     {
