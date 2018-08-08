@@ -360,9 +360,9 @@ img {
 
     min-width:0.05%;
 
-    max-width:50%;
+    max-width:30%;
 
-    max-height:110px;
+    max-height:30%;
 
 }
 
@@ -400,7 +400,7 @@ font-family: Arial;
 
 
 
-<div id='cssmenu'>
+<div id='cssmenu' style="min-width:1280px; width:100%; top:0;">
     
   <div id='OrangeText'>
 
@@ -410,10 +410,9 @@ font-family: Arial;
     
 
 
-
 <ul>
 
-   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
+   <li><a href='Home_Page.aspx' style="background: #FF6501;border-color: #FF6501;"><span>Home</span></a></li>
 
    <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
 

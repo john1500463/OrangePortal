@@ -429,16 +429,16 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         {
             DataTable dt = new DataTable();
             conn.Open();
-            SqlCommand command = new SqlCommand();
-            command.Connection = conn;
-            command.CommandText = "SELECT [AG Assigned Group Name],[AG M Email Address],[INC CI Email Address],[Expedited_mail],[AG Assigned Group Name] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + Inc_id + "';";
-            using (SqlDataAdapter sda = new SqlDataAdapter())
+            SqlCommand command2 = new SqlCommand();
+            command2.Connection = conn;
+            command2.CommandText = "SELECT [AG Assigned Group Name],[AG M Email Address],[INC CI Email Address],[Expedited_mail],[AG Assigned Group Name] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + Inc_id + "';";
+            using (SqlDataAdapter sda2 = new SqlDataAdapter())
             {
-                sda.SelectCommand = command;
+                sda2.SelectCommand = command2;
                 using (dt = new DataTable())
                 {
 
-                    sda.Fill(dt);
+                    sda2.Fill(dt);
 
                 }
             }
@@ -447,6 +447,25 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             manager_mail = dt.Rows[0][2].ToString();
             expeditedby_mail = dt.Rows[0][3].ToString();
             assigned_group = dt.Rows[0][4].ToString();
+
+            DataTable dtb = new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [GRP M Full Name (mail)] FROM [Expedite].[dbo].[Manger_Mail] Where [GRP Group Name]='" + assigned_group + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dtb = new DataTable())
+                {
+
+                    sda.Fill(dtb);
+
+                }
+            }
+            if (dtb.Rows.Count != 0)
+            {
+                manager_mail = dtb.Rows[0][0].ToString();
+            }
             conn.Close();
         }
         catch (Exception ex)
@@ -458,6 +477,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("it.support4business@orange.com");
+        mail.To.Add(manager_mail);
         ArrayList teamlist = getteamlist(assigned_group);
         foreach (String team_member in teamlist)
         {

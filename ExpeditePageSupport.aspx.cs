@@ -621,6 +621,6 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
         }
         String thesummary = dtpz.Rows[0][0].ToString();
         conn.Close();
-        Response.Redirect("https://plazza.orange.com/discussion/create.jspa?containerType=14&containerID=2491&subject=" + Label1.Text + thesummary);
+        Response.Redirect("https://plazza.orange.com/discussion/create.jspa?containerType=14&containerID=2491&subject=" + Label1.Text + "/" + thesummary);
     }
 }

@@ -95,7 +95,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             Textbox_message.Visible = true;
             Textbox_message.ForeColor = System.Drawing.Color.Red;
             Textbox_message.Font.Bold = true;
-            Textbox_message.Text = "Wrong Ticket Format";
+            Textbox_message.Text = "Please enter a valid Incident";
         }
         else
         {
@@ -105,7 +105,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 Textbox_message.Visible = true;
                 Textbox_message.ForeColor = System.Drawing.Color.Red;
                 Textbox_message.Font.Bold = true;
-                Textbox_message.Text = "Wrong Ticket Format";
+                Textbox_message.Text = "Please enter a valid Incident";
             }
             else {
 
@@ -116,9 +116,20 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
                 newDropDownList1.ClearSelection();
                 updategrid(TextBox1.Text, " ");
                 GridView1.Visible = true;
-                Button3.Visible = true;
-                clickable_incidents();
-                Textbox_message.Visible = false;
+                if (GridView1.Rows[0].Cells[0].Text != "Row")
+                {
+                    Button3.Visible = true;
+                    clickable_incidents();
+                    Textbox_message.Visible = false;
+                }
+                else
+                {
+                    GridView1.Visible = false;
+                    Textbox_message.Visible = true;
+                    Textbox_message.ForeColor = System.Drawing.Color.Red;
+                    Textbox_message.Font.Bold = true;
+                    Textbox_message.Text = "Incident Not Found";
+                }
             }
 
 
@@ -308,6 +319,19 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             GridView1.DataBind();
             DropDownList1.Visible = false;
             insert_expedite_time_to_allinc(theidnow);
+
+            DataTable dtnew = new DataTable();
+            SqlCommand commandnew = new SqlCommand();
+            commandnew.Connection = conn;
+            commandnew.CommandText = "UPDATE [Expedite].[dbo].['All_Incidents'] SET [INC RES Resolution] ='" + TextBox2.Text + "' Where [INC Incident Number]='"+theidnow+"';";
+            using (SqlDataAdapter sdanew = new SqlDataAdapter())
+            {
+                sdanew.SelectCommand = commandnew;
+                using (dtnew = new DataTable())
+                {
+                    sdanew.Fill(dtnew);
+                }
+            }
             conn.Close();
         }
         catch (Exception ex)
