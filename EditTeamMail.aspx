@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditTeamMail.aspx.cs" Inherits="OrangePortal_EditTeamMail" %>
-
+<!DOCTYPE html>
 <head id="Head1" runat="server">
 
 
@@ -12,8 +12,9 @@
 
    <link rel="stylesheet" href="styles.css">
 
-    
-   
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+   <script src="script.js"></script>
 
    <title>Expedite Portal - Edit Team Mail</title>
 
@@ -355,7 +356,7 @@ img {
 
     max-width:50%;
 
-    max-height:50%;
+    max-height:110px;
 
 }
 
@@ -369,6 +370,9 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 2.5px solid black;
+}
 
 a {
     text-decoration:none;
@@ -378,15 +382,19 @@ a {
 a:hover {
     color:#FF6501;
 }
-
 *{
 font-family: Arial;
 }
+
     </style>
 
 </head>
 
-<body><div id='cssmenu'>
+<body>
+
+
+
+<div id='cssmenu'>
     
   <div id='OrangeText'>
 
@@ -394,6 +402,7 @@ font-family: Arial;
       </div>
 
     
+
 
 
 <ul>
@@ -417,6 +426,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -425,6 +439,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -449,6 +465,18 @@ font-family: Arial;
          <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
+
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
 
       </ul>
 

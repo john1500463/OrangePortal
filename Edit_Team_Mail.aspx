@@ -42,9 +42,8 @@
     });
 
  </script>
-   
 
-   <title>Expedite Portal - Home</title>
+   <title>Expedite Portal - Edit Team Mail</title>
 
     <style>
 
@@ -384,7 +383,7 @@ img {
 
     max-width:50%;
 
-    max-height:50%;
+    max-height:110px;
 
 }
 
@@ -398,6 +397,9 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 2.5px solid black;
+}
 
 a {
     text-decoration:none;
@@ -407,10 +409,10 @@ a {
 a:hover {
     color:#FF6501;
 }
-
 *{
 font-family: Arial;
 }
+
     </style>
 
 </head>
@@ -427,6 +429,7 @@ font-family: Arial;
       </div>
 
     
+
 
 
 <ul>
@@ -450,6 +453,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -458,6 +466,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -483,6 +493,18 @@ font-family: Arial;
 
          </li>
 
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
+
       </ul>
 
    </li>
@@ -499,7 +521,7 @@ font-family: Arial;
 
 
 </div>
-    <form id="form1" runat="server">
+        <form id="form1" runat="server">
     <div style="margin-left:1%; margin-top:5%;">
 
         <div style="display:inline-block">

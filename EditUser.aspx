@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EditUser.aspx.cs" Inherits="EditUser" %>
-
 <!DOCTYPE html>
 
 
@@ -22,7 +21,7 @@
 
    <script src="script.js"></script>
 
-   <title>Home</title>
+   <title>Expedite Portal - Edit User</title>
 
     <style>
 
@@ -302,7 +301,7 @@
 
   top:10%;
 
-  left: 10px;
+  margin-left: 0.5%;
 
   font-size: 38pt;
 
@@ -367,7 +366,7 @@ img {
 }
 
 body {
-overflow:hidden;
+overflow:auto;
 margin-left:0px;
 margin-right:0px;
 margin-top:0px;
@@ -376,7 +375,18 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 2.5px solid black;
+}
 
+a {
+    text-decoration:none;
+    color:black;
+}
+
+a:hover {
+    color:#FF6501;
+}
 *{
 font-family: Arial;
 }
@@ -421,6 +431,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -429,6 +444,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -453,6 +470,18 @@ font-family: Arial;
          <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
+
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
 
       </ul>
 
