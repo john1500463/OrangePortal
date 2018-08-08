@@ -503,7 +503,7 @@ font-family: Arial;
         <div>
         
     <div style="margin-top: 50px;">
-                <asp:Label ID="Label_Title" runat="server" Text="Expedite By User" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
+                <asp:Label ID="Label_Title" runat="server" Text="Expedited By User" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
                     <br />
         <br />
         <asp:Label id="Label_info" Text="No expedited tickets" runat="server" Visible="false" Font-Bold="True" ForeColor="Red" Style="margin-left:1%;"/>

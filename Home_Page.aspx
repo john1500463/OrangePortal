@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home_Page.aspx.cs" Inherits="Home_Page" %>
 
-
 <!DOCTYPE html>
 
 
@@ -23,7 +22,7 @@
 
    <script src="script.js"></script>
 
-   <title>Expedite Portal - Home</title>
+   <title>Expedite Portal - Home Page</title>
 
     <style>
 
@@ -363,7 +362,7 @@ img {
 
     max-width:50%;
 
-    max-height:50%;
+    max-height:110px;
 
 }
 
@@ -377,6 +376,9 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 2.5px solid black;
+}
 
 a {
     text-decoration:none;
@@ -386,10 +388,10 @@ a {
 a:hover {
     color:#FF6501;
 }
-
 *{
 font-family: Arial;
 }
+
     </style>
 
 </head>
@@ -408,9 +410,10 @@ font-family: Arial;
     
 
 
+
 <ul>
 
-   <li><a href='Home_Page.aspx' style="background: #FF6501;border-color: #FF6501;"><span>Home</span></a></li>
+   <li><a href='Home_Page.aspx'><span>Home</span></a></li>
 
    <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
 
@@ -429,6 +432,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -437,6 +445,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -462,6 +472,18 @@ font-family: Arial;
 
          </li>
 
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
+
       </ul>
 
    </li>
@@ -478,7 +500,6 @@ font-family: Arial;
 
 
 </div>
-
     <form id="form1" runat="server" aria-expanded="true">
         <p>
             <asp:Label ID="Label1" runat="server" Font-Size="12pt" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>

@@ -43,7 +43,10 @@
 
  </script>
 
-   <title>Home</title>
+
+
+
+   <title>Expedite Portal - Incidents To Expedite</title>
 
     <style>
 
@@ -397,6 +400,9 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 2.5px solid black;
+}
 
 a {
     text-decoration:none;
@@ -409,6 +415,7 @@ a:hover {
 *{
 font-family: Arial;
 }
+
     </style>
 
 </head>
@@ -449,6 +456,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -457,6 +469,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -482,6 +496,18 @@ font-family: Arial;
 
          </li>
 
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
+
       </ul>
 
    </li>
@@ -498,7 +524,7 @@ font-family: Arial;
 
 
 </div>
-    <form id="form2" runat="server">
+        <form id="form2" runat="server">
     <div style="margin-top: 50px;">
         <p>
                 <asp:Label ID="Label_Title" runat="server" Text="Incidents To Expedite" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>

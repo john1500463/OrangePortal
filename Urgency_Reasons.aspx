@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Urgency_Reasons.aspx.cs" Inherits="Urgency_Reasons" %>
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 
 
 
@@ -21,7 +21,7 @@
 
    <script src="script.js"></script>
 
-   <title>Home</title>
+   <title>Expedite Portal - Urgency Reason</title>
 
     <style>
 
@@ -375,7 +375,18 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 2.5px solid black;
+}
 
+a {
+    text-decoration:none;
+    color:black;
+}
+
+a:hover {
+    color:#FF6501;
+}
 *{
 font-family: Arial;
 }
@@ -396,6 +407,7 @@ font-family: Arial;
       </div>
 
     
+
 
 
 <ul>
@@ -419,6 +431,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -427,6 +444,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -452,10 +471,22 @@ font-family: Arial;
 
          </li>
 
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
+
       </ul>
 
    </li>
-    <li><a href='Urgency_Reasons.aspx'  style="background: #FF6501; border-color:#FF6501;"><span>Urgency Reasons</span></a></li>
+    <li><a href='Urgency_Reasons.aspx'><span>Urgency Reasons</span></a></li>
 
    <li><a href='#'><span>Help</span></a></li>
 
@@ -463,7 +494,6 @@ font-family: Arial;
     
 
 </ul>
-
 
     <img src="download.png">
 

@@ -39,7 +39,15 @@
     });
 
  </script>
-   <title>Home</title>
+  
+
+
+
+
+
+
+
+   <title>Expedite Portal - Expedite Page</title>
 
     <style>
 
@@ -393,7 +401,18 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
+td {
+    border: 2.5px solid black;
+}
 
+a {
+    text-decoration:none;
+    color:black;
+}
+
+a:hover {
+    color:#FF6501;
+}
 *{
 font-family: Arial;
 }
@@ -438,6 +457,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -446,6 +470,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -470,6 +496,18 @@ font-family: Arial;
          <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
+
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
 
       </ul>
 
@@ -511,32 +549,6 @@ font-family: Arial;
         </div>
             </div>
 
-<script>
-    searchBox = document.querySelector("#searchBox");
-    countries = document.querySelector("#DropDownList1");
-    var when = "keyup"; //You can change this to keydown, keypress or change
-
-    searchBox.addEventListener("keyup", function (e) {
-        var text = e.target.value;
-        var options = countries.options;
-        for (var i = 0; i < options.length; i++) {
-            var option = options[i];
-            var optionText = option.text;
-            var lowerOptionText = optionText.toLowerCase();
-            var lowerText = text.toLowerCase();
-            var regex = new RegExp("^" + text, "i");
-            var match = optionText.match(regex);
-            var contains = lowerOptionText.indexOf(lowerText) != -1;
-            if (match || contains) {
-                $("#DropDownList1").attr('size', 0);
-                option.selected = true;
-                return;
-            }
-            searchBox.selectedIndex = 0;
-        }
-    });
-
-</script>
         
         <div style="display:inline-block;">  
     <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />

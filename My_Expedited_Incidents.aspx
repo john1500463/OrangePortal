@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="My_Expedited_Incidents.aspx.cs" Inherits="My_Expedited_Incidents" %>
-
 <!DOCTYPE html>
 
 
@@ -415,7 +414,7 @@ font-family: Arial;
 
    <li><a href='Home_Page.aspx'><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents.aspx' style="background: #FF6501; border-color:#FF6501;"><span>My Expedited Incidents</span></a></li>
+   <li><a href='My_Expedited_Incidents.aspx'><span>My Expedited Incidents</span></a></li>
 
    <li class='active has-sub'><a href='#'><span>Expedited Incidents </span></a>
 
@@ -432,6 +431,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -440,6 +444,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -464,6 +470,18 @@ font-family: Arial;
          <li class='has-sub'><a href='ModifyUser.aspx'><span>Modify User</span></a>
 
          </li>
+
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
 
       </ul>
 

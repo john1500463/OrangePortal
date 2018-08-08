@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Incident_Details.aspx.cs" Inherits="Incident_Details" %>
-
-
 <!DOCTYPE html>
 
 
@@ -23,7 +21,7 @@
 
    <script src="script.js"></script>
 
-   <title>Incident Details</title>
+   <title>Expedite Portal - Expedited By User</title>
 
     <style>
 
@@ -377,25 +375,27 @@ margin-top:0px;
 #cssmenu > ul > li.has-sub > a:hover:before {
 
 }
-
 td {
-    border: 3px solid black;
+    border: 2.5px solid black;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+a {
+    text-decoration:none;
+    color:black;
+}
 
+a:hover {
+    color:#FF6501;
+}
 *{
 font-family: Arial;
 }
+
     </style>
 
 </head>
 
 <body>
-
-
-
-    <form id="form1" runat="server">
 
 
 
@@ -431,6 +431,11 @@ font-family: Arial;
          <li class='has-sub'><a href='Incidents_to_expedite.aspx'><span>Incidents To Expedite</span></a>
 
          </li>
+          
+
+         <li class='has-sub'><a href='ExpediteByUser.aspx'><span>Expedited By User</span></a>
+
+         </li>
 
          <li class='has-sub'><a href='Expedite_Extraction.aspx'><span>Expedite Extraction</span></a>
 
@@ -439,6 +444,8 @@ font-family: Arial;
          <li class='has-sub'><a href='Urgency_Reason_Stats.aspx'><span>Urgency Reason Statistics</span></a>
 
          </li>
+         
+
 
          <li class='has-sub'><a href='CSM_entity.aspx'><span>CSM Expedite Incidents</span></a>
 
@@ -464,6 +471,18 @@ font-family: Arial;
 
          </li>
 
+
+          
+         <li class='has-sub'><a href='addteammail.aspx'><span>Add Team Mail</span></a>
+
+         </li>
+
+          
+         <li class='has-sub'><a href='Edit_team_mail.aspx'><span>Edit Team Mail</span></a>
+
+         </li>
+
+
       </ul>
 
    </li>
@@ -481,7 +500,8 @@ font-family: Arial;
 
 </div>
 
-        <body>
+    <form runat="server">
+        
     <div style="margin-bottom:10%;">
             <asp:Table ID="Table1" runat="server" BorderStyle="Solid" CellPadding="10" GridLines="Both" style="margin-left:1%; margin-top:4%;" BackColor="White">
             </asp:Table>
