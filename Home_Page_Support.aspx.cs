@@ -149,9 +149,9 @@ public partial class Home_Page_Support : System.Web.UI.Page
 
                         if (dt.Rows.Count == 0)
                         {
-                            DateTime LastModifiedExcel = GetLastModifiedDateTime();
-                            DateTime LastModifedExcelPlusThirty = LastModifiedExcel.AddMinutes(30);
-                            String Time = (LastModifedExcelPlusThirty - DateTime.Now).ToString();
+                            DateTime LastModifiedExe = GetLastModifiedDateExeDateTime();
+                            DateTime LastModifiedExePlusThirty = LastModifiedExe.AddMinutes(30);
+                            String Time = (LastModifiedExePlusThirty - DateTime.Now).ToString();
                             Time = Time.Substring(0, 9);
                             Label1.Text = "The Incident will be available in " + Time;
 
@@ -336,5 +336,27 @@ public partial class Home_Page_Support : System.Web.UI.Page
     DateTime GetLastModifiedDateTime()
     {
         return System.IO.File.GetLastWriteTime("C:/Users/wkzw7370/Downloads/Project Code/WebSite2/OrangePortal/NewExpedite.xls");
+    }
+    DateTime GetLastModifiedDateExeDateTime()
+    {
+        DataTable dt;
+        SqlCommand command = new SqlCommand();
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        conn.Open();
+        command.Connection = conn;
+        command.CommandText = "select * from [expedite].[dbo].[Last_Update_Time]";
+        using (SqlDataAdapter sda = new SqlDataAdapter())
+        {
+            sda.SelectCommand = command;
+            using (dt = new DataTable())
+            {
+
+                sda.Fill(dt);
+
+            }
+
+        }
+        conn.Close();
+        return (DateTime)dt.Rows[0][0];
     }
 }
