@@ -75,6 +75,7 @@ public partial class OrangePortal_EditTeamMail : System.Web.UI.Page
             dt = new DataTable();
             adpt.Fill(dt);
             conn.Close();
+            Response.Redirect("Home_Page.aspx");
             }
 
 

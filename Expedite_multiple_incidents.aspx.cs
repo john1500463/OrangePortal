@@ -116,7 +116,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
                 SqlCommand command2 = new SqlCommand();
                 command2.Connection = conn;
                 String thesubmitdate = get_submit_date(id);
-                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Submit_Date,Expedite_Date,Urgency_Reason,Expedite_By) VALUES ('" + id + "','" + thesubmitdate + "','" + DateTime.Now.ToString() + "','" + thereason + "','" + x + "');";
+                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Submit_Date,Expedite_Date,Urgency_Reason,Expedite_By,Expedited_mail) VALUES ('" + id + "','" + thesubmitdate + "','" + DateTime.Now.ToString() + "','" + thereason + "','" + x + "','" + Session["Email"] + "');";
                 //Debug.Write("first");
                 //  else
                 //  {
