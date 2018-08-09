@@ -15,6 +15,10 @@ public partial class Incident_Details_User : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         String name;
         String Incident = Request.QueryString["ID"];
         TableRow tRow;

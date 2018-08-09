@@ -61,6 +61,10 @@ public partial class ExpeditePageUser : System.Web.UI.Page
         {
                Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         String Incident = Request.QueryString["param1"];
         try
         {

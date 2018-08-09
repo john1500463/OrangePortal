@@ -15,6 +15,10 @@ public partial class Home_Page_User : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         // GridView1.Visible = false;
         //TextBox1.Text = "";
     }
