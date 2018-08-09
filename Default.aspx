@@ -387,7 +387,8 @@ font-family: Arial;
 <body>
 
 
-<div id='Div1' style="min-width:768px; width:100%; top:0; background-color: #000000">
+
+<div id='cssmenu' style="background-color: #000000">
 
   <div id='OrangeText'>
 
