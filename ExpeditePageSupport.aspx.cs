@@ -367,7 +367,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
         }
         mail.CC.Add("it.support4business@orange.com");
         mail.Subject = "Expedited Incident " + Incident;
-        mail.Body = "Hello " + (string)Session["Fname"] + "," + "\n" + "Thank you for using The Expedite Portal." + "\n" + "Kindly note that The Incident " + Incident + " regarding " + tier2 + " has been expedited with Urgency reason " + Urg_Reason + "." + "\n" + "Incident is now assigned to group: " + group_name + " which is managed by " + getmanagername(getmanagerofinc(Incident)) + "\n" + "To check the update of this issue, please connect to: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "We assure you that the IT Support for business Team will put every effort into resolving this issue As soon as possible." + "\n" + "Regards," + "\n" + "IT Support for Business team";
+        mail.Body = "Hello " + (string)Session["Fname"] + "," + "\n" + "Thank you for using the Expedite Portal." + "\n" + "Kindly note that the incident with reference " + Incident + " regarding application " + tier2 + " has been expedited with urgency reason " + Urg_Reason + "." + "\n" + "Incident is now assigned to group: " + group_name + " which is managed by " + getmanagername(getmanagerofinc(Incident)) + "\n" + "To check the update of this issue, please connect to: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "We assure you that the IT Support for business Team will put every effort into resolving this issue as soon as possible." + "\n" + "Regards," + "\n" + "IT Support for Business team";
         SmtpServer.Send(mail);
         Debug.WriteLine(mail.Body);
         MailMessage mail2 = new MailMessage();
@@ -380,7 +380,7 @@ public partial class ExpeditePageSupport : System.Web.UI.Page
         }
         mail2.CC.Add("it.support4business@orange.com");
         mail2.Subject = "Expedited Incident " + Incident;
-        mail2.Body = "Hello Team," + "\n" + "Kindly provide your urgent assistance upon this incident " + Incident + "." + "\n" + "Your fast action is highly appreciated." + "\n" + "To check the update of this issue, please connect to: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "We assure you that the IT Support for business Team will put every effort into resolving this issue As soon as possible." + "\n" + "Regards," + "\n" + "IT Support for Business team";
+        mail2.Body = "Hello Team," + "\n" + "Kindly provide your urgent assistance upon this incident " + Incident + "." + "\n" + "Your fast action is highly appreciated." + "\n" + "Check and acknowledge expedites in your queue on: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "Regards," + "\n" + "IT Support for Business team";
         Debug.WriteLine(mail2.Body);
         SmtpServer2.Send(mail2);
     }
