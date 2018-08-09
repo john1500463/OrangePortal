@@ -213,13 +213,16 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         String submitter_mail = "";
         String expeditedby_mail = "";
         String assigned_group = "";
+        String tier2 = "";
+        String summary = "";
+        String Urg_Reason = "";
         try
         {
             DataTable dt = new DataTable();
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "SELECT [AG Assigned Group Name],[AG Assignee],[INC CI Email Address],[Expedited_mail],[AG Assigned Group Name] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + Incident + "';";
+            command.CommandText = "SELECT [AG Assigned Group Name],[AG Assignee],[INC CI Email Address],[Expedited_mail],[AG Assigned Group Name],[INC Tier 2],[INC Summary],[Urgency_Reason] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + Incident + "';";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command;
@@ -235,6 +238,9 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             submitter_mail = dt.Rows[0][2].ToString();
             expeditedby_mail = dt.Rows[0][3].ToString();
             assigned_group = dt.Rows[0][4].ToString();
+            tier2 = dt.Rows[0][5].ToString();
+            summary = dt.Rows[0][6].ToString();
+            Urg_Reason = dt.Rows[0][7].ToString();
             conn.Close();
         }
         catch (Exception ex)
@@ -247,20 +253,111 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("it.support4business@orange.com");
         //Debug.Write(submitter_mail);
-        mail.To.Add(submitter_mail);
-        ArrayList teamlist = getteamlist(assigned_group);
-        foreach (String team_member in teamlist)
-        {
-            mail.To.Add(team_member);
-        }
+        mail.CC.Add(submitter_mail);
         if (!String.IsNullOrEmpty(Session["Email"].ToString()) && (Session["Email"]) != null && !String.IsNullOrWhiteSpace(Session["Email"].ToString()))
         {
             mail.To.Add(Session["Email"].ToString());
         }
         mail.CC.Add("it.support4business@orange.com");
-        mail.Body = "The ticket with Incident number " + Incident + " has been expedited." + "\n" + "Group: " + group_name + "\n" + "Assignee: " + assignee_name + "\n" + "Urgency Reason: " + Urgency_reason;
-        mail.Subject = "Incident " + Incident + " Expedited";
+        mail.Subject = "Expedited Incident " + Incident;
+        mail.Body = "Hello " + (string)Session["Fname"] + "," + "\n" + "Thank you for using The Expedite Portal." + "\n" + "Kindly note that The Incident " + Incident + " regarding " + tier2 + " has been expedited with Urgency reason " + Urg_Reason + "." + "\n" + "Incident is now assigned to group: " + group_name + " which is managed by " + getmanagername(getmanagerofinc(Incident)) + "\n" + "To check the update of this issue, please connect to: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "We assure you that the IT Support for business Team will put every effort into resolving this issue As soon as possible." + "\n" + "Regards," + "\n" + "IT Support for Business team";
         SmtpServer.Send(mail);
+        Debug.WriteLine(mail.Body);
+        MailMessage mail2 = new MailMessage();
+        SmtpClient SmtpServer2 = new SmtpClient("mx-us.equant.com");
+        mail2.From = new MailAddress("it.support4business@orange.com");
+        ArrayList teamlist = getteamlist(assigned_group);
+        foreach (String team_member in teamlist)
+        {
+            mail2.To.Add(team_member);
+        }
+        mail2.CC.Add("it.support4business@orange.com");
+        mail2.Subject = "Expedited Incident " + Incident;
+        mail2.Body = "Hello Team," + "\n" + "Kindly provide your urgent assistance upon this incident " + Incident + "." + "\n" + "Your fast action is highly appreciated." + "\n" + "To check the update of this issue, please connect to: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "We assure you that the IT Support for business Team will put every effort into resolving this issue As soon as possible." + "\n" + "Regards," + "\n" + "IT Support for Business team";
+        Debug.WriteLine(mail2.Body);
+        SmtpServer2.Send(mail2);
+    }
+    protected String getmanagerofinc(String incid)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
+        String group_name = "";
+        String assignee_name = "";
+        String manager_mail = "";
+        String expeditedby_mail = "";
+        String assigned_group = "";
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command2 = new SqlCommand();
+            command2.Connection = conn;
+            command2.CommandText = "SELECT [AG Assigned Group Name],[AG M Email Address],[INC CI Email Address],[Expedited_mail],[AG Assigned Group Name] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + incid + "';";
+            using (SqlDataAdapter sda2 = new SqlDataAdapter())
+            {
+                sda2.SelectCommand = command2;
+                using (dt = new DataTable())
+                {
+
+                    sda2.Fill(dt);
+
+                }
+            }
+            group_name = dt.Rows[0][0].ToString();
+            assignee_name = dt.Rows[0][1].ToString();
+            manager_mail = dt.Rows[0][2].ToString();
+            expeditedby_mail = dt.Rows[0][3].ToString();
+            assigned_group = dt.Rows[0][4].ToString();
+
+            DataTable dtb = new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [GRP M Full Name (mail)] FROM [Expedite].[dbo].[Manger_Mail] Where [GRP Group Name]='" + assigned_group + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dtb = new DataTable())
+                {
+
+                    sda.Fill(dtb);
+
+                }
+            }
+            if (dtb.Rows.Count != 0)
+            {
+                manager_mail = dtb.Rows[0][0].ToString();
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+        return manager_mail;
+    }
+    protected String getmanagername(String manager_email)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        DataTable dt = new DataTable();
+        String name = "";
+        conn.Open();
+        SqlCommand command2 = new SqlCommand();
+        command2.Connection = conn;
+        command2.CommandText = "SELECT [PE Full Name] FROM [Expedite].[dbo].[Staff] where [PE Email]='" + manager_email + "';";
+        using (SqlDataAdapter sda2 = new SqlDataAdapter())
+        {
+            sda2.SelectCommand = command2;
+            using (dt = new DataTable())
+            {
+
+                sda2.Fill(dt);
+
+            }
+        }
+        name = dt.Rows[0][0].ToString();
+        conn.Close();
+        return name;
     }
 
     protected ArrayList getteamlist(String group_name)

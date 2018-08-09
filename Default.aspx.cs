@@ -104,6 +104,7 @@ public partial class _Default : System.Web.UI.Page
             Session["Fname"] = givenName_S;
             Debug.WriteLine(Session["Email"]);
             Debug.WriteLine(Session["FTID"]);
+            Debug.WriteLine((string)Session["Fname"]);
             SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
             DataTable dt = new DataTable();
             conn.Open();
