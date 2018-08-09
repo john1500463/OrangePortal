@@ -431,16 +431,16 @@ font-family: Arial;
         </div>
 
         <div style="display:inline-block;">
-        <asp:TextBox ID="TextBox1" runat="server" style="display:block;"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             </div>
 
         <div style="display:inline-block;">
-            <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click" style="display:block;"/>   
+            <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click"/>   
             </div>
        
         
         <div style="display:inline-block;">
-            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Clear" style="display:block;"/>
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Clear"/>
             </div>
         
         <p>

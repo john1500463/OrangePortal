@@ -72,9 +72,12 @@ public partial class Home_Page : System.Web.UI.Page
      } */
     void refresh_grid1()
     {
+        Button3.Visible = false;
         GridView1.Visible = false;
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = TextBox1.Text.ToString();
+        String xx = x.Replace(" ", "");
+        x = xx;
         if (x.Count() < 8)
         {
             Label1.Text = "Please enter a valid Incident";
@@ -230,7 +233,8 @@ public partial class Home_Page : System.Web.UI.Page
         //String x = TextBox1.Text.ToString();
         Label1.Text = "";
         Label2.Text = "";
-        if (TextBox1.Text == "")
+        String text_with_no_space = TextBox1.Text.Replace(" ", "");
+        if (TextBox1.Text == "" || text_with_no_space == "")
         {
             Label1.Text = "Please Enter Incident ID ";
         }

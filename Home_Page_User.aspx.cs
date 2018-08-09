@@ -59,9 +59,12 @@ public partial class Home_Page_User : System.Web.UI.Page
      } */
     void refresh_grid1()
     {
+        Button3.Visible = false;
         GridView1.Visible = false;
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = TextBox1.Text.ToString();
+        String xx = x.Replace(" ", "");
+        x = xx;
         if (x.Count() < 8)
         {
 
