@@ -424,6 +424,7 @@ font-family: Arial;
     <form id="form1" runat="server" aria-expanded="true">
         <p aria-expanded="true">
             <asp:Label ID="Label1" runat="server" Font-Size="12pt" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
+            
         </p>
 <div style="margin-top: 50px;" aria-expanded="true">
         <div style="display:inline-block;">
@@ -444,7 +445,8 @@ font-family: Arial;
             </div>
         
         <p>
-            <asp:Label ID="Label4" Text="Enter your Incident ID" runat="server" style=" margin-left:3px; display:block;color:gray"/> 
+            <asp:Label ID="Label4" Text="Enter your Incident ID" runat="server" style=" margin-left:3px; display:block;color:gray" /> 
+            <asp:Label ID="Label5" Text="Note: Closed incidents will not be available to be expedited in the portal." runat="server" style=" margin-left:3px; display:block;color:gray" /> 
         </p>
         </div>
         <p aria-expanded="true">

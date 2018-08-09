@@ -452,6 +452,7 @@ font-family: Arial;
         
         <p>
             <asp:Label ID="Label4" Text="Enter your Incident ID" runat="server" style=" margin-left:3px; display:block;color:gray"/> 
+            <asp:Label ID="Label5" Text="Note: Closed incidents will not be available to be expedited in the portal." runat="server" style=" margin-left:3px; display:block;color:gray" /> 
         </p>
         </div>
         <p aria-expanded="true">

@@ -503,8 +503,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             mail.CC.Add(team_member);
         }
         mail.CC.Add("it.support4business@orange.com");
-        mail.Body = "Hello Manager";
-        mail.Subject = "Incident " + Inc_id + " Expedited";
+        mail.Body = "Hello "+ getmanagername(manager_mail)+"," + "\n" + "Kindly provide your urgent assistance upon this incident " +Inc_id + "\n" +"Your fast action is highly appreciated." +"\n"+ "Check and acknowledge expedites in your queue on: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "Regards," + "\n" + "IT Support for Business team";
+        mail.Subject = "Expedited Incident " + Inc_id;
         SmtpServer.Send(mail);
     }
     protected ArrayList getteamlist(String group_name)
@@ -735,16 +735,40 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         }
         return manager_mail;
     }
+    protected String getmanagername(String manager_email)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        DataTable dt = new DataTable();
+        String name = "";
+        conn.Open();
+        SqlCommand command2 = new SqlCommand();
+        command2.Connection = conn;
+        command2.CommandText = "SELECT [PE Full Name] FROM [Expedite].[dbo].[Staff] where [PE Email]='" + manager_email + "';";
+        using (SqlDataAdapter sda2 = new SqlDataAdapter())
+        {
+            sda2.SelectCommand = command2;
+            using (dt = new DataTable())
+            {
+
+                sda2.Fill(dt);
+
+            }
+        }
+        name = dt.Rows[0][0].ToString();
+        conn.Close();
+        return name;
+    }
 
     protected void sendmailtomanager(String manager_email, ArrayList IncidentsIDs)
     {
-        String body = "The following Incidents are expedited: </br> <style>table, th, td {border: 1px solid black; border-collapse: collapse;}</style> <table>";
+
+        String body = "Hello " + getmanagername(manager_email) + ", <br /> Kindly provide your urgent assistance upon the below expedited incidents: <br /> <style>table, th, td {border: 1px solid black; border-collapse: collapse;}</style> <table>";
         body += "<tr> <th>Incident ID</th> </tr>";
         foreach (String id in IncidentsIDs)
         {
             body +="<tr> <td> " + id + "</td> </tr>";
         }
-        body+="</table>";
+        body += "</table> <br /> Your fast action is highly appreciated. <br /> Check and acknowledge expedites in your queue on: <a>http://cas-its4b.vdr.equant.com/expedite/</a> <br /> Regards, <br /> IT Support for Business team";
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("it.support4business@orange.com");
@@ -753,9 +777,26 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         mail.Body = body;
         mail.Subject = "Expedtied Incidents";
         mail.IsBodyHtml = true;
+        ArrayList teamlist = new ArrayList();
+        for(int i=0; i<GridView1.Rows.Count;i++)
+        {
+            ArrayList temp = getteamlist(GridView1.Rows[i].Cells[3].ToString());
+            if (temp.Count > 1)
+            {
+                teamlist.AddRange(temp);
+            }
+            else
+            {
+                teamlist.Add(temp);
+            }
+        }
+
+        foreach (String team_member in teamlist)
+        {
+            mail.CC.Add(team_member);
+        }
         mail.CC.Add("it.support4business@orange.com");
         SmtpServer.Send(mail);
-        //Debug.Write(body + " EMAIL IS " + manager_email);
     }
     protected void Notify_Click(object sender, System.EventArgs e)
     {

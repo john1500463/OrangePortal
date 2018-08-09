@@ -360,9 +360,9 @@ img {
 
     min-width:0.05%;
 
-    max-width:30%;
+    max-width:50%;
 
-    max-height:30%;
+    max-height:110px;
 
 }
 
@@ -523,6 +523,7 @@ font-family: Arial;
         
         <p>
             <asp:Label ID="Label4" Text="Enter your Incident ID" runat="server" style=" margin-left:3px; display:block;color:gray"/> 
+            <asp:Label ID="Label5" Text="Note: Closed incidents will not be available to be expedited in the portal." runat="server" style=" margin-left:3px; display:block;color:gray" /> 
         </p>
         </div>
         <p aria-expanded="true">

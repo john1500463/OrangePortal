@@ -309,7 +309,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
             if (num==2) //exists only in all inc
             {
                 String Email =  Session["Email"].ToString();
-                command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment,Expedite_By,Submit_Date,Expedited_mail) VALUES ('" + theidnow + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "','" + x + "',convert (datetime,'" + thesubmitdate + "','" + Email+ "'));";
+                command.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Expedite_Date,Urgency_Reason,Comment,Expedite_By,Submit_Date,Expedited_mail) VALUES ('" + theidnow + "','" + DateTime.Now.ToString() + "','" + thereason + "' , '" + TextBox2.Text + "','" + x + "',convert (datetime,'" + thesubmitdate + "'),'" + Email+ "');";
                 expedite_mailnotification(theidnow, thereason);
             }
             else{
