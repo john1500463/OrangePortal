@@ -154,7 +154,7 @@ public partial class Home_Page_Support : System.Web.UI.Page
                         if (dt.Rows.Count == 0)
                         {
                             DateTime LastModifiedExe = GetLastModifiedDateExeDateTime();
-                            DateTime LastModifiedExePlusThirty = LastModifiedExe.AddMinutes(30);
+                            DateTime LastModifiedExePlusThirty = LastModifiedExe.AddMinutes(60);
                             String Time = (LastModifiedExePlusThirty - DateTime.Now).ToString();
                             Time = Time.Substring(0, 9);
                             Label1.Text = "The Incident will be available in " + Time;
