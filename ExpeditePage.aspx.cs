@@ -61,6 +61,14 @@ public partial class ExpeditePage : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         String Incident = Request.QueryString["param1"];
         try
         {
@@ -372,7 +380,7 @@ public partial class ExpeditePage : System.Web.UI.Page
             mail.To.Add(Session["Email"].ToString());
         }
         mail.CC.Add("it.support4business@orange.com");
-        mail.Body = "The ticket with Incident number " + Incident + " has been expedited." + "\n" + "Group: " + group_name + "\n" +"Assignee: " +assignee_name+ "\n" +"Urgency Reason: " +Urgency_reason;
+        mail.Body = "Hello " + (string)Session["Fname"] + "," + "\n" + "Thank you for contacting the IT help desk. You have reported the following incident: " + Incident + " has been expedited." + "\n" + "Group: " + group_name + "\n" + "Assignee: " + assignee_name + "\n" + "Urgency Reason: " + Urgency_reason;
         mail.Subject = "Incident " + Incident + " Expedited";
         SmtpServer.Send(mail);
     }

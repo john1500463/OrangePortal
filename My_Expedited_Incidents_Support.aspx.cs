@@ -27,7 +27,10 @@ public partial class My_Expedited_Incidents_Support : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
-
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
         try

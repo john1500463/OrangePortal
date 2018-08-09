@@ -506,7 +506,7 @@ font-family: Arial;
         <asp:Label ID="Label_Urgency_chosen" runat="server" Font-Bold="True" Text=" chosen" Visible="False"></asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
         <asp:Button ID="Button_Update" runat="server" Text="Update" OnClick="Button_Update_Click" />
-        <asp:Button ID="Button_Delete" runat="server" Text="Delete" OnClick="Button_Delete_Click" />
+        <asp:Button ID="Button_Delete" runat="server" Text="Delete" OnClick="Button_Delete_Click" OnClientClick = "return confirm('Are you sure you want Delete?')" />
         <asp:TextBox ID="TextBox_newreason" runat="server" Visible="False"></asp:TextBox>
         <asp:Button ID="Button_showadd" runat="server" OnClick="Button_showadd_Click" Text="Add" />
         <asp:Button ID="Button_addreason" runat="server" OnClick="Button_addreason_Click" Text="Add Reason" Visible="False" />

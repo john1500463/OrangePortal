@@ -19,6 +19,14 @@ public partial class OrangePortal_EditTeamMail : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         Label5.Visible = false;
         try
         {

@@ -90,6 +90,14 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         {
            // Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         Debug.WriteLine("Page Load : "+Alaa);
         if (Alaa == "Search") {
             String ManagerName = TextBox1.Text.ToString();
@@ -209,6 +217,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         {
             Button3.Visible = false;
             Button4.Visible = false;
+            Label_Error.Text = "No Incidents Exist";
             Label_Error.Visible = true;
         }
         else
@@ -249,6 +258,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             {
                 Button3.Visible = false;
                 Button4.Visible = false;
+                Label_Error.Text = "No Incidents Exist";
                 Label_Error.Visible = true;
             }
             else
@@ -296,6 +306,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             {
                 Button3.Visible = false;
                 Button4.Visible = false;
+                Label_Error.Text = "No Incidents Exist";
                 Label_Error.Visible = true;
             }
             else
@@ -359,6 +370,14 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             {
                 Button3.Visible = false;
                 Button4.Visible = false;
+                if (String.IsNullOrWhiteSpace(ManagerName) || String.IsNullOrEmpty(ManagerName))
+                {
+                    Label_Error.Text = "Please enter a manager name!";
+                }
+                else
+                {
+                    Label_Error.Text = "No Incidents Exist";
+                }
                 Label_Error.Visible = true;
             }
             else
@@ -405,7 +424,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
                 }
             }
-            esclate_to_manager(dt1.Rows[IncNum][0].ToString());
+            esclate_to_manager(dt.Rows[IncNum][0].ToString());
             conn.Close();
             Response.Redirect("Expedited_Incidents.aspx");
         }
@@ -473,7 +492,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             conn.Close();
             Console.Write(ex.ToString());
         }
-
+        Debug.WriteLine("manager to esclate is " + manager_mail);
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("it.support4business@orange.com");
@@ -619,7 +638,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             {
                 if(idstoextract.Contains(dt.Rows[i][0]))
                 {
-                all_managers_emails.Add(dt.Rows[i][1]);
+                    all_managers_emails.Add(getmanagerofinc(dt.Rows[i][0].ToString()));
                 all_inc.Add(dt.Rows[i][0]);
                 }
             }
@@ -639,7 +658,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 ArrayList alltheinc = new ArrayList();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    if (((String)(dt.Rows[i][1])) == email)
+                    if (getmanagerofinc(((String)(dt.Rows[i][0]))) == email)
                     {
                         if (idstoextract.Contains(dt.Rows[i][0]))
                         {
@@ -657,6 +676,65 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         }
         conn.Close();
     }
+    protected String getmanagerofinc(String incid)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String x = (string)(Session["FTID"]);
+        String group_name = "";
+        String assignee_name = "";
+        String manager_mail = "";
+        String expeditedby_mail = "";
+        String assigned_group = "";
+        try
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command2 = new SqlCommand();
+            command2.Connection = conn;
+            command2.CommandText = "SELECT [AG Assigned Group Name],[AG M Email Address],[INC CI Email Address],[Expedited_mail],[AG Assigned Group Name] FROM [Expedite].[dbo].['All_Incidents'],[Expedite].[dbo].[Expedite_time] where [INC Incident Number]='" + incid + "';";
+            using (SqlDataAdapter sda2 = new SqlDataAdapter())
+            {
+                sda2.SelectCommand = command2;
+                using (dt = new DataTable())
+                {
+
+                    sda2.Fill(dt);
+
+                }
+            }
+            group_name = dt.Rows[0][0].ToString();
+            assignee_name = dt.Rows[0][1].ToString();
+            manager_mail = dt.Rows[0][2].ToString();
+            expeditedby_mail = dt.Rows[0][3].ToString();
+            assigned_group = dt.Rows[0][4].ToString();
+
+            DataTable dtb = new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [GRP M Full Name (mail)] FROM [Expedite].[dbo].[Manger_Mail] Where [GRP Group Name]='" + assigned_group + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                using (dtb = new DataTable())
+                {
+
+                    sda.Fill(dtb);
+
+                }
+            }
+            if (dtb.Rows.Count != 0)
+            {
+                manager_mail = dtb.Rows[0][0].ToString();
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+        return manager_mail;
+    }
 
     protected void sendmailtomanager(String manager_email, ArrayList IncidentsIDs)
     {
@@ -669,12 +747,13 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         body+="</table>";
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
-        mail.From = new MailAddress("expedite_portal@orange.com");
-        //mail.To.Add(manager_email);
-        mail.To.Add("waleed.mohamed@orange.com");
+        mail.From = new MailAddress("it.support4business@orange.com");
+        mail.To.Add(manager_email);
+        //mail.To.Add("waleed.mohamed@orange.com");
         mail.Body = body;
         mail.Subject = "Expedtied Incidents";
         mail.IsBodyHtml = true;
+        mail.CC.Add("it.support4business@orange.com");
         SmtpServer.Send(mail);
         //Debug.Write(body + " EMAIL IS " + manager_email);
     }
@@ -758,7 +837,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                     
                     if (Inc1 == Inc2)
                     {
-                        Esclate1.BackColor = System.Drawing.Color.Red;
+                        Esclate1.Enabled = false;
                         Label7.Text = dt1.Rows[j][1].ToString();
                         GridView1.Rows[i].Cells[8].Controls.Add(Label7);
                     

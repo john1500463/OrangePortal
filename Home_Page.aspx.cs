@@ -22,7 +22,7 @@ public partial class Home_Page : System.Web.UI.Page
         }
         Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
         Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
-        /*
+        
         if (((String)Session["Right"]) == "else")
         {
             Response.Redirect("Home_Page_User.aspx");
@@ -31,7 +31,7 @@ public partial class Home_Page : System.Web.UI.Page
         {
             Response.Redirect("Home_Page_Support.aspx");
         }
-         */
+         
         // GridView1.Visible = false;
         //TextBox1.Text = "";
     }

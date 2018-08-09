@@ -23,6 +23,14 @@ public partial class ModifyUser : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         mypageload();
     }
 
@@ -74,6 +82,7 @@ public partial class ModifyUser : System.Web.UI.Page
                     Edit.ID = i.ToString();
                     Edit.Click += new EventHandler(this.EditingBtn_Click);
                     Delete.ID = (i + num).ToString();
+                    Delete.OnClientClick = "return confirm('Are you sure you want Delete?')";
                     Delete.Click += new EventHandler(this.DeleteBtn_Click);
 
                     Edit.Text = "Edit";
@@ -90,10 +99,11 @@ public partial class ModifyUser : System.Web.UI.Page
                 Console.Write(ex.ToString());
             }
 
-            Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
-            Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
 
         }
+
+        Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
+        Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
         conn.Close();
     }
     void EditingBtn_Click(Object sender,
@@ -210,6 +220,7 @@ public partial class ModifyUser : System.Web.UI.Page
                     Edit.Click += new EventHandler(this.EditingBtn_Click);
                     Delete.ID = (i + num).ToString();
                     Delete.Click += new EventHandler(this.DeleteBtn_Click);
+                    Delete.OnClientClick = "return confirm('Are you sure you want Delete?')";
                     Edit.Text = "Edit";
                     Delete.Text = "Delete";
                     GridView1.Rows[i].Cells[4].Controls.Add(Edit);

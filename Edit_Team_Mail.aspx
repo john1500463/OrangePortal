@@ -521,7 +521,7 @@ font-family: Arial;
 
 
 </div>
-        <form id="form1" runat="server">
+        <form id="form1" runat="server"  defaultbutton="Button1">
     <div style="margin-left:1%; margin-top:5%;">
 
         <div style="display:inline-block">
@@ -529,7 +529,7 @@ font-family: Arial;
             </div>
 
         <div style="display:inline-block">
-        <asp:DropDownList ID="DropDownList1" runat="server">
+        <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true">
         </asp:DropDownList>
         </div>
 

@@ -87,7 +87,11 @@ public partial class Expedited_Incidents_Support : System.Web.UI.Page
     {
         if (Session["FTID"] == null)
         {
-            // Response.Redirect("Default.aspx");
+             Response.Redirect("Default.aspx");
+        }
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
         }
         Debug.WriteLine("Page Load : " + Alaa);
         Debug.WriteLine("chosen is " + DropDownList1.SelectedValue);

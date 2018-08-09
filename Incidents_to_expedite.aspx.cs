@@ -44,6 +44,14 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
           Textbox_message.Visible = false;
             newDropDownList1 = new DropDownList();
             //newDropDownList1.EnableViewState = true;

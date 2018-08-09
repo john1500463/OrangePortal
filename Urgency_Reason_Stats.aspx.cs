@@ -18,6 +18,14 @@ public partial class Urgency_Reason_Stats : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
         Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
         ArrayList UrgencyReasons = new ArrayList();

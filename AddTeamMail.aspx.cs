@@ -21,7 +21,14 @@ public partial class AddTeamMail : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
-       
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         if (!Page.IsPostBack) { 
         conn.Open();
         command = new SqlCommand();

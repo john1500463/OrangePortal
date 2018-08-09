@@ -19,6 +19,14 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         {
             Response.Redirect("Default.aspx");
         }
+        if (((String)Session["Right"]) == "else")
+        {
+            Response.Redirect("Home_Page_User.aspx");
+        }
+        if (((String)Session["Right"]) == "S")
+        {
+            Response.Redirect("Home_Page_Support.aspx");
+        }
         //DropDownList1.Visible = false;
         //Expedite_Button.Visible = false;
         Textbox_message.Visible = false;
@@ -443,6 +451,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
     protected void Clear_Button_Click(object sender, EventArgs e)
     {
         TextBox_id.Text = "";
+        GridView1.Visible = false;
         ListItem selectedListItem = DropDownList1.Items.FindByValue("-None-");
         if (selectedListItem != null)
         {

@@ -101,6 +101,7 @@ public partial class _Default : System.Web.UI.Page
            // Response.Redirect("Main.aspx");
             Session["FTID"] = cn_S;
             Session["Email"] = description_S;
+            Session["Fname"] = givenName_S;
             Debug.WriteLine(Session["Email"]);
             Debug.WriteLine(Session["FTID"]);
             SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
