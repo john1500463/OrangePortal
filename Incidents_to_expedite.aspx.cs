@@ -862,7 +862,7 @@ public partial class Incidents_to_expedite : System.Web.UI.Page
         {
             HyperLink hlContro = new HyperLink();
             String Incident = GridView1.Rows[i].Cells[0].Text;
-            hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + Incident;
+            hlContro.NavigateUrl = String.Format("javascript:void(window.open('" + "./Incident_Details.aspx?ID=" + Incident + "','_blank'));");
             hlContro.Text = GridView1.Rows[i].Cells[0].Text;
             GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
         }
