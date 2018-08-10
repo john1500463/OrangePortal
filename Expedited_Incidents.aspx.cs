@@ -856,10 +856,10 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         foreach (String team_member in teamlist)
         {
             Debug.WriteLine(team_member.ToString());
-           // mail.CC.Add(team_member);
+            mail.CC.Add(team_member);
         }
         Debug.WriteLine("hereLQ");
-        //mail.CC.Add("it.support4business@orange.com");
+        mail.CC.Add("it.support4business@orange.com");
         Debug.WriteLine(body + " this should be to " + manager_email);
         SmtpServer.Send(mail);
     }
