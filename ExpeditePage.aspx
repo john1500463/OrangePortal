@@ -526,6 +526,7 @@ font-family: Arial;
 
 </div>
     <form id="form2" runat="server">
+        <div style="margin-left:1%;">
     <div style="margin-top: 50px;">
         
     
@@ -569,6 +570,7 @@ font-family: Arial;
             <asp:Label ID="Label_Emailslist" runat="server" Text="Emails to be Notified: " Visible="False"></asp:Label>
                </p>
         </div>
+            </div>
        </form>
 
 

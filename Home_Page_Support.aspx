@@ -429,6 +429,7 @@ font-family: Arial;
 </div>
 
     <form id="form1" runat="server" aria-expanded="true">
+        <div style="margin-left:1%;">
         <p>
             <asp:Label ID="Label1" runat="server" Font-Size="12pt" ForeColor="Red" Font-Bold="True" Text=""></asp:Label>
         </p>
@@ -476,7 +477,7 @@ font-family: Arial;
        
             <asp:Label ID="Label2" runat="server" Text="" ForeColor="Red"></asp:Label>
         
-       
+       </div>
        </form>
 
 <div style="width: 100%; height:10%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a></b></center></font> </div>
