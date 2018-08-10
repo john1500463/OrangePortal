@@ -125,7 +125,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
                 SqlCommand command2 = new SqlCommand();
                 command2.Connection = conn;
                 String thesubmitdate = get_submit_date(id);
-                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Submit_Date,Expedite_Date,Urgency_Reason,Expedite_By,Expedited_mail) VALUES ('" + id + "','" + thesubmitdate + "','" + DateTime.Now.ToString() + "','" + thereason + "','" + x + "','" + Session["Email"] + "');";
+                command2.CommandText = "INSERT INTO [Expedite].[dbo].[Expedite_time] (Incident_ID,Submit_Date,Expedite_Date,Urgency_Reason,Expedite_By,Expedited_mail,Expedited_Fullname) VALUES ('" + id + "','" + thesubmitdate + "','" + DateTime.Now.ToString() + "','" + thereason + "','" + x + "','" + Session["Email"] + "','" + Session["Fname"] + " " + Session["Lname"] + "');";
                 //Debug.Write("first");
                 //  else
                 //  {
@@ -254,10 +254,8 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         mail.From = new MailAddress("it.support4business@orange.com");
         //Debug.Write(submitter_mail);
         mail.CC.Add(submitter_mail);
-        if (!String.IsNullOrEmpty(Session["Email"].ToString()) && (Session["Email"]) != null && !String.IsNullOrWhiteSpace(Session["Email"].ToString()))
-        {
             mail.To.Add(Session["Email"].ToString());
-        }
+        //mail.To.Add("waleed.mohamed@orange.com");
         mail.CC.Add("it.support4business@orange.com");
         mail.Subject = "Expedited Incident " + Incident;
         mail.Body = "Hello " + (string)Session["Fname"] + "," + "\n" + "Thank you for using the Expedite Portal." + "\n" + "Kindly note that the incident with reference " + Incident + " regarding " + tier2 + " has been expedited with urgency reason " + Urg_Reason + "." + "\n" + "Incident is now assigned to group: " + group_name + " which is managed by " + getmanagername(getmanagerofinc(Incident)) + "\n" + "To check the update of this issue, please check your Expedited Incidents tab on: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "We assure you that the IT Support for business Team will put every effort into resolving this issue as soon as possible." + "\n" + "Regards," + "\n" + "IT Support for Business team";
@@ -271,6 +269,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         {
             mail2.To.Add(team_member);
         }
+        //mail2.To.Add("waleed.mohamed@orange.com");
         mail2.CC.Add("it.support4business@orange.com");
         mail2.Subject = "Expedited Incident " + Incident;
         mail2.Body = "Hello Team," + "\n" + "Thanks to note that the subjected incident is expedited by the user with urgency reason " + Urg_Reason + ". Appreciate if you can check the incident on priority and feedback us accordingly." + "\n" + "Your fast action is highly appreciated." + "\n" + "You can also check the expedited incidents that are in your queue in the Expedited Incidents Tab (if any) on: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "Regards," + "\n" + "IT Support for Business team";
@@ -304,8 +303,8 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
                 }
             }
             group_name = dt.Rows[0][0].ToString();
-            assignee_name = dt.Rows[0][1].ToString();
-            manager_mail = dt.Rows[0][2].ToString();
+            manager_mail = dt.Rows[0][1].ToString();
+            assignee_name = dt.Rows[0][2].ToString();
             expeditedby_mail = dt.Rows[0][3].ToString();
             assigned_group = dt.Rows[0][4].ToString();
 
@@ -338,6 +337,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
     }
     protected String getmanagername(String manager_email)
     {
+        Debug.WriteLine("GET NAME of " +manager_email);
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         DataTable dt = new DataTable();
         String name = "";
@@ -348,6 +348,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         using (SqlDataAdapter sda2 = new SqlDataAdapter())
         {
             sda2.SelectCommand = command2;
+            Debug.WriteLine(command2.CommandText);
             using (dt = new DataTable())
             {
 
@@ -355,7 +356,32 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
 
             }
         }
-        name = dt.Rows[0][0].ToString();
+        if (dt.Rows.Count > 0)
+        {
+            name = dt.Rows[0][0].ToString();
+        }
+        else
+        {
+            DataTable newdt = new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [AG Assignee Manager Name] FROM [Expedite].[dbo].['All_Incidents'] where [AG M Email Address]='" + manager_email + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                Debug.WriteLine(command.CommandText);
+                using (newdt = new DataTable())
+                {
+
+                    sda.Fill(newdt);
+
+                }
+            }
+            if (newdt.Rows.Count > 0)
+            {
+                name = newdt.Rows[0][0].ToString();
+            }
+        }
         conn.Close();
         return name;
     }
@@ -419,6 +445,45 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
         }
         return outputeamlist;
     }
+
+    protected bool isinallinc(String incid)
+    {
+         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+         try
+         {
+             DataTable dt = new DataTable();
+             conn.Open();
+             SqlCommand command = new SqlCommand();
+             command.Connection = conn;
+             command.CommandText = "Select * From [dbo].['All_Incidents'] where [INC Incident Number]='" + incid + "';";
+             using (SqlDataAdapter sda = new SqlDataAdapter())
+             {
+                 sda.SelectCommand = command;
+
+                 using (dt = new DataTable())
+                 {
+
+                     sda.Fill(dt);
+
+                 }
+             }
+             conn.Close();
+             if (dt.Rows.Count == 0)
+             {
+                 return false;
+             }
+             else
+             {
+                 return true;
+             }
+         }
+         catch (Exception ex)
+         {
+             conn.Close();
+             Console.Write(ex.ToString());
+         }
+         return false;
+    }
     protected void Expedite_Button_Click(object sender, EventArgs e)
     {
         Textbox_message.Text = " ";
@@ -430,8 +495,14 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             String[] ids = idstring2.Split(',');
             foreach (String id in ids)
             {
-                //Debug.Write(id + " ");
-                expedite(id);
+                if (isinallinc(id))
+                {
+                    expedite(id);
+                }
+                else
+                {
+                    Textbox_message.Text += " ID: " + id + " incident is not reflected yet, please check from homepage!" + "<br />";
+                }
             }
             GridView1.Visible = false;
             //TextBox_id.Text = " ";
@@ -445,6 +516,7 @@ public partial class Expedite_multiple_incidents : System.Web.UI.Page
             Textbox_message.Visible = true;
             Textbox_message.ForeColor = System.Drawing.Color.Red;
             Textbox_message.Text = "Please Choose an Urgency Reason!";
+            Debug.WriteLine(getmanagerofinc("INC001003289882"));
         }
  
     }

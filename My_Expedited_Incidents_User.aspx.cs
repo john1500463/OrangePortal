@@ -34,7 +34,7 @@ public partial class My_Expedited_Incidents_User : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "Select [Incident_ID] as 'Incident ID' ,[INC Tier 2] as 'Tier 2',[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedited Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].['All_Incidents'] FULL OUTER JOIN  [Expedite].[dbo].[Expedite_time]on [Incident_ID]=[INC Incident Number] where Expedite_By='" + x + "' ORDER BY " + DropDownList1.SelectedValue + ";";
+            command.CommandText = "Select [Incident_ID] as 'Incident ID' ,[INC Tier 2] as 'Tier 2',[INC Status] as 'Status',[AG Assigned Group Name] as 'Assigned Group',[INC DS Last Modified Date] as 'Last Modified Date',[Expedite_Date] as 'Expedited Date',[Urgency_Reason] as 'Urgency Reason' From [Expedite].[dbo].['All_Incidents'] FULL OUTER JOIN  [Expedite].[dbo].[Expedite_time]on [Incident_ID]=[INC Incident Number] where Expedite_By='" + x + "' and [INC Status]!='Closed' ORDER BY " + DropDownList1.SelectedValue + ";";
             //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
