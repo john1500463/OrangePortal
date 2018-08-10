@@ -13,73 +13,63 @@ public partial class Expedited_Users : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (Session["FTID"] == null)
         {
             Response.Redirect("Default.aspx");
         }
-        if (((String)Session["Right"]) == "else")
-        {
-            Response.Redirect("Home_Page_User.aspx");
-        }
-        if (((String)Session["Right"]) == "S")
-        {
-            Response.Redirect("Home_Page_Support.aspx");
-        }
-        Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
-        Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
-        ArrayList UrgencyReasons = new ArrayList();
-        ArrayList Counters = new ArrayList();
 
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
-        conn.Open();
-        DataTable dt = new DataTable();
-        SqlCommand command = new SqlCommand();
-        DataTable dt2 = new DataTable();
-        command.Connection = conn;
-        command.CommandText = "SELECT [Expedite_By] as 'Expedite By' FROM [Expedite].[dbo].[Expedite].[dbo].[Expedite_time]";
-        SqlCommand command2;
-        command2 = new SqlCommand();
-        command2.Connection = conn;
-        //   command.CommandText = "Select * From [dbo].['All_Incidents'];";
-
-
-        using (SqlDataAdapter sda = new SqlDataAdapter())
+        String x = (string)(Session["FTID"]);
+        try
         {
-            sda.SelectCommand = command;
-
-            using (dt = new DataTable())
+            DataTable dt = new DataTable();
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [INC Incident Number] as 'Incident ID' , [INC Status] as 'Status',[Urgency_Reason] as'Urgency Reason', [Expedite_By] as 'Expedited By' ,[Expedite_Date] as 'Expedite Date'  FROM [Expedite].[dbo].[Expedite_time] inner join [Expedite].[dbo].['All_Incidents'] on [Expedite].[dbo].[Expedite_time].[Incident_ID] =[Expedite].[dbo].['All_Incidents'].[INC Incident Number];";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
             {
-
-                sda.Fill(dt);
-
-
-            }
-            foreach (DataRow row in dt.Rows)
-            {
-                foreach (DataColumn column in dt.Columns)
+                sda.SelectCommand = command;
+                using (dt = new DataTable())
                 {
-                    UrgencyReasons.Add(row[column]);
 
+                    sda.Fill(dt);
 
                 }
             }
-            DataColumn countCol = dt.Columns.Add("Number", typeof(Int32));
-            for (int Counter = 0; Counter < UrgencyReasons.Count; Counter++)
+            if (dt.Rows.Count == 0)
             {
-
-                command2.CommandText = "SELECT Count(*) FROM [dbo].[Expedite_time] Where [Expedite_By] = '" + UrgencyReasons[Counter] + "';";
-                sda.SelectCommand = command2;
-                sda.Fill(dt2);
-                dt.Rows[Counter][1] = dt2.Rows[Counter][0];
-
-
+                Label_Title.Visible = false;
+                Label_info.Visible = true;
+            }
+            else
+            {
+                Label_info.Visible = false;
             }
             GridView1.DataSource = dt;
             GridView1.DataBind();
             GridView1.Visible = true;
+            Label_ModifiedDateExcel.Text = "Last Modified Date of Excel " + GetLastModifiedDate();
+            Label_ModifiedDateExe.Text = "Last Modified Date of Script " + GetLastModifiedDateExe();
+            //  Label2.Text = "<script  LANGUAGE='JavaScript' > <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> <asp:Button ID='Button2' runat='server' Text='Expedite' OnClick='Button2_Click' /> </script>";
+
+
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                HyperLink hlContro = new HyperLink();
+                String Incident = GridView1.Rows[i].Cells[0].Text;
+                hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + Incident;
+                hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+                GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+            }
+            conn.Close();
         }
-        conn.Close();
+        catch (Exception ex)
+        {
+            conn.Close();
+            Console.Write(ex.ToString());
+        }
+
     }
     string GetLastModifiedDate()
     {

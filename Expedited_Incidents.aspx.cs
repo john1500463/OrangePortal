@@ -503,7 +503,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             mail.CC.Add(team_member);
         }
         mail.CC.Add("it.support4business@orange.com");
-        mail.Body = "Hello "+ getmanagername(manager_mail)+"," + "\n" + "Kindly provide your urgent assistance upon this incident " +Inc_id + "\n" +"Your fast action is highly appreciated." +"\n"+ "Check and acknowledge expedites in your queue on: http://cas-its4b.vdr.equant.com/expedite/" + "\n" + "Regards," + "\n" + "IT Support for Business team";
+        mail.Body = "Hello " + getmanagername(manager_mail) + "," + "\n" + "Thanks to note that the subjected incident which is assigned to your queue is expedited and now escalated by the user. Appreciate if you can check the ticket on priority and feedback us accordingly." + "\n\n" + "Your action regarding this is highly appreciated." + "\n\n" + "You can also check the expedited incidents that are in your queue in the Expedited Incidents Tab if any on: http://cas-its4b.vdr.equant.com/expedite/" + "\n\n\n" + "Regards," + "\n" + "IT Support for Business team";
         mail.Subject = "Expedited Incident " + Inc_id;
         SmtpServer.Send(mail);
     }
@@ -759,16 +759,58 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         return name;
     }
 
+    protected ArrayList getinfoforbulk(String inc_id)
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
+        String submitter = "";
+        String tier2 = "";
+        String status = "";
+        DateTime sub_date;
+        DateTime last_mdate;
+        String assigned_group = "";
+        String assignee = "";
+        DataTable dt = new DataTable();
+        conn.Open();
+        command = new SqlCommand();
+        command.Connection = conn;
+        command.CommandText = "[INC DS Submitter Full Name],[INC Tier 2],[INC Status],[INC DS Submit Date],[INC DS Last Modified Date],[AG Assigned Group Name],[AG Assignee] FROM [Expedite].[dbo].['All_Incidents'] where [INC Incident Number] = '" + inc_id + "';";
+        using (SqlDataAdapter sda = new SqlDataAdapter())
+        {
+            sda.SelectCommand = command;
+            using (dt = new DataTable())
+            {
+
+                sda.Fill(dt);
+
+            }
+        }
+        submitter = dt.Rows[0][0].ToString();
+        tier2 = dt.Rows[0][1].ToString();
+        status = dt.Rows[0][2].ToString(); 
+        sub_date=(DateTime)dt.Rows[0][3];
+        last_mdate = (DateTime)dt.Rows[0][4];
+        assigned_group = dt.Rows[0][5].ToString();
+        assignee = dt.Rows[0][6].ToString();
+        String Timepassed = (DateTime.Now.Day - sub_date.Day).ToString();
+        return new ArrayList{submitter,tier2,status,sub_date.ToString(),last_mdate.ToString(),assigned_group,assignee,Timepassed};
+    }
+
     protected void sendmailtomanager(String manager_email, ArrayList IncidentsIDs)
     {
 
-        String body = "Hello " + getmanagername(manager_email) + ", <br /> Kindly provide your urgent assistance upon the below expedited incidents: <br /> <style>table, th, td {border: 1px solid black; border-collapse: collapse;}</style> <table>";
-        body += "<tr> <th>Incident ID</th> </tr>";
+        String body = "Hello " + getmanagername(manager_email) + ", <br /> Thanks to note that the following incidents that are assigned to your queue are expedited by the user. Appreciate if you can check them on priority and feedback us accordingly. <br /> <br /> Your action regarding this is highly appreciated. <br /> <style>table, th, td {border: 1px solid black; border-collapse: collapse;}</style> <table>";
+        body += "<tr> <th>Incident ID</th><th>Submitter</th><th>Tier 2</th><th>Status</th><th>Submit Date</th><th>Last Modified Date</th><th>Assigned Group</th><th>Assignee</th><th>Time Passed</th></tr>";
         foreach (String id in IncidentsIDs)
         {
-            body +="<tr> <td> " + id + "</td> </tr>";
+            body += "<tr> <td> " + id + "</td>";
+
+            foreach(String field in getinfoforbulk(id))
+            {
+                body += "<td> " + field + "</td>";
+            }
+                body +="</tr>";
         }
-        body += "</table> <br /> Your fast action is highly appreciated. <br /> Check and acknowledge expedites in your queue on: <a>http://cas-its4b.vdr.equant.com/expedite/</a> <br /> Regards, <br /> IT Support for Business team";
+        body += "</table> <br /> You can also check the expedited incidents that are in your queue in the Expedited Incidents Tab if any on: http://cas-its4b.vdr.equant.com/expedite/ <br /> <br /> Regards, <br /> IT Support for Business team";
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("it.support4business@orange.com");
@@ -780,14 +822,17 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         ArrayList teamlist = new ArrayList();
         for(int i=0; i<GridView1.Rows.Count;i++)
         {
-            ArrayList temp = getteamlist(GridView1.Rows[i].Cells[3].ToString());
-            if (temp.Count > 1)
+            if(IncidentsIDs.Contains(GridView1.Rows[i].Cells[0].Text))
             {
-                teamlist.AddRange(temp);
-            }
-            else
-            {
-                teamlist.Add(temp);
+                ArrayList temp = getteamlist(GridView1.Rows[i].Cells[3].Text);
+                if (temp.Count > 1)
+                {
+                    teamlist.AddRange(temp);
+                }
+                else
+                {
+                    teamlist.Add(temp);
+                }   
             }
         }
 
@@ -796,7 +841,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
             mail.CC.Add(team_member);
         }
         mail.CC.Add("it.support4business@orange.com");
-        SmtpServer.Send(mail);
+        Debug.WriteLine(body + " this should be to " + manager_email);
+        //SmtpServer.Send(mail);
     }
     protected void Notify_Click(object sender, System.EventArgs e)
     {

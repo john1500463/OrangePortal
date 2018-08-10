@@ -499,13 +499,18 @@ font-family: Arial;
     <img src="download.png">
 
 
-</div>     <form id="form2" runat="server">
+</div> 
+    <form id="form1" runat="server">
+        <div>
+        
     <div style="margin-top: 50px;">
-        <p>
-                <asp:Label ID="Label_Title" runat="server" Text="Expedited Users" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
-                    </p>
-            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="None" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
+                <asp:Label ID="Label_Title" runat="server" Text="Expedited By User" Font-Bold="True" Font-Size="XX-Large" ForeColor="#FF6501" Style="margin-top:2%;margin-left:1%;"></asp:Label>
+                    <br />
+        <br />
+        <asp:Label id="Label_info" Text="No expedited tickets" runat="server" Visible="false" Font-Bold="True" ForeColor="Red" Style="margin-left:1%;"/>
+                <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#FF3300" AutoGenerateSelectButton="False" Visible="False" BorderStyle="Solid" BorderWidth="2px" style="margin-bottom:20%; margin-left:1%;">
                 <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BorderColor="Black" BorderStyle="Solid" />
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="#FF6501" />
                 <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
@@ -516,8 +521,10 @@ font-family: Arial;
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
-        </div> 
-         </form>
+        </div>
+        </div>
+           
+    </form>    
    <div style="width: 100%; height:15%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"><br /><font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a><br /> <asp:label ID="Label_ModifiedDateExcel" text="Text" runat="server" Font-Size="10pt" /><br /><asp:label ID="Label_ModifiedDateExe" text="Text" runat="server" Font-Size="10pt" /></center></font> </div>
 
 </body>
