@@ -796,7 +796,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         last_mdate = (DateTime)dt.Rows[0][4];
         assigned_group = dt.Rows[0][5].ToString();
         assignee = dt.Rows[0][6].ToString();
-        String Timepassed = (DateTime.Now - sub_date).ToString();
+        String Timepassed = ((int)((DateTime.Now - sub_date).TotalHours)).ToString();
         return new ArrayList{submitter,tier2,status,sub_date.ToString(),last_mdate.ToString(),assigned_group,assignee,Timepassed};
     }
 
@@ -805,7 +805,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         Debug.WriteLine("here7");
         String body = "Hello " + getmanagername(manager_email) + ", <br /> Thanks to note that the following incidents that are assigned to your queue are expedited by the user. Appreciate if you can check them on priority and feedback us accordingly. <br /> <br /> Your action regarding this is highly appreciated. <br /><br /> <style>table, th, td {border: 1px solid black; border-collapse: collapse;} th{Color:Black; Background-Color:DarkOrange;}</style> <table cellpadding='10'>";
         Debug.WriteLine("here10");
-        body += "<tr> <th>Incident ID</th><th>Submitter</th><th>Tier 2</th><th>Status</th><th>Submit Date</th><th>Last Modified Date</th><th>Assigned Group</th><th>Assignee</th><th>Time Passed</th></tr>";
+        body += "<tr> <th>Incident ID</th><th>Submitter</th><th>Tier 2</th><th>Status</th><th>Submit Date</th><th>Last Modified Date</th><th>Assigned Group</th><th>Assignee</th><th>Time Elapsed</th></tr>";
         foreach (String id in IncidentsIDs)
         {
             body += "<tr> <td> " + id + "</td>";
@@ -821,8 +821,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("it.support4business@orange.com");
-        //mail.To.Add(manager_email);
-        mail.To.Add("waleed.mohamed@orange.com");
+        mail.To.Add(manager_email);
+        //mail.To.Add("waleed.mohamed@orange.com");
         mail.Body = body;
         mail.Subject = "Expedtied Incidents";
         mail.IsBodyHtml = true;
