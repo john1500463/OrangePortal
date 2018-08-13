@@ -99,7 +99,7 @@ public partial class OrangePortal_ExpediteByUser : System.Web.UI.Page
         {
             HyperLink hlContro = new HyperLink();
             String Incident = GridView1.Rows[i].Cells[0].Text;
-            hlContro.NavigateUrl = String.Format("javascript:void(window.open('" + "./Expedited_Users.aspx?FTID=" + dt.Rows[i][1] + "','_blank'));");
+            hlContro.NavigateUrl = String.Format("javascript:void(window.open('" + "./Expedited_Users.aspx?FTID=" + dt.Rows[i][1] + "&NAME="+dt.Rows[i][0]+"','_blank'));");
             hlContro.Text = GridView1.Rows[i].Cells[0].Text;
             GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
         }

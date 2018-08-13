@@ -15,11 +15,12 @@ public partial class Expedited_Users : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         String FTID = Request.QueryString["FTID"];
+        String NAME = Request.QueryString["NAME"];
         if (Session["FTID"] == null)
         {
             Response.Redirect("Default.aspx");
         }
-
+        Label_Title.Text += " : " + NAME;
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         String x = (string)(Session["FTID"]);
         try
@@ -60,7 +61,7 @@ public partial class Expedited_Users : System.Web.UI.Page
             {
                 HyperLink hlContro = new HyperLink();
                 String Incident = GridView1.Rows[i].Cells[0].Text;
-                hlContro.NavigateUrl = "./Incident_Details.aspx?ID=" + Incident;
+                hlContro.NavigateUrl = String.Format("javascript:void(window.open('" + "./Incident_Details.aspx?ID=" + dt.Rows[i][0] + "','_blank'));");
                 hlContro.Text = GridView1.Rows[i].Cells[0].Text;
                 GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
             }
