@@ -11,8 +11,10 @@ using System.Web.UI.WebControls;
 
 public partial class Expedited_Users : System.Web.UI.Page
 {
+    
     protected void Page_Load(object sender, EventArgs e)
     {
+        String FTID = Request.QueryString["FTID"];
         if (Session["FTID"] == null)
         {
             Response.Redirect("Default.aspx");
@@ -26,7 +28,7 @@ public partial class Expedited_Users : System.Web.UI.Page
             conn.Open();
             SqlCommand command = new SqlCommand();
             command.Connection = conn;
-            command.CommandText = "SELECT [INC Incident Number] as 'Incident ID' , [INC Status] as 'Status',[Urgency_Reason] as'Urgency Reason', [Expedite_By] as 'Expedited By' ,[Expedite_Date] as 'Expedite Date'  FROM [Expedite].[dbo].[Expedite_time] inner join [Expedite].[dbo].['All_Incidents'] on [Expedite].[dbo].[Expedite_time].[Incident_ID] =[Expedite].[dbo].['All_Incidents'].[INC Incident Number];";
+            command.CommandText = "SELECT [INC Incident Number] as 'Incident ID' , [INC Status] as 'Status',[Urgency_Reason] as'Urgency Reason', [INC DS Submit Date] as 'Submit Date' ,[Expedite_Date] as 'Expedite Date'  FROM [Expedite].[dbo].[Expedite_time] inner join [Expedite].[dbo].['All_Incidents'] on [Expedite].[dbo].[Expedite_time].[Incident_ID] =[Expedite].[dbo].['All_Incidents'].[INC Incident Number] where [Expedite_By] = '" + FTID + "';";
             using (SqlDataAdapter sda = new SqlDataAdapter())
             {
                 sda.SelectCommand = command;

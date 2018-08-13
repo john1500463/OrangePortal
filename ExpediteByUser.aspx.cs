@@ -19,6 +19,7 @@ using System.Web.UI.WebControls;
 
 public partial class OrangePortal_ExpediteByUser : System.Web.UI.Page
 {
+    DataTable dt = new DataTable();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -41,11 +42,11 @@ public partial class OrangePortal_ExpediteByUser : System.Web.UI.Page
 
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         conn.Open();
-        DataTable dt = new DataTable();
+        
         SqlCommand command = new SqlCommand();
         DataTable dt2 = new DataTable();
         command.Connection = conn;
-        command.CommandText = "SELECT distinct [Expedite_By] as 'Expedite By' FROM [Expedite].[dbo].[Expedite_time]";
+        command.CommandText = "SELECT distinct [PE Full Name] as 'Full Name' ,[Expedite_By] as 'FTID' FROM [Expedite].[dbo].[Expedite_time] inner join [Expedite].[dbo].[Staff] on [Expedite].[dbo].[Expedite_time].[Expedite_By] = [Expedite].[dbo].[Staff].[PE Login Name]";
         SqlCommand command2;
         command2 = new SqlCommand();
         command2.Connection = conn;
@@ -65,12 +66,10 @@ public partial class OrangePortal_ExpediteByUser : System.Web.UI.Page
             }
             foreach (DataRow row in dt.Rows)
             {
-                foreach (DataColumn column in dt.Columns)
-                {
-                    UrgencyReasons.Add(row[column]);
+               
+                    UrgencyReasons.Add(row[1]);
 
 
-                }
             }
             DataColumn countCol = dt.Columns.Add("Number", typeof(Int32));
             for (int Counter = 0; Counter < UrgencyReasons.Count; Counter++)
@@ -79,13 +78,14 @@ public partial class OrangePortal_ExpediteByUser : System.Web.UI.Page
                 command2.CommandText = "SELECT Count(*) FROM [dbo].[Expedite_time] Where [Expedite_By] = '" + UrgencyReasons[Counter] + "';";
                 sda.SelectCommand = command2;
                 sda.Fill(dt2);
-                dt.Rows[Counter][1] = dt2.Rows[Counter][0];
+                dt.Rows[Counter][2] = dt2.Rows[Counter][0];
 
 
             }
             GridView1.DataSource = dt;
             GridView1.DataBind();
             GridView1.Visible = true;
+            clickable_incidents();
         }
         conn.Close();
     }
@@ -93,10 +93,23 @@ public partial class OrangePortal_ExpediteByUser : System.Web.UI.Page
     {
         return System.IO.File.GetLastWriteTime("D:/Expedite/NewExpedite.xls").ToString();
     }
+    protected void clickable_incidents()
+    {
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            HyperLink hlContro = new HyperLink();
+            String Incident = GridView1.Rows[i].Cells[0].Text;
+            hlContro.NavigateUrl = String.Format("javascript:void(window.open('" + "./Expedited_Users.aspx?FTID=" + dt.Rows[i][1] + "','_blank'));");
+            hlContro.Text = GridView1.Rows[i].Cells[0].Text;
+            GridView1.Rows[i].Cells[0].Controls.Add(hlContro);
+        }
+
+    }
+    
 
     string GetLastModifiedDateExe()
     {
-        DataTable dt;
+        dt = new DataTable();
         SqlCommand command = new SqlCommand();
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         conn.Open();
@@ -115,6 +128,7 @@ public partial class OrangePortal_ExpediteByUser : System.Web.UI.Page
         }
         conn.Close();
         return dt.Rows[0][0].ToString();
-    }
     
+    }
+   
 }
