@@ -102,6 +102,7 @@ public partial class _Default : System.Web.UI.Page
             Session["FTID"] = cn_S;
             Session["Email"] = description_S;
             Session["Fname"] = givenName_S;
+            Session["Lname"] = sn_S;
             Debug.WriteLine(Session["Email"]);
             Debug.WriteLine(Session["FTID"]);
             Debug.WriteLine((string)Session["Fname"]);

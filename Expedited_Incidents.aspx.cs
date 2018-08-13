@@ -602,12 +602,14 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
 
     protected void notifymanagers() {
+        Debug.WriteLine("here1");
         ArrayList all_managers_emails = new ArrayList();
         ArrayList all_inc = new ArrayList();
         ArrayList unique_emails = new ArrayList();
         ArrayList idstoextract = new ArrayList();
         for (int i = 0; i < thetable.Rows.Count; i++)
         {
+            Debug.WriteLine("here2");
             idstoextract.Add(thetable.Rows[i][0].ToString());
         }
 
@@ -655,17 +657,19 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
             foreach (String email in unique_emails)
             {
+                Debug.WriteLine("here3");
                 ArrayList alltheinc = new ArrayList();
-                for (int i = 0; i < dt.Rows.Count; i++)
+                for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
-                    if (getmanagerofinc(((String)(dt.Rows[i][0]))) == email)
+                    if (getmanagerofinc(((String)(GridView1.Rows[i].Cells[0].Text))) == email)
                     {
-                        if (idstoextract.Contains(dt.Rows[i][0]))
+                        if (idstoextract.Contains(GridView1.Rows[i].Cells[0].Text))
                         {
-                            alltheinc.Add(dt.Rows[i][0]);
+                            alltheinc.Add(GridView1.Rows[i].Cells[0].Text);
                         }
                     }
                 }
+                Debug.WriteLine("here4");
                 sendmailtomanager(email,alltheinc);
             }
         }
@@ -703,8 +707,8 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 }
             }
             group_name = dt.Rows[0][0].ToString();
-            assignee_name = dt.Rows[0][1].ToString();
-            manager_mail = dt.Rows[0][2].ToString();
+            manager_mail = dt.Rows[0][1].ToString();
+            assignee_name = dt.Rows[0][2].ToString();
             expeditedby_mail = dt.Rows[0][3].ToString();
             assigned_group = dt.Rows[0][4].ToString();
 
@@ -737,6 +741,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
     }
     protected String getmanagername(String manager_email)
     {
+        Debug.WriteLine("GET NAME of " + manager_email);
         SqlConnection conn = new SqlConnection("Data Source=10.238.110.196;Initial Catalog=Expedite;User ID=sa;Password=Orange@123$");
         DataTable dt = new DataTable();
         String name = "";
@@ -747,6 +752,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         using (SqlDataAdapter sda2 = new SqlDataAdapter())
         {
             sda2.SelectCommand = command2;
+            Debug.WriteLine(command2.CommandText);
             using (dt = new DataTable())
             {
 
@@ -754,7 +760,32 @@ public partial class Expedited_Incidents : System.Web.UI.Page
 
             }
         }
-        name = dt.Rows[0][0].ToString();
+        if (dt.Rows.Count > 0)
+        {
+            name = dt.Rows[0][0].ToString();
+        }
+        else
+        {
+            DataTable newdt = new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.Connection = conn;
+            command.CommandText = "SELECT [AG Assignee Manager Name] FROM [Expedite].[dbo].['All_Incidents'] where [AG M Email Address]='" + manager_email + "';";
+            using (SqlDataAdapter sda = new SqlDataAdapter())
+            {
+                sda.SelectCommand = command;
+                Debug.WriteLine(command.CommandText);
+                using (newdt = new DataTable())
+                {
+
+                    sda.Fill(newdt);
+
+                }
+            }
+            if (newdt.Rows.Count > 0)
+            {
+                name = newdt.Rows[0][0].ToString();
+            }
+        }
         conn.Close();
         return name;
     }
@@ -773,10 +804,11 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         conn.Open();
         command = new SqlCommand();
         command.Connection = conn;
-        command.CommandText = "[INC DS Submitter Full Name],[INC Tier 2],[INC Status],[INC DS Submit Date],[INC DS Last Modified Date],[AG Assigned Group Name],[AG Assignee] FROM [Expedite].[dbo].['All_Incidents'] where [INC Incident Number] = '" + inc_id + "';";
+        command.CommandText = "SELECT [INC DS Submitter Full Name],[INC Tier 2],[INC Status],[INC DS Submit Date],[INC DS Last Modified Date],[AG Assigned Group Name],[AG Assignee] FROM [Expedite].[dbo].['All_Incidents'] where [INC Incident Number] = '" + inc_id + "';";
         using (SqlDataAdapter sda = new SqlDataAdapter())
         {
             sda.SelectCommand = command;
+            Debug.WriteLine(command.CommandText);
             using (dt = new DataTable())
             {
 
@@ -791,15 +823,16 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         last_mdate = (DateTime)dt.Rows[0][4];
         assigned_group = dt.Rows[0][5].ToString();
         assignee = dt.Rows[0][6].ToString();
-        String Timepassed = (DateTime.Now.Day - sub_date.Day).ToString();
+        String Timepassed = ((int)((DateTime.Now - sub_date).TotalHours)).ToString();
         return new ArrayList{submitter,tier2,status,sub_date.ToString(),last_mdate.ToString(),assigned_group,assignee,Timepassed};
     }
 
     protected void sendmailtomanager(String manager_email, ArrayList IncidentsIDs)
     {
-
-        String body = "Hello " + getmanagername(manager_email) + ", <br /> Thanks to note that the following incidents that are assigned to your queue are expedited by the user. Appreciate if you can check them on priority and feedback us accordingly. <br /> <br /> Your action regarding this is highly appreciated. <br /> <style>table, th, td {border: 1px solid black; border-collapse: collapse;}</style> <table>";
-        body += "<tr> <th>Incident ID</th><th>Submitter</th><th>Tier 2</th><th>Status</th><th>Submit Date</th><th>Last Modified Date</th><th>Assigned Group</th><th>Assignee</th><th>Time Passed</th></tr>";
+        Debug.WriteLine("here7");
+        String body = "Hello " + getmanagername(manager_email) + ", <br /> Thanks to note that the following incidents that are assigned to your queue are expedited by the user. Appreciate if you can check them on priority and feedback us accordingly. <br /> <br /> Your action regarding this is highly appreciated. <br /><br /> <style>table, th, td {border: 1px solid black; border-collapse: collapse;} th{Color:Black; Background-Color:DarkOrange;}</style> <table cellpadding='10'>";
+        Debug.WriteLine("here10");
+        body += "<tr> <th>Incident ID</th><th>Submitter</th><th>Tier 2</th><th>Status</th><th>Submit Date</th><th>Last Modified Date</th><th>Assigned Group</th><th>Assignee</th><th>Time Elapsed</th></tr>";
         foreach (String id in IncidentsIDs)
         {
             body += "<tr> <td> " + id + "</td>";
@@ -811,6 +844,7 @@ public partial class Expedited_Incidents : System.Web.UI.Page
                 body +="</tr>";
         }
         body += "</table> <br /> You can also check the expedited incidents that are in your queue in the Expedited Incidents Tab if any on: http://cas-its4b.vdr.equant.com/expedite/ <br /> <br /> Regards, <br /> IT Support for Business team";
+        
         MailMessage mail = new MailMessage();
         SmtpClient SmtpServer = new SmtpClient("mx-us.equant.com");
         mail.From = new MailAddress("it.support4business@orange.com");
@@ -822,27 +856,39 @@ public partial class Expedited_Incidents : System.Web.UI.Page
         ArrayList teamlist = new ArrayList();
         for(int i=0; i<GridView1.Rows.Count;i++)
         {
-            if(IncidentsIDs.Contains(GridView1.Rows[i].Cells[0].Text))
+            Debug.WriteLine("here");
+            if(IncidentsIDs.Contains(GridView1.Rows[i].Cells[0].Text.ToString()))
             {
-                ArrayList temp = getteamlist(GridView1.Rows[i].Cells[3].Text);
+                ArrayList temp = getteamlist(GridView1.Rows[i].Cells[3].Text.ToString());
                 if (temp.Count > 1)
                 {
-                    teamlist.AddRange(temp);
+                    foreach(String mailz in temp)
+                    {
+                        if(!teamlist.Contains(mailz))
+                        {
+                        teamlist.Add(mailz);
+                        }
+                    }
                 }
                 else
                 {
-                    teamlist.Add(temp);
-                }   
+                    if (!teamlist.Contains(temp[0].ToString()))
+                    {
+                        teamlist.Add(temp[0].ToString());
+                    }
+                }
             }
         }
-
+        Debug.WriteLine("hereLL");
         foreach (String team_member in teamlist)
         {
+            Debug.WriteLine(team_member.ToString());
             mail.CC.Add(team_member);
         }
+        Debug.WriteLine("hereLQ");
         mail.CC.Add("it.support4business@orange.com");
         Debug.WriteLine(body + " this should be to " + manager_email);
-        //SmtpServer.Send(mail);
+        SmtpServer.Send(mail);
     }
     protected void Notify_Click(object sender, System.EventArgs e)
     {
