@@ -423,7 +423,7 @@ font-family: Arial;
          <li ><a href='Expedited_Incidents_Support.aspx'><span>Expedited Incidents</span></a>
 
         
-   <li><a href='#'><span>Help</span></a></li>
+   <li><a href='Help_Support.aspx'><span>Help</span></a></li>
 
    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     

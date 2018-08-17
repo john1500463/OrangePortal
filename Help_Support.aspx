@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Incident_Details_User.aspx.cs" Inherits="Incident_Details_User" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Help_Support.aspx.cs" Inherits="Help_Support" %>
+
+
 <!DOCTYPE html>
 
 
@@ -299,7 +301,7 @@
 
   top:10%;
 
-  margin-left:0.5%;
+  margin-left: 0.5%;
 
   font-size: 38pt;
 
@@ -374,12 +376,14 @@ margin-top:0px;
 
 }
 
-
-td {
-    border: 3px solid black;
+a {
+    text-decoration:none;
+    color:black;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+a:hover {
+    color:#FF6501;
+}
 *{
 font-family: Arial;
 }
@@ -391,7 +395,7 @@ font-family: Arial;
 
 
 
-<div id='cssmenu' style="min-width:768px; width:100%; top:0;">
+<div id='cssmenu' style="min-width:900px; width:100%; top:0;">
     
   <div id='OrangeText'>
 
@@ -403,11 +407,16 @@ font-family: Arial;
 
 <ul>
 
-   <li><a href='Home_Page_User.aspx'><span>Home</span></a></li>
+   <li><a href='Home_Page_Support.aspx'><span>Home</span></a></li>
 
-   <li><a href='My_Expedited_Incidents_User'><span>My Expedited Incidents</span></a></li>  
-    
-    <li><a href='Help_User.aspx'><span>Help</span></a></li>
+   <li><a href='My_Expedited_Incidents_Support.aspx'><span>My Expedited Incidents</span></a></li>
+
+   
+
+         <li ><a href='Expedited_Incidents_Support.aspx'><span>Expedited Incidents</span></a>
+
+        
+   <li><a href='Help_Support.aspx' style="background: #FF6501;border-color: #FF6501;"><span>Help</span></a></li>
 
    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
@@ -418,13 +427,15 @@ font-family: Arial;
 
 
 </div>
-    
-    <form id="form1" runat="server">
-    <div style="margin-bottom:10%;">
-     <asp:Table ID="Table1" runat="server" BorderStyle="Solid" CellPadding="10" GridLines="Both" style="margin-left:1%; margin-top:4%;" BackColor="White">
-            </asp:Table>
-    </div>
-    </form>
-    <div style="width: 100%; height:10%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a></b></center></font> </div>
+
+    <form id="form1" runat="server" aria-expanded="true">
+        <div style="margin-left:1%; margin-top:5%;">
+        <asp:LinkButton ForeColor="DarkOrange" id="Plaza_link" Text="Download Expedite Portal Guide" runat="server" OnClick="downloaddoc_click" />
+            </div>
+       </form>
+
+<div style="width: 100%; height:10%;background-color: #000000; position: fixed;right: 0;bottom: 0;left: 0;"> <br /> <font color="#FF6501" center  width="10"><center>For any portal issues, thanks to contact us on <a style="text-decoration:none; background-color: black;color:lightblue;">it.support4business@orange.com</a></b></center></font> </div>
+
 </body>
 </html>
+

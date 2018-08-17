@@ -415,6 +415,8 @@ font-family: Arial;
 
    <li><a href='My_Expedited_Incidents_User' style="background: #FF6501;border-color: #FF6501;"><span>My Expedited Incidents</span></a></li>  
 
+    <li><a href='Help_User.aspx'><span>Help</span></a></li>
+
    <li class='last' style="z-index:2;"><a href='Default.aspx'><span>Log Out</span></a></li>
     
 
